@@ -36,12 +36,20 @@ DICA:
 
 ### 1	COMPONENTES<br>
 Integrantes do grupo<br>
-
+Vitor Soares Salzman - vitor-salzman96@hotmail.com<br>
+Luiz Antonio Roque Guzzo - luizguzzo@gmail.com<br>
+Serenna Ferrari Lima - serennaferrari@gmail.com<br>
+Hellesandro Gonzaga - hellesandro123@gmail.com<br>
+<br>
 ### 2	INTRODUÇÃO E MOTIVAÇAO<br>
 Este documento contém a especificação do projeto do banco de dados <nome do projeto> e motivação da escolha realizada. <br>
       
 ### 3	MINI-MUNDO<br>
-Descrever o mini-mundo. Não deve ser maior do que 30 linhas <br>
+
+S-Organizer é uma aplicação web que busca simplificar a prestação de serviços contratados formais e não formais. Assim sendo, a ferramenta oferece controle de serviços a prestar, visando organizar a agenda diária do prestador. <br>
+Usuários administrativos criam e controlam agendas de serviços a prestar para para os prestadores. Serviços são criados após solicitação de um cliente, calculando horário para realização, tendo em vista a disponibilidade do cliente. Serviços criados geram protocolo que pode ser utilizado pelo cliente para consultar os detalhes do mesmo. Os serviços já contratados e pendentes devem aparecer na agenda do funcionário, que poderá consultar protocolo, endereço, descrição, horário estimado e valor do serviço. O prestador de serviço pode editar a agenda pessoal conforme necessário.<br>
+Cliente não possui cadastro no sistema, mas pode consultar o serviço contratado através de um campo de pesquisa de protocolo. Avisos, como atrasos, serão registrados no serviço pelo funcionário. Tais notas podem ser visualizadas pelo cliente.
+<br>
 
 ### 4	RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
 neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
