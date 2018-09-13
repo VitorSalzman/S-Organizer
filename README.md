@@ -42,8 +42,9 @@ Serenna Ferrari Lima - serennaferrari@gmail.com<br>
 Hellesandro Gonzaga - hellesandro123@gmail.com<br>
 <br>
 ### 2	INTRODUÇÃO E MOTIVAÇAO<br>
-Este documento contém a especificação do projeto do banco de dados <nome do projeto> e motivação da escolha realizada. <br>
-      
+    
+S-organizer é uma projeto criado em 2018, visando a satisfação da demanda de praticidade e rapidez na serventia dos serviços contratados. Através da combinação de tecnologias inovadoras e conhecimento do setor tratado, o S-Organizer traz aos contratantes aumento na eficiência e na rentabilidade do negócio. A cultura do S-Organizer pauta-se na interação bidirecional com o cliente para tratar as particularidades dos pedidos e nas boas relações com nossos colaboradores, visando maior credibilidade e confiabilidade no trabalho feito. 
+     
 ### 3	MINI-MUNDO<br>
 
 S-Organizer é uma aplicação web que busca simplificar a prestação de serviços contratados formais e não formais. Assim sendo, a ferramenta oferece controle de serviços a prestar, visando organizar a agenda diária do prestador. <br>
