@@ -9,7 +9,7 @@ package s.organizer;
  *
  * @author 20161bsi0403
  */
-public class Empresa {
+public class Empresa extends Acesso{
     private boolean controle;
     private int CNPJ;
 

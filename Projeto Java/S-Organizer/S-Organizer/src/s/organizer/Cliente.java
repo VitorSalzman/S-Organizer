@@ -11,7 +11,8 @@ package s.organizer;
  */
 public class Cliente extends Usuario{
        private int cpf;
-
+    
+      
     public int getCpf() {
         return cpf;
     }
@@ -19,6 +20,6 @@ public class Cliente extends Usuario{
     public void setCpf(int cpf) {
         this.cpf = cpf;
     }
-       
-       
+     
+    
 }
