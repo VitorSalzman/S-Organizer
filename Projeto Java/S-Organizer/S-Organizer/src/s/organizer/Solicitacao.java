@@ -16,7 +16,7 @@ public class Solicitacao {
     private String descricao;
     private String observacao;
     private String dataSolicitacao;
-    private int protocolo;
+    private long protocolo;
     private Estado estado;
     private ArrayList<Servico> servicos;
 
@@ -34,10 +34,6 @@ public class Solicitacao {
 
     public String getDataSolicitacao() {
         return dataSolicitacao;
-    }
-
-    public int getProtocolo() {
-        return protocolo;
     }
 
     public String getEstado() {
@@ -60,15 +56,18 @@ public class Solicitacao {
         this.dataSolicitacao = dataSolicitacao;
     }
 
-    public void setProtocolo(int protocolo) {
-        this.protocolo = protocolo;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
-    public void setEstado(String estado) {
-        this.estado.setDescricao(estado);
+    public long getProtocolo() {
+        return protocolo;
     }
-    
-    
+
+    public void setProtocolo() {
+        this.protocolo = ProtocoloGenerator.INSTANCE.getNextProtocol();
+    }
+     
     
     
 }
