@@ -36,8 +36,8 @@ public class Solicitacao {
         return dataSolicitacao;
     }
 
-    public String getEstado() {
-        return estado.getDescricao();
+    public Estado getEstado() {
+        return estado;
     }
 
     public void setDisponibilidadeCliente(boolean disponibilidadeCliente) {
@@ -56,6 +56,8 @@ public class Solicitacao {
         this.dataSolicitacao = dataSolicitacao;
     }
 
+    
+    
     public void setEstado(Estado estado) {
         this.estado = estado;
     }

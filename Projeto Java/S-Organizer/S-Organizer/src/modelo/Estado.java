@@ -9,23 +9,4 @@ package modelo;
  *
  * @author 20161bsi0403
  */
-public enum Estado {
-    PENDENTE("pendente"),AGENDADO("agendado"), ACAMINHO("a caminho"),EMEXECUCAO("em execucao"),CONCLUIDO("concluido"); 
-    
-    private String descricao;
-    
-    Estado(String descricao){
-        this.descricao=descricao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-    
-    
-    
-}
+public enum Estado {PENDENTE ,AGENDADO, ACAMINHO,EMEXECUCAO,CONCLUIDO}
