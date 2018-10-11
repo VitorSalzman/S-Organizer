@@ -12,19 +12,9 @@ import java.sql.Time;
  * @author 20161bsi0403
  */
 public class Atendimento {
-    private boolean estahFeito;
     private Time horarioInicioAtendimento;
     private Time horarioFimAtendimento;
     
-
-    public boolean isEstahFeito() {
-        return estahFeito;
-    }
-
-    public void setEstahFeito(boolean estahFeito) {
-        this.estahFeito = estahFeito;
-    }
-
     public Time getHorarioInicioAtendimento() {
         return horarioInicioAtendimento;
     }

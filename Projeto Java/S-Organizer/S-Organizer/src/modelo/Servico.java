@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.sql.Time;
+
 /**
  *
  * @author 20161bsi0403
@@ -14,15 +16,18 @@ public class Servico {
     private Categoria categoria;
     private String descricao;
     private double valor;
+    private Time horarioMarcado;
+    private boolean estado;
+    private Atendimento atendimento;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
     public Categoria getCategoria() {
         return categoria;
     }
-
+    
     public String getDescricao() {
         return descricao;
     }
@@ -31,7 +36,7 @@ public class Servico {
         return valor;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
