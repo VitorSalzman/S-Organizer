@@ -10,7 +10,7 @@ package modelo;
  * @author 20161bsi0403
  */
 public class Servico {
-    private int id;
+    private long id;
     private Categoria categoria;
     private String descricao;
     private double valor;

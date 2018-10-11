@@ -5,31 +5,42 @@
  */
 package modelo;
 
+import java.sql.Time;
+
 /**
  *
  * @author 20161bsi0403
  */
 public class Atendimento {
     private boolean estahFeito;
-    private String horarioAtendido;
-    private Solicitacao solicitacao;
+    private Time horarioInicioAtendimento;
+    private Time horarioFimAtendimento;
+    
 
     public boolean isEstahFeito() {
         return estahFeito;
-    }
-
-    public String getHorarioAtendido() {
-        return horarioAtendido;
     }
 
     public void setEstahFeito(boolean estahFeito) {
         this.estahFeito = estahFeito;
     }
 
-    public void setHorarioAtendido(String horarioAtendido) {
-        this.horarioAtendido = horarioAtendido;
+    public Time getHorarioInicioAtendimento() {
+        return horarioInicioAtendimento;
     }
-    
+
+    public void setHorarioInicioAtendimento(Time horarioInicioAtendimento) {
+        this.horarioInicioAtendimento = horarioInicioAtendimento;
+    }
+
+    public Time getHorarioFimAtendimento() {
+        return horarioFimAtendimento;
+    }
+
+    public void setHorarioFimAtendimento(Time horarioFimAtendimento) {
+        this.horarioFimAtendimento = horarioFimAtendimento;
+    }
+
     
     
    
