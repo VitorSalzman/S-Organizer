@@ -7,6 +7,8 @@ package modelo;
 
 /**
  *
- * @author 20161bsi0403
+ * @author 20161BSI0403
  */
-public enum Estado {PENDENTE ,AGENDADO, ACAMINHO,EMEXECUCAO,CONCLUIDO}
+public class Cidade {
+    private String nome;
+}

@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -17,8 +18,9 @@ public class Solicitacao {
     private String observacao;
     private String dataSolicitacao;
     private long protocolo;
-    private Estado estado;
+    private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public boolean isDisponibilidadeCliente() {
         return disponibilidadeCliente;
@@ -36,7 +38,7 @@ public class Solicitacao {
         return dataSolicitacao;
     }
 
-    public Estado getEstado() {
+    public EstadoSolicitacao getEstado() {
         return estado;
     }
 
@@ -58,7 +60,7 @@ public class Solicitacao {
 
     
     
-    public void setEstado(Estado estado) {
+    public void setEstado(EstadoSolicitacao estado) {
         this.estado = estado;
     }
 
