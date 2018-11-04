@@ -9,9 +9,16 @@ package modelo;
  *
  * @author 20161bsi0403
  */
-public class Acesso extends Usuario {
+public abstract class Acesso extends Usuario {
     private String usuario;
     private String senha;
+
+    public Acesso(String usuario, String senha, Long telefone, String nome) {
+        super(nome,telefone);
+        this.usuario = usuario;
+        this.senha = senha;
+        
+    }
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
