@@ -11,6 +11,11 @@ package modelo;
  */
 public class Cliente extends Usuario{
        private long cpf;
+
+    public Cliente(long cpf, String nome, long telefone) {
+        super(nome, telefone);
+        this.cpf = cpf;
+    }
     
       
     public long getCpf() {
