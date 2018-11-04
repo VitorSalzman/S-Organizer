@@ -17,7 +17,7 @@ public class Servico {
     private String descricao;
     private double valor;
     private Time horarioMarcado;
-    private boolean estado;
+    private EstadoSolicitacao estado;
     private Atendimento atendimento;
 
     public long getId() {
@@ -47,7 +47,7 @@ public class Servico {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    
     public void setValor(double valor) {
         this.valor = valor;
     }

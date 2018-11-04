@@ -7,19 +7,11 @@ package modelo;
 
 /**
  *
- * @author 20161BSI0403
+ * @author Salzman
  */
-public class Cidade {
-    private String nome;
+public class Estado {
     private long id;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    private long nome;
 
     public long getId() {
         return id;
@@ -27,6 +19,14 @@ public class Cidade {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getNome() {
+        return nome;
+    }
+
+    public void setNome(long nome) {
+        this.nome = nome;
     }
     
     

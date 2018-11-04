@@ -12,6 +12,7 @@ package modelo;
 public class Logradouro {
     private String nome;
     private String abreviatura;
+    private long id;
 
     public String getNome() {
         return nome;
@@ -27,6 +28,14 @@ public class Logradouro {
 
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
     

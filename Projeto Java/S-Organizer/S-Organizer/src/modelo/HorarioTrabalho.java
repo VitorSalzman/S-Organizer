@@ -14,7 +14,9 @@ import java.sql.Time;
 public class HorarioTrabalho {
     private Time horarioinicio;
     private Time horariofim;
-
+    private long id;
+    
+    
     public Time getHorarioinicio() {
         return horarioinicio;
     }
@@ -29,6 +31,14 @@ public class HorarioTrabalho {
 
     public void setHorariofim(Time horariofim) {
         this.horariofim = horariofim;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
     

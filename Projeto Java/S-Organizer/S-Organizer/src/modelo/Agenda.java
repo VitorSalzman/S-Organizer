@@ -15,8 +15,9 @@ import java.text.SimpleDateFormat;
 public class Agenda {
     private SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
     private Time hora;
+    private long id;
 
-    public SimpleDateFormat getData() {
+    public SimpleDateFormat getData(){
         return data;
     }
 
@@ -31,6 +32,15 @@ public class Agenda {
     public void setHora(Time hora) {
         this.hora = hora;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     
     
 }

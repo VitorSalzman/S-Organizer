@@ -12,7 +12,7 @@ package modelo;
 public class Prestador extends Acesso{
     private String empresaQueTrabalha;
     private boolean disponibilidade;
-
+    private long cpf;
     public String getEmpresaQueTrabalha() {
         return empresaQueTrabalha;
     }
@@ -28,6 +28,15 @@ public class Prestador extends Acesso{
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
+
+    public long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(long cpf) {
+        this.cpf = cpf;
+    }
+    
     
     
 }

@@ -9,4 +9,19 @@ package modelo;
  *
  * @author 20161bsi0403
  */
-public enum EstadoSolicitacao {PENDENTE ,AGENDADO, ACAMINHO,EMEXECUCAO,CONCLUIDO}
+public enum EstadoSolicitacao {
+    PENDENTE(1) ,AGENDADO(2), ACAMINHO(3), EMEXECUCAO(4), CONCLUIDO(5);
+    private long id;
+    
+    
+    public long getId() {
+        return id;
+    }
+
+    EstadoSolicitacao(long id) {
+        this.id = id;
+    }
+    
+    
+    
+}

@@ -13,18 +13,17 @@ import java.util.ArrayList;
  * @author 20161bsi0403
  */
 public class Solicitacao {
-    private boolean disponibilidadeCliente;
+    private  SimpleDateFormat disp_cli_ini = new SimpleDateFormat("dd/MM/yyyy");
+    private  SimpleDateFormat disp_cli_fim = new SimpleDateFormat("dd/MM/yyyy");
     private String descricao;
     private String observacao;
     private String dataSolicitacao;
     private long protocolo;
     private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    
 
-    public boolean isDisponibilidadeCliente() {
-        return disponibilidadeCliente;
-    }
+ 
 
     public String getDescricao() {
         return descricao;
@@ -42,10 +41,6 @@ public class Solicitacao {
         return estado;
     }
 
-    public void setDisponibilidadeCliente(boolean disponibilidadeCliente) {
-        this.disponibilidadeCliente = disponibilidadeCliente;
-    }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -57,8 +52,6 @@ public class Solicitacao {
     public void setDataSolicitacao(String dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
-
-    
     
     public void setEstado(EstadoSolicitacao estado) {
         this.estado = estado;

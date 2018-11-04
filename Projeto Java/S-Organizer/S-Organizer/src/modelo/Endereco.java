@@ -10,20 +10,20 @@ package modelo;
  * @author 20161bsi0403
  */
 public class Endereco {
-    private String rua;
-    private String bairro;
-    private String estado;
+    private Logradouro logradouro;
+    private Bairro bairro;
+    private Estado estado;
     private int cep;
 
-    public String getRua() {
-        return rua;
+    public Logradouro getLogradouro() {
+        return logradouro;
     }
 
-    public String getBairro() {
+    public Bairro getBairro() {
         return bairro;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
@@ -31,15 +31,15 @@ public class Endereco {
         return cep;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setLogradouro(Logradouro logradouro) {
+        this.logradouro = logradouro;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setBairro(Bairro bairro) {
+        this.bairro = bairro; 
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
