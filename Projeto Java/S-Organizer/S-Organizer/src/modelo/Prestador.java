@@ -10,6 +10,13 @@ package modelo;
  * @author 20161bsi0403
  */
 public class Prestador extends Acesso{
+
+    public Prestador(String empresaQueTrabalha, boolean disponibilidade, long cpf, String usuario, String senha, Long telefone, String nome) {
+        super(usuario, senha, telefone, nome);
+        this.empresaQueTrabalha = empresaQueTrabalha;
+        this.disponibilidade = disponibilidade;
+        this.cpf = cpf;
+    }
     private String empresaQueTrabalha;
     private boolean disponibilidade;
     private long cpf;
