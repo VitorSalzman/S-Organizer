@@ -5,7 +5,9 @@
  */
 package modelo;
 
-import javax.swing.JOptionPane;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -17,21 +19,25 @@ public class SOrganizer {
     /**
      * @param args the command line arguments
      */
+    
+    /* Exemplo fabrica usuarios bbs*/
     public static void main(String[] args) {
-        Cliente cli = null;
-        Empresa adm;
-        Prestador p;
+        HashMap dados = new HashMap();
+        dados.put("nome","Saruman");
+        dados.put("empregadoDe","ifes");
+        dados.put("cpf",22233344477L);
+        dados.put("tel",999558342L);
+        dados.put("login","onixsu5");
+        dados.put("senha","asd887!");
+        
+        FabricaUsuarios fu = new FabricaUsuarios(dados);
+        Prestador p = null;
         try {
-            cli = (Cliente) FabricaUsuarios.retornaUsuario("cliente");
-            adm = (Empresa) FabricaUsuarios.retornaUsuario("empresa");
-            p = (Prestador) FabricaUsuarios.retornaUsuario("prestador");
+            p = (Prestador) fu.retornaUsuario("prestador");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            Logger.getLogger(SOrganizer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        cli.setCpf(123456);
-        cli.setCodigo(13);
-        cli.setNome("Alberto Bahamas");
-        cli.setTelefone(997275424);
+        System.out.println(p.getEmpresaQueTrabalha());
         
     }
     

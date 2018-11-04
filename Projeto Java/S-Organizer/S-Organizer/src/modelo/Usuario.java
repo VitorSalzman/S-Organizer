@@ -11,14 +11,14 @@ package modelo;
  */
 public abstract class Usuario {
     private String nome;
-    private int telefone;
+    private long telefone;
     private int codigo;
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(long telefone) {
         this.telefone = telefone;
     }
 

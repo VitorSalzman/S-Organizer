@@ -10,14 +10,14 @@ package modelo;
  * @author 20161bsi0403
  */
 public class Cliente extends Usuario{
-       private int cpf;
+       private long cpf;
     
       
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
      

@@ -10,22 +10,13 @@ package modelo;
  * @author 20161bsi0403
  */
 public class Empresa extends Acesso{
-    private boolean controle;
-    private int CNPJ;
+   private long CNPJ;
 
-    public void setControle(boolean controle) {
-        this.controle = controle;
-    }
-
-    public void setCNPJ(int CNPJ) {
+    public void setCNPJ(long CNPJ) {
         this.CNPJ = CNPJ;
     }
 
-    public boolean isControle() {
-        return controle;
-    }
-
-    public int getCNPJ() {
+    public long getCNPJ() {
         return CNPJ;
     }
     
