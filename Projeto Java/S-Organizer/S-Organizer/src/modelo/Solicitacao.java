@@ -17,10 +17,11 @@ public class Solicitacao {
     private  SimpleDateFormat disp_cli_fim = new SimpleDateFormat("dd/MM/yyyy");
     private String descricao;
     private String observacao;
-    private String dataSolicitacao;
+    private SimpleDateFormat dataSolicitacao;
     private long protocolo;
     private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;
+    
     
 
  
@@ -33,7 +34,7 @@ public class Solicitacao {
         return observacao;
     }
 
-    public String getDataSolicitacao() {
+    public SimpleDateFormat getDataSolicitacao() {
         return dataSolicitacao;
     }
 
@@ -49,7 +50,7 @@ public class Solicitacao {
         this.observacao = observacao;
     }
 
-    public void setDataSolicitacao(String dataSolicitacao) {
+    public void setDataSolicitacao(SimpleDateFormat dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
     
@@ -61,8 +62,32 @@ public class Solicitacao {
         return protocolo;
     }
 
-    public void setProtocolo() {
-        this.protocolo = ProtocoloGenerator.INSTANCE.getNextProtocol();
+    public void setProtocolo(long protocol) {
+        this.protocolo = protocol;
+    }
+
+    public SimpleDateFormat getDispCliIni() {
+        return disp_cli_ini;
+    }
+
+    public void setDisCliIni(SimpleDateFormat disp_cli_ini) {
+        this.disp_cli_ini = disp_cli_ini;
+    }
+
+    public SimpleDateFormat getDispCliFim() {
+        return disp_cli_fim;
+    }
+
+    public void setDispCliFim(SimpleDateFormat disp_cli_fim) {
+        this.disp_cli_fim = disp_cli_fim;
+    }
+
+    public ArrayList<Servico> getServicos() {
+        return servicos;
+    }
+
+    public void setServicos(ArrayList<Servico> servicos) {
+        this.servicos = servicos;
     }
      
     
