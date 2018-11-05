@@ -14,12 +14,12 @@ public abstract class Usuario {
     private long telefone;
     private int codigo;
 
-    
+   /* 
     public Usuario(String nome, long telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }
-    
+    */
     public void setNome(String nome) {
         this.nome = nome;
     }

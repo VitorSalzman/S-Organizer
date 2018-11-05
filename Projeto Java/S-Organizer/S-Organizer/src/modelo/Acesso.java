@@ -13,10 +13,16 @@ public abstract class Acesso extends Usuario {
     private String usuario;
     private String senha;
 
-    public Acesso(String usuario, String senha, Long telefone, String nome) {
-        super(nome,telefone);
+    public Acesso(String usuario, String senha) {
         this.usuario = usuario;
-        this.senha = senha;
+        try {
+            this.setSenha(senha);   
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public Acesso(){
         
     }
 
@@ -24,8 +30,12 @@ public abstract class Acesso extends Usuario {
         this.usuario = usuario;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha(String senha) throws Exception {
+       if (!senha.equals("")){
+           this.senha = senha;
+       } else{
+           throw new Exception ("Senha vazia");
+       }
     }
 
     public String getUsuario() {

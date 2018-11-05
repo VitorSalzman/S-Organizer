@@ -10,14 +10,21 @@ package modelo;
  * @author 20161bsi0403
  */
 public class Empresa extends Acesso{
-   private long CNPJ;
-
+    private long cnpj;
+    
+    public Empresa (String nome, long telefone, long cnpj, String login, String senha){
+        super(login,senha);
+        this.setNome(nome);
+        this.setTelefone(telefone);
+        this.cnpj = cnpj;
+        
+    }
     public void setCNPJ(long CNPJ) {
-        this.CNPJ = CNPJ;
+        this.cnpj = CNPJ;
     }
 
     public long getCNPJ() {
-        return CNPJ;
+        return cnpj;
     }
     
     

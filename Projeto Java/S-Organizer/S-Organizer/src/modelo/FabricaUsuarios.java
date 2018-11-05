@@ -14,7 +14,7 @@ import java.util.Map;
 public class FabricaUsuarios {
     
     //Interface map (dicionário do python) 
-    static Map parametros = null;
+    Map parametros = null;
     
     public FabricaUsuarios (Map par){
         this.parametros = par;
@@ -31,15 +31,12 @@ public class FabricaUsuarios {
             cli.setTelefone((long) parametros.get("tel"));
         }
         else if(user.equalsIgnoreCase("prestador")){
-            usuario = new Prestador();
+            usuario = new Prestador((String)parametros.get("login"),(String)parametros.get("senha") );
             Prestador pre = (Prestador) usuario;
             pre.setNome((String)parametros.get("nome"));
             pre.setCpf((long) parametros.get("cpf"));
             pre.setTelefone((long) parametros.get("tel"));
             pre.setEmpresaQueTrabalha((String)parametros.get("empregadoDe"));
-            pre.setUsuario((String)parametros.get("login"));
-            pre.setSenha((String)parametros.get("senha"));
-            
         }
         else if(user.equalsIgnoreCase("empresa")){
             usuario = new Empresa();
