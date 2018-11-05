@@ -50,6 +50,7 @@ public class BuilderSolicitacao {
     }
     
     public void adicionaServicos(){
+        
         this.solicit.setServicos(this.servicos);      ///Falta tratar a adição de somente um serviço
     }
     

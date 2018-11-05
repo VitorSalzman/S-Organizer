@@ -17,7 +17,7 @@ public class Servico {
     private String descricao;
     private double valor;
     private Time horarioMarcado;
-    private EstadoSolicitacao estado;
+    private boolean estado;
     private Atendimento atendimento;
 
     public long getId() {
@@ -40,8 +40,8 @@ public class Servico {
         this.id = id;
     }
 
-    public void setCategoria(String category) {
-        this.categoria.setDescricao(category);
+    public void setCategoria(String category) throws Exception{
+        this.categoria =  Categoria.valueOf(category);
     }
 
     public void setDescricao(String descricao) {
@@ -51,6 +51,32 @@ public class Servico {
     public void setValor(double valor) {
         this.valor = valor;
     }
+
+    public Time getHorarioMarcado() {
+        return horarioMarcado;
+    }
+
+    public void setHorarioMarcado(Time horarioMarcado) {
+        this.horarioMarcado = horarioMarcado;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Atendimento getAtendimento() {
+        return atendimento;
+    }
+
+    public void setAtendimento(Atendimento atendimento) {
+        this.atendimento = atendimento;
+    }
+    
+    
   
     
 }
