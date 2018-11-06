@@ -38,8 +38,7 @@ public class BuilderSolicitacao {
     }
     
     public void geraProtocolo(){
-        ProtocoloGenerator protocol = null;
-        this.protocolo=protocol.INSTANCE.getNextProtocol();
+        this.protocolo=ProtocoloGenerator.INSTANCE.getNextProtocol();
         this.solicit.setProtocolo(protocolo);
     }
     

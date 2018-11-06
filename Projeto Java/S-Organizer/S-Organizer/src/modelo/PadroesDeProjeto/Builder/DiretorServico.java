@@ -17,10 +17,16 @@ public class DiretorServico {
    
     
     public Servico builder(String categoria, String descricao,
-            double valor, Time horarioMarcado){
+            double valor, Time horarioMarcado) throws Exception{
         Servico service = new Servico();
         
+        BuilderServico builder = new BuilderServico(categoria, descricao, valor, horarioMarcado, service);
         
+        builder.geraCategoria();
+        builder.geraDescricao();
+        builder.geraHorarioMarcado();
+        builder.geraValor();
         
+        return service;
     }
 }
