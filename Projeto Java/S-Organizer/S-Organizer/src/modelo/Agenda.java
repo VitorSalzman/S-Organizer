@@ -7,17 +7,33 @@ package modelo;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
- *
- * @author 20161BSI0403
+ * FICOU DEFINIDO QUE: 
+ * Agenda é uma classe que será instanciada pelo adm,
+ * o construtor deve capturar os valores do dia válido da agenda,
+ * intancia de agenda comportará Servicos de Solicitacoes,
+ * a instancia de Agenda completamente preenchida é entregue para um Prestador
  */
 public class Agenda {
-    private SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-    private Time hora;
+    private SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");
+    private Calendar data; //ou Date?
+    private ArrayList<Servico> servicosDoDia;
+    //PRESTADOR RECEBE AGENDA
     private long id;
 
-    public SimpleDateFormat getData(){
+    public Agenda() {
+        this.data = Calendar.getInstance();
+    }
+
+    
+
+    
+    
+    /*public SimpleDateFormat getData(){
         return data;
     }
 
@@ -39,8 +55,21 @@ public class Agenda {
 
     public void setId(long id) {
         this.id = id;
+    }*/
+
+    public ArrayList<Servico> getServicosDoDia() {
+        return servicosDoDia;
+    }
+
+    public void setServicosDoDia(Servico service) {
+        servicosDoDia.add(service);
     }
     
+    public void printServicosDoDia() {
+        for( Servico service : servicosDoDia ) {
+            System.out.println("Categoria: " + service.getCategoria() + "\n" + "Horario: " + service.getHorarioMarcado());
+        }
+    }
     
     
 }

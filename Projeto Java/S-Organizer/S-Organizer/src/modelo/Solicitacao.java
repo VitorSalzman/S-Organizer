@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * @author 20161bsi0403
  */
 public class Solicitacao {
-    private  SimpleDateFormat disp_cli_ini = new SimpleDateFormat("dd/MM/yyyy");
-    private  SimpleDateFormat disp_cli_fim = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat disp_cli_ini = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat disp_cli_fim = new SimpleDateFormat("dd/MM/yyyy");
     private String descricao;
     private String observacao;
     private SimpleDateFormat dataSolicitacao;
