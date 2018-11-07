@@ -7,17 +7,19 @@ package modelo;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author 20161bsi0403
  */
 public class Solicitacao {
-    private SimpleDateFormat disp_cli_ini = new SimpleDateFormat("dd/MM/yyyy");
-    private SimpleDateFormat disp_cli_fim = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat sdfDMA = new SimpleDateFormat("dd/MM/yyyy");
+    private Date disp_cli_ini;
+    private Date disp_cli_fim;
     private String descricao;
     private String observacao;
-    private SimpleDateFormat dataSolicitacao;
+    private Date dataSolicitacao;
     private long protocolo;
     private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;

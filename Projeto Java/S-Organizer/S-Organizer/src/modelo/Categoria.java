@@ -7,22 +7,31 @@ package modelo;
 
 /**
  *
- * @author 20161bsi0403
+ * MUDANCA:
+ * Foi inserido um tempo base para execucao de cata tipo de servico
+ * dessa forma podemos calcular quantos servicos conseguimos coloca
+ * dentro de uma agenda.
  */
 public enum Categoria {
     INSTALACAO("instalacao"),REPARO("reparo"),CONSTRUCAO("construcao"),LIMPEZA("limpeza"),ENTREGA("entrega"),BUSCA("busca");
     
     private String descricao;
+    private int duracao;
+
+    Categoria(String descricao, int duracao) {
+        this.descricao = descricao;
+        this.duracao = duracao;
+    }
 
     Categoria(String category){
         this.descricao=category;
-}
+    }
+    
     public String getDescricao() {
         return descricao;
     }
     
-    public void setDescricao(String category)
-    {
+    public void setDescricao(String category) {
         this.descricao=category;
     }
     
