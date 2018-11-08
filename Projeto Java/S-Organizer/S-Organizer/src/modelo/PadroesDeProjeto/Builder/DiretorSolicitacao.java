@@ -7,6 +7,7 @@ package modelo.PadroesDeProjeto.Builder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.Servico;
 import modelo.Solicitacao;
 
@@ -16,8 +17,8 @@ import modelo.Solicitacao;
  */
 public class DiretorSolicitacao {
    
-    public Solicitacao builder(SimpleDateFormat disp_cli_ini, SimpleDateFormat disp_cli_fim, String descricao,
-            String observacao, SimpleDateFormat dataSolicitacao, ArrayList<Servico> servicos){
+    public Solicitacao builder(Date disp_cli_ini, Date disp_cli_fim, String descricao,
+            String observacao, Date dataSolicitacao, ArrayList<Servico> servicos){
             Solicitacao solicitacao = new Solicitacao();
             
             BuilderSolicitacao builder = new BuilderSolicitacao(disp_cli_ini, disp_cli_fim, descricao,

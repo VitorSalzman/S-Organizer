@@ -36,9 +36,7 @@ public class Solicitacao {
         return observacao;
     }
 
-    public SimpleDateFormat getDataSolicitacao() {
-        return dataSolicitacao;
-    }
+
 
     public EstadoSolicitacao getEstado() {
         return estado;
@@ -52,9 +50,7 @@ public class Solicitacao {
         this.observacao = observacao;
     }
 
-    public void setDataSolicitacao(SimpleDateFormat dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
-    }
+
     
     public void setEstado(EstadoSolicitacao estado) {
         this.estado = estado;
@@ -68,28 +64,44 @@ public class Solicitacao {
         this.protocolo = protocol;
     }
 
-    public SimpleDateFormat getDispCliIni() {
-        return disp_cli_ini;
-    }
-
-    public void setDisCliIni(SimpleDateFormat disp_cli_ini) {
-        this.disp_cli_ini = disp_cli_ini;
-    }
-
-    public SimpleDateFormat getDispCliFim() {
-        return disp_cli_fim;
-    }
-
-    public void setDispCliFim(SimpleDateFormat disp_cli_fim) {
-        this.disp_cli_fim = disp_cli_fim;
-    }
-
     public ArrayList<Servico> getServicos() {
         return servicos;
     }
 
     public void setServicos(ArrayList<Servico> servicos) {
         this.servicos = servicos;
+    }
+
+    public SimpleDateFormat getSdfDMA() {
+        return sdfDMA;
+    }
+
+    public void setSdfDMA(SimpleDateFormat sdfDMA) {
+        this.sdfDMA = sdfDMA;
+    }
+
+    public Date getDispCliIni() {
+        return disp_cli_ini;
+    }
+
+    public void setDispCliIni(Date disp_cli_ini) {
+        this.disp_cli_ini = disp_cli_ini;
+    }
+
+    public Date getDispCliFim() {
+        return disp_cli_fim;
+    }
+
+    public void setDispCliFim(Date disp_cli_fim) {
+        this.disp_cli_fim = disp_cli_fim;
+    }
+
+    public Date getDataSolicitacao() {
+        return dataSolicitacao;
+    }
+
+    public void setDataSolicitacao(Date dataSolicitacao) {
+        this.dataSolicitacao = dataSolicitacao;
     }
      
     
