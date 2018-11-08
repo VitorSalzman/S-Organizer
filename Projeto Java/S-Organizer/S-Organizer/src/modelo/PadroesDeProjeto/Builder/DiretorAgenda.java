@@ -22,6 +22,6 @@ public class DiretorAgenda {
                 
         BuilderAgenda builder = new BuilderAgenda(horaInicioExpediente, horaFimExpediente, servicosDoDia, prestador, agenda );
         
-        return 
+        return agenda;
     }
 }
