@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+/*package persistencia;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import javax.persistence.Id;
 /**
  *
  * @author luizg
- */
+ 
 @Entity
 public class Bairro implements Serializable {
 
@@ -57,3 +57,4 @@ public class Bairro implements Serializable {
     }
     
 }
+*/

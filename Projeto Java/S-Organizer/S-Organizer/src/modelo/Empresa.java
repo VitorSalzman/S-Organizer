@@ -19,6 +19,9 @@ public class Empresa extends Acesso{
         this.cnpj = cnpj;
         
     }
+    
+    public Empresa(){} 
+    
     public void setCNPJ(long CNPJ) {
         this.cnpj = CNPJ;
     }
