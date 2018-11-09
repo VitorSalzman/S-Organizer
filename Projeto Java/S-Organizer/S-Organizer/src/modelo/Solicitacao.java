@@ -7,6 +7,7 @@ package modelo;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -14,12 +15,12 @@ import java.util.Date;
  * @author 20161bsi0403
  */
 public class Solicitacao {
-    private SimpleDateFormat sdfDMA = new SimpleDateFormat("dd/MM/yyyy");
-    private Date disp_cli_ini;
-    private Date disp_cli_fim;
+    
+    private Calendar disp_cli_ini;
+    private Calendar disp_cli_fim;
     private String descricao;
     private String observacao;
-    private Date dataSolicitacao;
+    private Calendar dataSolicitacao;
     private long protocolo;
     private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;
@@ -72,35 +73,28 @@ public class Solicitacao {
         this.servicos = servicos;
     }
 
-    public SimpleDateFormat getSdfDMA() {
-        return sdfDMA;
-    }
 
-    public void setSdfDMA(SimpleDateFormat sdfDMA) {
-        this.sdfDMA = sdfDMA;
-    }
-
-    public Date getDispCliIni() {
+    public Calendar getDispCliIni() {
         return disp_cli_ini;
     }
 
-    public void setDispCliIni(Date disp_cli_ini) {
+    public void setDispCliIni(Calendar disp_cli_ini) {
         this.disp_cli_ini = disp_cli_ini;
     }
 
-    public Date getDispCliFim() {
+    public Calendar getDispCliFim() {
         return disp_cli_fim;
     }
 
-    public void setDispCliFim(Date disp_cli_fim) {
+    public void setDispCliFim(Calendar disp_cli_fim) {
         this.disp_cli_fim = disp_cli_fim;
     }
 
-    public Date getDataSolicitacao() {
+    public Calendar getDataSolicitacao() {
         return dataSolicitacao;
     }
 
-    public void setDataSolicitacao(Date dataSolicitacao) {
+    public void setDataSolicitacao(Calendar dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
      

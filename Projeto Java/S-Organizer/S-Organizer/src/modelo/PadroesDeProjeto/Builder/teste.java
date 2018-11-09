@@ -18,20 +18,20 @@ import java.util.logging.Logger;
  *
  * @author vitorsalzman
  */
-public class teste {
+public class teste{
     
     public static void main(String[] args) {
-        String hora = "01:10:2005";
-        DateFormat h ;
-        DateFormat formato = new SimpleDateFormat("DD:mm:AAAA");
-
         try {
-            h = new java.sql.Time(formato.parse(hora).getTime());
-            System.out.println(h.toString());
-        } catch (ParseException ex) {
-            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
-        }
-              
+		String data = "16/07/2008";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(sdf.parse(data));
+                data = sdf.format(cal.getTime());
+                System.out.println(data);
+                System.out.println("aqui");
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}     
     }
 }    
     

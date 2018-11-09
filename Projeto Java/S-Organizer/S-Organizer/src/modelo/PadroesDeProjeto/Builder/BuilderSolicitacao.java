@@ -7,6 +7,7 @@ package modelo.PadroesDeProjeto.Builder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import modelo.ProtocoloGenerator;
@@ -17,16 +18,16 @@ import modelo.Solicitacao;
  *
  * @author Salzman
  */
-public class BuilderSolicitacao {
+public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private long protocolo;
-    private SimpleDateFormat sdfDMA = new SimpleDateFormat("dd/MM/yyyy"); //Isso tem que estar no builder msm?
-    private Date dataSolicitacao;
-    private Date disp_cli_ini;
-    private Date disp_cli_fim;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //Isso tem que estar no builder msm?
+    private String dataSolicitacao;
+    private String disp_cli_ini;
+    private String disp_cli_fim;
     private ArrayList<Servico> servicos;
     private Solicitacao solicit;
-    public BuilderSolicitacao(Date disp_cli_ini, Date disp_cli_fim, String descricao,
-            String observacao, Date dataSolicitacao, ArrayList<Servico> servicos, Solicitacao solicitacao){
+    public BuilderSolicitacao(String disp_cli_ini, String disp_cli_fim, String descricao,
+            String observacao, String dataSolicitacao, ArrayList<Servico> servicos, Solicitacao solicitacao){
         
         this.dataSolicitacao=dataSolicitacao;
         this.disp_cli_ini=disp_cli_ini;
@@ -45,9 +46,13 @@ public class BuilderSolicitacao {
     }
     
     public void setDisponibilidades(){
-        this.solicit.setDataSolicitacao(this.dataSolicitacao);
+        
         this.solicit.setDispCliIni(this.disp_cli_ini);
         this.solicit.setDispCliFim(this.disp_cli_fim);
+    }
+    public void geraDataSolicitacao(){
+        Calendar cal = Calendar.getInstance();
+	cal.setTime(sdf.parse(this.dataSolicitacao));
     }
     
     public void adicionaServicos(){
