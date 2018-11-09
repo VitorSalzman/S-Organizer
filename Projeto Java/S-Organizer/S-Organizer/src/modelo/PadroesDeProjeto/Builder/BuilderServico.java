@@ -6,6 +6,11 @@
 package modelo.PadroesDeProjeto.Builder;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Categoria;
 import modelo.Servico;
 
@@ -18,10 +23,10 @@ public class BuilderServico {
     private String categoria;
     private String descricao;
     private double valor;
-    private Time horarioMarcado;   ///Falta tratar o horario como String
+    private String horarioMarcado;   ///Falta tratar o horario como String
     
     public BuilderServico(String categoria, String descricao,
-            double valor, Time horarioMarcado, Servico service){
+            double valor, String horarioMarcado, Servico service){
             
             this.servico=service;
             this.categoria=categoria;
@@ -44,8 +49,13 @@ public class BuilderServico {
         this.servico.setValor(valor);
     }
     
-    public void geraHorarioMarcado(){
-        this.servico.setHorarioMarcado(horarioMarcado);
+    public void geraHorarioMarcado() throws ParseException{
+        Time h;
+        DateFormat formato = new SimpleDateFormat("HH:mm:ss");
+
+        h = new java.sql.Time(formato.parse(this.horarioMarcado).getTime());
+        System.out.println(h.toString());
+        this.servico.setHorarioMarcado(h);
     }
     
     ///verificar

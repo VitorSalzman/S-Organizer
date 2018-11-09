@@ -17,7 +17,7 @@ public class DiretorServico {
    
     
     public Servico builder(String categoria, String descricao,
-            double valor, Time horarioMarcado) throws Exception{
+            double valor, String horarioMarcado) throws Exception{
         Servico service = new Servico();
         
         BuilderServico builder = new BuilderServico(categoria, descricao, valor, horarioMarcado, service);
