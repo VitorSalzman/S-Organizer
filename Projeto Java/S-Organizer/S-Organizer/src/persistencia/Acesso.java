@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/* package persistencia;
+package persistencia;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +15,9 @@ import javax.persistence.Id;
 /**
  *
  * @author luizg
- 
+ */
 @Entity
-public class Acessa implements Serializable {
+public class Acesso implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -33,28 +34,33 @@ public class Acessa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Acessa)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Acessa other = (Acessa) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Acesso other = (Acesso) obj;
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
 
+
     @Override
     public String toString() {
-        return "persistencia.Acessa[ id=" + id + " ]";
+        return "persistencia.Acesso[ id=" + id + " ]";
     }
     
 }
-*/

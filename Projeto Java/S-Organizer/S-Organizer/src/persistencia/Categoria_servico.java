@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*package persistencia;
+package persistencia;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,8 @@ import javax.persistence.Id;
 /**
  *
  * @author luizg
- 
+*/
+
 @Entity
 public class Categoria_servico implements Serializable {
 
@@ -33,27 +35,34 @@ public class Categoria_servico implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Categoria_servico)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Categoria_servico other = (Categoria_servico) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Categoria_servico other = (Categoria_servico) obj;
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
+
+    
 
     @Override
     public String toString() {
         return "persistencia.Categoria_servico[ id=" + id + " ]";
     }
     
-}*/
+}

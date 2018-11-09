@@ -11,7 +11,7 @@ package modelo;
  */
 public class Estado {
     private long id;
-    private long nome;
+    private String nome;
 
     public long getId() {
         return id;
@@ -21,11 +21,11 @@ public class Estado {
         this.id = id;
     }
 
-    public long getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(long nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
     

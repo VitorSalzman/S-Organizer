@@ -7,6 +7,7 @@ package persistencia;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,15 +16,27 @@ import javax.persistence.Id;
 /**
  *
  * @author luizg
-*/
-
+ */
 @Entity
-public class Cidade implements Serializable {
+public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column(length=100)
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -35,8 +48,9 @@ public class Cidade implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 61 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -51,18 +65,19 @@ public class Cidade implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
+        final Estado other = (Estado) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
 
-    
-
     @Override
     public String toString() {
-        return "persistencia.Cidade[ id=" + id + " ]";
+        return "Estado{" + "id=" + id + ", nome=" + nome + '}';
     }
     
 }

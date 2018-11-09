@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ 
 package modelo;
 
 import java.util.HashMap;
@@ -14,13 +14,13 @@ import java.util.logging.Logger;
  *
  * @author 20161bsi0403
  */
-public class SOrganizer {
+//public class SOrganizer {
 
     /**
      * @param args the command line arguments
-     */
+     
     
-    /* Exemplo fabrica usuarios bbs*/
+//    Exemplo fabrica usuarios bbs
     public static void main(String[] args) {
         HashMap dados = new HashMap();
         dados.put("nome","Saruman");
@@ -42,3 +42,4 @@ public class SOrganizer {
     }
     
 }
+*/
