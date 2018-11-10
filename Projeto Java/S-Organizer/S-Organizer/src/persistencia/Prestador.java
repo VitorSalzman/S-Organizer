@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -41,14 +42,18 @@ public class Prestador implements Serializable {
     private String nome;
     @Column(length=12, name = "telefone") // não precisa de length ja q é bigint
     private long telefone;
+    
+    @OneToOne
+    private HorarioTrabalho horarioTrabalho;
 
-   /*
-    criar construtor
-    criar get e set
+    /*
+    Define as variaveis
+    cria toString
     criar hash e equals
-    criar toString
+    criar get e set
     Atualizar Controlador
     Limpar banco de dados
+    testa se ta persistindo
     */
 
     public Long getId() {
@@ -114,21 +119,33 @@ public class Prestador implements Serializable {
     public void setTelefone(long telefone) {
         this.telefone = telefone;
     }
+
+    public HorarioTrabalho getHorarioTrabalho() {
+        return horarioTrabalho;
+    }
+
+    public void setHorarioTrabalho(HorarioTrabalho horarioTrabalho) {
+        this.horarioTrabalho = horarioTrabalho;
+    }
+
+    
     
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.empresaQueTrabalha);
-        hash = 23 * hash + (this.disponibilidade ? 1 : 0);
-        hash = 23 * hash + (int) (this.cpf ^ (this.cpf >>> 32));
-        hash = 23 * hash + Objects.hashCode(this.usuario);
-        hash = 23 * hash + Objects.hashCode(this.senha);
-        hash = 23 * hash + Objects.hashCode(this.nome);
-        hash = 23 * hash + (int) (this.telefone ^ (this.telefone >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.empresaQueTrabalha);
+        hash = 59 * hash + (this.disponibilidade ? 1 : 0);
+        hash = 59 * hash + (int) (this.cpf ^ (this.cpf >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.usuario);
+        hash = 59 * hash + Objects.hashCode(this.senha);
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + (int) (this.telefone ^ (this.telefone >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.horarioTrabalho);
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -165,14 +182,17 @@ public class Prestador implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (!Objects.equals(this.horarioTrabalho, other.horarioTrabalho)) {
+            return false;
+        }
         return true;
     }
-    
-    
+
     @Override
     public String toString() {
-        return "Prestador{" + "codigo=" + id + ", empresaQueTrabalha=" + empresaQueTrabalha + ", disponibilidade=" + disponibilidade + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + '}';
+        return "Prestador{" + "id=" + id + ", empresaQueTrabalha=" + empresaQueTrabalha + ", disponibilidade=" + disponibilidade + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + ", horarioTrabalho=" + horarioTrabalho + '}';
     }
+
     
     
 }
