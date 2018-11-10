@@ -11,6 +11,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import persistencia.Bairro;
 import persistencia.ControladorJPA.BairroJpaController;
+import persistencia.ControladorJPA.PrestadorJpaController;
+import persistencia.Prestador;
 
 /**
  *
@@ -26,25 +28,38 @@ public class Main_Aplicativo {
         EntityManagerFactory objFactory = Persistence.createEntityManagerFactory("S-Organizer2PU");
         EntityManager manager = objFactory.createEntityManager();
         
-        BairroJpaController jpa = new BairroJpaController(objFactory);
+        PrestadorJpaController prestadorJpa = new PrestadorJpaController(objFactory);
                 
-        List<Bairro> lista = jpa.findBairroEntities();
+        //List<Bairro> lista = jpa.findBairroEntities();
         
-        Bairro l1 = new Bairro();
-        Bairro l2 = new Bairro();
-        Bairro l3 = new Bairro();
+        /*
+        codigo
+        empresaQueTrabalha
+        disponibilidade
+        cpf
+        usuario
+        senha
+        nome
+        telefone
+        */
         
-        l1.setNome("COLOCAR");
-        l2.setNome("AUTO-INCREMENT");
-        l3.setNome("NESSA BUDEGAA");
-        
-        jpa.create(l1);
-        jpa.create(l2);
-        jpa.create(l3);
 
-        for (Bairro l : lista){
-            System.out.println("Cod.: "+l.getId()+" Nome.:"+l.getNome());
-        }
+        Prestador p1 = new Prestador();
+
+        p1.setEmpresaQueTrabalha("Nike");
+        p1.setDisponibilidade(false);
+        p1.setCpf(12671893149l);
+        p1.setUsuario("Jimm");
+        p1.setSenha("1234");
+        p1.setNome("Luiz Antonio");
+        p1.setTelefone(27998065439l);
+        
+        //Prestador p2 = new Prestador(/*codigo2,*/"Adidas",true,98765432109l,"Jubileu","4321","Mclovin",027561648746l);
+        
+        prestadorJpa.create(p1);
+        //prestadorJpa.create(p2);
+
+
         
     }
     
