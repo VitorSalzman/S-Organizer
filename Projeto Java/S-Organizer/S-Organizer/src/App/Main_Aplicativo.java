@@ -25,7 +25,35 @@ import persistencia.Prestador;
 public class Main_Aplicativo {
 
     /**
-     * @param args the command line arguments
+     * Sequencia para criação de uma persistencia:
+     *  Define as variaveis
+     *  Nomear as Colunas
+     *  Cria toString (utilize alt + insert , isso é um atalho)
+     *  Criar hash e equals
+     *  Criar get e set
+     *  Deleta Controlador da persistencia modificado
+     *  Cria Controlador (ctrl + n -> persistencia -> controladorJPA, escolhe a tabela modificada, joga no pacote persistencia.ControladorJPA)
+     *  Limpar banco de dados (DROP SCHEMA public CASCADE; CREATE SCHEMA public;)
+     *  Testa se ta persistindo
+     * 
+     * ToDo:
+     * Criar as FK de Agenda em Prestador
+     * Persistencias a serem criadas:
+     *      Agenda
+     *      Atendimento
+     *      Bairro
+     *      Categoria
+     *      Cidade
+     *      Cliente
+     *      Empresa
+     *      Endereco
+     *      Estado
+     *      EstadoSolicitacao
+     *      Logradouro
+     *      Servico
+     *      Solicitacao
+     *      
+     * Não possui Usuario nem Acesso na persistencia, os atributos deles são salvos nas classes que as herdam.
      */
     public static void main(String[] args) {
         
