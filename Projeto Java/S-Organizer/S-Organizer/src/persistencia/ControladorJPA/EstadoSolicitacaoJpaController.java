@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Categoria_servico;
 import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
+import persistencia.EstadoSolicitacao;
 
 /**
  *
  * @author luizg
  */
-public class Categoria_servicoJpaController implements Serializable {
+public class EstadoSolicitacaoJpaController implements Serializable {
 
-    public Categoria_servicoJpaController(EntityManagerFactory emf) {
+    public EstadoSolicitacaoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class Categoria_servicoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Categoria_servico categoria_servico) {
+    public void create(EstadoSolicitacao estadoSolicitacao) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(categoria_servico);
+            em.persist(estadoSolicitacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class Categoria_servicoJpaController implements Serializable {
         }
     }
 
-    public void edit(Categoria_servico categoria_servico) throws NonexistentEntityException, Exception {
+    public void edit(EstadoSolicitacao estadoSolicitacao) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            categoria_servico = em.merge(categoria_servico);
+            estadoSolicitacao = em.merge(estadoSolicitacao);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = categoria_servico.getId();
-                if (findCategoria_servico(id) == null) {
-                    throw new NonexistentEntityException("The categoria_servico with id " + id + " no longer exists.");
+                Long id = estadoSolicitacao.getId();
+                if (findEstadoSolicitacao(id) == null) {
+                    throw new NonexistentEntityException("The estadoSolicitacao with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class Categoria_servicoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Categoria_servico categoria_servico;
+            EstadoSolicitacao estadoSolicitacao;
             try {
-                categoria_servico = em.getReference(Categoria_servico.class, id);
-                categoria_servico.getId();
+                estadoSolicitacao = em.getReference(EstadoSolicitacao.class, id);
+                estadoSolicitacao.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The categoria_servico with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The estadoSolicitacao with id " + id + " no longer exists.", enfe);
             }
-            em.remove(categoria_servico);
+            em.remove(estadoSolicitacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class Categoria_servicoJpaController implements Serializable {
         }
     }
 
-    public List<Categoria_servico> findCategoria_servicoEntities() {
-        return findCategoria_servicoEntities(true, -1, -1);
+    public List<EstadoSolicitacao> findEstadoSolicitacaoEntities() {
+        return findEstadoSolicitacaoEntities(true, -1, -1);
     }
 
-    public List<Categoria_servico> findCategoria_servicoEntities(int maxResults, int firstResult) {
-        return findCategoria_servicoEntities(false, maxResults, firstResult);
+    public List<EstadoSolicitacao> findEstadoSolicitacaoEntities(int maxResults, int firstResult) {
+        return findEstadoSolicitacaoEntities(false, maxResults, firstResult);
     }
 
-    private List<Categoria_servico> findCategoria_servicoEntities(boolean all, int maxResults, int firstResult) {
+    private List<EstadoSolicitacao> findEstadoSolicitacaoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Categoria_servico.class));
+            cq.select(cq.from(EstadoSolicitacao.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class Categoria_servicoJpaController implements Serializable {
         }
     }
 
-    public Categoria_servico findCategoria_servico(Long id) {
+    public EstadoSolicitacao findEstadoSolicitacao(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Categoria_servico.class, id);
+            return em.find(EstadoSolicitacao.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getCategoria_servicoCount() {
+    public int getEstadoSolicitacaoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Categoria_servico> rt = cq.from(Categoria_servico.class);
+            Root<EstadoSolicitacao> rt = cq.from(EstadoSolicitacao.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

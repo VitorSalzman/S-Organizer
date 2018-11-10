@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ 
 package modelo.PadroesDeProjeto.Builder;
 
 import java.text.SimpleDateFormat;
@@ -17,7 +17,7 @@ import modelo.Solicitacao;
 /**
  *
  * @author Salzman
- */
+ 
 public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private long protocolo;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //Isso tem que estar no builder msm?
@@ -65,3 +65,4 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
     
     
 }
+*/

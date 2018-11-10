@@ -7,6 +7,7 @@ package persistencia;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +16,7 @@ import javax.persistence.Id;
 /**
  *
  * @author luizg
-*/
-
+ */
 @Entity
 public class Bairro implements Serializable {
 
@@ -24,6 +24,17 @@ public class Bairro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column(length=100)
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public Long getId() {
         return id;
@@ -35,8 +46,9 @@ public class Bairro implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -52,6 +64,9 @@ public class Bairro implements Serializable {
             return false;
         }
         final Bairro other = (Bairro) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="S-OrganizerPU" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="S-Organizer2PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>persistencia.Acesso</class>
-    <class>persistencia.Estado</class>
     <class>persistencia.Agenda</class>
     <class>persistencia.Atendimento</class>
     <class>persistencia.Bairro</class>
-    <class>persistencia.Categoria_servico</class>
+    <class>persistencia.Categoria</class>
     <class>persistencia.Cidade</class>
-    <class>persistencia.Cliente</class>
     <class>persistencia.Empresa</class>
+    <class>persistencia.Cliente</class>
     <class>persistencia.Endereco</class>
-    <class>persistencia.Estado_sol</class>
-    <class>persistencia.Horario_trabalho</class>
+    <class>persistencia.Estado</class>
+    <class>persistencia.EstadoSolicitacao</class>
+    <class>persistencia.HorarioTrabalho</class>
     <class>persistencia.Logradouro</class>
     <class>persistencia.Prestador</class>
     <class>persistencia.Servico</class>

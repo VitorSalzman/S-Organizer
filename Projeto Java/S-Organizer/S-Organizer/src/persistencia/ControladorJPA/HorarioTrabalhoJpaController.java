@@ -14,15 +14,15 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
-import persistencia.Estado_sol;
+import persistencia.HorarioTrabalho;
 
 /**
  *
  * @author luizg
  */
-public class Estado_solJpaController implements Serializable {
+public class HorarioTrabalhoJpaController implements Serializable {
 
-    public Estado_solJpaController(EntityManagerFactory emf) {
+    public HorarioTrabalhoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class Estado_solJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Estado_sol estado_sol) {
+    public void create(HorarioTrabalho horarioTrabalho) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(estado_sol);
+            em.persist(horarioTrabalho);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class Estado_solJpaController implements Serializable {
         }
     }
 
-    public void edit(Estado_sol estado_sol) throws NonexistentEntityException, Exception {
+    public void edit(HorarioTrabalho horarioTrabalho) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            estado_sol = em.merge(estado_sol);
+            horarioTrabalho = em.merge(horarioTrabalho);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = estado_sol.getId();
-                if (findEstado_sol(id) == null) {
-                    throw new NonexistentEntityException("The estado_sol with id " + id + " no longer exists.");
+                Long id = horarioTrabalho.getId();
+                if (findHorarioTrabalho(id) == null) {
+                    throw new NonexistentEntityException("The horarioTrabalho with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class Estado_solJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Estado_sol estado_sol;
+            HorarioTrabalho horarioTrabalho;
             try {
-                estado_sol = em.getReference(Estado_sol.class, id);
-                estado_sol.getId();
+                horarioTrabalho = em.getReference(HorarioTrabalho.class, id);
+                horarioTrabalho.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The estado_sol with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The horarioTrabalho with id " + id + " no longer exists.", enfe);
             }
-            em.remove(estado_sol);
+            em.remove(horarioTrabalho);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class Estado_solJpaController implements Serializable {
         }
     }
 
-    public List<Estado_sol> findEstado_solEntities() {
-        return findEstado_solEntities(true, -1, -1);
+    public List<HorarioTrabalho> findHorarioTrabalhoEntities() {
+        return findHorarioTrabalhoEntities(true, -1, -1);
     }
 
-    public List<Estado_sol> findEstado_solEntities(int maxResults, int firstResult) {
-        return findEstado_solEntities(false, maxResults, firstResult);
+    public List<HorarioTrabalho> findHorarioTrabalhoEntities(int maxResults, int firstResult) {
+        return findHorarioTrabalhoEntities(false, maxResults, firstResult);
     }
 
-    private List<Estado_sol> findEstado_solEntities(boolean all, int maxResults, int firstResult) {
+    private List<HorarioTrabalho> findHorarioTrabalhoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Estado_sol.class));
+            cq.select(cq.from(HorarioTrabalho.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class Estado_solJpaController implements Serializable {
         }
     }
 
-    public Estado_sol findEstado_sol(Long id) {
+    public HorarioTrabalho findHorarioTrabalho(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Estado_sol.class, id);
+            return em.find(HorarioTrabalho.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getEstado_solCount() {
+    public int getHorarioTrabalhoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Estado_sol> rt = cq.from(Estado_sol.class);
+            Root<HorarioTrabalho> rt = cq.from(HorarioTrabalho.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

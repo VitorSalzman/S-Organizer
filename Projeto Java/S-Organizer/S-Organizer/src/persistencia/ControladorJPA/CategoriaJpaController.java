@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import persistencia.Categoria;
 import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
-import persistencia.Horario_trabalho;
 
 /**
  *
  * @author luizg
  */
-public class Horario_trabalhoJpaController implements Serializable {
+public class CategoriaJpaController implements Serializable {
 
-    public Horario_trabalhoJpaController(EntityManagerFactory emf) {
+    public CategoriaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class Horario_trabalhoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Horario_trabalho horario_trabalho) {
+    public void create(Categoria categoria) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(horario_trabalho);
+            em.persist(categoria);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class Horario_trabalhoJpaController implements Serializable {
         }
     }
 
-    public void edit(Horario_trabalho horario_trabalho) throws NonexistentEntityException, Exception {
+    public void edit(Categoria categoria) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            horario_trabalho = em.merge(horario_trabalho);
+            categoria = em.merge(categoria);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = horario_trabalho.getId();
-                if (findHorario_trabalho(id) == null) {
-                    throw new NonexistentEntityException("The horario_trabalho with id " + id + " no longer exists.");
+                Long id = categoria.getId();
+                if (findCategoria(id) == null) {
+                    throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class Horario_trabalhoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Horario_trabalho horario_trabalho;
+            Categoria categoria;
             try {
-                horario_trabalho = em.getReference(Horario_trabalho.class, id);
-                horario_trabalho.getId();
+                categoria = em.getReference(Categoria.class, id);
+                categoria.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The horario_trabalho with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.", enfe);
             }
-            em.remove(horario_trabalho);
+            em.remove(categoria);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class Horario_trabalhoJpaController implements Serializable {
         }
     }
 
-    public List<Horario_trabalho> findHorario_trabalhoEntities() {
-        return findHorario_trabalhoEntities(true, -1, -1);
+    public List<Categoria> findCategoriaEntities() {
+        return findCategoriaEntities(true, -1, -1);
     }
 
-    public List<Horario_trabalho> findHorario_trabalhoEntities(int maxResults, int firstResult) {
-        return findHorario_trabalhoEntities(false, maxResults, firstResult);
+    public List<Categoria> findCategoriaEntities(int maxResults, int firstResult) {
+        return findCategoriaEntities(false, maxResults, firstResult);
     }
 
-    private List<Horario_trabalho> findHorario_trabalhoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Categoria> findCategoriaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Horario_trabalho.class));
+            cq.select(cq.from(Categoria.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class Horario_trabalhoJpaController implements Serializable {
         }
     }
 
-    public Horario_trabalho findHorario_trabalho(Long id) {
+    public Categoria findCategoria(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Horario_trabalho.class, id);
+            return em.find(Categoria.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getHorario_trabalhoCount() {
+    public int getCategoriaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Horario_trabalho> rt = cq.from(Horario_trabalho.class);
+            Root<Categoria> rt = cq.from(Categoria.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
