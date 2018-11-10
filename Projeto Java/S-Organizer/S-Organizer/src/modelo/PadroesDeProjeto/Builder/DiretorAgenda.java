@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.PadroesDeProjeto.Builder;
+package modelo.padroesdeprojeto.builder;
 
 import java.util.ArrayList;
-import java.util.Date;
-import modelo.Agenda;
 import modelo.Prestador;
 import modelo.Servico;
+import persistencia.Agenda;
 
 /**
  *
- * @author helle
- */
+ * @author Salzman
+ 
 public class DiretorAgenda {
     
     public Agenda builder(Date horaInicioExpediente, Date horaFimExpediente, ArrayList<Servico> servicosDoDia, Prestador prestador) {
@@ -24,4 +23,4 @@ public class DiretorAgenda {
         
         return agenda;
     }
-}
+}*/

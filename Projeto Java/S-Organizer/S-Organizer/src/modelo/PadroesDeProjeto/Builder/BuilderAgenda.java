@@ -3,29 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.PadroesDeProjeto.Builder;
+/*package modelo.padroesdeprojeto.builder;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import modelo.Agenda;
 import modelo.Prestador;
 import modelo.Servico;
 
 /**
  *
- * @author helle
- */
+ * @author Salzman
+ 
 public class BuilderAgenda {
-    private Date data;
-    private Date horaInicioExpediente;
-    private Date horaFimExpediente;
+    private String data;
+    private String horaInicioExpediente;
+    private String horaFimExpediente;
     private ArrayList<Servico> servicosDoDia;
-    private Prestador prestador;
+    private String prestador;
     private Agenda agenda;
 
     //pensando em tirar os parametros Date e só instanciar eles dentro do construtor
-    public BuilderAgenda(Date horaInicioExpediente, Date horaFimExpediente, ArrayList<Servico> servicosDoDia, Prestador prestador,  Agenda agenda) {
+    public BuilderAgenda(String horaInicioExpediente, String horaFimExpediente, ArrayList<Servico> servicosDoDia, String prestador,  Agenda agenda) {
         
         this.horaInicioExpediente = horaInicioExpediente;
         this.horaFimExpediente = horaFimExpediente;
@@ -35,5 +38,28 @@ public class BuilderAgenda {
         
     }
     
+    public void geraHorarioExpediente() throws ParseException{
+        Time h;
+        DateFormat formato = new SimpleDateFormat("HH:mm:ss");
+
+        h = new java.sql.Time(formato.parse(this.horaInicioExpediente).getTime());
+        this.agenda.setHoraInicioExpediente(h);
+        
+        h = new java.sql.Time(formato.parse(this.horaFimExpediente).getTime());
+        this.agenda.setHoraFimExpediente(h);
+    }
+    
+    public void geraData() throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Calendar cal = Calendar.getInstance();
+	cal.setTime(sdf.parse(this.data));
+        this.agenda.setData(data);
+    }
+    
+    public void geraServicos(){
+        this.agenda.setServicosDoDia(this.servicosDoDia);
+    }
     //ainda definindo operacoes da agenda para escrever os metodos
 }
+*/

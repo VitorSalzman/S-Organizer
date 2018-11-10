@@ -3,21 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.PadroesDeProjeto.Builder;
+package modelo.padroesdeprojeto.builder;
 
-import java.sql.Time;
-import modelo.Categoria;
 import modelo.Servico;
 
 /**
  *
- * @author 20161bsi0403
+ * @author Salzman
  */
 public class DiretorServico {
    
     
     public Servico builder(String categoria, String descricao,
-            double valor, String horarioMarcado) throws Exception{
+            String valor, String horarioMarcado) throws Exception{
         Servico service = new Servico();
         
         BuilderServico builder = new BuilderServico(categoria, descricao, valor, horarioMarcado, service);

@@ -2,14 +2,13 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- 
-package modelo.PadroesDeProjeto.Builder;
+ */
+package modelo.padroesdeprojeto.builder;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import modelo.ProtocoloGenerator;
 import modelo.Servico;
 import modelo.Solicitacao;
@@ -17,7 +16,7 @@ import modelo.Solicitacao;
 /**
  *
  * @author Salzman
- 
+ */
 public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private long protocolo;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //Isso tem que estar no builder msm?
@@ -45,14 +44,19 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
         this.solicit.setProtocolo(protocolo);
     }
     
-    public void setDisponibilidades(){
+    public void geraDisponibilidades() throws ParseException{
+        Calendar cal = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
         
-        this.solicit.setDispCliIni(this.disp_cli_ini);
-        this.solicit.setDispCliFim(this.disp_cli_fim);
+        cal.setTime(sdf.parse(this.disp_cli_ini));
+        cal2.setTime(sdf.parse(this.disp_cli_fim));
+        this.solicit.setDispCliIni(cal);
+        this.solicit.setDispCliFim(cal2);
     }
-    public void geraDataSolicitacao(){
+    public void geraDataSolicitacao() throws ParseException{
         Calendar cal = Calendar.getInstance();
 	cal.setTime(sdf.parse(this.dataSolicitacao));
+        this.solicit.setDataSolicitacao(cal);
     }
     
     public void adicionaServicos(){
@@ -65,4 +69,3 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
     
     
 }
-*/
