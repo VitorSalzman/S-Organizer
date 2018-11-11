@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,6 +25,15 @@ import javax.persistence.OneToOne;
 @Entity
 public class Endereco implements Serializable {
 
+    public Endereco(String complemento, String cep, Logradouro logradouro) {
+        this.complemento = complemento;
+        this.cep = cep;
+        this.logradouro = logradouro;
+    }
+
+    public Endereco() {
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +46,7 @@ public class Endereco implements Serializable {
     
     @OneToOne
     private Logradouro logradouro;
-    private Set solicitacaos = new HashSet(0);
+    private List solicitacaos = new ArrayList(0);;
 
     public Long getId() {
         return id;
@@ -69,24 +80,22 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
-    public Set getSolicitacaos() {
+    public List getSolicitacaos() {
         return solicitacaos;
     }
 
-    public void setSolicitacaos(Set solicitacaos) {
+    public void setSolicitacaos(List solicitacaos) {
         this.solicitacaos = solicitacaos;
     }
-    
-    
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.complemento);
-        hash = 89 * hash + Objects.hashCode(this.cep);
-        hash = 89 * hash + Objects.hashCode(this.logradouro);
-        hash = 89 * hash + Objects.hashCode(this.solicitacaos);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.complemento);
+        hash = 59 * hash + Objects.hashCode(this.cep);
+        hash = 59 * hash + Objects.hashCode(this.logradouro);
+        hash = 59 * hash + Objects.hashCode(this.solicitacaos);
         return hash;
     }
 
@@ -120,11 +129,9 @@ public class Endereco implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "Endereco{" + "id=" + id + ", complemento=" + complemento + ", cep=" + cep + ", logradouro=" + logradouro + ", solicitacaos=" + solicitacaos + '}';
     }
-    
-    
+
 }

@@ -23,6 +23,17 @@ import javax.persistence.Temporal;
 @Entity
 public class Agenda implements Serializable {
 
+    public Agenda(Time hora, Date data, Empresa empresa, Solicitacao solicitacao, Prestador prestador) {
+        this.hora = hora;
+        this.data = data;
+        this.empresa = empresa;
+        this.solicitacao = solicitacao;
+        this.prestador = prestador;
+    }
+
+    public Agenda() {
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

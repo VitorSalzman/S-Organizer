@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -22,6 +24,16 @@ import javax.persistence.Id;
 @Entity
 public class Cliente implements Serializable {
 
+    public Cliente(String cpf, String nome, String telefone) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
+    public Cliente() {
+    }
+
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +47,7 @@ public class Cliente implements Serializable {
     @Column(length = 30)
     private String telefone;
     
-    private Set solicitacao = new HashSet(0);
+    private List solicitacao = new ArrayList(0);;
 
     public Long getId() {
         return id;
@@ -69,22 +81,22 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public Set getSolicitacao() {
+    public List getSolicitacao() {
         return solicitacao;
     }
 
-    public void setSolicitacao(Set solicitacao) {
+    public void setSolicitacao(List solicitacao) {
         this.solicitacao = solicitacao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.cpf);
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.telefone);
-        hash = 67 * hash + Objects.hashCode(this.solicitacao);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.cpf);
+        hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + Objects.hashCode(this.telefone);
+        hash = 79 * hash + Objects.hashCode(this.solicitacao);
         return hash;
     }
 

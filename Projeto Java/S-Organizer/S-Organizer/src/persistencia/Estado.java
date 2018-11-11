@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -22,6 +24,15 @@ import javax.persistence.Id;
 @Entity
 public class Estado implements Serializable {
 
+    public Estado(String estado) {
+        this.estado = estado;
+    }
+
+    public Estado() {
+    }
+
+    
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +41,7 @@ public class Estado implements Serializable {
     @Column(length = 50)
     private String estado;
     
-    private Set cidades = new HashSet(0);
+    private List cidades = new ArrayList(0);
 
     public Long getId() {
         return id;
@@ -48,21 +59,20 @@ public class Estado implements Serializable {
         this.estado = estado;
     }
 
-    public Set getCidades() {
+    public List getCidades() {
         return cidades;
     }
 
-    public void setCidades(Set cidades) {
+    public void setCidades(List cidades) {
         this.cidades = cidades;
     }
 
-    
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.estado);
-        hash = 37 * hash + Objects.hashCode(this.cidades);
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.estado);
+        hash = 31 * hash + Objects.hashCode(this.cidades);
         return hash;
     }
 
@@ -95,5 +105,4 @@ public class Estado implements Serializable {
         return "Estado{" + "id=" + id + ", estado=" + estado + ", cidades=" + cidades + '}';
     }
 
-    
 }

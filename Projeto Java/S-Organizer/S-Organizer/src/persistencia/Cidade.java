@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,6 +25,14 @@ import javax.persistence.OneToOne;
 @Entity
 public class Cidade implements Serializable {
 
+    public Cidade(String cidade, Estado estado) {
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
+    public Cidade() {
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +43,7 @@ public class Cidade implements Serializable {
     
     @OneToOne
     private Estado estado;
-    private Set bairros = new HashSet(0);
+    private List bairros = new ArrayList(0);;
 
     public Long getId() {
         return id;
@@ -59,18 +69,17 @@ public class Cidade implements Serializable {
         this.estado = estado;
     }
 
-    public Set getBairros() {
+    public List getBairros() {
         return bairros;
     }
 
-    public void setBairros(Set bairros) {
+    public void setBairros(List bairros) {
         this.bairros = bairros;
     }
 
-    
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         hash = 89 * hash + Objects.hashCode(this.id);
         hash = 89 * hash + Objects.hashCode(this.cidade);
         hash = 89 * hash + Objects.hashCode(this.estado);
@@ -110,5 +119,4 @@ public class Cidade implements Serializable {
         return "Cidade{" + "id=" + id + ", cidade=" + cidade + ", estado=" + estado + ", bairros=" + bairros + '}';
     }
 
-    
 }

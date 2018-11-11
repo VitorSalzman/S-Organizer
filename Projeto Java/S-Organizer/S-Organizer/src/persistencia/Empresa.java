@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -21,6 +23,17 @@ import javax.persistence.Id;
  */
 @Entity
 public class Empresa implements Serializable {
+
+    public Empresa(String cnpj, String usuario, String senha, String nome, String telefone) {
+        this.cnpj = cnpj;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
+    public Empresa() {
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,9 +52,9 @@ public class Empresa implements Serializable {
     @Column(length=20, name = "telefone") // não precisa de length ja q é bigint / acho melhor ser String
     private String telefone;
     
-    private Set prestadors = new HashSet(0);
-    private Set solicitacaos = new HashSet(0);
-    private Set agendas = new HashSet(0);
+    private List prestadors = new ArrayList(0);;
+    private List solicitacaos = new ArrayList(0);;
+    private List agendas = new ArrayList(0);;
 
     public Long getId() {
         return id;
@@ -91,42 +104,42 @@ public class Empresa implements Serializable {
         this.telefone = telefone;
     }
 
-    public Set getPrestadors() {
+    public List getPrestadors() {
         return prestadors;
     }
 
-    public void setPrestadors(Set prestadors) {
+    public void setPrestadors(List prestadors) {
         this.prestadors = prestadors;
     }
 
-    public Set getSolicitacaos() {
+    public List getSolicitacaos() {
         return solicitacaos;
     }
 
-    public void setSolicitacaos(Set solicitacaos) {
+    public void setSolicitacaos(List solicitacaos) {
         this.solicitacaos = solicitacaos;
     }
 
-    public Set getAgendas() {
+    public List getAgendas() {
         return agendas;
     }
 
-    public void setAgendas(Set agendas) {
+    public void setAgendas(List agendas) {
         this.agendas = agendas;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.cnpj);
-        hash = 41 * hash + Objects.hashCode(this.usuario);
-        hash = 41 * hash + Objects.hashCode(this.senha);
-        hash = 41 * hash + Objects.hashCode(this.nome);
-        hash = 41 * hash + Objects.hashCode(this.telefone);
-        hash = 41 * hash + Objects.hashCode(this.prestadors);
-        hash = 41 * hash + Objects.hashCode(this.solicitacaos);
-        hash = 41 * hash + Objects.hashCode(this.agendas);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.cnpj);
+        hash = 67 * hash + Objects.hashCode(this.usuario);
+        hash = 67 * hash + Objects.hashCode(this.senha);
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.telefone);
+        hash = 67 * hash + Objects.hashCode(this.prestadors);
+        hash = 67 * hash + Objects.hashCode(this.solicitacaos);
+        hash = 67 * hash + Objects.hashCode(this.agendas);
         return hash;
     }
 
@@ -177,5 +190,4 @@ public class Empresa implements Serializable {
         return "Empresa{" + "id=" + id + ", cnpj=" + cnpj + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + ", prestadors=" + prestadors + ", solicitacaos=" + solicitacaos + ", agendas=" + agendas + '}';
     }
 
-
-    }
+}
