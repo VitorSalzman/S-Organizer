@@ -6,10 +6,13 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,6 +25,12 @@ public class Atendimento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private Time horarioFim;
+    private Time horarioInicio;
+    
+    @OneToOne
+    private Servico servico;
 
     public Long getId() {
         return id;
@@ -31,21 +40,62 @@ public class Atendimento implements Serializable {
         this.id = id;
     }
 
+    public Time getHorarioFim() {
+        return horarioFim;
+    }
+
+    public void setHorarioFim(Time horarioFim) {
+        this.horarioFim = horarioFim;
+    }
+
+    public Time getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(Time horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.horarioFim);
+        hash = 29 * hash + Objects.hashCode(this.horarioInicio);
+        hash = 29 * hash + Objects.hashCode(this.servico);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Atendimento)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Atendimento other = (Atendimento) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Atendimento other = (Atendimento) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.horarioFim, other.horarioFim)) {
+            return false;
+        }
+        if (!Objects.equals(this.horarioInicio, other.horarioInicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.servico, other.servico)) {
             return false;
         }
         return true;
@@ -53,7 +103,8 @@ public class Atendimento implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Atendimento[ id=" + id + " ]";
+        return "Atendimento{" + "id=" + id + ", horarioFim=" + horarioFim + ", horarioInicio=" + horarioInicio + ", servico=" + servico + '}';
     }
+    
     
 }

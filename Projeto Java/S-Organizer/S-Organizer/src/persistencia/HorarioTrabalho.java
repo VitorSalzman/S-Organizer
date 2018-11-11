@@ -7,7 +7,10 @@ package persistencia;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,6 +43,8 @@ public class HorarioTrabalho implements Serializable {
     private Time horarioinicio;
     @Column(name = "horarioFim")
     private Time horariofim;
+    
+    private Set prestadors = new HashSet(0);
 
     public Long getId() {
         return id;
@@ -65,13 +70,21 @@ public class HorarioTrabalho implements Serializable {
         this.horariofim = horariofim;
     }
 
-    
+    public Set getPrestadors() {
+        return prestadors;
+    }
+
+    public void setPrestadors(Set prestadors) {
+        this.prestadors = prestadors;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.horarioinicio);
-        hash = 29 * hash + Objects.hashCode(this.horariofim);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.horarioinicio);
+        hash = 67 * hash + Objects.hashCode(this.horariofim);
+        hash = 67 * hash + Objects.hashCode(this.prestadors);
         return hash;
     }
 
@@ -96,15 +109,16 @@ public class HorarioTrabalho implements Serializable {
         if (!Objects.equals(this.horariofim, other.horariofim)) {
             return false;
         }
+        if (!Objects.equals(this.prestadors, other.prestadors)) {
+            return false;
+        }
         return true;
     }
 
-    
     @Override
     public String toString() {
-        return "HorarioTrabalho{" + "id=" + id + ", horarioinicio=" + horarioinicio + ", horariofim=" + horariofim + '}';
+        return "HorarioTrabalho{" + "id=" + id + ", horarioinicio=" + horarioinicio + ", horariofim=" + horariofim + ", prestadors=" + prestadors + '}';
     }
+    
 
-     
-   
 }

@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.Agenda;
 import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
+import persistencia.Prestador;
 
 /**
  *
@@ -36,7 +37,21 @@ public class AgendaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Prestador prestador = agenda.getPrestador();
+            if (prestador != null) {
+                prestador = em.getReference(prestador.getClass(), prestador.getId());
+                agenda.setPrestador(prestador);
+            }
             em.persist(agenda);
+            if (prestador != null) {
+                Agenda oldAgendaOfPrestador = prestador.getAgenda();
+                if (oldAgendaOfPrestador != null) {
+                    oldAgendaOfPrestador.setPrestador(null);
+                    oldAgendaOfPrestador = em.merge(oldAgendaOfPrestador);
+                }
+                prestador.setAgenda(agenda);
+                prestador = em.merge(prestador);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -50,7 +65,27 @@ public class AgendaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Agenda persistentAgenda = em.find(Agenda.class, agenda.getId());
+            Prestador prestadorOld = persistentAgenda.getPrestador();
+            Prestador prestadorNew = agenda.getPrestador();
+            if (prestadorNew != null) {
+                prestadorNew = em.getReference(prestadorNew.getClass(), prestadorNew.getId());
+                agenda.setPrestador(prestadorNew);
+            }
             agenda = em.merge(agenda);
+            if (prestadorOld != null && !prestadorOld.equals(prestadorNew)) {
+                prestadorOld.setAgenda(null);
+                prestadorOld = em.merge(prestadorOld);
+            }
+            if (prestadorNew != null && !prestadorNew.equals(prestadorOld)) {
+                Agenda oldAgendaOfPrestador = prestadorNew.getAgenda();
+                if (oldAgendaOfPrestador != null) {
+                    oldAgendaOfPrestador.setPrestador(null);
+                    oldAgendaOfPrestador = em.merge(oldAgendaOfPrestador);
+                }
+                prestadorNew.setAgenda(agenda);
+                prestadorNew = em.merge(prestadorNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -79,6 +114,11 @@ public class AgendaJpaController implements Serializable {
                 agenda.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The agenda with id " + id + " no longer exists.", enfe);
+            }
+            Prestador prestador = agenda.getPrestador();
+            if (prestador != null) {
+                prestador.setAgenda(null);
+                prestador = em.merge(prestador);
             }
             em.remove(agenda);
             em.getTransaction().commit();

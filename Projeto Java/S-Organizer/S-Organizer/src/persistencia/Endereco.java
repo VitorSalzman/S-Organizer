@@ -6,10 +6,15 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,6 +27,15 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column(length = 255)
+    private String complemento;
+    @Column(length = 12)
+    private String cep;
+    
+    @OneToOne
+    private Logradouro logradouro;
+    private Set solicitacaos = new HashSet(0);
 
     public Long getId() {
         return id;
@@ -31,29 +45,86 @@ public class Endereco implements Serializable {
         this.id = id;
     }
 
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public Logradouro getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(Logradouro logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public Set getSolicitacaos() {
+        return solicitacaos;
+    }
+
+    public void setSolicitacaos(Set solicitacaos) {
+        this.solicitacaos = solicitacaos;
+    }
+    
+    
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.complemento);
+        hash = 89 * hash + Objects.hashCode(this.cep);
+        hash = 89 * hash + Objects.hashCode(this.logradouro);
+        hash = 89 * hash + Objects.hashCode(this.solicitacaos);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Endereco)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Endereco other = (Endereco) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Endereco other = (Endereco) obj;
+        if (!Objects.equals(this.complemento, other.complemento)) {
+            return false;
+        }
+        if (!Objects.equals(this.cep, other.cep)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.logradouro, other.logradouro)) {
+            return false;
+        }
+        if (!Objects.equals(this.solicitacaos, other.solicitacaos)) {
             return false;
         }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "persistencia.Endereco[ id=" + id + " ]";
+        return "Endereco{" + "id=" + id + ", complemento=" + complemento + ", cep=" + cep + ", logradouro=" + logradouro + ", solicitacaos=" + solicitacaos + '}';
     }
+    
     
 }

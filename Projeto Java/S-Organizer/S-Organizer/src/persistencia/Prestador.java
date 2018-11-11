@@ -6,12 +6,15 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -28,33 +31,24 @@ public class Prestador implements Serializable {
     @Column(name = "codigo")
     private Long id;
     
-    @Column(length=100, name = "empresaQueTrabalha")
-    private String empresaQueTrabalha;
-    @Column(length=1, name ="disponibilidade")
-    private boolean disponibilidade;
-    @Column(length=11, name = "CPF")
-    private long cpf;
+    @Column(length=20, name = "CPF")
+    private String cpf;
     @Column(length=255, name = "usuario")
     private String usuario;
     @Column(length=255, name = "senha")
     private String senha;
     @Column(length=100, name = "nome")
     private String nome;
-    @Column(length=12, name = "telefone") // não precisa de length ja q é bigint
-    private long telefone;
+    @Column(length=20, name = "telefone") // não precisa de length ja q é bigint
+    private String telefone;
     
     @OneToOne
     private HorarioTrabalho horarioTrabalho;
-
-    /*
-    Define as variaveis
-    cria toString
-    criar hash e equals
-    criar get e set
-    Atualizar Controlador
-    Limpar banco de dados
-    testa se ta persistindo
-    */
+    @OneToOne
+    private Empresa empresa;
+    @OneToOne
+    private Agenda agenda; // can be null
+    private Set servicos = new HashSet(0);
 
     public Long getId() {
         return id;
@@ -64,27 +58,11 @@ public class Prestador implements Serializable {
         this.id = id;
     }
 
-    public String getEmpresaQueTrabalha() {
-        return empresaQueTrabalha;
-    }
-
-    public void setEmpresaQueTrabalha(String empresaQueTrabalha) {
-        this.empresaQueTrabalha = empresaQueTrabalha;
-    }
-
-    public boolean isDisponibilidade() {
-        return disponibilidade;
-    }
-
-    public void setDisponibilidade(boolean disponibilidade) {
-        this.disponibilidade = disponibilidade;
-    }
-
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -112,11 +90,11 @@ public class Prestador implements Serializable {
         this.nome = nome;
     }
 
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -128,24 +106,46 @@ public class Prestador implements Serializable {
         this.horarioTrabalho = horarioTrabalho;
     }
 
-    
-    
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
+    public Set getServicos() {
+        return servicos;
+    }
+
+    public void setServicos(Set servicos) {
+        this.servicos = servicos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.empresaQueTrabalha);
-        hash = 59 * hash + (this.disponibilidade ? 1 : 0);
-        hash = 59 * hash + (int) (this.cpf ^ (this.cpf >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.usuario);
-        hash = 59 * hash + Objects.hashCode(this.senha);
-        hash = 59 * hash + Objects.hashCode(this.nome);
-        hash = 59 * hash + (int) (this.telefone ^ (this.telefone >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.horarioTrabalho);
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.cpf);
+        hash = 67 * hash + Objects.hashCode(this.usuario);
+        hash = 67 * hash + Objects.hashCode(this.senha);
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.telefone);
+        hash = 67 * hash + Objects.hashCode(this.horarioTrabalho);
+        hash = 67 * hash + Objects.hashCode(this.empresa);
+        hash = 67 * hash + Objects.hashCode(this.agenda);
+        hash = 67 * hash + Objects.hashCode(this.servicos);
         return hash;
     }
 
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -158,16 +158,7 @@ public class Prestador implements Serializable {
             return false;
         }
         final Prestador other = (Prestador) obj;
-        if (this.disponibilidade != other.disponibilidade) {
-            return false;
-        }
-        if (this.cpf != other.cpf) {
-            return false;
-        }
-        if (this.telefone != other.telefone) {
-            return false;
-        }
-        if (!Objects.equals(this.empresaQueTrabalha, other.empresaQueTrabalha)) {
+        if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
         if (!Objects.equals(this.usuario, other.usuario)) {
@@ -179,10 +170,22 @@ public class Prestador implements Serializable {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.horarioTrabalho, other.horarioTrabalho)) {
+            return false;
+        }
+        if (!Objects.equals(this.empresa, other.empresa)) {
+            return false;
+        }
+        if (!Objects.equals(this.agenda, other.agenda)) {
+            return false;
+        }
+        if (!Objects.equals(this.servicos, other.servicos)) {
             return false;
         }
         return true;
@@ -190,10 +193,8 @@ public class Prestador implements Serializable {
 
     @Override
     public String toString() {
-        return "Prestador{" + "id=" + id + ", empresaQueTrabalha=" + empresaQueTrabalha + ", disponibilidade=" + disponibilidade + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + ", horarioTrabalho=" + horarioTrabalho + '}';
+        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + ", horarioTrabalho=" + horarioTrabalho + ", empresa=" + empresa + ", agenda=" + agenda + ", servicos=" + servicos + '}';
     }
 
-    
-    
+       
 }
-    

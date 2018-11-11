@@ -37,7 +37,7 @@ public class Main_Aplicativo {
      *  Testa se ta persistindo
      * 
      * ToDo:
-     * Criar as FK de Agenda em Prestador
+     * Criar as FK de Agenda, Empresa em Prestador
      * Persistencias a serem criadas:
      *      Agenda
      *      Atendimento
@@ -53,7 +53,13 @@ public class Main_Aplicativo {
      *      Servico
      *      Solicitacao
      *      
+     * comments:
      * Não possui Usuario nem Acesso na persistencia, os atributos deles são salvos nas classes que as herdam.
+     * Bem não deveria criar a tabela.. não sei pq diachos cria ._. Não existe elas na persistencia, muito menos controladores..
+     * Talvez a primeira vez que rodei tenha configurado algo que se configura apenas na primeira rodada.. Não faço ideia :/
+     * 
+     * as colunas com "s" no final e com tipo bytea são "Set"s ou seja elas carregam todos os objetos em que estão linkados 
+     * (todas as linhas da tabela indicada, isso acredito que vá facilitar muito na Aplicação no momento de buscar os dados do banco :D)
      */
     public static void main(String[] args) {
         
@@ -77,14 +83,14 @@ public class Main_Aplicativo {
         
         Prestador p1 = new Prestador();
 
-        p1.setEmpresaQueTrabalha("Nike");
-        p1.setDisponibilidade(false);
-        p1.setCpf(12671893149l);
+        p1.setCpf("12671893149");
         p1.setUsuario("Jimm");
         p1.setSenha("1234");
         p1.setNome("Luiz Antonio");
-        p1.setTelefone(27998065439l);
+        p1.setTelefone("027998065439");
         p1.setHorarioTrabalho(hT1);
+//        p1.setAgenda(agenda);
+//        p1.setEmpresa(empresa);
         
         
         hTJpa.create(hT1);

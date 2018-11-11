@@ -6,10 +6,15 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,6 +27,13 @@ public class Cidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column(length = 50)
+    private String cidade;
+    
+    @OneToOne
+    private Estado estado;
+    private Set bairros = new HashSet(0);
 
     public Long getId() {
         return id;
@@ -31,21 +43,63 @@ public class Cidade implements Serializable {
         this.id = id;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Set getBairros() {
+        return bairros;
+    }
+
+    public void setBairros(Set bairros) {
+        this.bairros = bairros;
+    }
+
+    
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.cidade);
+        hash = 89 * hash + Objects.hashCode(this.estado);
+        hash = 89 * hash + Objects.hashCode(this.bairros);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cidade)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Cidade other = (Cidade) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cidade other = (Cidade) obj;
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        if (!Objects.equals(this.bairros, other.bairros)) {
             return false;
         }
         return true;
@@ -53,7 +107,8 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Cidade[ id=" + id + " ]";
+        return "Cidade{" + "id=" + id + ", cidade=" + cidade + ", estado=" + estado + ", bairros=" + bairros + '}';
     }
+
     
 }

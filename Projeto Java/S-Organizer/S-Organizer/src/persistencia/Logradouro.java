@@ -6,10 +6,15 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,6 +27,15 @@ public class Logradouro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column(length = 255)
+    private String nome;
+    @Column(length = 6)
+    private String abreviatura;
+    
+    @OneToOne
+    private Bairro bairro;
+    private Set enderecos = new HashSet(0);
 
     public Long getId() {
         return id;
@@ -31,21 +45,75 @@ public class Logradouro implements Serializable {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getAbreviatura() {
+        return abreviatura;
+    }
+
+    public void setAbreviatura(String abreviatura) {
+        this.abreviatura = abreviatura;
+    }
+
+    public Bairro getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(Bairro bairro) {
+        this.bairro = bairro;
+    }
+
+    public Set getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(Set enderecos) {
+        this.enderecos = enderecos;
+    }
+
+    
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.abreviatura);
+        hash = 97 * hash + Objects.hashCode(this.bairro);
+        hash = 97 * hash + Objects.hashCode(this.enderecos);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Logradouro)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Logradouro other = (Logradouro) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Logradouro other = (Logradouro) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.abreviatura, other.abreviatura)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.bairro, other.bairro)) {
+            return false;
+        }
+        if (!Objects.equals(this.enderecos, other.enderecos)) {
             return false;
         }
         return true;
@@ -53,7 +121,8 @@ public class Logradouro implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Logradouro[ id=" + id + " ]";
+        return "Logradouro{" + "id=" + id + ", nome=" + nome + ", abreviatura=" + abreviatura + ", bairro=" + bairro + ", enderecos=" + enderecos + '}';
     }
+    
     
 }

@@ -6,6 +6,10 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +26,11 @@ public class EstadoSolicitacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column(length = 20)
+    private String tipo;
+    
+    private Set solicitacaos = new HashSet(0);
 
     public Long getId() {
         return id;
@@ -31,29 +40,61 @@ public class EstadoSolicitacao implements Serializable {
         this.id = id;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Set getSolicitacaos() {
+        return solicitacaos;
+    }
+
+    public void setSolicitacaos(Set solicitacaos) {
+        this.solicitacaos = solicitacaos;
+    }
+
+    
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.tipo);
+        hash = 59 * hash + Objects.hashCode(this.solicitacaos);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EstadoSolicitacao)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        EstadoSolicitacao other = (EstadoSolicitacao) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EstadoSolicitacao other = (EstadoSolicitacao) obj;
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.solicitacaos, other.solicitacaos)) {
             return false;
         }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "persistencia.EstadoSolicitacao[ id=" + id + " ]";
+        return "EstadoSolicitacao{" + "id=" + id + ", tipo=" + tipo + ", solicitacaos=" + solicitacaos + '}';
     }
+
     
 }

@@ -6,12 +6,15 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,16 +28,12 @@ public class Bairro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(length=100)
-    private String nome;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    @Column(length = 50)
+    private String bairro;
+    
+    @OneToOne
+    private Cidade cidade;
+    private Set logradouros = new HashSet(0);
 
     public Long getId() {
         return id;
@@ -44,11 +43,39 @@ public class Bairro implements Serializable {
         this.id = id;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public Set getLogradouros() {
+        return logradouros;
+    }
+
+    public void setLogradouros(Set logradouros) {
+        this.logradouros = logradouros;
+    }
+    
+    
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.nome);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.bairro);
+        hash = 89 * hash + Objects.hashCode(this.cidade);
+        hash = 89 * hash + Objects.hashCode(this.logradouros);
         return hash;
     }
 
@@ -64,20 +91,26 @@ public class Bairro implements Serializable {
             return false;
         }
         final Bairro other = (Bairro) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
+        if (!Objects.equals(this.bairro, other.bairro)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.logradouros, other.logradouros)) {
             return false;
         }
         return true;
     }
 
     
-
     @Override
     public String toString() {
-        return "persistencia.Bairro[ id=" + id + " ]";
+        return "Bairro{" + "id=" + id + ", bairro=" + bairro + ", cidade=" + cidade + ", logradouros=" + logradouros + '}';
     }
+    
     
 }
