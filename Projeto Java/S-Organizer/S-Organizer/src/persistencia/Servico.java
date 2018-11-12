@@ -7,7 +7,9 @@ package persistencia;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,6 +25,18 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Servico implements Serializable {
+
+    public Servico(double valor, String descricao, Time horario_marcado, Categoria categoriaServico, Prestador prestador, Solicitacao solicitacao) {
+        this.valor = valor;
+        this.descricao = descricao;
+        this.horario_marcado = horario_marcado;
+        this.categoriaServico = categoriaServico;
+        this.prestador = prestador;
+        this.solicitacao = solicitacao;
+    }
+
+    public Servico() {
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,9 +54,9 @@ public class Servico implements Serializable {
     private Prestador prestador;
     @OneToOne
     private Solicitacao solicitacao;
-    private Set atendimentos = new HashSet(0); //can be null :^]
-
-    public Long getId() {
+    private List atendimentos = new ArrayList(0);; //can be null :^]    
+    
+    public Long getId() {    
         return id;
     }
 
@@ -98,30 +112,30 @@ public class Servico implements Serializable {
         this.solicitacao = solicitacao;
     }
 
-    public Set getAtendimentos() {
+    public List getAtendimentos() {
         return atendimentos;
     }
 
-    public void setAtendimentos(Set atendimentos) {
+    //can be null :^]
+    public void setAtendimentos(List atendimentos) {
         this.atendimentos = atendimentos;
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.descricao);
-        hash = 37 * hash + Objects.hashCode(this.horario_marcado);
-        hash = 37 * hash + Objects.hashCode(this.categoriaServico);
-        hash = 37 * hash + Objects.hashCode(this.prestador);
-        hash = 37 * hash + Objects.hashCode(this.solicitacao);
-        hash = 37 * hash + Objects.hashCode(this.atendimentos);
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.descricao);
+        hash = 97 * hash + Objects.hashCode(this.horario_marcado);
+        hash = 97 * hash + Objects.hashCode(this.categoriaServico);
+        hash = 97 * hash + Objects.hashCode(this.prestador);
+        hash = 97 * hash + Objects.hashCode(this.solicitacao);
+        hash = 97 * hash + Objects.hashCode(this.atendimentos);
         return hash;
     }
 
+    //can be null :^]
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -161,12 +175,8 @@ public class Servico implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "Servico{" + "id=" + id + ", valor=" + valor + ", descricao=" + descricao + ", horario_marcado=" + horario_marcado + ", categoriaServico=" + categoriaServico + ", prestador=" + prestador + ", solicitacao=" + solicitacao + ", atendimentos=" + atendimentos + '}';
     }
-    
-    
-    
 }

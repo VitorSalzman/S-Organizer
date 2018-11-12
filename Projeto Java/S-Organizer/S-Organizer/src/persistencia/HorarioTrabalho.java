@@ -7,8 +7,10 @@ package persistencia;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -35,6 +37,16 @@ public class HorarioTrabalho implements Serializable {
     */
     
     private static final long serialVersionUID = 1L;
+
+    public HorarioTrabalho(Time horarioinicio, Time horariofim) {
+        this.horarioinicio = horarioinicio;
+        this.horariofim = horariofim;
+    }
+
+    public HorarioTrabalho() {
+    }
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -44,7 +56,7 @@ public class HorarioTrabalho implements Serializable {
     @Column(name = "horarioFim")
     private Time horariofim;
     
-    private Set prestadors = new HashSet(0);
+    private List prestadors = new ArrayList(0);;
 
     public Long getId() {
         return id;
@@ -70,21 +82,21 @@ public class HorarioTrabalho implements Serializable {
         this.horariofim = horariofim;
     }
 
-    public Set getPrestadors() {
+    public List getPrestadors() {
         return prestadors;
     }
 
-    public void setPrestadors(Set prestadors) {
+    public void setPrestadors(List prestadors) {
         this.prestadors = prestadors;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.horarioinicio);
-        hash = 67 * hash + Objects.hashCode(this.horariofim);
-        hash = 67 * hash + Objects.hashCode(this.prestadors);
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.horarioinicio);
+        hash = 53 * hash + Objects.hashCode(this.horariofim);
+        hash = 53 * hash + Objects.hashCode(this.prestadors);
         return hash;
     }
 
@@ -117,8 +129,9 @@ public class HorarioTrabalho implements Serializable {
 
     @Override
     public String toString() {
-        return "HorarioTrabalho{" + "id=" + id + ", horarioinicio=" + horarioinicio + ", horariofim=" + horariofim + ", prestadors=" + prestadors + '}';
+        return "HorarioTrabalho{" + "id=" + id + ", horarioinicio=" + horarioinicio + ", horariofim=" + horariofim + '}';
     }
+
     
 
 }

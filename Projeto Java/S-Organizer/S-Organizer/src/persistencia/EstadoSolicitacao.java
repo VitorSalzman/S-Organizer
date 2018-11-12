@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -22,6 +24,14 @@ import javax.persistence.Id;
 @Entity
 public class EstadoSolicitacao implements Serializable {
 
+    public EstadoSolicitacao(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public EstadoSolicitacao() {
+    }
+    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +40,7 @@ public class EstadoSolicitacao implements Serializable {
     @Column(length = 20)
     private String tipo;
     
-    private Set solicitacaos = new HashSet(0);
+    private List solicitacaos = new ArrayList(0);
 
     public Long getId() {
         return id;
@@ -48,21 +58,20 @@ public class EstadoSolicitacao implements Serializable {
         this.tipo = tipo;
     }
 
-    public Set getSolicitacaos() {
+    public List getSolicitacaos() {
         return solicitacaos;
     }
 
-    public void setSolicitacaos(Set solicitacaos) {
+    public void setSolicitacaos(List solicitacaos) {
         this.solicitacaos = solicitacaos;
     }
 
-    
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.tipo);
-        hash = 59 * hash + Objects.hashCode(this.solicitacaos);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.tipo);
+        hash = 53 * hash + Objects.hashCode(this.solicitacaos);
         return hash;
     }
 
@@ -90,11 +99,9 @@ public class EstadoSolicitacao implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "EstadoSolicitacao{" + "id=" + id + ", tipo=" + tipo + ", solicitacaos=" + solicitacaos + '}';
     }
 
-    
 }

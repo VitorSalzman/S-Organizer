@@ -5,18 +5,43 @@
  */
 package App;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import persistencia.Agenda;
+import persistencia.Atendimento;
 import persistencia.Bairro;
+import persistencia.Categoria;
+import persistencia.Cidade;
+import persistencia.ControladorJPA.AgendaJpaController;
+import persistencia.ControladorJPA.AtendimentoJpaController;
 import persistencia.ControladorJPA.BairroJpaController;
+import persistencia.ControladorJPA.CategoriaJpaController;
+import persistencia.ControladorJPA.CidadeJpaController;
+import persistencia.ControladorJPA.ClienteJpaController;
+import persistencia.ControladorJPA.EmpresaJpaController;
+import persistencia.ControladorJPA.EnderecoJpaController;
+import persistencia.ControladorJPA.EstadoJpaController;
+import persistencia.ControladorJPA.EstadoSolicitacaoJpaController;
 import persistencia.ControladorJPA.HorarioTrabalhoJpaController;
+import persistencia.ControladorJPA.LogradouroJpaController;
 import persistencia.ControladorJPA.PrestadorJpaController;
+import persistencia.ControladorJPA.ServicoJpaController;
+import persistencia.ControladorJPA.SolicitacaoJpaController;
+import persistencia.Empresa;
+import persistencia.Endereco;
+import persistencia.Estado;
+import persistencia.EstadoSolicitacao;
 import persistencia.HorarioTrabalho;
+import persistencia.Logradouro;
 import persistencia.Prestador;
+import persistencia.Servico;
+import persistencia.Solicitacao;
 
 /**
  *
@@ -25,9 +50,11 @@ import persistencia.Prestador;
 public class Main_Aplicativo {
 
     /**
+     * Manual: (ALL DONE 11/11 )
      * Sequencia para criação de uma persistencia:
      *  Define as variaveis
      *  Nomear as Colunas
+     *  Adicionar Annotation com length se for String (isso define o tamanho do varchar)
      *  Cria toString (utilize alt + insert , isso é um atalho)
      *  Criar hash e equals
      *  Criar get e set
@@ -37,70 +64,127 @@ public class Main_Aplicativo {
      *  Testa se ta persistindo
      * 
      * ToDo:
-     * Criar as FK de Agenda, Empresa em Prestador
-     * Persistencias a serem criadas:
-     *      Agenda
-     *      Atendimento
-     *      Bairro
-     *      Categoria
-     *      Cidade
-     *      Cliente
-     *      Empresa
-     *      Endereco
-     *      Estado
-     *      EstadoSolicitacao
-     *      Logradouro
-     *      Servico
-     *      Solicitacao
+     *  Jogar valores dentro do banco.
+     *  Trocar todos os .toString() para carregar apenas os atributos, nada de links nem arrayLists.
      *      
      * comments:
      * Não possui Usuario nem Acesso na persistencia, os atributos deles são salvos nas classes que as herdam.
      * Bem não deveria criar a tabela.. não sei pq diachos cria ._. Não existe elas na persistencia, muito menos controladores..
      * Talvez a primeira vez que rodei tenha configurado algo que se configura apenas na primeira rodada.. Não faço ideia :/
      * 
-     * as colunas com "s" no final e com tipo bytea são "Set"s ou seja elas carregam todos os objetos em que estão linkados 
+     * tudo que vc ler type Set é ArrayList, to com preguiça de ler esse texto todo e corrigir. Eu mudei no codigo ja..
+     * 
+     * as colunas com "s" no final e com type "bytea" são "Set"s ou seja elas carregam todos os objetos em que estão linkados 
      * (todas as linhas da tabela indicada, isso acredito que vá facilitar muito na Aplicação no momento de buscar os dados do banco :D)
+     * 
+     * Existe construtores, porem eles não setam o Set, ou seja não mostram no que ele esta linkado.
+     * Recomendo usar o .set() msm
+     * 
+     * Testar:
+     * 
+     *
      */
     public static void main(String[] args) {
         
+        // Iniciar a Persistencia
         EntityManagerFactory objFactory = Persistence.createEntityManagerFactory("S-Organizer2PU");
         EntityManager manager = objFactory.createEntityManager();
         
-        PrestadorJpaController prestadorJpa = new PrestadorJpaController(objFactory);
-        HorarioTrabalhoJpaController hTJpa = new HorarioTrabalhoJpaController(objFactory);
-        
-        
-        //List<Bairro> lista = jpa.findBairroEntities();
-        HorarioTrabalho hT1 = new HorarioTrabalho();
-        
+        // Gerando "randoms" Time
         final Random random = new Random();
         final int millisInDay = 24*60*60*1000;
+        
         Time time = new Time((long)random.nextInt(millisInDay));
         Time time2 = new Time((long)random.nextInt(millisInDay));
         
-        hT1.setHorarioinicio(time);
-        hT1.setHorariofim(time2);
+        Date date = new Date(2015,11,2);
         
-        Prestador p1 = new Prestador();
+        
+        // instanciar Controladores *primeiras 2 letras + Jpa*
+        AgendaJpaController agJpa = new AgendaJpaController(objFactory);
+        AtendimentoJpaController atJpa = new AtendimentoJpaController(objFactory);
+        BairroJpaController baJpa = new BairroJpaController(objFactory);
+        CategoriaJpaController caJpa = new CategoriaJpaController(objFactory);
+        CidadeJpaController ciJpa = new CidadeJpaController(objFactory);
+        ClienteJpaController clJpa = new ClienteJpaController(objFactory);
+        EmpresaJpaController emJpa = new EmpresaJpaController(objFactory);
+        EnderecoJpaController enJpa = new EnderecoJpaController(objFactory);
+        EstadoJpaController esJpa = new EstadoJpaController(objFactory);
+        EstadoSolicitacaoJpaController esSJpa = new EstadoSolicitacaoJpaController(objFactory);
+        HorarioTrabalhoJpaController hoJpa = new HorarioTrabalhoJpaController(objFactory);
+        LogradouroJpaController loJpa = new LogradouroJpaController(objFactory);
+        PrestadorJpaController prJpa = new PrestadorJpaController(objFactory);
+        ServicoJpaController seJpa = new ServicoJpaController(objFactory);
+        SolicitacaoJpaController soJpa = new SolicitacaoJpaController(objFactory);
+        
 
-        p1.setCpf("12671893149");
-        p1.setUsuario("Jimm");
-        p1.setSenha("1234");
-        p1.setNome("Luiz Antonio");
-        p1.setTelefone("027998065439");
-        p1.setHorarioTrabalho(hT1);
-//        p1.setAgenda(agenda);
-//        p1.setEmpresa(empresa);
+        // Instanciando Entidades persistiveis *primeiras 2 letras + numero*
+        Agenda ag1 = new Agenda();
+        Atendimento at1 = new Atendimento();
+        Bairro ba1 = new Bairro();
+        Categoria ca1 = new Categoria();
+        Cidade ci1 = new Cidade();
+        Empresa em1 = new Empresa();
+        Endereco en1 = new Endereco();
+        Estado es1 = new Estado();
+        EstadoSolicitacao esS1 = new EstadoSolicitacao();
+        HorarioTrabalho ho1 = new HorarioTrabalho();
+        Logradouro lo1 = new Logradouro();
+        Prestador pr1 = new Prestador();
+        Servico se1 = new Servico();
+        Solicitacao so1 = new Solicitacao();
+
         
         
-        hTJpa.create(hT1);
-        prestadorJpa.create(p1);
+        /*
+        Preencher todos os campos (ou seja todos os .set(), MENOS O ID)
+        Precisa seguir a logica das pontas pro nucleo, para que todos se linkem corretamente
+        No final criar os "traceBack" (acabei de inventar esse nome xD) que são os ArrayList .set() De todas as entidades
+        */
+        
+        //NAO ESTA COMPLETO (não ta funcionando corretamente)
+        
+        // HorarioTrabalho
+        ho1.setHorarioinicio(time);
+        ho1.setHorariofim(time2);
+        
+        List prestadors = new ArrayList(0); 
+        prestadors.add(pr1);
+        prestadors.add(pr1);
+        ho1.setPrestadors(prestadors);
+        
+        // Prestador
+        pr1.setCpf("12671893149");
+        pr1.setUsuario("Jimm");
+        pr1.setSenha("1234");
+        pr1.setNome("Luiz Antonio");
+        pr1.setTelefone("027998065439");
+        pr1.setHorarioTrabalho(ho1);
+//        pr1.setAgenda(ag1);
+//        pr1.setEmpresa(em1);
+        
+        List servicos = new ArrayList(0); 
+        servicos.add(se1);
+        pr1.setServicos(servicos);
+        
+        
+        
+         
+        
+        
+        hoJpa.create(ho1);
+        prJpa.create(pr1);
+        
+        List<Prestador> listaPrestadores = hoJpa.findHorarioTrabalho(851L).getPrestadors();
+        for (Prestador prestador : listaPrestadores) {
+            System.out.println("prestador = " + prestador.toString());
+        }
+// não ta printando o ID pq ele só tem o ID depois que salva, ou seja a gente manda salvar ele no arrayList
+// o ID fica nulo, mas quando a gente manda salvar no banco o banco seta o novo ID
         
         
         //prestadorJpa.create(p2);
 
-
-        
     }
-    
-}
+}  
+

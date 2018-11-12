@@ -21,6 +21,16 @@ import javax.persistence.OneToOne;
 @Entity
 public class Atendimento implements Serializable {
 
+    public Atendimento(Time horarioFim, Time horarioInicio, Servico servico) {
+        this.horarioFim = horarioFim;
+        this.horarioInicio = horarioInicio;
+        this.servico = servico;
+    }
+
+    public Atendimento() {
+    }
+    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

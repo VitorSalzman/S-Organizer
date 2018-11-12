@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -22,6 +24,13 @@ import javax.persistence.Id;
 @Entity
 public class Categoria implements Serializable {
 
+    public Categoria(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Categoria() {
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +39,7 @@ public class Categoria implements Serializable {
     @Column(length = 15) // tamanho do varchar
     private String tipo;
     
-    private Set servicos = new HashSet(0);
+    private List servicos = new ArrayList(0);
 
     public Long getId() {
         return id;
@@ -48,21 +57,20 @@ public class Categoria implements Serializable {
         this.tipo = tipo;
     }
 
-    public Set getServicos() {
+    public List getServicos() {
         return servicos;
     }
 
-    public void setServicos(Set servicos) {
+    public void setServicos(List servicos) {
         this.servicos = servicos;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.tipo);
-        hash = 71 * hash + Objects.hashCode(this.servicos);
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.tipo);
+        hash = 29 * hash + Objects.hashCode(this.servicos);
         return hash;
     }
 
@@ -90,13 +98,9 @@ public class Categoria implements Serializable {
         return true;
     }
 
-    
-    
     @Override
     public String toString() {
         return "Categoria{" + "id=" + id + ", tipo=" + tipo + ", servicos=" + servicos + '}';
     }
-    
-    
 
-    }
+}

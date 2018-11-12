@@ -6,15 +6,14 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,6 +23,19 @@ import javax.persistence.OneToOne;
 @Entity
 public class Prestador implements Serializable {
 
+    public Prestador(String cpf, String usuario, String senha, String nome, String telefone, HorarioTrabalho horarioTrabalho, Empresa empresa, Agenda agenda) {
+        this.cpf = cpf;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.horarioTrabalho = horarioTrabalho;
+        this.empresa = empresa;
+        this.agenda = agenda;
+    }
+
+    public Prestador() {
+    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,7 +60,7 @@ public class Prestador implements Serializable {
     private Empresa empresa;
     @OneToOne
     private Agenda agenda; // can be null
-    private Set servicos = new HashSet(0);
+    private List servicos = new ArrayList(0);
 
     public Long getId() {
         return id;
@@ -122,27 +134,29 @@ public class Prestador implements Serializable {
         this.agenda = agenda;
     }
 
-    public Set getServicos() {
+    public List getServicos() {
         return servicos;
     }
 
-    public void setServicos(Set servicos) {
+    public void setServicos(List servicos) {
         this.servicos = servicos;
     }
 
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.cpf);
-        hash = 67 * hash + Objects.hashCode(this.usuario);
-        hash = 67 * hash + Objects.hashCode(this.senha);
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.telefone);
-        hash = 67 * hash + Objects.hashCode(this.horarioTrabalho);
-        hash = 67 * hash + Objects.hashCode(this.empresa);
-        hash = 67 * hash + Objects.hashCode(this.agenda);
-        hash = 67 * hash + Objects.hashCode(this.servicos);
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.cpf);
+        hash = 13 * hash + Objects.hashCode(this.usuario);
+        hash = 13 * hash + Objects.hashCode(this.senha);
+        hash = 13 * hash + Objects.hashCode(this.nome);
+        hash = 13 * hash + Objects.hashCode(this.telefone);
+        hash = 13 * hash + Objects.hashCode(this.horarioTrabalho);
+        hash = 13 * hash + Objects.hashCode(this.empresa);
+        hash = 13 * hash + Objects.hashCode(this.agenda);
+        hash = 13 * hash + Objects.hashCode(this.servicos);
         return hash;
     }
 
@@ -193,8 +207,11 @@ public class Prestador implements Serializable {
 
     @Override
     public String toString() {
-        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + ", horarioTrabalho=" + horarioTrabalho + ", empresa=" + empresa + ", agenda=" + agenda + ", servicos=" + servicos + '}';
+        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + '}';
     }
 
-       
+    
+
+    
+  
 }

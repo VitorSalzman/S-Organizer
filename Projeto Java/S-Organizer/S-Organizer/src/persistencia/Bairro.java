@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,6 +25,15 @@ import javax.persistence.OneToOne;
 @Entity
 public class Bairro implements Serializable {
 
+    public Bairro(String bairro, Cidade cidade) {
+        this.bairro = bairro;
+        this.cidade = cidade;
+    }
+
+    public Bairro() {
+    }
+
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +44,7 @@ public class Bairro implements Serializable {
     
     @OneToOne
     private Cidade cidade;
-    private Set logradouros = new HashSet(0);
+    private List logradouros = new ArrayList(0);;
 
     public Long getId() {
         return id;
@@ -59,23 +70,21 @@ public class Bairro implements Serializable {
         this.cidade = cidade;
     }
 
-    public Set getLogradouros() {
+    public List getLogradouros() {
         return logradouros;
     }
 
-    public void setLogradouros(Set logradouros) {
+    public void setLogradouros(List logradouros) {
         this.logradouros = logradouros;
     }
-    
-    
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.bairro);
-        hash = 89 * hash + Objects.hashCode(this.cidade);
-        hash = 89 * hash + Objects.hashCode(this.logradouros);
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 19 * hash + Objects.hashCode(this.bairro);
+        hash = 19 * hash + Objects.hashCode(this.cidade);
+        hash = 19 * hash + Objects.hashCode(this.logradouros);
         return hash;
     }
 
@@ -106,11 +115,9 @@ public class Bairro implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "Bairro{" + "id=" + id + ", bairro=" + bairro + ", cidade=" + cidade + ", logradouros=" + logradouros + '}';
     }
-    
-    
+
 }

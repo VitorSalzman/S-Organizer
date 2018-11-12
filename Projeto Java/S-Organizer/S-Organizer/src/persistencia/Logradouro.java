@@ -6,7 +6,9 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,6 +25,15 @@ import javax.persistence.OneToOne;
 @Entity
 public class Logradouro implements Serializable {
 
+    public Logradouro(String nome, String abreviatura, Bairro bairro) {
+        this.nome = nome;
+        this.abreviatura = abreviatura;
+        this.bairro = bairro;
+    }
+
+    public Logradouro() {
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +46,7 @@ public class Logradouro implements Serializable {
     
     @OneToOne
     private Bairro bairro;
-    private Set enderecos = new HashSet(0);
+    private List enderecos = new ArrayList(0);;
 
     public Long getId() {
         return id;
@@ -69,23 +80,22 @@ public class Logradouro implements Serializable {
         this.bairro = bairro;
     }
 
-    public Set getEnderecos() {
+    public List getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(Set enderecos) {
+    public void setEnderecos(List enderecos) {
         this.enderecos = enderecos;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.abreviatura);
-        hash = 97 * hash + Objects.hashCode(this.bairro);
-        hash = 97 * hash + Objects.hashCode(this.enderecos);
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 29 * hash + Objects.hashCode(this.abreviatura);
+        hash = 29 * hash + Objects.hashCode(this.bairro);
+        hash = 29 * hash + Objects.hashCode(this.enderecos);
         return hash;
     }
 
@@ -123,6 +133,5 @@ public class Logradouro implements Serializable {
     public String toString() {
         return "Logradouro{" + "id=" + id + ", nome=" + nome + ", abreviatura=" + abreviatura + ", bairro=" + bairro + ", enderecos=" + enderecos + '}';
     }
-    
-    
+
 }

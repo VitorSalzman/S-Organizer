@@ -7,8 +7,10 @@ package persistencia;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -27,6 +29,21 @@ import javax.persistence.Temporal;
 @Entity
 public class Solicitacao implements Serializable {
 
+    public Solicitacao(String descricao, Time dispCliIni, Time dispCliFim, String observacao, Date dispDate, Cliente cliente, Empresa empresa, Endereco endereco, EstadoSolicitacao estadoSolicitacao) {
+        this.descricao = descricao;
+        this.dispCliIni = dispCliIni;
+        this.dispCliFim = dispCliFim;
+        this.observacao = observacao;
+        this.dispDate = dispDate;
+        this.cliente = cliente;
+        this.empresa = empresa;
+        this.endereco = endereco;
+        this.estadoSolicitacao = estadoSolicitacao;
+    }
+
+    public Solicitacao() {
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,7 +59,7 @@ public class Solicitacao implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dispDate;
     
-    @ManyToOne // espero q isso seja (1,n) pq nunca vi (n,1)
+    @OneToOne
     private Cliente cliente;
     @OneToOne
     private Empresa empresa;
@@ -50,8 +67,8 @@ public class Solicitacao implements Serializable {
     private Endereco endereco;
     @OneToOne
     private EstadoSolicitacao estadoSolicitacao;
-    private Set agendas = new HashSet(0);
-    private Set servicos = new HashSet(0);
+    private List agendas = new ArrayList(0);
+    private List servicos = new ArrayList(0);
 
     public Long getId() {
         return id;
@@ -133,39 +150,37 @@ public class Solicitacao implements Serializable {
         this.estadoSolicitacao = estadoSolicitacao;
     }
 
-    public Set getAgendas() {
+    public List getAgendas() {
         return agendas;
     }
 
-    public void setAgendas(Set agendas) {
+    public void setAgendas(List agendas) {
         this.agendas = agendas;
     }
 
-    public Set getServicos() {
+    public List getServicos() {
         return servicos;
     }
 
-    public void setServicos(Set servicos) {
+    public void setServicos(List servicos) {
         this.servicos = servicos;
     }
-    
-    
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.id);
-        hash = 11 * hash + Objects.hashCode(this.descricao);
-        hash = 11 * hash + Objects.hashCode(this.dispCliIni);
-        hash = 11 * hash + Objects.hashCode(this.dispCliFim);
-        hash = 11 * hash + Objects.hashCode(this.observacao);
-        hash = 11 * hash + Objects.hashCode(this.dispDate);
-        hash = 11 * hash + Objects.hashCode(this.cliente);
-        hash = 11 * hash + Objects.hashCode(this.empresa);
-        hash = 11 * hash + Objects.hashCode(this.endereco);
-        hash = 11 * hash + Objects.hashCode(this.estadoSolicitacao);
-        hash = 11 * hash + Objects.hashCode(this.agendas);
-        hash = 11 * hash + Objects.hashCode(this.servicos);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.descricao);
+        hash = 79 * hash + Objects.hashCode(this.dispCliIni);
+        hash = 79 * hash + Objects.hashCode(this.dispCliFim);
+        hash = 79 * hash + Objects.hashCode(this.observacao);
+        hash = 79 * hash + Objects.hashCode(this.dispDate);
+        hash = 79 * hash + Objects.hashCode(this.cliente);
+        hash = 79 * hash + Objects.hashCode(this.empresa);
+        hash = 79 * hash + Objects.hashCode(this.endereco);
+        hash = 79 * hash + Objects.hashCode(this.estadoSolicitacao);
+        hash = 79 * hash + Objects.hashCode(this.agendas);
+        hash = 79 * hash + Objects.hashCode(this.servicos);
         return hash;
     }
 
@@ -220,9 +235,10 @@ public class Solicitacao implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "Solicitacao{" + "id=" + id + ", descricao=" + descricao + ", dispCliIni=" + dispCliIni + ", dispCliFim=" + dispCliFim + ", observacao=" + observacao + ", dispDate=" + dispDate + ", cliente=" + cliente + ", empresa=" + empresa + ", endereco=" + endereco + ", estadoSolicitacao=" + estadoSolicitacao + ", agendas=" + agendas + ", servicos=" + servicos + '}';
     }
+    
+    
 }
