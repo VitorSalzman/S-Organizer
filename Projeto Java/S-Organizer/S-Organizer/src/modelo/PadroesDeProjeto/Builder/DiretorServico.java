@@ -21,14 +21,9 @@ public class DiretorServico {
         BuilderServico builder = new BuilderServico(categoria, descricao, valor, horarioMarcado, service);
         
         builder.geraCategoria();
-        System.out.println(service.getCategoria().toString());
         builder.geraDescricao();
-        System.out.println(service.getDescricao());
         builder.geraHorarioMarcado();
-        System.out.println(service.getHorarioMarcado().toString());
         builder.geraValor();
-        System.out.println(service.getValor());
-        
         
         return service;
     }

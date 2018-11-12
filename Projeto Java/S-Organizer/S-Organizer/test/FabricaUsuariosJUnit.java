@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 
-import java.util.Map;
+import java.util.HashMap;
 import modelo.FabricaUsuarios;
+import modelo.Prestador;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -32,9 +32,6 @@ public class FabricaUsuariosJUnit {
     
     @Before
     public void setUp() {
-        //como usa esse parametro?
-        FabricaUsuarios fUsuarios = new FabricaUsuarios(par);
-        
     }
     
     @After
@@ -48,7 +45,24 @@ public class FabricaUsuariosJUnit {
     // public void hello() {}
     
     @Test
-    public void testeFUsuario(String usuario) {
-    
+    public void testeFUsuario() {
+        
+        HashMap dados = new HashMap();
+        dados.put("nome","Saruman");
+        dados.put("empregadoDe","ifes");
+        dados.put("cpf",22233344477L);
+        dados.put("tel",999558342L);
+        dados.put("login","onixsu5");
+        dados.put("senha","asd887!");
+        
+        FabricaUsuarios fu = new FabricaUsuarios(dados);
+        Prestador p = null;
+        try {
+            p = (Prestador) fu.retornaUsuario("prestador");
+        } catch (Exception ex) {
+            System.out.println("Erro");
+        }
+        System.out.println(p.getEmpresaQueTrabalha());
+       
     }
 }

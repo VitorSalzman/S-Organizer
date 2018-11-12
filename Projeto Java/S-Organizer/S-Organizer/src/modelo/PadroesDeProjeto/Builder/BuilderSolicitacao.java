@@ -32,8 +32,6 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
         this.disp_cli_ini=disp_cli_ini;
         this.disp_cli_fim=disp_cli_fim;
         this.servicos=servicos;
-        
-        solicitacao.setDescricao(descricao);
         solicitacao.setObservacao(observacao);
         
         this.solicit=solicitacao;

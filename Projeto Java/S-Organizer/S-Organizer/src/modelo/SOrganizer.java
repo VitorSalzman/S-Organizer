@@ -35,7 +35,7 @@ import java.util.logging.Logger;
         try {
             p = (Prestador) fu.retornaUsuario("prestador");
         } catch (Exception ex) {
-            Logger.getLogger(SOrganizer.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro");
         }
         System.out.println(p.getEmpresaQueTrabalha());
         

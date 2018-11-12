@@ -18,35 +18,20 @@ public class Solicitacao {
     
     private Calendar disp_cli_ini;
     private Calendar disp_cli_fim;
-    private String descricao;
     private String observacao;
     private Calendar dataSolicitacao;
     private long protocolo;
     private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;
-    
-    
-
- 
-
-    public String getDescricao() {
-        return descricao;
-    }
-
+   
     public String getObservacao() {
         return observacao;
     }
-
-
-
+    
     public EstadoSolicitacao getEstado() {
         return estado;
     }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
+    
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
