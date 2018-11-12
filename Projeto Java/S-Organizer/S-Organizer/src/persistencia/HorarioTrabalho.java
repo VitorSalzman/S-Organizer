@@ -129,7 +129,9 @@ public class HorarioTrabalho implements Serializable {
 
     @Override
     public String toString() {
-        return "HorarioTrabalho{" + "id=" + id + ", horarioinicio=" + horarioinicio + ", horariofim=" + horariofim + ", prestadors=" + prestadors + '}';
+        return "HorarioTrabalho{" + "id=" + id + ", horarioinicio=" + horarioinicio + ", horariofim=" + horariofim + '}';
     }
+
+    
 
 }

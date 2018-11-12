@@ -13,7 +13,6 @@ import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import modelo.Servico;
 import persistencia.Agenda;
 import persistencia.Atendimento;
 import persistencia.Bairro;
@@ -41,6 +40,7 @@ import persistencia.EstadoSolicitacao;
 import persistencia.HorarioTrabalho;
 import persistencia.Logradouro;
 import persistencia.Prestador;
+import persistencia.Servico;
 import persistencia.Solicitacao;
 
 /**
@@ -65,6 +65,7 @@ public class Main_Aplicativo {
      * 
      * ToDo:
      *  Jogar valores dentro do banco.
+     *  Trocar todos os .toString() para carregar apenas os atributos, nada de links nem arrayLists.
      *      
      * comments:
      * Não possui Usuario nem Acesso na persistencia, os atributos deles são salvos nas classes que as herdam.
@@ -72,7 +73,6 @@ public class Main_Aplicativo {
      * Talvez a primeira vez que rodei tenha configurado algo que se configura apenas na primeira rodada.. Não faço ideia :/
      * 
      * tudo que vc ler type Set é ArrayList, to com preguiça de ler esse texto todo e corrigir. Eu mudei no codigo ja..
-     * [depois de mudar tudo descobri q não tem como serializar objetos em byte array, ME FUDI, outro dia penso nisso]
      * 
      * as colunas com "s" no final e com type "bytea" são "Set"s ou seja elas carregam todos os objetos em que estão linkados 
      * (todas as linhas da tabela indicada, isso acredito que vá facilitar muito na Aplicação no momento de buscar os dados do banco :D)
@@ -81,7 +81,7 @@ public class Main_Aplicativo {
      * Recomendo usar o .set() msm
      * 
      * Testar:
-     * preciso testar o get do type set, se ele retorna mesmo o Set ou binary (espero que seja o Set, porque depois é so dar get)
+     * 
      *
      */
     public static void main(String[] args) {
@@ -148,11 +148,10 @@ public class Main_Aplicativo {
         ho1.setHorarioinicio(time);
         ho1.setHorariofim(time2);
         
-        // acredito que só possa criar o array list e seta-los no final, se não n carrega os dados
         List prestadors = new ArrayList(0); 
         prestadors.add(pr1);
+        prestadors.add(pr1);
         ho1.setPrestadors(prestadors);
-        
         
         // Prestador
         pr1.setCpf("12671893149");
@@ -161,16 +160,27 @@ public class Main_Aplicativo {
         pr1.setNome("Luiz Antonio");
         pr1.setTelefone("027998065439");
         pr1.setHorarioTrabalho(ho1);
-        pr1.setAgenda(ag1);
-        pr1.setEmpresa(em1);
+//        pr1.setAgenda(ag1);
+//        pr1.setEmpresa(em1);
         
         List servicos = new ArrayList(0); 
         servicos.add(se1);
         pr1.setServicos(servicos);
         
         
+        
+         
+        
+        
         hoJpa.create(ho1);
         prJpa.create(pr1);
+        
+        List<Prestador> listaPrestadores = hoJpa.findHorarioTrabalho(851L).getPrestadors();
+        for (Prestador prestador : listaPrestadores) {
+            System.out.println("prestador = " + prestador.toString());
+        }
+// não ta printando o ID pq ele só tem o ID depois que salva, ou seja a gente manda salvar ele no arrayList
+// o ID fica nulo, mas quando a gente manda salvar no banco o banco seta o novo ID
         
         
         //prestadorJpa.create(p2);

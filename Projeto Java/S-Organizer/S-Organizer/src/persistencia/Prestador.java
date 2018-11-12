@@ -205,11 +205,13 @@ public class Prestador implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
-        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + ", horarioTrabalho=" + horarioTrabalho + ", empresa=" + empresa + ", agenda=" + agenda + ", servicos=" + servicos + '}';
+        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", telefone=" + telefone + '}';
     }
 
-      
+    
+
+    
+  
 }
