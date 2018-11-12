@@ -41,7 +41,33 @@ public class Servico {
     }
 
     public void setCategoria(String category) throws Exception{
-        this.categoria =  Categoria.valueOf(category);
+        
+        //this.categoria =  Categoria.valueOf(category);     Em manutenção
+        if(category.equalsIgnoreCase("limpeza")){
+            this.categoria = Categoria.LIMPEZA;
+        }
+       
+        else if(category.equalsIgnoreCase("instalacao")){
+            this.categoria = Categoria.INSTALACAO;
+        }
+        
+        else if(category.equalsIgnoreCase("REPARO")){
+            this.categoria = Categoria.REPARO;
+        }
+        
+        else if(category.equalsIgnoreCase("construcao")){
+            this.categoria = Categoria.CONSTRUCAO;
+        }
+        
+        else if(category.equalsIgnoreCase("entrega")){
+            this.categoria = Categoria.ENTREGA;
+        }
+        
+        else if(category.equalsIgnoreCase("busca")){
+            this.categoria = Categoria.BUSCA;
+        }
+        
+        
     }
 
     public void setDescricao(String descricao) {
