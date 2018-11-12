@@ -31,7 +31,7 @@ public class BuilderServico {
             this.horarioMarcado=horarioMarcado;
             this.descricao=descricao;
             this.servico.setEstado(false);   /// false = não feito
-           /// this.servico.setAtendimento(atendimento);   falta tratar
+           /// this.servico.setAtendimento(at1endimento);   falta tratar
     }
     
     public void geraCategoria() throws Exception{
