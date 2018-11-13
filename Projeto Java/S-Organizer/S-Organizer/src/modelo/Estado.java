@@ -5,10 +5,6 @@
  */
 package modelo;
 
-/**
- *
- * @author Salzman
- */
 public class Estado {
     private long id;
     private String nome;

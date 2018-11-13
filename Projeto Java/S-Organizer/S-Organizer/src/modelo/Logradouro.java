@@ -5,10 +5,6 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161BSI0403
- */
 public class Logradouro {
     private String nome;
     private String abreviatura;
@@ -37,7 +33,4 @@ public class Logradouro {
     public void setId(long id) {
         this.id = id;
     }
-    
-    
-    
 }

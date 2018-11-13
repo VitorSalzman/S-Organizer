@@ -7,10 +7,6 @@ package modelo;
 
 import java.sql.Time;
 
-/**
- *
- * @author 20161BSI0403
- */
 public class HorarioTrabalho {
     private Time horarioinicio;
     private Time horariofim;

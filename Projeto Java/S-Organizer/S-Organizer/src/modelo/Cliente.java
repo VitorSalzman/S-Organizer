@@ -5,10 +5,6 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
 public class Cliente extends Usuario{
        private long cpf;
 

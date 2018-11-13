@@ -11,10 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import modelo.Servico;
 
-/**
- *
- * @author Salzman
- */
 public class BuilderServico {
     private Servico servico;
     private String categoria;

@@ -5,54 +5,31 @@
  */
 package modelo;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
-/**
- *
- * @author 20161bsi0403
- */
 public class Solicitacao {
     
     private Calendar disp_cli_ini;
     private Calendar disp_cli_fim;
-    private String descricao;
     private String observacao;
     private Calendar dataSolicitacao;
     private long protocolo;
     private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;
     
-    
-
- 
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public String getObservacao() {
         return observacao;
     }
 
-
-
     public EstadoSolicitacao getEstado() {
         return estado;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
 
-
-    
     public void setEstado(EstadoSolicitacao estado) {
         this.estado = estado;
     }

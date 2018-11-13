@@ -9,7 +9,7 @@ package modelo;
  *
  * MUDANCA:
  * Foi inserido um tempo base para execucao de cata tipo de servico
- * dessa forma podemos calcular quantos servicos conseguimos coloca
+ * dessa forma podemos calcular quantos servicos conseguimos colocar
  * dentro de uma agenda.
  */
 public enum Categoria {
@@ -22,11 +22,19 @@ public enum Categoria {
         this.descricao = descricao;
         this.duracao = duracao;
     }
-
+    
     Categoria(String category){
         this.descricao=category;
     }
-    
+
+    public int getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
+    }
+
     public String getDescricao() {
         return descricao;
     }

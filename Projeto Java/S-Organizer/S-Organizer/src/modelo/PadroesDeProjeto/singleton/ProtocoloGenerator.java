@@ -1,4 +1,4 @@
-package modelo;
+package modelo.PadroesDeProjeto.singleton;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,10 +6,6 @@ package modelo;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author 20161bsi0284
- */
 public enum ProtocoloGenerator {
     INSTANCE;
     
@@ -18,6 +14,4 @@ public enum ProtocoloGenerator {
     public synchronized long getNextProtocol(){
         return count++;
     }
-    
-    
 }

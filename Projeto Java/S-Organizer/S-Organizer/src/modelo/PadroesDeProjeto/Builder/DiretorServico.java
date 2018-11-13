@@ -7,10 +7,6 @@ package modelo.padroesdeprojeto.builder;
 
 import modelo.Servico;
 
-/**
- *
- * @author Salzman
- */
 public class DiretorServico {
    
     

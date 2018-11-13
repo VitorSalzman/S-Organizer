@@ -12,8 +12,10 @@ package modelo;
 public class Prestador extends Acesso{
     private String empresaQueTrabalha;
     private boolean disponibilidade;
+    private HorarioTrabalho horasT;
     private long cpf;
-    
+
+   
     public Prestador(String nome,long cpf, long telefone, String empresaQueTrabalha,
             boolean disponibilidade, String usuario, String senha) {
         super(usuario, senha);
@@ -26,6 +28,15 @@ public class Prestador extends Acesso{
     public Prestador(String login, String senha){
         super(login, senha);
     }
+    
+     public HorarioTrabalho getHorasT() {
+        return horasT;
+    }
+
+    public void setHorasT(HorarioTrabalho horasT) {
+        this.horasT = horasT;
+    }
+    
     public String getEmpresaQueTrabalha() {
         return empresaQueTrabalha;
     }

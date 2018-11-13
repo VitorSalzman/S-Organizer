@@ -5,10 +5,6 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161BSI0403
- */
 public class Cidade {
     private String nome;
     private long id;

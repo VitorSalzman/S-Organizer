@@ -5,10 +5,6 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
 public abstract class Acesso extends Usuario {
     private String usuario;
     private String senha;
