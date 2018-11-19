@@ -4,9 +4,17 @@
         <servlet-name>ControleApi</servlet-name>
         <servlet-class>ControleApi</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servico</servlet-name>
+        <servlet-class>Servico</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControleApi</servlet-name>
         <url-pattern>/ControleApi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servico</servlet-name>
+        <url-pattern>/Servico</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
