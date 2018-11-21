@@ -13,12 +13,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Bairro")
 public class Bairro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +28,7 @@ public class Bairro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 255)
+    @Column(length = 255,name="bairro")
     private String bairro;
     
     @OneToOne
@@ -91,7 +93,9 @@ public class Bairro implements Serializable {
 
     @Override
     public String toString() {
-        return "Bairro{" + "id=" + id + ", bairro=" + bairro + ", cidade=" + cidade + '}';
+        return "Bairro{" + "id=" + id + ", bairro=" + bairro + '}';
     }
+
+    
 
 }

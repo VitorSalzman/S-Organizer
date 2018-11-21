@@ -10,11 +10,11 @@ import java.util.List;
 
 
 public class Cliente extends Usuario{
-       private long cpf;
+       private String cpf;
        
        List<Solicitacao> solicitacao = new ArrayList();
 
-    public Cliente(long cpf, String nome, long telefone) {
+    public Cliente(String cpf, String nome, String telefone) {
         super(nome, telefone);
         this.cpf = cpf;
     }
@@ -22,11 +22,11 @@ public class Cliente extends Usuario{
     public Cliente (){
     }
       
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     
@@ -36,8 +36,8 @@ public class Cliente extends Usuario{
     }
 
     public void printSolicitacao() {
-        for( Solicitacao solicitacao : solicitacao ) {
-            solicitacao.toString();
+        for( Solicitacao s : solicitacao ) {
+            s.toString();
         }
     }
 

@@ -13,12 +13,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Logradouro")
 public class Logradouro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,11 +28,9 @@ public class Logradouro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 20)
+    @Column(length = 20,name="nome")
     private String nome;
-    @Column(length = 6)
-    private String abreviatura;
-    
+        
     @OneToOne
     private Bairro bairro;
 
@@ -50,14 +50,7 @@ public class Logradouro implements Serializable {
         this.nome = nome;
     }
 
-    public String getAbreviatura() {
-        return abreviatura;
-    }
-
-    public void setAbreviatura(String abreviatura) {
-        this.abreviatura = abreviatura;
-    }
-
+    
     public Bairro getBairro() {
         return bairro;
     }
@@ -68,11 +61,10 @@ public class Logradouro implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.abreviatura);
-        hash = 97 * hash + Objects.hashCode(this.bairro);
+        int hash = 5;
+        hash = 61 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 61 * hash + Objects.hashCode(this.nome);
+        hash = 61 * hash + Objects.hashCode(this.bairro);
         return hash;
     }
 
@@ -94,9 +86,6 @@ public class Logradouro implements Serializable {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.abreviatura, other.abreviatura)) {
-            return false;
-        }
         if (!Objects.equals(this.bairro, other.bairro)) {
             return false;
         }
@@ -105,8 +94,7 @@ public class Logradouro implements Serializable {
 
     @Override
     public String toString() {
-        return "Logradouro{" + "id=" + id + ", nome=" + nome + ", abreviatura=" + abreviatura + '}';
+        return "Logradouro{" + "id=" + id + ", nome=" + nome + '}';
     }
 
-   
 }

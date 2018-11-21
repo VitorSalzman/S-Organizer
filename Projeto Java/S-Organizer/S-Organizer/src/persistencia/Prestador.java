@@ -13,13 +13,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Prestador")
 public class Prestador implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,16 +28,16 @@ public class Prestador implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 20)
+    @Column(length = 20,name="cpf")
     private String cpf;
-    private Time horarioinicio;
-    private Time horariofim;
-    private int cargahoraria;
-    
-    @OneToOne
-    private Acesso acesso;
-    @OneToOne
-    private Empresa empresa;
+    @Column(name="horarioInicio")
+    private Time horarioInicio;
+    @Column(name="horarioInicio")
+    private Time horarioFim;
+    @Column(name="horarioFim")
+    private int cargaHoraria;
+    @Column(name="disponibilidade")
+    private boolean disponibilidade;
 
     public long getId() {
         return id;
@@ -54,56 +55,48 @@ public class Prestador implements Serializable {
         this.cpf = cpf;
     }
 
-    public Time getHorarioinicio() {
-        return horarioinicio;
+    public Time getHorarioInicio() {
+        return horarioInicio;
     }
 
-    public void setHorarioinicio(Time horarioinicio) {
-        this.horarioinicio = horarioinicio;
+    public void setHorarioInicio(Time horarioInicio) {
+        this.horarioInicio = horarioInicio;
     }
 
-    public Time getHorariofim() {
-        return horariofim;
+    public Time getHorarioFim() {
+        return horarioFim;
     }
 
-    public void setHorariofim(Time horariofim) {
-        this.horariofim = horariofim;
+    public void setHorarioFim(Time horarioFim) {
+        this.horarioFim = horarioFim;
     }
 
-    public int getCargahoraria() {
-        return cargahoraria;
+    public int getCargaHoraria() {
+        return cargaHoraria;
     }
 
-    public void setCargahoraria(int cargahoraria) {
-        this.cargahoraria = cargahoraria;
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
 
-    public Acesso getAcesso() {
-        return acesso;
+    public boolean isDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setAcesso(Acesso acesso) {
-        this.acesso = acesso;
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
+    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 47 * hash + Objects.hashCode(this.cpf);
-        hash = 47 * hash + Objects.hashCode(this.horarioinicio);
-        hash = 47 * hash + Objects.hashCode(this.horariofim);
-        hash = 47 * hash + this.cargahoraria;
-        hash = 47 * hash + Objects.hashCode(this.acesso);
-        hash = 47 * hash + Objects.hashCode(this.empresa);
+        int hash = 5;
+        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 53 * hash + Objects.hashCode(this.cpf);
+        hash = 53 * hash + Objects.hashCode(this.horarioInicio);
+        hash = 53 * hash + Objects.hashCode(this.horarioFim);
+        hash = 53 * hash + this.cargaHoraria;
+        hash = 53 * hash + (this.disponibilidade ? 1 : 0);
         return hash;
     }
 
@@ -122,30 +115,28 @@ public class Prestador implements Serializable {
         if (this.id != other.id) {
             return false;
         }
-        if (this.cargahoraria != other.cargahoraria) {
+        if (this.cargaHoraria != other.cargaHoraria) {
+            return false;
+        }
+        if (this.disponibilidade != other.disponibilidade) {
             return false;
         }
         if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
-        if (!Objects.equals(this.horarioinicio, other.horarioinicio)) {
+        if (!Objects.equals(this.horarioInicio, other.horarioInicio)) {
             return false;
         }
-        if (!Objects.equals(this.horariofim, other.horariofim)) {
-            return false;
-        }
-        if (!Objects.equals(this.acesso, other.acesso)) {
-            return false;
-        }
-        if (!Objects.equals(this.empresa, other.empresa)) {
+        if (!Objects.equals(this.horarioFim, other.horarioFim)) {
             return false;
         }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", horarioinicio=" + horarioinicio + ", horariofim=" + horariofim + ", cargahoraria=" + cargahoraria + '}';
+        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", horarioInicio=" + horarioInicio + ", horarioFim=" + horarioFim + ", cargaHoraria=" + cargaHoraria + ", disponibilidade=" + disponibilidade + '}';
     }
-
+    
 }

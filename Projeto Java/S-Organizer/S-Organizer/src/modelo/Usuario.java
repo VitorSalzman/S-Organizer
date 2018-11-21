@@ -11,10 +11,10 @@ public abstract class Usuario {
     private long codigo;
     
     private String nome;
-    private long telefone;
+    private String telefone;
     
 
-    public Usuario(String nome, long telefone) {
+    public Usuario(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }
@@ -38,14 +38,22 @@ public abstract class Usuario {
         this.nome = nome;
     }
 
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.telefone);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -62,14 +70,17 @@ public abstract class Usuario {
         if (this.codigo != other.codigo) {
             return false;
         }
-        if (this.telefone != other.telefone) {
+        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.nome, other.nome)) {
+        if (!Objects.equals(this.telefone, other.telefone)) {
             return false;
         }
         return true;
     }
+
+
+    
     
     
 

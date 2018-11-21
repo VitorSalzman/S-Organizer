@@ -11,13 +11,12 @@ import java.util.List;
 
 public class Empresa extends Acesso{
     
-    private long cnpj;
-    private  boolean temControle;
+    private String cnpj;
     
-    private List<Solicitacao> solicitacaoes = new ArrayList(); // essas key precisa ser preenchida
-    private List<Prestador> prestadores = new ArrayList(); // seria preenchidas na fabrica?
+    private List<Solicitacao> solicitacaoes = new ArrayList(); 
+    private List<Prestador> prestadores = new ArrayList();
     
-    public Empresa(long cnpj, String usuario, String senha, String nome, long telefone) {
+    public Empresa(String cnpj, String usuario, String senha, String nome, String telefone) {
         super(usuario, senha, nome, telefone);
         this.cnpj = cnpj;
     }
@@ -25,21 +24,14 @@ public class Empresa extends Acesso{
     public Empresa(){
     } 
 
-    public long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(long cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
-    public boolean isTemControle() {
-        return temControle;
-    }
-
-    public void setTemControle(boolean temControle) {
-        this.temControle = temControle;
-    }
 
     //operação manual
     public void setSolicitacao(Solicitacao solicitacao) {

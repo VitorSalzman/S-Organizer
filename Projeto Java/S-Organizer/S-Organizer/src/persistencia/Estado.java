@@ -12,12 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Estado")
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,7 +27,7 @@ public class Estado implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 15)
+    @Column(length = 15,name="estado")
     private String estado;
 
     public long getId() {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.ControladorJPA;
+package persistencia.ControladoresJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
-import persistencia.EstadoSol;
+import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
+import persistencia.Solicitacao;
 
 /**
  *
  * @author luizg
  */
-public class EstadoSolJpaController implements Serializable {
+public class SolicitacaoJpaController implements Serializable {
 
-    public EstadoSolJpaController(EntityManagerFactory emf) {
+    public SolicitacaoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class EstadoSolJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(EstadoSol estadoSol) {
+    public void create(Solicitacao solicitacao) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(estadoSol);
+            em.persist(solicitacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class EstadoSolJpaController implements Serializable {
         }
     }
 
-    public void edit(EstadoSol estadoSol) throws NonexistentEntityException, Exception {
+    public void edit(Solicitacao solicitacao) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            estadoSol = em.merge(estadoSol);
+            solicitacao = em.merge(solicitacao);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = estadoSol.getId();
-                if (findEstadoSol(id) == null) {
-                    throw new NonexistentEntityException("The estadoSol with id " + id + " no longer exists.");
+                long id = solicitacao.getId();
+                if (findSolicitacao(id) == null) {
+                    throw new NonexistentEntityException("The solicitacao with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class EstadoSolJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            EstadoSol estadoSol;
+            Solicitacao solicitacao;
             try {
-                estadoSol = em.getReference(EstadoSol.class, id);
-                estadoSol.getId();
+                solicitacao = em.getReference(Solicitacao.class, id);
+                solicitacao.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The estadoSol with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The solicitacao with id " + id + " no longer exists.", enfe);
             }
-            em.remove(estadoSol);
+            em.remove(solicitacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class EstadoSolJpaController implements Serializable {
         }
     }
 
-    public List<EstadoSol> findEstadoSolEntities() {
-        return findEstadoSolEntities(true, -1, -1);
+    public List<Solicitacao> findSolicitacaoEntities() {
+        return findSolicitacaoEntities(true, -1, -1);
     }
 
-    public List<EstadoSol> findEstadoSolEntities(int maxResults, int firstResult) {
-        return findEstadoSolEntities(false, maxResults, firstResult);
+    public List<Solicitacao> findSolicitacaoEntities(int maxResults, int firstResult) {
+        return findSolicitacaoEntities(false, maxResults, firstResult);
     }
 
-    private List<EstadoSol> findEstadoSolEntities(boolean all, int maxResults, int firstResult) {
+    private List<Solicitacao> findSolicitacaoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(EstadoSol.class));
+            cq.select(cq.from(Solicitacao.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class EstadoSolJpaController implements Serializable {
         }
     }
 
-    public EstadoSol findEstadoSol(long id) {
+    public Solicitacao findSolicitacao(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(EstadoSol.class, id);
+            return em.find(Solicitacao.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getEstadoSolCount() {
+    public int getSolicitacaoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<EstadoSol> rt = cq.from(EstadoSol.class);
+            Root<Solicitacao> rt = cq.from(Solicitacao.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

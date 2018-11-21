@@ -6,19 +6,23 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Empresa")
 public class Empresa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,11 +30,13 @@ public class Empresa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 20)
+    @Column(length = 20,name = "cnpj")
     private String cnpj;
 
-    @OneToOne
-    private Acesso acesso;
+    @OneToMany
+    private List<Solicitacao> solicitacaoes = new ArrayList(); 
+    @OneToMany
+    private List<Prestador> prestadores = new ArrayList();
 
     public long getId() {
         return id;
@@ -48,20 +54,29 @@ public class Empresa implements Serializable {
         this.cnpj = cnpj;
     }
 
-    public Acesso getAcesso() {
-        return acesso;
+    public List<Solicitacao> getSolicitacaoes() {
+        return solicitacaoes;
     }
 
-    public void setAcesso(Acesso acesso) {
-        this.acesso = acesso;
+    public void setSolicitacaoes(List<Solicitacao> solicitacaoes) {
+        this.solicitacaoes = solicitacaoes;
+    }
+
+    public List<Prestador> getPrestadores() {
+        return prestadores;
+    }
+
+    public void setPrestadores(List<Prestador> prestadores) {
+        this.prestadores = prestadores;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 13 * hash + Objects.hashCode(this.cnpj);
-        hash = 13 * hash + Objects.hashCode(this.acesso);
+        hash = 89 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.cnpj);
+        hash = 89 * hash + Objects.hashCode(this.solicitacaoes);
+        hash = 89 * hash + Objects.hashCode(this.prestadores);
         return hash;
     }
 
@@ -83,7 +98,10 @@ public class Empresa implements Serializable {
         if (!Objects.equals(this.cnpj, other.cnpj)) {
             return false;
         }
-        if (!Objects.equals(this.acesso, other.acesso)) {
+        if (!Objects.equals(this.solicitacaoes, other.solicitacaoes)) {
+            return false;
+        }
+        if (!Objects.equals(this.prestadores, other.prestadores)) {
             return false;
         }
         return true;

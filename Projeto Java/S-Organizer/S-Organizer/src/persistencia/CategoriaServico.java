@@ -13,12 +13,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="CategoriaServico")
 public class CategoriaServico implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,6 +30,7 @@ public class CategoriaServico implements Serializable {
     
     @Column(length = 50, name= "Tipo")
     private String tipo;
+    @Column(name="duracao")
     private Time duracao;
 
     public long getId() {

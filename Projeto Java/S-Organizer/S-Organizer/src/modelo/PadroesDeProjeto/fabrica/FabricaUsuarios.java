@@ -30,9 +30,9 @@ public class FabricaUsuarios {
         
         if(user.equalsIgnoreCase("cliente")){
             usuario = new Cliente(
-                    (long)parametros.get("cpf"),
+                    (String)parametros.get("cpf"),
                     (String)parametros.get("nome"),
-                    (long)parametros.get("telefone")
+                    (String)parametros.get("telefone")
             );
             Cliente cli = (Cliente) usuario;
 
@@ -46,18 +46,18 @@ public class FabricaUsuarios {
                     (String)parametros.get("usuario"),
                     (String)parametros.get("senha"),
                     (String)parametros.get("nome"),
-                    (long)parametros.get("telefone")
+                    (String)parametros.get("telefone")
             );
             Prestador pre = (Prestador) usuario; 
 
         }
         else if(user.equalsIgnoreCase("empresa")){
             usuario = new Empresa(
-                    (long)parametros.get("cnpj"),
+                    (String)parametros.get("cnpj"),
                     (String)parametros.get("usuario"),
                     (String)parametros.get("senha"),
                     (String)parametros.get("nome"),
-                    (long)parametros.get("telefone")
+                    (String)parametros.get("telefone")
             );
             
             Empresa emp = (Empresa) usuario;

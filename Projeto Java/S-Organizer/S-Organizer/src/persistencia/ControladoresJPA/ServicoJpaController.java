@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.ControladorJPA;
+package persistencia.ControladoresJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Acesso;
-import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
+import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
+import persistencia.Servico;
 
 /**
  *
  * @author luizg
  */
-public class AcessoJpaController implements Serializable {
+public class ServicoJpaController implements Serializable {
 
-    public AcessoJpaController(EntityManagerFactory emf) {
+    public ServicoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class AcessoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Acesso acesso) {
+    public void create(Servico servico) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(acesso);
+            em.persist(servico);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public void edit(Acesso acesso) throws NonexistentEntityException, Exception {
+    public void edit(Servico servico) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            acesso = em.merge(acesso);
+            servico = em.merge(servico);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = acesso.getId();
-                if (findAcesso(id) == null) {
-                    throw new NonexistentEntityException("The acesso with id " + id + " no longer exists.");
+                long id = servico.getId();
+                if (findServico(id) == null) {
+                    throw new NonexistentEntityException("The servico with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class AcessoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Acesso acesso;
+            Servico servico;
             try {
-                acesso = em.getReference(Acesso.class, id);
-                acesso.getId();
+                servico = em.getReference(Servico.class, id);
+                servico.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The acesso with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The servico with id " + id + " no longer exists.", enfe);
             }
-            em.remove(acesso);
+            em.remove(servico);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public List<Acesso> findAcessoEntities() {
-        return findAcessoEntities(true, -1, -1);
+    public List<Servico> findServicoEntities() {
+        return findServicoEntities(true, -1, -1);
     }
 
-    public List<Acesso> findAcessoEntities(int maxResults, int firstResult) {
-        return findAcessoEntities(false, maxResults, firstResult);
+    public List<Servico> findServicoEntities(int maxResults, int firstResult) {
+        return findServicoEntities(false, maxResults, firstResult);
     }
 
-    private List<Acesso> findAcessoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Servico> findServicoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Acesso.class));
+            cq.select(cq.from(Servico.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public Acesso findAcesso(long id) {
+    public Servico findServico(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Acesso.class, id);
+            return em.find(Servico.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getAcessoCount() {
+    public int getServicoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Acesso> rt = cq.from(Acesso.class);
+            Root<Servico> rt = cq.from(Servico.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

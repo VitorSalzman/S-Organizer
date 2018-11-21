@@ -19,7 +19,7 @@ public class Prestador extends Acesso{
 
     //ta sem o disponibilidade no construtor
 
-    public Prestador(Time horarioInicio, Time horarioFim, int cargaHoraria, String cpf, String usuario, String senha, String nome, long telefone) {
+    public Prestador(Time horarioInicio, Time horarioFim, int cargaHoraria, String cpf, String usuario, String senha, String nome, String telefone) {
         super(usuario, senha, nome, telefone);
         this.disponibilidade = true; // sempre true quando cria
         this.horarioInicio = horarioInicio;

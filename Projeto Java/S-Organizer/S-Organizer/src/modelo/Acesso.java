@@ -11,7 +11,7 @@ public abstract class Acesso extends Usuario {
     private String senha;
 
  
-    public Acesso(String usuario, String senha, String nome, long telefone) {
+    public Acesso(String usuario, String senha, String nome, String telefone) {
         super(nome, telefone);
         this.usuario = usuario;
         try {

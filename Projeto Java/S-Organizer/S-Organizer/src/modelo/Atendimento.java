@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.Time;
+import java.util.Date;
 
 /**
  *
@@ -16,10 +17,18 @@ public class Atendimento {
     
     private Time horarioInicioAtendimento;
     private Time horarioFimAtendimento;
+    private Date dataAtendimento;
     
     private Prestador prestador;
-    
-    
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Time getHorarioInicioAtendimento() {
         return horarioInicioAtendimento;
     }
@@ -36,12 +45,12 @@ public class Atendimento {
         this.horarioFimAtendimento = horarioFimAtendimento;
     }
 
-    public long getId() {
-        return id;
+    public Date getDataAtendimento() {
+        return dataAtendimento;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setDataAtendimento(Date dataAtendimento) {
+        this.dataAtendimento = dataAtendimento;
     }
 
     public Prestador getPrestador() {
@@ -52,14 +61,10 @@ public class Atendimento {
         this.prestador = prestador;
     }
 
+    
     @Override
     public String toString() {
-        return "Atendimento{" + "horarioInicioAtendimento=" + horarioInicioAtendimento + ", horarioFimAtendimento=" + horarioFimAtendimento + '}';
+        return "Atendimento{" + "id=" + id + ", horarioInicioAtendimento=" + horarioInicioAtendimento + ", horarioFimAtendimento=" + horarioFimAtendimento + ", dataAtendimento=" + dataAtendimento + '}';
     }
-    
-
-    
-    
-    
    
 }

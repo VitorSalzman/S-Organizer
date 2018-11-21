@@ -20,8 +20,9 @@ public class Solicitacao {
     private Calendar disp_cli_fim;
     private String observacao;
     private Calendar dataSolicitacao;
-    private Double multa;
+    private Double multaTotal;
     
+    private Endereco endereco;
     private EstadoSolicitacao estado;
     private List<Servico> servicos = new ArrayList();
    
@@ -94,13 +95,24 @@ public class Solicitacao {
         this.disp_cli_fim = disp_cli_fim;
     }
 
-    public Double getMulta() {
-        return multa;
+    public Double getMultaTotal() {
+        return multaTotal;
     }
 
-    public void setMulta(Double multa) {
-        this.multa = multa;
+    public void setMultaTotal(Double multaTotal) {
+        this.multaTotal = multaTotal;
     }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    
+    
     
     
 

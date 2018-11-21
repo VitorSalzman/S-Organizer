@@ -7,19 +7,24 @@ package persistencia;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Servico")
 public class Servico implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,15 +32,21 @@ public class Servico implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 255)
+    @Column(length = 255,name="descricao")
     private String descricao;
+    @Column(name="horarioMarcado")
     private Time horarioMarcado;
-    private Double valor;
+    @Column(name="valor")
+    private double valor;
+    @Column(name="multa")
+    private double multa;
+    @Column(name="estadoAtendido")
+    private boolean estadoAtendido;
     
     @OneToOne
     private CategoriaServico categoriaServico;
-    @OneToOne
-    private Solicitacao solicitacao;
+    @OneToMany
+    private List<Atendimento> atendimento = new ArrayList();
 
     public long getId() {
         return id;
@@ -61,12 +72,28 @@ public class Servico implements Serializable {
         this.horarioMarcado = horarioMarcado;
     }
 
-    public Double getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public double getMulta() {
+        return multa;
+    }
+
+    public void setMulta(double multa) {
+        this.multa = multa;
+    }
+
+    public boolean isEstadoAtendido() {
+        return estadoAtendido;
+    }
+
+    public void setEstadoAtendido(boolean estadoAtendido) {
+        this.estadoAtendido = estadoAtendido;
     }
 
     public CategoriaServico getCategoriaServico() {
@@ -77,23 +104,25 @@ public class Servico implements Serializable {
         this.categoriaServico = categoriaServico;
     }
 
-    public Solicitacao getSolicitacao() {
-        return solicitacao;
+    public List<Atendimento> getAtendimento() {
+        return atendimento;
     }
 
-    public void setSolicitacao(Solicitacao solicitacao) {
-        this.solicitacao = solicitacao;
+    public void setAtendimento(List<Atendimento> atendimento) {
+        this.atendimento = atendimento;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 43 * hash + Objects.hashCode(this.descricao);
-        hash = 43 * hash + Objects.hashCode(this.horarioMarcado);
-        hash = 43 * hash + Objects.hashCode(this.valor);
-        hash = 43 * hash + Objects.hashCode(this.categoriaServico);
-        hash = 43 * hash + Objects.hashCode(this.solicitacao);
+        int hash = 3;
+        hash = 31 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 31 * hash + Objects.hashCode(this.descricao);
+        hash = 31 * hash + Objects.hashCode(this.horarioMarcado);
+        hash = 31 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 31 * hash + (int) (Double.doubleToLongBits(this.multa) ^ (Double.doubleToLongBits(this.multa) >>> 32));
+        hash = 31 * hash + (this.estadoAtendido ? 1 : 0);
+        hash = 31 * hash + Objects.hashCode(this.categoriaServico);
+        hash = 31 * hash + Objects.hashCode(this.atendimento);
         return hash;
     }
 
@@ -112,19 +141,25 @@ public class Servico implements Serializable {
         if (this.id != other.id) {
             return false;
         }
+        if (Double.doubleToLongBits(this.valor) != Double.doubleToLongBits(other.valor)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.multa) != Double.doubleToLongBits(other.multa)) {
+            return false;
+        }
+        if (this.estadoAtendido != other.estadoAtendido) {
+            return false;
+        }
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
         if (!Objects.equals(this.horarioMarcado, other.horarioMarcado)) {
             return false;
         }
-        if (!Objects.equals(this.valor, other.valor)) {
-            return false;
-        }
         if (!Objects.equals(this.categoriaServico, other.categoriaServico)) {
             return false;
         }
-        if (!Objects.equals(this.solicitacao, other.solicitacao)) {
+        if (!Objects.equals(this.atendimento, other.atendimento)) {
             return false;
         }
         return true;
@@ -132,7 +167,8 @@ public class Servico implements Serializable {
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", horarioMarcado=" + horarioMarcado + ", valor=" + valor + '}';
+        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", horarioMarcado=" + horarioMarcado + ", valor=" + valor + ", multa=" + multa + ", estadoAtendido=" + estadoAtendido + ", categoriaServico=" + categoriaServico + ", atendimento=" + atendimento + '}';
     }
+
 
 }

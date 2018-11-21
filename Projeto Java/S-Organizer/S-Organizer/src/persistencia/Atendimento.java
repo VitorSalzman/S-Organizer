@@ -9,17 +9,20 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Atendimento")
 public class Atendimento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,14 +30,15 @@ public class Atendimento implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private Time horarioFim;
-    private Time horarioInicio;
-    private Date dataInicio;
+    @Column(name="horarioInicio")
+    private Time horarioInicioAtendimento;
+    @Column(name="horarioFim")
+    private Time horarioFimAtendimento;
+    @Column(name="dataAtendimento")
+    private Date dataAtendimento;
     
     @OneToOne
     private Prestador prestador;
-    @OneToOne
-    private Servico servico;
 
     public long getId() {
         return id;
@@ -44,28 +48,28 @@ public class Atendimento implements Serializable {
         this.id = id;
     }
 
-    public Time getHorarioFim() {
-        return horarioFim;
+    public Time getHorarioInicioAtendimento() {
+        return horarioInicioAtendimento;
     }
 
-    public void setHorarioFim(Time horarioFim) {
-        this.horarioFim = horarioFim;
+    public void setHorarioInicioAtendimento(Time horarioInicioAtendimento) {
+        this.horarioInicioAtendimento = horarioInicioAtendimento;
     }
 
-    public Time getHorarioInicio() {
-        return horarioInicio;
+    public Time getHorarioFimAtendimento() {
+        return horarioFimAtendimento;
     }
 
-    public void setHorarioInicio(Time horarioInicio) {
-        this.horarioInicio = horarioInicio;
+    public void setHorarioFimAtendimento(Time horarioFimAtendimento) {
+        this.horarioFimAtendimento = horarioFimAtendimento;
     }
 
-    public Date getDataInicio() {
-        return dataInicio;
+    public Date getDataAtendimento() {
+        return dataAtendimento;
     }
 
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setDataAtendimento(Date dataAtendimento) {
+        this.dataAtendimento = dataAtendimento;
     }
 
     public Prestador getPrestador() {
@@ -76,23 +80,15 @@ public class Atendimento implements Serializable {
         this.prestador = prestador;
     }
 
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
-
+    
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 43 * hash + Objects.hashCode(this.horarioFim);
-        hash = 43 * hash + Objects.hashCode(this.horarioInicio);
-        hash = 43 * hash + Objects.hashCode(this.dataInicio);
-        hash = 43 * hash + Objects.hashCode(this.prestador);
-        hash = 43 * hash + Objects.hashCode(this.servico);
+        int hash = 7;
+        hash = 23 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 23 * hash + Objects.hashCode(this.horarioInicioAtendimento);
+        hash = 23 * hash + Objects.hashCode(this.horarioFimAtendimento);
+        hash = 23 * hash + Objects.hashCode(this.dataAtendimento);
+        hash = 23 * hash + Objects.hashCode(this.prestador);
         return hash;
     }
 
@@ -111,30 +107,26 @@ public class Atendimento implements Serializable {
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.horarioFim, other.horarioFim)) {
+        if (!Objects.equals(this.horarioInicioAtendimento, other.horarioInicioAtendimento)) {
             return false;
         }
-        if (!Objects.equals(this.horarioInicio, other.horarioInicio)) {
+        if (!Objects.equals(this.horarioFimAtendimento, other.horarioFimAtendimento)) {
             return false;
         }
-        if (!Objects.equals(this.dataInicio, other.dataInicio)) {
+        if (!Objects.equals(this.dataAtendimento, other.dataAtendimento)) {
             return false;
         }
         if (!Objects.equals(this.prestador, other.prestador)) {
             return false;
         }
-        if (!Objects.equals(this.servico, other.servico)) {
-            return false;
-        }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "Atendimento{" + "id=" + id + ", horarioFim=" + horarioFim + ", horarioInicio=" + horarioInicio + ", dataInicio=" + dataInicio + '}';
+        return "Atendimento{" + "id=" + id + ", horarioInicioAtendimento=" + horarioInicioAtendimento + ", horarioFimAtendimento=" + horarioFimAtendimento + ", dataAtendimento=" + dataAtendimento + '}';
     }
-
-    
 
 
 }

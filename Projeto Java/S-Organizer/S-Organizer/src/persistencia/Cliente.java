@@ -6,19 +6,24 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Cliente")
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,11 +31,13 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
      
-    @Column(length = 20)
+    @Column(length = 20,name = "cpf")
     private String cpf;
 
     @OneToOne
     private Usuario usuario;
+    @OneToMany
+    private List<Solicitacao> solicitacao = new ArrayList();
 
     public long getId() {
         return id;
@@ -56,12 +63,21 @@ public class Cliente implements Serializable {
         this.usuario = usuario;
     }
 
+    public List<Solicitacao> getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(List<Solicitacao> solicitacao) {
+        this.solicitacao = solicitacao;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.cpf);
-        hash = 59 * hash + Objects.hashCode(this.usuario);
+        hash = 41 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 41 * hash + Objects.hashCode(this.cpf);
+        hash = 41 * hash + Objects.hashCode(this.usuario);
+        hash = 41 * hash + Objects.hashCode(this.solicitacao);
         return hash;
     }
 
@@ -84,6 +100,9 @@ public class Cliente implements Serializable {
             return false;
         }
         if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        if (!Objects.equals(this.solicitacao, other.solicitacao)) {
             return false;
         }
         return true;

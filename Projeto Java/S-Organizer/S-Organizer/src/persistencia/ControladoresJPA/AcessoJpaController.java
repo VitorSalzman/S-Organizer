@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.ControladorJPA;
+package persistencia.ControladoresJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
-import persistencia.Estado;
+import persistencia.Acesso;
+import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author luizg
  */
-public class EstadoJpaController implements Serializable {
+public class AcessoJpaController implements Serializable {
 
-    public EstadoJpaController(EntityManagerFactory emf) {
+    public AcessoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class EstadoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Estado estado) {
+    public void create(Acesso acesso) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(estado);
+            em.persist(acesso);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public void edit(Estado estado) throws NonexistentEntityException, Exception {
+    public void edit(Acesso acesso) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            estado = em.merge(estado);
+            acesso = em.merge(acesso);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = estado.getId();
-                if (findEstado(id) == null) {
-                    throw new NonexistentEntityException("The estado with id " + id + " no longer exists.");
+                long id = acesso.getId();
+                if (findAcesso(id) == null) {
+                    throw new NonexistentEntityException("The acesso with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class EstadoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Estado estado;
+            Acesso acesso;
             try {
-                estado = em.getReference(Estado.class, id);
-                estado.getId();
+                acesso = em.getReference(Acesso.class, id);
+                acesso.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The estado with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The acesso with id " + id + " no longer exists.", enfe);
             }
-            em.remove(estado);
+            em.remove(acesso);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public List<Estado> findEstadoEntities() {
-        return findEstadoEntities(true, -1, -1);
+    public List<Acesso> findAcessoEntities() {
+        return findAcessoEntities(true, -1, -1);
     }
 
-    public List<Estado> findEstadoEntities(int maxResults, int firstResult) {
-        return findEstadoEntities(false, maxResults, firstResult);
+    public List<Acesso> findAcessoEntities(int maxResults, int firstResult) {
+        return findAcessoEntities(false, maxResults, firstResult);
     }
 
-    private List<Estado> findEstadoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Acesso> findAcessoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Estado.class));
+            cq.select(cq.from(Acesso.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public Estado findEstado(long id) {
+    public Acesso findAcesso(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Estado.class, id);
+            return em.find(Acesso.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getEstadoCount() {
+    public int getAcessoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Estado> rt = cq.from(Estado.class);
+            Root<Acesso> rt = cq.from(Acesso.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

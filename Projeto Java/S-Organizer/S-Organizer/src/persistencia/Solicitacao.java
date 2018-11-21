@@ -8,43 +8,48 @@ package persistencia;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author luizg
  */
 @Entity
+@Table(name="Solicitacao")
 public class Solicitacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long id; //Protocolo, precisamos customizar o GenerationType
     
-    @Column(length = 255)
-    private String descricao;
+    @Column(name="dispCliIni")
     private Time dispCliIni;
+    @Column(name="dispCliFim")
     private Time dispCliFim;
-    @Column(length = 255)
+    @Column(length = 255,name="observacao")
     private String observacao;
-    private Date dispDate;
-
-    private Agenda agenda; // 0 or many.. n tem anottation para isso
-    @OneToOne
-    private Cliente cliente;
-    @OneToOne
-    private Empresa empresa;
+    @Column(name="dispSolicitacao")
+    private Date dispSolicitacao;
+    @Column(name="multaTotal")
+    private Double multaTotal;
+    
     @OneToOne
     private Endereco endereco;
     @OneToOne
-    private EstadoSol estadoSol;
+    private EstadoSol estado;
+    @OneToMany
+    private List<Servico> servicos = new ArrayList();
 
     public long getId() {
         return id;
@@ -52,14 +57,6 @@ public class Solicitacao implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Time getDispCliIni() {
@@ -86,36 +83,20 @@ public class Solicitacao implements Serializable {
         this.observacao = observacao;
     }
 
-    public Date getDispDate() {
-        return dispDate;
+    public Date getDispSolicitacao() {
+        return dispSolicitacao;
     }
 
-    public void setDispDate(Date dispDate) {
-        this.dispDate = dispDate;
+    public void setDispSolicitacao(Date dispSolicitacao) {
+        this.dispSolicitacao = dispSolicitacao;
     }
 
-    public Agenda getAgenda() {
-        return agenda;
+    public Double getMultaTotal() {
+        return multaTotal;
     }
 
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setMultaTotal(Double multaTotal) {
+        this.multaTotal = multaTotal;
     }
 
     public Endereco getEndereco() {
@@ -126,28 +107,34 @@ public class Solicitacao implements Serializable {
         this.endereco = endereco;
     }
 
-    public EstadoSol getEstadoSol() {
-        return estadoSol;
+    public EstadoSol getEstado() {
+        return estado;
     }
 
-    public void setEstadoSol(EstadoSol estadoSol) {
-        this.estadoSol = estadoSol;
+    public void setEstado(EstadoSol estado) {
+        this.estado = estado;
+    }
+
+    public List<Servico> getServicos() {
+        return servicos;
+    }
+
+    public void setServicos(List<Servico> servicos) {
+        this.servicos = servicos;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.descricao);
-        hash = 97 * hash + Objects.hashCode(this.dispCliIni);
-        hash = 97 * hash + Objects.hashCode(this.dispCliFim);
-        hash = 97 * hash + Objects.hashCode(this.observacao);
-        hash = 97 * hash + Objects.hashCode(this.dispDate);
-        hash = 97 * hash + Objects.hashCode(this.agenda);
-        hash = 97 * hash + Objects.hashCode(this.cliente);
-        hash = 97 * hash + Objects.hashCode(this.empresa);
-        hash = 97 * hash + Objects.hashCode(this.endereco);
-        hash = 97 * hash + Objects.hashCode(this.estadoSol);
+        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.dispCliIni);
+        hash = 29 * hash + Objects.hashCode(this.dispCliFim);
+        hash = 29 * hash + Objects.hashCode(this.observacao);
+        hash = 29 * hash + Objects.hashCode(this.dispSolicitacao);
+        hash = 29 * hash + Objects.hashCode(this.multaTotal);
+        hash = 29 * hash + Objects.hashCode(this.endereco);
+        hash = 29 * hash + Objects.hashCode(this.estado);
+        hash = 29 * hash + Objects.hashCode(this.servicos);
         return hash;
     }
 
@@ -166,9 +153,6 @@ public class Solicitacao implements Serializable {
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
         if (!Objects.equals(this.observacao, other.observacao)) {
             return false;
         }
@@ -178,31 +162,28 @@ public class Solicitacao implements Serializable {
         if (!Objects.equals(this.dispCliFim, other.dispCliFim)) {
             return false;
         }
-        if (!Objects.equals(this.dispDate, other.dispDate)) {
+        if (!Objects.equals(this.dispSolicitacao, other.dispSolicitacao)) {
             return false;
         }
-        if (!Objects.equals(this.agenda, other.agenda)) {
-            return false;
-        }
-        if (!Objects.equals(this.cliente, other.cliente)) {
-            return false;
-        }
-        if (!Objects.equals(this.empresa, other.empresa)) {
+        if (!Objects.equals(this.multaTotal, other.multaTotal)) {
             return false;
         }
         if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
-        if (!Objects.equals(this.estadoSol, other.estadoSol)) {
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        if (!Objects.equals(this.servicos, other.servicos)) {
             return false;
         }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "Solicitacao{" + "id=" + id + ", descricao=" + descricao + ", dispCliIni=" + dispCliIni + ", dispCliFim=" + dispCliFim + ", observacao=" + observacao + ", dispDate=" + dispDate + '}';
+        return "Solicitacao{" + "id=" + id + ", dispCliIni=" + dispCliIni + ", dispCliFim=" + dispCliFim + ", observacao=" + observacao + ", dispSolicitacao=" + dispSolicitacao + ", multaTotal=" + multaTotal + '}';
     }
-
     
 }
