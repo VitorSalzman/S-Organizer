@@ -6,6 +6,7 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -21,32 +22,25 @@ import javax.persistence.OneToOne;
 @Entity
 public class Atendimento implements Serializable {
 
-    public Atendimento(Time horarioFim, Time horarioInicio, Servico servico) {
-        this.horarioFim = horarioFim;
-        this.horarioInicio = horarioInicio;
-        this.servico = servico;
-    }
-
-    public Atendimento() {
-    }
-    
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
+    private long id;
+
     private Time horarioFim;
     private Time horarioInicio;
+    private Date dataInicio;
     
+    @OneToOne
+    private Prestador prestador;
     @OneToOne
     private Servico servico;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -66,6 +60,22 @@ public class Atendimento implements Serializable {
         this.horarioInicio = horarioInicio;
     }
 
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public Prestador getPrestador() {
+        return prestador;
+    }
+
+    public void setPrestador(Prestador prestador) {
+        this.prestador = prestador;
+    }
+
     public Servico getServico() {
         return servico;
     }
@@ -76,11 +86,13 @@ public class Atendimento implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.horarioFim);
-        hash = 29 * hash + Objects.hashCode(this.horarioInicio);
-        hash = 29 * hash + Objects.hashCode(this.servico);
+        int hash = 5;
+        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 43 * hash + Objects.hashCode(this.horarioFim);
+        hash = 43 * hash + Objects.hashCode(this.horarioInicio);
+        hash = 43 * hash + Objects.hashCode(this.dataInicio);
+        hash = 43 * hash + Objects.hashCode(this.prestador);
+        hash = 43 * hash + Objects.hashCode(this.servico);
         return hash;
     }
 
@@ -96,13 +108,19 @@ public class Atendimento implements Serializable {
             return false;
         }
         final Atendimento other = (Atendimento) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (this.id != other.id) {
             return false;
         }
         if (!Objects.equals(this.horarioFim, other.horarioFim)) {
             return false;
         }
         if (!Objects.equals(this.horarioInicio, other.horarioInicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInicio, other.dataInicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.prestador, other.prestador)) {
             return false;
         }
         if (!Objects.equals(this.servico, other.servico)) {
@@ -113,8 +131,10 @@ public class Atendimento implements Serializable {
 
     @Override
     public String toString() {
-        return "Atendimento{" + "id=" + id + ", horarioFim=" + horarioFim + ", horarioInicio=" + horarioInicio + ", servico=" + servico + '}';
+        return "Atendimento{" + "id=" + id + ", horarioFim=" + horarioFim + ", horarioInicio=" + horarioInicio + ", dataInicio=" + dataInicio + '}';
     }
+
     
-    
+
+
 }

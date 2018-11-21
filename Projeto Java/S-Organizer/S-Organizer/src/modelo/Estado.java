@@ -5,21 +5,18 @@
  */
 package modelo;
 
-/**
- *
- * @author Salzman
- */
+
 public class Estado {
-    private long id;
+    
     private String nome;
 
-    public long getId() {
-        return id;
+    public Estado(String nome) {
+        this.nome = nome;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Estado() {
     }
+
 
     public String getNome() {
         return nome;

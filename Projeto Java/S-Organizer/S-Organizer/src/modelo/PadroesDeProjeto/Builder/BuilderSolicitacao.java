@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import modelo.ProtocoloGenerator;
+import modelo.PadroesDeProjeto.singleton.ProtocoloGenerator;
 import modelo.Servico;
 import modelo.Solicitacao;
 
@@ -60,6 +60,8 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
     public void adicionaServicos(){
         
         this.solicit.setServicos(this.servicos);      ///Falta tratar a adição de somente um serviço
+        //deveria ser .add não simplesmente setar a list inteira
+        //mas eu criei a opção de adicionar não manualmente (como esta sendo usada agr)
     }
     
     

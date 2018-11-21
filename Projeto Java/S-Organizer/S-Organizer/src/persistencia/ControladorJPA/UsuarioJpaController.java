@@ -14,15 +14,15 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
-import persistencia.EstadoSolicitacao;
+import persistencia.Usuario;
 
 /**
  *
  * @author luizg
  */
-public class EstadoSolicitacaoJpaController implements Serializable {
+public class UsuarioJpaController implements Serializable {
 
-    public EstadoSolicitacaoJpaController(EntityManagerFactory emf) {
+    public UsuarioJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class EstadoSolicitacaoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(EstadoSolicitacao estadoSolicitacao) {
+    public void create(Usuario usuario) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(estadoSolicitacao);
+            em.persist(usuario);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class EstadoSolicitacaoJpaController implements Serializable {
         }
     }
 
-    public void edit(EstadoSolicitacao estadoSolicitacao) throws NonexistentEntityException, Exception {
+    public void edit(Usuario usuario) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            estadoSolicitacao = em.merge(estadoSolicitacao);
+            usuario = em.merge(usuario);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = estadoSolicitacao.getId();
-                if (findEstadoSolicitacao(id) == null) {
-                    throw new NonexistentEntityException("The estadoSolicitacao with id " + id + " no longer exists.");
+                long id = usuario.getId();
+                if (findUsuario(id) == null) {
+                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -68,19 +68,19 @@ public class EstadoSolicitacaoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            EstadoSolicitacao estadoSolicitacao;
+            Usuario usuario;
             try {
-                estadoSolicitacao = em.getReference(EstadoSolicitacao.class, id);
-                estadoSolicitacao.getId();
+                usuario = em.getReference(Usuario.class, id);
+                usuario.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The estadoSolicitacao with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
             }
-            em.remove(estadoSolicitacao);
+            em.remove(usuario);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class EstadoSolicitacaoJpaController implements Serializable {
         }
     }
 
-    public List<EstadoSolicitacao> findEstadoSolicitacaoEntities() {
-        return findEstadoSolicitacaoEntities(true, -1, -1);
+    public List<Usuario> findUsuarioEntities() {
+        return findUsuarioEntities(true, -1, -1);
     }
 
-    public List<EstadoSolicitacao> findEstadoSolicitacaoEntities(int maxResults, int firstResult) {
-        return findEstadoSolicitacaoEntities(false, maxResults, firstResult);
+    public List<Usuario> findUsuarioEntities(int maxResults, int firstResult) {
+        return findUsuarioEntities(false, maxResults, firstResult);
     }
 
-    private List<EstadoSolicitacao> findEstadoSolicitacaoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Usuario> findUsuarioEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(EstadoSolicitacao.class));
+            cq.select(cq.from(Usuario.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class EstadoSolicitacaoJpaController implements Serializable {
         }
     }
 
-    public EstadoSolicitacao findEstadoSolicitacao(Long id) {
+    public Usuario findUsuario(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(EstadoSolicitacao.class, id);
+            return em.find(Usuario.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getEstadoSolicitacaoCount() {
+    public int getUsuarioCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<EstadoSolicitacao> rt = cq.from(EstadoSolicitacao.class);
+            Root<Usuario> rt = cq.from(Usuario.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

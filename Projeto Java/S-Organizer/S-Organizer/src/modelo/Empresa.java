@@ -10,25 +10,32 @@ package modelo;
  * @author 20161bsi0403
  */
 public class Empresa extends Acesso{
+    
     private long cnpj;
+    private  boolean temControle;
     
-    public Empresa (String nome, long telefone, long cnpj, String login, String senha){
-        super(login,senha);
-        this.setNome(nome);
-        this.setTelefone(telefone);
+    public Empresa(long cnpj, String usuario, String senha, String nome, long telefone) {
+        super(usuario, senha, nome, telefone);
         this.cnpj = cnpj;
-        
     }
     
-    public Empresa(){} 
-    
-    public void setCNPJ(long CNPJ) {
-        this.cnpj = CNPJ;
-    }
+    public Empresa(){
+    } 
 
-    public long getCNPJ() {
+    public long getCnpj() {
         return cnpj;
     }
-    
-    
+
+    public void setCnpj(long cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public boolean isTemControle() {
+        return temControle;
+    }
+
+    public void setTemControle(boolean temControle) {
+        this.temControle = temControle;
+    }
+
 }

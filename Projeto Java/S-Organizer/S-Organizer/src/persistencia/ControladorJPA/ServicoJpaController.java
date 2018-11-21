@@ -55,7 +55,7 @@ public class ServicoJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = servico.getId();
+                long id = servico.getId();
                 if (findServico(id) == null) {
                     throw new NonexistentEntityException("The servico with id " + id + " no longer exists.");
                 }
@@ -68,7 +68,7 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -113,7 +113,7 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public Servico findServico(Long id) {
+    public Servico findServico(long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Servico.class, id);

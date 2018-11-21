@@ -6,11 +6,8 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.sql.Time;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,31 +19,22 @@ import javax.persistence.Id;
  * @author luizg
  */
 @Entity
-public class EstadoSolicitacao implements Serializable {
-
-    public EstadoSolicitacao(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public EstadoSolicitacao() {
-    }
-    
+public class CategoriaServico implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     
-    @Column(length = 20)
+    @Column(length = 50, name= "Tipo")
     private String tipo;
-    
-    private List solicitacaos = new ArrayList(0);
+    private Time duracao;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,20 +46,20 @@ public class EstadoSolicitacao implements Serializable {
         this.tipo = tipo;
     }
 
-    public List getSolicitacaos() {
-        return solicitacaos;
+    public Time getDuracao() {
+        return duracao;
     }
 
-    public void setSolicitacaos(List solicitacaos) {
-        this.solicitacaos = solicitacaos;
+    public void setDuracao(Time duracao) {
+        this.duracao = duracao;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.tipo);
-        hash = 53 * hash + Objects.hashCode(this.solicitacaos);
+        hash = 37 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 37 * hash + Objects.hashCode(this.tipo);
+        hash = 37 * hash + Objects.hashCode(this.duracao);
         return hash;
     }
 
@@ -86,14 +74,14 @@ public class EstadoSolicitacao implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final EstadoSolicitacao other = (EstadoSolicitacao) obj;
+        final CategoriaServico other = (CategoriaServico) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.solicitacaos, other.solicitacaos)) {
+        if (!Objects.equals(this.duracao, other.duracao)) {
             return false;
         }
         return true;
@@ -101,7 +89,7 @@ public class EstadoSolicitacao implements Serializable {
 
     @Override
     public String toString() {
-        return "EstadoSolicitacao{" + "id=" + id + ", tipo=" + tipo + ", solicitacaos=" + solicitacaos + '}';
+        return "CategoriaServico{" + "id=" + id + ", tipo=" + tipo + ", duracao=" + duracao + '}';
     }
 
 }

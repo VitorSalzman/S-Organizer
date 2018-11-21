@@ -5,13 +5,20 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161BSI0403
- */
 public class Cidade {
+    
     private String nome;
-    private long id;
+    
+    private Estado estado;
+
+    public Cidade(String nome, Estado estado) {
+        this.nome = nome;
+        this.estado = estado;
+    }
+
+    public Cidade() {
+    }
+
 
     public String getNome() {
         return nome;
@@ -21,13 +28,15 @@ public class Cidade {
         this.nome = nome;
     }
 
-    public long getId() {
-        return id;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
+
+    
     
     
 }

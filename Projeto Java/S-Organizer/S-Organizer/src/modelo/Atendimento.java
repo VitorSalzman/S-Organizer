@@ -12,9 +12,10 @@ import java.sql.Time;
  * @author 20161bsi0403
  */
 public class Atendimento {
+    private long id;
+    
     private Time horarioInicioAtendimento;
     private Time horarioFimAtendimento;
-    private long id;
     
     public Time getHorarioInicioAtendimento() {
         return horarioInicioAtendimento;

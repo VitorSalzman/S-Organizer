@@ -55,7 +55,7 @@ public class EmpresaJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = empresa.getId();
+                long id = empresa.getId();
                 if (findEmpresa(id) == null) {
                     throw new NonexistentEntityException("The empresa with id " + id + " no longer exists.");
                 }
@@ -68,7 +68,7 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -113,7 +113,7 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public Empresa findEmpresa(Long id) {
+    public Empresa findEmpresa(long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Empresa.class, id);

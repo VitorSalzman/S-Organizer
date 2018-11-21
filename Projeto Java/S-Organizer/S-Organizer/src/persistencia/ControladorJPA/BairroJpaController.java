@@ -55,7 +55,7 @@ public class BairroJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = bairro.getId();
+                long id = bairro.getId();
                 if (findBairro(id) == null) {
                     throw new NonexistentEntityException("The bairro with id " + id + " no longer exists.");
                 }
@@ -68,7 +68,7 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -113,7 +113,7 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public Bairro findBairro(Long id) {
+    public Bairro findBairro(long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Bairro.class, id);

@@ -7,7 +7,6 @@ package App;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.persistence.EntityManager;
@@ -16,32 +15,30 @@ import javax.persistence.Persistence;
 import persistencia.Agenda;
 import persistencia.Atendimento;
 import persistencia.Bairro;
-import persistencia.Categoria;
+import persistencia.CategoriaServico;
 import persistencia.Cidade;
+import persistencia.Empresa;
+import persistencia.Endereco;
+import persistencia.Estado;
+import persistencia.EstadoSol;
+import persistencia.Logradouro;
+import persistencia.Prestador;
+import persistencia.Servico;
+import persistencia.Solicitacao;
 import persistencia.ControladorJPA.AgendaJpaController;
 import persistencia.ControladorJPA.AtendimentoJpaController;
 import persistencia.ControladorJPA.BairroJpaController;
-import persistencia.ControladorJPA.CategoriaJpaController;
+import persistencia.ControladorJPA.CategoriaServicoJpaController;
 import persistencia.ControladorJPA.CidadeJpaController;
 import persistencia.ControladorJPA.ClienteJpaController;
 import persistencia.ControladorJPA.EmpresaJpaController;
 import persistencia.ControladorJPA.EnderecoJpaController;
 import persistencia.ControladorJPA.EstadoJpaController;
-import persistencia.ControladorJPA.EstadoSolicitacaoJpaController;
-import persistencia.ControladorJPA.HorarioTrabalhoJpaController;
+import persistencia.ControladorJPA.EstadoSolJpaController;
 import persistencia.ControladorJPA.LogradouroJpaController;
 import persistencia.ControladorJPA.PrestadorJpaController;
 import persistencia.ControladorJPA.ServicoJpaController;
 import persistencia.ControladorJPA.SolicitacaoJpaController;
-import persistencia.Empresa;
-import persistencia.Endereco;
-import persistencia.Estado;
-import persistencia.EstadoSolicitacao;
-import persistencia.HorarioTrabalho;
-import persistencia.Logradouro;
-import persistencia.Prestador;
-import persistencia.Servico;
-import persistencia.Solicitacao;
 
 /**
  *
@@ -104,14 +101,13 @@ public class Main_Aplicativo {
         AgendaJpaController agJpa = new AgendaJpaController(objFactory);
         AtendimentoJpaController atJpa = new AtendimentoJpaController(objFactory);
         BairroJpaController baJpa = new BairroJpaController(objFactory);
-        CategoriaJpaController caJpa = new CategoriaJpaController(objFactory);
+        CategoriaServicoJpaController caJpa = new CategoriaServicoJpaController(objFactory);
         CidadeJpaController ciJpa = new CidadeJpaController(objFactory);
         ClienteJpaController clJpa = new ClienteJpaController(objFactory);
         EmpresaJpaController emJpa = new EmpresaJpaController(objFactory);
         EnderecoJpaController enJpa = new EnderecoJpaController(objFactory);
         EstadoJpaController esJpa = new EstadoJpaController(objFactory);
-        EstadoSolicitacaoJpaController esSJpa = new EstadoSolicitacaoJpaController(objFactory);
-        HorarioTrabalhoJpaController hoJpa = new HorarioTrabalhoJpaController(objFactory);
+        EstadoSolJpaController esSJpa = new EstadoSolJpaController(objFactory);
         LogradouroJpaController loJpa = new LogradouroJpaController(objFactory);
         PrestadorJpaController prJpa = new PrestadorJpaController(objFactory);
         ServicoJpaController seJpa = new ServicoJpaController(objFactory);
@@ -122,13 +118,12 @@ public class Main_Aplicativo {
         Agenda ag1 = new Agenda();
         Atendimento at1 = new Atendimento();
         Bairro ba1 = new Bairro();
-        Categoria ca1 = new Categoria();
+        CategoriaServico ca1 = new CategoriaServico();
         Cidade ci1 = new Cidade();
         Empresa em1 = new Empresa();
         Endereco en1 = new Endereco();
         Estado es1 = new Estado();
-        EstadoSolicitacao esS1 = new EstadoSolicitacao();
-        HorarioTrabalho ho1 = new HorarioTrabalho();
+        EstadoSol esS1 = new EstadoSol();
         Logradouro lo1 = new Logradouro();
         Prestador pr1 = new Prestador();
         Servico se1 = new Servico();
@@ -139,38 +134,23 @@ public class Main_Aplicativo {
         /*
         Preencher todos os campos (ou seja todos os .set(), MENOS O ID)
         Precisa seguir a logica das pontas pro nucleo, para que todos se linkem corretamente
-        No final criar os "traceBack" (acabei de inventar esse nome xD) que são os ArrayList .set() De todas as entidades
         */
         
         //NAO ESTA COMPLETO (não ta funcionando corretamente)
         
+        /*
+        TESTAR USANDO O PROJETO QUE VC CLONOU LUIZ "DATAFACTORY"
+        */
         // HorarioTrabalho
         ho1.setHorarioinicio(time);
         ho1.setHorariofim(time2);
         
-        List prestadors = new ArrayList(0); 
-        prestadors.add(pr1);
-        prestadors.add(pr1);
-        ho1.setPrestadors(prestadors);
-        
+                
         // Prestador
         pr1.setCpf("12671893149");
-        pr1.setUsuario("Jimm");
-        pr1.setSenha("1234");
-        pr1.setNome("Luiz Antonio");
-        pr1.setTelefone("027998065439");
         pr1.setHorarioTrabalho(ho1);
 //        pr1.setAgenda(ag1);
 //        pr1.setEmpresa(em1);
-        
-        List servicos = new ArrayList(0); 
-        servicos.add(se1);
-        pr1.setServicos(servicos);
-        
-        
-        
-         
-        
         
         hoJpa.create(ho1);
         prJpa.create(pr1);

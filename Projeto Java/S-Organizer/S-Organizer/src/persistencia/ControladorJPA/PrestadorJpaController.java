@@ -13,7 +13,6 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Agenda;
 import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
 import persistencia.Prestador;
 
@@ -37,21 +36,7 @@ public class PrestadorJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Agenda agenda = prestador.getAgenda();
-            if (agenda != null) {
-                agenda = em.getReference(agenda.getClass(), agenda.getId());
-                prestador.setAgenda(agenda);
-            }
             em.persist(prestador);
-            if (agenda != null) {
-                Prestador oldPrestadorOfAgenda = agenda.getPrestador();
-                if (oldPrestadorOfAgenda != null) {
-                    oldPrestadorOfAgenda.setAgenda(null);
-                    oldPrestadorOfAgenda = em.merge(oldPrestadorOfAgenda);
-                }
-                agenda.setPrestador(prestador);
-                agenda = em.merge(agenda);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -65,32 +50,12 @@ public class PrestadorJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Prestador persistentPrestador = em.find(Prestador.class, prestador.getId());
-            Agenda agendaOld = persistentPrestador.getAgenda();
-            Agenda agendaNew = prestador.getAgenda();
-            if (agendaNew != null) {
-                agendaNew = em.getReference(agendaNew.getClass(), agendaNew.getId());
-                prestador.setAgenda(agendaNew);
-            }
             prestador = em.merge(prestador);
-            if (agendaOld != null && !agendaOld.equals(agendaNew)) {
-                agendaOld.setPrestador(null);
-                agendaOld = em.merge(agendaOld);
-            }
-            if (agendaNew != null && !agendaNew.equals(agendaOld)) {
-                Prestador oldPrestadorOfAgenda = agendaNew.getPrestador();
-                if (oldPrestadorOfAgenda != null) {
-                    oldPrestadorOfAgenda.setAgenda(null);
-                    oldPrestadorOfAgenda = em.merge(oldPrestadorOfAgenda);
-                }
-                agendaNew.setPrestador(prestador);
-                agendaNew = em.merge(agendaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = prestador.getId();
+                long id = prestador.getId();
                 if (findPrestador(id) == null) {
                     throw new NonexistentEntityException("The prestador with id " + id + " no longer exists.");
                 }
@@ -103,7 +68,7 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -114,11 +79,6 @@ public class PrestadorJpaController implements Serializable {
                 prestador.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The prestador with id " + id + " no longer exists.", enfe);
-            }
-            Agenda agenda = prestador.getAgenda();
-            if (agenda != null) {
-                agenda.setPrestador(null);
-                agenda = em.merge(agenda);
             }
             em.remove(prestador);
             em.getTransaction().commit();
@@ -153,7 +113,7 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public Prestador findPrestador(Long id) {
+    public Prestador findPrestador(long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Prestador.class, id);

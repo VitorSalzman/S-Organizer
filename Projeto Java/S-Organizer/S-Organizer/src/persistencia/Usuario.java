@@ -12,25 +12,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author luizg
  */
 @Entity
-public class Cidade implements Serializable {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @Column(length = 255)
-    private String cidade;    
-
-    @OneToOne
-    private Estado estado;
+    
+    @Column(length = 50)
+    private String nome;
+    @Column(length = 20)
+    private String telefone;
 
     public long getId() {
         return id;
@@ -40,28 +38,28 @@ public class Cidade implements Serializable {
         this.id = id;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getNome() {
+        return nome;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.cidade);
-        hash = 97 * hash + Objects.hashCode(this.estado);
+        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + Objects.hashCode(this.telefone);
         return hash;
     }
 
@@ -76,14 +74,14 @@ public class Cidade implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
+        final Usuario other = (Usuario) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.cidade, other.cidade)) {
+        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.estado, other.estado)) {
+        if (!Objects.equals(this.telefone, other.telefone)) {
             return false;
         }
         return true;
@@ -91,7 +89,7 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "Cidade{" + "id=" + id + ", cidade=" + cidade + '}';
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", telefone=" + telefone + '}';
     }
 
 }

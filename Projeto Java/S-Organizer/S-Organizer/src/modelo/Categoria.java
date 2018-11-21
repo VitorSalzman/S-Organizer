@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.sql.Time;
+
 /**
  *
  * MUDANCA:
@@ -12,13 +14,13 @@ package modelo;
  * dessa forma podemos calcular quantos servicos conseguimos coloca
  * dentro de uma agenda.
  */
-public enum Categoria {
+public enum Categoria {//não sei como funciona para adicionar um novo campo.
     INSTALACAO("instalacao"),REPARO("reparo"),CONSTRUCAO("construcao"),LIMPEZA("limpeza"),ENTREGA("entrega"),BUSCA("busca");
     
     private String descricao;
-    private int duracao;
+    private Time duracao;
 
-    Categoria(String descricao, int duracao) {
+    Categoria(String descricao, Time duracao) {
         this.descricao = descricao;
         this.duracao = duracao;
     }
@@ -26,14 +28,27 @@ public enum Categoria {
     Categoria(String category){
         this.descricao=category;
     }
-    
+
     public String getDescricao() {
         return descricao;
     }
-    
-    public void setDescricao(String category) {
-        this.descricao=category;
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
+
+    public Time getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(Time duracao) {
+        this.duracao = duracao;
+    }
+
     
+    @Override
+    public String toString() {
+        return "Categoria{" + "descricao=" + descricao + ", duracao=" + duracao + '}';
+    }
     
 }

@@ -7,11 +7,7 @@ package persistencia;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,50 +22,27 @@ import javax.persistence.OneToOne;
 @Entity
 public class Servico implements Serializable {
 
-    public Servico(double valor, String descricao, Time horario_marcado, Categoria categoriaServico, Prestador prestador, Solicitacao solicitacao) {
-        this.valor = valor;
-        this.descricao = descricao;
-        this.horario_marcado = horario_marcado;
-        this.categoriaServico = categoriaServico;
-        this.prestador = prestador;
-        this.solicitacao = solicitacao;
-    }
-
-    public Servico() {
-    }
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     
-    private double valor;
-    @Column(length = 255,name = "descricao")
+    @Column(length = 255)
     private String descricao;
-    private Time horario_marcado;
+    private Time horarioMarcado;
+    private Double valor;
     
     @OneToOne
-    private Categoria categoriaServico;
-    @OneToOne
-    private Prestador prestador;
+    private CategoriaServico categoriaServico;
     @OneToOne
     private Solicitacao solicitacao;
-    private List atendimentos = new ArrayList(0);; //can be null :^]    
-    
-    public Long getId() {    
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
     }
 
     public String getDescricao() {
@@ -80,28 +53,28 @@ public class Servico implements Serializable {
         this.descricao = descricao;
     }
 
-    public Time getHorario_marcado() {
-        return horario_marcado;
+    public Time getHorarioMarcado() {
+        return horarioMarcado;
     }
 
-    public void setHorario_marcado(Time horario_marcado) {
-        this.horario_marcado = horario_marcado;
+    public void setHorarioMarcado(Time horarioMarcado) {
+        this.horarioMarcado = horarioMarcado;
     }
 
-    public Categoria getCategoriaServico() {
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public CategoriaServico getCategoriaServico() {
         return categoriaServico;
     }
 
-    public void setCategoriaServico(Categoria categoriaServico) {
+    public void setCategoriaServico(CategoriaServico categoriaServico) {
         this.categoriaServico = categoriaServico;
-    }
-
-    public Prestador getPrestador() {
-        return prestador;
-    }
-
-    public void setPrestador(Prestador prestador) {
-        this.prestador = prestador;
     }
 
     public Solicitacao getSolicitacao() {
@@ -112,30 +85,18 @@ public class Servico implements Serializable {
         this.solicitacao = solicitacao;
     }
 
-    public List getAtendimentos() {
-        return atendimentos;
-    }
-
-    //can be null :^]
-    public void setAtendimentos(List atendimentos) {
-        this.atendimentos = atendimentos;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.descricao);
-        hash = 97 * hash + Objects.hashCode(this.horario_marcado);
-        hash = 97 * hash + Objects.hashCode(this.categoriaServico);
-        hash = 97 * hash + Objects.hashCode(this.prestador);
-        hash = 97 * hash + Objects.hashCode(this.solicitacao);
-        hash = 97 * hash + Objects.hashCode(this.atendimentos);
+        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 43 * hash + Objects.hashCode(this.descricao);
+        hash = 43 * hash + Objects.hashCode(this.horarioMarcado);
+        hash = 43 * hash + Objects.hashCode(this.valor);
+        hash = 43 * hash + Objects.hashCode(this.categoriaServico);
+        hash = 43 * hash + Objects.hashCode(this.solicitacao);
         return hash;
     }
 
-    //can be null :^]
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -148,28 +109,22 @@ public class Servico implements Serializable {
             return false;
         }
         final Servico other = (Servico) obj;
-        if (Double.doubleToLongBits(this.valor) != Double.doubleToLongBits(other.valor)) {
+        if (this.id != other.id) {
             return false;
         }
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.horarioMarcado, other.horarioMarcado)) {
             return false;
         }
-        if (!Objects.equals(this.horario_marcado, other.horario_marcado)) {
+        if (!Objects.equals(this.valor, other.valor)) {
             return false;
         }
         if (!Objects.equals(this.categoriaServico, other.categoriaServico)) {
             return false;
         }
-        if (!Objects.equals(this.prestador, other.prestador)) {
-            return false;
-        }
         if (!Objects.equals(this.solicitacao, other.solicitacao)) {
-            return false;
-        }
-        if (!Objects.equals(this.atendimentos, other.atendimentos)) {
             return false;
         }
         return true;
@@ -177,6 +132,7 @@ public class Servico implements Serializable {
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", valor=" + valor + ", descricao=" + descricao + ", horario_marcado=" + horario_marcado + ", categoriaServico=" + categoriaServico + ", prestador=" + prestador + ", solicitacao=" + solicitacao + ", atendimentos=" + atendimentos + '}';
+        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", horarioMarcado=" + horarioMarcado + ", valor=" + valor + '}';
     }
+
 }

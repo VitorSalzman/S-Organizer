@@ -11,42 +11,43 @@ package modelo;
  */
 public class Endereco {
     private Logradouro logradouro;
-    private Bairro bairro;
-    private Estado estado;
-    private int cep;
+
+    private String cep;
+    private String complemento;
+
+    public Endereco(Logradouro logradouro, String cep, String complemento) {
+        this.logradouro = logradouro;
+        this.cep = cep;
+        this.complemento = complemento;
+    }
+
+    public Endereco() {
+    }
+    
 
     public Logradouro getLogradouro() {
         return logradouro;
-    }
-
-    public Bairro getBairro() {
-        return bairro;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public int getCep() {
-        return cep;
     }
 
     public void setLogradouro(Logradouro logradouro) {
         this.logradouro = logradouro;
     }
 
-    public void setBairro(Bairro bairro) {
-        this.bairro = bairro; 
+    public String getCep() {
+        return cep;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
-    
-    
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
     
 }

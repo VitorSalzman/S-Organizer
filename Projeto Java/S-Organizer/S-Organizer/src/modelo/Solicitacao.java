@@ -15,12 +15,15 @@ import java.util.Date;
  * @author 20161bsi0403
  */
 public class Solicitacao {
-    
+
+    private long protocolo;
     private Calendar disp_cli_ini;
     private Calendar disp_cli_fim;
     private String observacao;
     private Calendar dataSolicitacao;
-    private long protocolo;
+    
+    private Double multa;
+    
     private EstadoSolicitacao estado;
     private ArrayList<Servico> servicos;
    
@@ -50,14 +53,6 @@ public class Solicitacao {
         this.protocolo = protocol;
     }
 
-    public ArrayList<Servico> getServicos() {
-        return servicos;
-    }
-
-    public void setServicos(ArrayList<Servico> servicos) {
-        this.servicos = servicos;
-    }
-
 
     public Calendar getDispCliIni() {
         return disp_cli_ini;
@@ -83,6 +78,27 @@ public class Solicitacao {
         this.dataSolicitacao = dataSolicitacao;
     }
      
+    public ArrayList<Servico> getServicos() {
+        return servicos;
+    }
+
+    //operação manual
+    public void setServicos(Servico servico) {
+        this.servicos.add(servico);
+    }
+
+    //não manual, tive que por esse porque o builder utiliza dessa forma..
+    public void setServicos(ArrayList<Servico> servicos) {
+        this.servicos = servicos;
+    }
+
+    
+    public void printServicos() {
+        for( Servico service : servicos ) {
+            service.toString();
+        }
+    }
+
     
     
 }

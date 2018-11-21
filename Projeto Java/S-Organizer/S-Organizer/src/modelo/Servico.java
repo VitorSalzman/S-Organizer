@@ -7,39 +7,39 @@ package modelo;
 
 import java.sql.Time;
 
-/**
- *
- * @author 20161bsi0403
- */
+
 public class Servico {
     private long id;
-    private Categoria categoria;
+    
     private String descricao;
     private double valor;
     private Time horarioMarcado;
-    private boolean estado;
+    private boolean estadoAtendido;
+    private Double multa;
+    
     private Atendimento atendimento;
+    private Categoria categoria;
 
     public long getId() {
         return id;
     }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public void setDescricao(String descricao) {
+            this.descricao = descricao;
     }
     
     public String getDescricao() {
         return descricao;
     }
-
-    public double getValor() {
-        return valor;
+    
+    public Categoria getCategoria() {
+        return categoria;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    
     public void setCategoria(String category) throws Exception{
         
         //this.categoria =  Categoria.valueOf(category);     Em manutenção
@@ -70,12 +70,14 @@ public class Servico {
         
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    
     
     public void setValor(double valor) {
         this.valor = valor;
+    }
+    
+    public double getValor() {
+        return valor;
     }
 
     public Time getHorarioMarcado() {
@@ -87,11 +89,11 @@ public class Servico {
     }
 
     public boolean isEstado() {
-        return estado;
+        return estadoAtendido;
     }
 
     public void setEstado(boolean estado) {
-        this.estado = estado;
+        this.estadoAtendido = estado;
     }
 
     public Atendimento getAtendimento() {
@@ -101,8 +103,13 @@ public class Servico {
     public void setAtendimento(Atendimento atendimento) {
         this.atendimento = atendimento;
     }
+
+    @Override
+    public String toString() {
+        return "Servico{" + "descricao=" + descricao + ", valor=" + valor + ", horarioMarcado=" + horarioMarcado + ", estadoAtendido=" + estadoAtendido + ", multa=" + multa + '}';
+    }
     
     
-  
+    
     
 }

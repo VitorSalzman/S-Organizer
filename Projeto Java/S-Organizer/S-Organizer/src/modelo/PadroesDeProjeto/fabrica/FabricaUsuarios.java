@@ -3,9 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package modelo.PadroesDeProjeto.fabrica; //WHY
 
+import java.sql.Time;
 import java.util.Map;
+import modelo.Cliente;
+import modelo.Empresa;
+import modelo.Prestador;
+import modelo.Usuario;
 
 /**
  *
@@ -24,28 +29,39 @@ public class FabricaUsuarios {
         Usuario usuario = null;
         
         if(user.equalsIgnoreCase("cliente")){
-            usuario = new Cliente();
+            usuario = new Cliente(
+                    (long)parametros.get("cpf"),
+                    (String)parametros.get("nome"),
+                    (long)parametros.get("telefone")
+            );
             Cliente cli = (Cliente) usuario;
-            cli.setNome((String)parametros.get("nome"));
-            cli.setCpf((long) parametros.get("cpf"));
-            cli.setTelefone((long) parametros.get("tel"));
+
         }
         else if(user.equalsIgnoreCase("prestador")){
-            usuario = new Prestador((String)parametros.get("login"),(String)parametros.get("senha") );
-            Prestador pre = (Prestador) usuario;
-            pre.setNome((String)parametros.get("nome"));
-            pre.setCpf((long) parametros.get("cpf"));
-            pre.setTelefone((long) parametros.get("tel"));
-            pre.setEmpresaQueTrabalha((String)parametros.get("empregadoDe"));
+            usuario = new Prestador(
+                    (Time)parametros.get("horarioInicio"),
+                    (Time)parametros.get("horarioFim"),
+                    (int)parametros.get("cargaHoraria"),
+                    (String)parametros.get("cpf"),
+                    (String)parametros.get("usuario"),
+                    (String)parametros.get("senha"),
+                    (String)parametros.get("nome"),
+                    (long)parametros.get("telefone")
+            );
+            Prestador pre = (Prestador) usuario; 
+
         }
         else if(user.equalsIgnoreCase("empresa")){
-            usuario = new Empresa();
+            usuario = new Empresa(
+                    (long)parametros.get("cnpj"),
+                    (String)parametros.get("usuario"),
+                    (String)parametros.get("senha"),
+                    (String)parametros.get("nome"),
+                    (long)parametros.get("telefone")
+            );
+            
             Empresa emp = (Empresa) usuario;
-            emp.setNome((String)parametros.get("nome"));
-            emp.setCNPJ((long) parametros.get("cnpj"));
-            emp.setTelefone((long) parametros.get("tel"));
-            emp.setUsuario((String)parametros.get("login"));
-            emp.setSenha((String)parametros.get("senha"));
+
         }
         else{
             throw new Exception("Usuario desconhecido");

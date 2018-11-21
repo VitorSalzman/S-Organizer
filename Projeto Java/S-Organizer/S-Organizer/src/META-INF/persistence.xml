@@ -19,6 +19,8 @@
     <class>persistencia.Servico</class>
     <class>persistencia.Solicitacao</class>
     <class>persistencia.Usuario</class>
+    <class>persistencia.CategoriaServico</class>
+    <class>persistencia.EstadoSol</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/S-Organizer"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

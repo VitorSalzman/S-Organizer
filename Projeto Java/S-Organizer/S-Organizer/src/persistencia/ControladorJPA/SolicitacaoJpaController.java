@@ -55,7 +55,7 @@ public class SolicitacaoJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = solicitacao.getId();
+                long id = solicitacao.getId();
                 if (findSolicitacao(id) == null) {
                     throw new NonexistentEntityException("The solicitacao with id " + id + " no longer exists.");
                 }
@@ -68,7 +68,7 @@ public class SolicitacaoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -113,7 +113,7 @@ public class SolicitacaoJpaController implements Serializable {
         }
     }
 
-    public Solicitacao findSolicitacao(Long id) {
+    public Solicitacao findSolicitacao(long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Solicitacao.class, id);

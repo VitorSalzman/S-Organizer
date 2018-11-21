@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Categoria;
 import persistencia.ControladorJPA.exceptions.NonexistentEntityException;
+import persistencia.EstadoSol;
 
 /**
  *
  * @author luizg
  */
-public class CategoriaJpaController implements Serializable {
+public class EstadoSolJpaController implements Serializable {
 
-    public CategoriaJpaController(EntityManagerFactory emf) {
+    public EstadoSolJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class CategoriaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Categoria categoria) {
+    public void create(EstadoSol estadoSol) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(categoria);
+            em.persist(estadoSol);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class CategoriaJpaController implements Serializable {
         }
     }
 
-    public void edit(Categoria categoria) throws NonexistentEntityException, Exception {
+    public void edit(EstadoSol estadoSol) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            categoria = em.merge(categoria);
+            estadoSol = em.merge(estadoSol);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = categoria.getId();
-                if (findCategoria(id) == null) {
-                    throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.");
+                long id = estadoSol.getId();
+                if (findEstadoSol(id) == null) {
+                    throw new NonexistentEntityException("The estadoSol with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -68,19 +68,19 @@ public class CategoriaJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Categoria categoria;
+            EstadoSol estadoSol;
             try {
-                categoria = em.getReference(Categoria.class, id);
-                categoria.getId();
+                estadoSol = em.getReference(EstadoSol.class, id);
+                estadoSol.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The estadoSol with id " + id + " no longer exists.", enfe);
             }
-            em.remove(categoria);
+            em.remove(estadoSol);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class CategoriaJpaController implements Serializable {
         }
     }
 
-    public List<Categoria> findCategoriaEntities() {
-        return findCategoriaEntities(true, -1, -1);
+    public List<EstadoSol> findEstadoSolEntities() {
+        return findEstadoSolEntities(true, -1, -1);
     }
 
-    public List<Categoria> findCategoriaEntities(int maxResults, int firstResult) {
-        return findCategoriaEntities(false, maxResults, firstResult);
+    public List<EstadoSol> findEstadoSolEntities(int maxResults, int firstResult) {
+        return findEstadoSolEntities(false, maxResults, firstResult);
     }
 
-    private List<Categoria> findCategoriaEntities(boolean all, int maxResults, int firstResult) {
+    private List<EstadoSol> findEstadoSolEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Categoria.class));
+            cq.select(cq.from(EstadoSol.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class CategoriaJpaController implements Serializable {
         }
     }
 
-    public Categoria findCategoria(Long id) {
+    public EstadoSol findEstadoSol(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Categoria.class, id);
+            return em.find(EstadoSol.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getCategoriaCount() {
+    public int getEstadoSolCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Categoria> rt = cq.from(Categoria.class);
+            Root<EstadoSol> rt = cq.from(EstadoSol.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

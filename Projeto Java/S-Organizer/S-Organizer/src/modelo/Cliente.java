@@ -13,11 +13,12 @@ public class Cliente extends Usuario{
        private long cpf;
 
     public Cliente(long cpf, String nome, long telefone) {
-        this.setNome(nome);
-        this.setTelefone(telefone);
+        super(nome, telefone);
         this.cpf = cpf;
     }
-    public Cliente (){}
+
+    public Cliente (){
+    }
       
     public long getCpf() {
         return cpf;

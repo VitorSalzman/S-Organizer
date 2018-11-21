@@ -6,16 +6,13 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,36 +21,22 @@ import javax.persistence.Id;
 @Entity
 public class Cliente implements Serializable {
 
-    public Cliente(String cpf, String nome, String telefone) {
-        this.cpf = cpf;
-        this.nome = nome;
-        this.telefone = telefone;
-    }
-
-    public Cliente() {
-    }
-
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="codigo")
-    private Long id;
-
+    private long id;
+     
     @Column(length = 20)
     private String cpf;
-    @Column(length = 50)
-    private String nome;
-    @Column(length = 30)
-    private String telefone;
-    
-    private List solicitacao = new ArrayList(0);;
 
-    public Long getId() {
+    @OneToOne
+    private Usuario usuario;
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -65,38 +48,20 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getNome() {
-        return nome;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public List getSolicitacao() {
-        return solicitacao;
-    }
-
-    public void setSolicitacao(List solicitacao) {
-        this.solicitacao = solicitacao;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.cpf);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + Objects.hashCode(this.telefone);
-        hash = 79 * hash + Objects.hashCode(this.solicitacao);
+        int hash = 7;
+        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.cpf);
+        hash = 59 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -112,19 +77,13 @@ public class Cliente implements Serializable {
             return false;
         }
         final Cliente other = (Cliente) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.telefone, other.telefone)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.solicitacao, other.solicitacao)) {
+        if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
         return true;
@@ -132,7 +91,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", telefone=" + telefone + ", solicitacao=" + solicitacao + '}';
+        return "Cliente{" + "id=" + id + ", cpf=" + cpf + '}';
     }
 
 }

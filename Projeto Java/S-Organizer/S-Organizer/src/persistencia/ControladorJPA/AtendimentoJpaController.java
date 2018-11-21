@@ -55,7 +55,7 @@ public class AtendimentoJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = atendimento.getId();
+                long id = atendimento.getId();
                 if (findAtendimento(id) == null) {
                     throw new NonexistentEntityException("The atendimento with id " + id + " no longer exists.");
                 }
@@ -68,7 +68,7 @@ public class AtendimentoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -113,7 +113,7 @@ public class AtendimentoJpaController implements Serializable {
         }
     }
 
-    public Atendimento findAtendimento(Long id) {
+    public Atendimento findAtendimento(long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Atendimento.class, id);

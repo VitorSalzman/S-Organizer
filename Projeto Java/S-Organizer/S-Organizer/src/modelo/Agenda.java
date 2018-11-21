@@ -24,15 +24,20 @@ import java.util.Date;
  *    o tempo restante o PRESTADOR ficará (DISPONÍVEL OU EXPEDIENTE ENCERRADO)??
  */
 public class Agenda {
+    
+    private long id;
+    
     private SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");
     private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");
     private Date data;
-    private Date horaInicioExpediente;
-    private Date horaFimExpediente;
-    private ArrayList<Servico> servicosDoDia;
+    private Time horaInicioExpediente;
+    private Time horaFimExpediente;
+    private ArrayList<Solicitacao> SolicitacaoDoDia;
     private Prestador prestador;
-    private long id;
-
+    private Empresa empresa;
+    
+        
+    
     public Agenda(Prestador prestador) {
         this.prestador = prestador;
         this.data = new Date();
@@ -74,19 +79,19 @@ public class Agenda {
         this.data = data;
     }
 
-    public Date getHoraInicioExpediente() {
+    public Time getHoraInicioExpediente() {
         return horaInicioExpediente;
     }
 
-    public void setHoraInicioExpediente(Date horaInicioExpediente) {
+    public void setHoraInicioExpediente(Time horaInicioExpediente) {
         this.horaInicioExpediente = horaInicioExpediente;
     }
 
-    public Date getHoraFimExpediente() {
+    public Time getHoraFimExpediente() {
         return horaFimExpediente;
     }
 
-    public void setHoraFimExpediente(Date horaFimExpediente) {
+    public void setHoraFimExpediente(Time horaFimExpediente) {
         this.horaFimExpediente = horaFimExpediente;
     }
 
@@ -107,17 +112,17 @@ public class Agenda {
     }
     
     /* Funcoes manual */
-    public ArrayList<Servico> getServicosDoDia() {
-        return servicosDoDia;
+    public ArrayList<Solicitacao> getServicosDoDia() {
+        return SolicitacaoDoDia;
     }
 
-    public void setServicosDoDia(Servico service) {
-        servicosDoDia.add(service);
+    public void setServicosDoDia(Solicitacao service) {
+        SolicitacaoDoDia.add(service);
     }
     
     public void printServicosDoDia() {
-        for( Servico service : servicosDoDia ) {
-            System.out.println("Categoria: " + service.getCategoria() + "\n" + "Horario: " + service.getHorarioMarcado());
+        for( Solicitacao Solicitacao : SolicitacaoDoDia ) { // acho melhor usar o toString aq
+            Solicitacao.toString();
         }
     }
     
@@ -132,7 +137,6 @@ public class Agenda {
     }*/
 }
 
-    /*
-    pendente:
-    fazer builder de agenda
-    */
+//
+//    fazer builder de agenda
+    

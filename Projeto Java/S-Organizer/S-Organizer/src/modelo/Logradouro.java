@@ -5,14 +5,24 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161BSI0403
- */
+
 public class Logradouro {
+    
     private String nome;
     private String abreviatura;
-    private long id;
+    
+    private Bairro bairro;
+
+    public Logradouro(String nome, String abreviatura, Bairro bairro) {
+        this.nome = nome;
+        this.abreviatura = abreviatura;
+        this.bairro = bairro;
+    }
+
+    public Logradouro() {
+    }
+    
+    
 
     public String getNome() {
         return nome;
@@ -30,13 +40,15 @@ public class Logradouro {
         this.abreviatura = abreviatura;
     }
 
-    public long getId() {
-        return id;
+    public Bairro getBairro() {
+        return bairro;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setBairro(Bairro bairro) {
+        this.bairro = bairro;
     }
+
+    
     
     
     
