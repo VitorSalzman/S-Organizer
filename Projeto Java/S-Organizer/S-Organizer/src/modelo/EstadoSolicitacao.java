@@ -5,22 +5,15 @@
  */
 package modelo;
 
-/**
- * @author Ferrari
- */
-public enum EstadoSolicitacao { 
+public enum EstadoSolicitacao {
     PENDENTE(1) ,AGENDADO(2), ACAMINHO(3), EMEXECUCAO(4), CONCLUIDO(5);
-    private long id;
     
+    private int id;
     
-    public long getId() {
-        return id;
-    }
-
-    EstadoSolicitacao(long id) {
+    EstadoSolicitacao(int id) {
         this.id = id;
     }
-    
-    
-    
+    public int getId() {
+        return id;
+    }
 }

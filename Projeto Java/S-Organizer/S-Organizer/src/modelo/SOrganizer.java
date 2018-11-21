@@ -9,11 +9,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- *
- * @author 20161bsi0403
- */
 //public class SOrganizer {
 
     /**

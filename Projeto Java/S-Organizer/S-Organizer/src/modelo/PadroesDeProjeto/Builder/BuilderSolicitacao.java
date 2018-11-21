@@ -13,10 +13,7 @@ import modelo.PadroesDeProjeto.singleton.ProtocoloGenerator;
 import modelo.Servico;
 import modelo.Solicitacao;
 
-/**
- *
- * @author Salzman
- */
+
 public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private long protocolo;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //Isso tem que estar no builder msm?
@@ -25,6 +22,7 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private String disp_cli_fim;
     private ArrayList<Servico> servicos;
     private Solicitacao solicit;
+    
     public BuilderSolicitacao(String disp_cli_ini, String disp_cli_fim, String descricao,
             String observacao, String dataSolicitacao, ArrayList<Servico> servicos, Solicitacao solicitacao){
         

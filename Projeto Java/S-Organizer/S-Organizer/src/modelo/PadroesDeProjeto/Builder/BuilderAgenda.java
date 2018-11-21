@@ -15,10 +15,7 @@ import modelo.Agenda;
 import modelo.Prestador;
 import modelo.Servico;
 
-/**
- *
- * @author Salzman
- 
+
 public class BuilderAgenda {
     private String data;
     private String horaInicioExpediente;
