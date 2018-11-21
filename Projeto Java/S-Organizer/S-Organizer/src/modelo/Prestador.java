@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class Prestador extends Acesso{
     
-    private boolean disponibilidade = true;
+    private boolean disponibilidade;
     private Time horarioInicio;
     private Time horarioFim;
     private int cargaHoraria;
@@ -21,6 +21,7 @@ public class Prestador extends Acesso{
 
     public Prestador(Time horarioInicio, Time horarioFim, int cargaHoraria, String cpf, String usuario, String senha, String nome, long telefone) {
         super(usuario, senha, nome, telefone);
+        this.disponibilidade = true; // sempre true quando cria
         this.horarioInicio = horarioInicio;
         this.horarioFim = horarioFim;
         this.cargaHoraria = cargaHoraria;

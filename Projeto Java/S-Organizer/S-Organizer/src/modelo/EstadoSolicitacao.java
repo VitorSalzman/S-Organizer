@@ -6,8 +6,7 @@
 package modelo;
 
 /**
- *
- * @author 20161bsi0403
+ * @author Ferrari
  */
 public enum EstadoSolicitacao { 
     PENDENTE(1) ,AGENDADO(2), ACAMINHO(3), EMEXECUCAO(4), CONCLUIDO(5);

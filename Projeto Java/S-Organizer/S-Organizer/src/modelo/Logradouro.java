@@ -9,15 +9,15 @@ package modelo;
 public class Logradouro {
     
     private String nome;
-    private String abreviatura;
     
     private Bairro bairro;
 
-    public Logradouro(String nome, String abreviatura, Bairro bairro) {
+    public Logradouro(String nome, Bairro bairro) {
         this.nome = nome;
-        this.abreviatura = abreviatura;
         this.bairro = bairro;
     }
+
+
 
     public Logradouro() {
     }
@@ -30,14 +30,6 @@ public class Logradouro {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getAbreviatura() {
-        return abreviatura;
-    }
-
-    public void setAbreviatura(String abreviatura) {
-        this.abreviatura = abreviatura;
     }
 
     public Bairro getBairro() {

@@ -6,6 +6,8 @@
 package modelo;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Servico {
@@ -17,7 +19,7 @@ public class Servico {
     private boolean estadoAtendido;
     private Double multa;
     
-    private Atendimento atendimento;
+    private List<Atendimento> atendimento = new ArrayList();
     private Categoria categoria;
 
     public long getId() {
@@ -96,18 +98,51 @@ public class Servico {
         this.estadoAtendido = estado;
     }
 
-    public Atendimento getAtendimento() {
+    public boolean isEstadoAtendido() {
+        return estadoAtendido;
+    }
+
+    public void setEstadoAtendido(boolean estadoAtendido) {
+        this.estadoAtendido = estadoAtendido;
+    }
+
+    public Double getMulta() {
+        return multa;
+    }
+
+    public void setMulta(Double multa) {
+        this.multa = multa;
+    }
+    
+
+//operação manual
+    public void setAtendimento(Atendimento atendimento) {
+        this.atendimento.add(atendimento);
+    }
+    
+    public void printAtendimento() {
+        for( Atendimento a : atendimento ) {
+            a.toString();
+        }
+    }
+    
+    //não manual
+
+    public List<Atendimento> getAtendimento() {
         return atendimento;
     }
 
-    public void setAtendimento(Atendimento atendimento) {
+    public void setAtendimento(List<Atendimento> atendimento) {
         this.atendimento = atendimento;
     }
 
     @Override
     public String toString() {
-        return "Servico{" + "descricao=" + descricao + ", valor=" + valor + ", horarioMarcado=" + horarioMarcado + ", estadoAtendido=" + estadoAtendido + ", multa=" + multa + '}';
+        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", valor=" + valor + ", horarioMarcado=" + horarioMarcado + ", estadoAtendido=" + estadoAtendido + ", multa=" + multa + '}';
     }
+    
+    
+    
     
     
     

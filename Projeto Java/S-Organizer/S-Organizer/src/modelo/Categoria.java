@@ -8,7 +8,6 @@ package modelo;
 import java.sql.Time;
 
 /**
- *
  * MUDANCA:
  * Foi inserido um tempo base para execucao de cata tipo de servico
  * dessa forma podemos calcular quantos servicos conseguimos coloca

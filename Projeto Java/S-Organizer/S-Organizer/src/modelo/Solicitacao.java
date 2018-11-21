@@ -9,23 +9,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-/**
- *
- * @author 20161bsi0403
- */
+
 public class Solicitacao {
 
     private long protocolo;
-    private Calendar disp_cli_ini;
+    
+    private Calendar disp_cli_ini; // espero que isso converta para Date >:)
     private Calendar disp_cli_fim;
     private String observacao;
     private Calendar dataSolicitacao;
-    
     private Double multa;
     
     private EstadoSolicitacao estado;
-    private ArrayList<Servico> servicos;
+    private List<Servico> servicos = new ArrayList();
    
     public String getObservacao() {
         return observacao;
@@ -38,8 +36,6 @@ public class Solicitacao {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
-
-
     
     public void setEstado(EstadoSolicitacao estado) {
         this.estado = estado;
@@ -78,14 +74,41 @@ public class Solicitacao {
         this.dataSolicitacao = dataSolicitacao;
     }
      
-    public ArrayList<Servico> getServicos() {
+    public List<Servico> getServicos() {
         return servicos;
     }
+
+    public Calendar getDisp_cli_ini() {
+        return disp_cli_ini;
+    }
+
+    public void setDisp_cli_ini(Calendar disp_cli_ini) {
+        this.disp_cli_ini = disp_cli_ini;
+    }
+
+    public Calendar getDisp_cli_fim() {
+        return disp_cli_fim;
+    }
+
+    public void setDisp_cli_fim(Calendar disp_cli_fim) {
+        this.disp_cli_fim = disp_cli_fim;
+    }
+
+    public Double getMulta() {
+        return multa;
+    }
+
+    public void setMulta(Double multa) {
+        this.multa = multa;
+    }
+    
+    
 
     //operação manual
     public void setServicos(Servico servico) {
         this.servicos.add(servico);
     }
+    // não coloquei remoção manual
 
     //não manual, tive que por esse porque o builder utiliza dessa forma..
     public void setServicos(ArrayList<Servico> servicos) {

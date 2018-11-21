@@ -5,7 +5,6 @@
  */
 package modelo;
 
-
 public class Bairro {
     
     private String nome;
@@ -35,6 +34,11 @@ public class Bairro {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    @Override
+    public String toString() {
+        return "Bairro{" + "nome=" + nome + '}';
     }
     
     

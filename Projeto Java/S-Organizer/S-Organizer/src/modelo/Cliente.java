@@ -5,12 +5,14 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Cliente extends Usuario{
        private long cpf;
+       
+       List<Solicitacao> solicitacao = new ArrayList();
 
     public Cliente(long cpf, String nome, long telefone) {
         super(nome, telefone);
@@ -27,6 +29,34 @@ public class Cliente extends Usuario{
     public void setCpf(long cpf) {
         this.cpf = cpf;
     }
-     
+    
+    //manual
+    public void setSolicitacao(Solicitacao solicitacao) {
+        this.solicitacao.add(solicitacao);
+    }
+
+    public void printSolicitacao() {
+        for( Solicitacao solicitacao : solicitacao ) {
+            solicitacao.toString();
+        }
+    }
+
+    //não manual
+    public List<Solicitacao> getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(List<Solicitacao> solicitacao) {
+        this.solicitacao = solicitacao;
+    }
+    
+    
+    
+    @Override
+    public String toString() {
+        return "Cliente{" + "cpf=" + cpf + ", solicitacao=" + solicitacao + '}';
+    }
+    
+    
     
 }

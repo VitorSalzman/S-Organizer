@@ -5,15 +5,13 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
+
 public class Endereco {
-    private Logradouro logradouro;
 
     private String cep;
     private String complemento;
+    
+    private Logradouro logradouro;
 
     public Endereco(Logradouro logradouro, String cep, String complemento) {
         this.logradouro = logradouro;

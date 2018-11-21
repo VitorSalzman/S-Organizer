@@ -17,6 +17,9 @@ public class Atendimento {
     private Time horarioInicioAtendimento;
     private Time horarioFimAtendimento;
     
+    private Prestador prestador;
+    
+    
     public Time getHorarioInicioAtendimento() {
         return horarioInicioAtendimento;
     }
@@ -40,6 +43,20 @@ public class Atendimento {
     public void setId(long id) {
         this.id = id;
     }
+
+    public Prestador getPrestador() {
+        return prestador;
+    }
+
+    public void setPrestador(Prestador prestador) {
+        this.prestador = prestador;
+    }
+
+    @Override
+    public String toString() {
+        return "Atendimento{" + "horarioInicioAtendimento=" + horarioInicioAtendimento + ", horarioFimAtendimento=" + horarioFimAtendimento + '}';
+    }
+    
 
     
     

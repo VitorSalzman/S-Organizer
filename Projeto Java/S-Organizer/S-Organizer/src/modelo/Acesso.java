@@ -5,24 +5,12 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
+
 public abstract class Acesso extends Usuario {
     private String usuario;
     private String senha;
 
-    //tirei esse construtor pq ele n tem o super.
-//    public Acesso(String usuario, String senha) {
-//        this.usuario = usuario;
-//        try {
-//            this.setSenha(senha);   
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
+ 
     public Acesso(String usuario, String senha, String nome, long telefone) {
         super(nome, telefone);
         this.usuario = usuario;

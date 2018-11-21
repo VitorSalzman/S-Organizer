@@ -9,6 +9,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -32,7 +33,9 @@ public class Agenda {
     private Date data;
     private Time horaInicioExpediente;
     private Time horaFimExpediente;
-    private ArrayList<Solicitacao> SolicitacaoDoDia;
+    
+
+    private List<Solicitacao> solicitacaoDoDia = new ArrayList();
     private Prestador prestador;
     private Empresa empresa;
     
@@ -110,18 +113,36 @@ public class Agenda {
     public void setId(long id) {
         this.id = id;
     }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public List<Solicitacao> getSolicitacaoDoDia() {
+        return solicitacaoDoDia;
+    }
+
+    public void setSolicitacaoDoDia(List<Solicitacao> solicitacaoDoDia) {
+        this.solicitacaoDoDia = solicitacaoDoDia;
+    }
+
     
-    /* Funcoes manual */
-    public ArrayList<Solicitacao> getServicosDoDia() {
-        return SolicitacaoDoDia;
+    
+    /* Funcoes manual */ 
+    public List<Solicitacao> getServicosDoDia() {
+        return solicitacaoDoDia;
     }
 
     public void setServicosDoDia(Solicitacao service) {
-        SolicitacaoDoDia.add(service);
+        solicitacaoDoDia.add(service);
     }
     
     public void printServicosDoDia() {
-        for( Solicitacao Solicitacao : SolicitacaoDoDia ) { // acho melhor usar o toString aq
+        for( Solicitacao Solicitacao : solicitacaoDoDia ) { // acho melhor usar o toString aq
             Solicitacao.toString();
         }
     }

@@ -7,7 +7,6 @@ package modelo;
 
 import java.util.Objects;
 
-
 public abstract class Usuario {
     private long codigo;
     
