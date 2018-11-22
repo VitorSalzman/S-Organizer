@@ -5,14 +5,32 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
-public class Cliente extends Usuario{
-       private String cpf;
+@Entity
+@Table(name="Cliente")
+public class Cliente extends Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+     
+    @Column(length = 20,name = "cpf")
+    private String cpf;
        
-       List<Solicitacao> solicitacao = new ArrayList();
+    @OneToMany
+    private List<Solicitacao> solicitacao = new ArrayList();
 
     public Cliente(String cpf, String nome, String telefone) {
         super(nome, telefone);
@@ -21,7 +39,16 @@ public class Cliente extends Usuario{
 
     public Cliente (){
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
       
+    
     public String getCpf() {
         return cpf;
     }

@@ -5,21 +5,46 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 
-public class Servico {
+@Entity
+@Table(name="Servico")
+public class Servico implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
+    @Column(length = 255,name="descricao")
     private String descricao;
-    private double valor;
+    @Column(name="horarioMarcado")
+    @Temporal(javax.persistence.TemporalType.TIME)
     private Time horarioMarcado;
+    @Column(name="valor")
+    private double valor;
+    @Column(name="multa")
+    private double multa;
+    @Column(name="estadoAtendido")
     private boolean estadoAtendido;
-    private Double multa;
-    private List<Atendimento> atendimento = new ArrayList();
+    
+    @OneToOne
     private Categoria categoria;
+    @OneToMany
+    private List<Atendimento> atendimento = new ArrayList();
 
     public long getId() {
         return id;
@@ -40,10 +65,14 @@ public class Servico {
     public Categoria getCategoria() {
         return categoria;
     }
-    
-    public void setCategoria(String category) throws Exception{
-        this.categoria =  Categoria.valueOf(category);
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
+
+//    public void setCategoria(String category) throws Exception{ //então, n é mais enum..
+//        this.categoria =  Categoria.valueOf(category);
+//    }
 
     public void setValor(double valor) {
         this.valor = valor;

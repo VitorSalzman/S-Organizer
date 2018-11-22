@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.ControladoresJPA;
+package modelo.ControladoresJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.AgendaP;
-import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
+import modelo.ControladoresJPA.exceptions.NonexistentEntityException;
+import modelo.Empresa;
 
 /**
  *
  * @author luizg
  */
-public class AgendaJpaController implements Serializable {
+public class EmpresaJpaController implements Serializable {
 
-    public AgendaJpaController(EntityManagerFactory emf) {
+    public EmpresaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class AgendaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(AgendaP agenda) {
+    public void create(Empresa empresa) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(agenda);
+            em.persist(empresa);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class AgendaJpaController implements Serializable {
         }
     }
 
-    public void edit(AgendaP agenda) throws NonexistentEntityException, Exception {
+    public void edit(Empresa empresa) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            agenda = em.merge(agenda);
+            empresa = em.merge(empresa);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = agenda.getId();
-                if (findAgenda(id) == null) {
-                    throw new NonexistentEntityException("The agenda with id " + id + " no longer exists.");
+                long id = empresa.getId();
+                if (findEmpresa(id) == null) {
+                    throw new NonexistentEntityException("The empresa with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class AgendaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            AgendaP agenda;
+            Empresa empresa;
             try {
-                agenda = em.getReference(AgendaP.class, id);
-                agenda.getId();
+                empresa = em.getReference(Empresa.class, id);
+                empresa.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The agenda with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The empresa with id " + id + " no longer exists.", enfe);
             }
-            em.remove(agenda);
+            em.remove(empresa);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class AgendaJpaController implements Serializable {
         }
     }
 
-    public List<AgendaP> findAgendaEntities() {
-        return findAgendaEntities(true, -1, -1);
+    public List<Empresa> findEmpresaEntities() {
+        return findEmpresaEntities(true, -1, -1);
     }
 
-    public List<AgendaP> findAgendaEntities(int maxResults, int firstResult) {
-        return findAgendaEntities(false, maxResults, firstResult);
+    public List<Empresa> findEmpresaEntities(int maxResults, int firstResult) {
+        return findEmpresaEntities(false, maxResults, firstResult);
     }
 
-    private List<AgendaP> findAgendaEntities(boolean all, int maxResults, int firstResult) {
+    private List<Empresa> findEmpresaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(AgendaP.class));
+            cq.select(cq.from(Empresa.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class AgendaJpaController implements Serializable {
         }
     }
 
-    public AgendaP findAgenda(long id) {
+    public Empresa findEmpresa(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(AgendaP.class, id);
+            return em.find(Empresa.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getAgendaCount() {
+    public int getEmpresaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<AgendaP> rt = cq.from(AgendaP.class);
+            Root<Empresa> rt = cq.from(Empresa.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

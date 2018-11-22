@@ -5,11 +5,21 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 
 /**
@@ -24,21 +34,33 @@ import java.util.List;
  * 02 Se os SERVICOS da AGENDA não representarem 8 horas exatas,
  *    o tempo restante o PRESTADOR ficará (DISPONÍVEL OU EXPEDIENTE ENCERRADO)??
  */
-public class Agenda {
-    
+@Entity
+@Table(name ="Agenda")
+public class Agenda implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
     private SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");
-    private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");
-    private Date data;
+    private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");// espero que esses campos não sejam persistidos <<
+    @Column(name = "horaInicio")
+    @Temporal(javax.persistence.TemporalType.TIME)
     private Time horaInicioExpediente;
+    @Column(name = "horaFim")
+    @Temporal(javax.persistence.TemporalType.TIME)
     private Time horaFimExpediente;
+    @Column(name = "data")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date data;
     
-
+    @OneToMany
     private List<Solicitacao> solicitacaoDoDia = new ArrayList();
+    @OneToOne
     private Prestador prestador;
+    @OneToOne
     private Empresa empresa;
-    
         
     
     public Agenda(Prestador prestador) {
@@ -53,10 +75,12 @@ public class Agenda {
         
     }
     
-    public Agenda() {
+    public Agenda() { //espero que ele não reclame desse construtor, pq ele precisa sempre de um construtor vazio
         this.data = new Date();
         data.setDate(data.getDate()+1);
     }
+    
+    
 
     public SimpleDateFormat getSdfData() {
         return sdfData;

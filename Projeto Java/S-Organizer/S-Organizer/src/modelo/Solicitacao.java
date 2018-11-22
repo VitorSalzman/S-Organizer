@@ -5,22 +5,51 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 
-public class Solicitacao {
+@Entity
+@Table(name="Solicitacao")
+public class Solicitacao implements Serializable {
 
-    private long protocolo;
+    private static final long serialVersionUID = 1L;
+    @Id()
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "protocolo")
+    private long protocolo; //Protocolo, precisamos customizar o GenerationType, isso seria um singleton, correto?
     
-    private Calendar disp_cli_ini; 
-    private Calendar disp_cli_fim;
+    
+    @Column(name="dispCliIni")
+    @Temporal(javax.persistence.TemporalType.TIME)// ir apenas o TIME
+    private Calendar dispCliIni;
+    @Column(name="dispCliFim")
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Calendar dispCliFim;
+    @Column(length = 255,name="observacao")
     private String observacao;
+    @Column(name="dataSolicitacao")
+    @Temporal(javax.persistence.TemporalType.DATE)// ir apenas o DATE
     private Calendar dataSolicitacao;
+    @Column(name="multaTotal")
     private Double multaTotal;
+    
+    @OneToOne
     private Endereco endereco;
+    @OneToOne
     private EstadoSolicitacao estado;
+    @OneToMany
     private List<Servico> servicos = new ArrayList();
 
     public Solicitacao() {
@@ -42,29 +71,33 @@ public class Solicitacao {
     public void setEstado(EstadoSolicitacao estado) {
         this.estado = estado;
     }
+  
+    public List<Servico> getServicos() {
+        return servicos;
+    }
 
     public long getProtocolo() {
         return protocolo;
     }
 
-    public void setProtocolo(long protocol) {
-        this.protocolo = protocol;
+    public void setProtocolo(long protocolo) {
+        this.protocolo = protocolo;
     }
 
     public Calendar getDispCliIni() {
-        return disp_cli_ini;
+        return dispCliIni;
     }
 
-    public void setDispCliIni(Calendar disp_cli_ini) {
-        this.disp_cli_ini = disp_cli_ini;
+    public void setDispCliIni(Calendar dispCliIni) {
+        this.dispCliIni = dispCliIni;
     }
 
     public Calendar getDispCliFim() {
-        return disp_cli_fim;
+        return dispCliFim;
     }
 
-    public void setDispCliFim(Calendar disp_cli_fim) {
-        this.disp_cli_fim = disp_cli_fim;
+    public void setDispCliFim(Calendar dispCliFim) {
+        this.dispCliFim = dispCliFim;
     }
 
     public Calendar getDataSolicitacao() {
@@ -74,26 +107,8 @@ public class Solicitacao {
     public void setDataSolicitacao(Calendar dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
-     
-    public List<Servico> getServicos() {
-        return servicos;
-    }
 
-    public Calendar getDisp_cli_ini() {
-        return disp_cli_ini;
-    }
 
-    public void setDisp_cli_ini(Calendar disp_cli_ini) {
-        this.disp_cli_ini = disp_cli_ini;
-    }
-
-    public Calendar getDisp_cli_fim() {
-        return disp_cli_fim;
-    }
-
-    public void setDisp_cli_fim(Calendar disp_cli_fim) {
-        this.disp_cli_fim = disp_cli_fim;
-    }
 
     public Double getMultaTotal() {
         return multaTotal;

@@ -5,16 +5,34 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
-public class Empresa extends Acesso{
+@Entity
+@Table(name="Empresa")
+public class Empresa extends Acesso implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     
+    @Column(length = 20,name = "cnpj")
     private String cnpj;
     
-    private List<Solicitacao> solicitacaoes = new ArrayList(); 
-    private List<Prestador> prestadores = new ArrayList();
+    @OneToMany
+    private List<Solicitacao> solicitacaoes = new ArrayList(); //tipo da lista SOLICITACAO 
+    @OneToMany
+    private List<Prestador> prestadores = new ArrayList(); //tipo da lista PRESTADOR
     
     public Empresa(String cnpj, String usuario, String senha, String nome, String telefone) {
         super(usuario, senha, nome, telefone);
@@ -24,6 +42,14 @@ public class Empresa extends Acesso{
     public Empresa(){
     } 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     public String getCnpj() {
         return cnpj;
     }

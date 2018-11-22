@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.ControladoresJPA;
+package modelo.ControladoresJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.CidadeP;
-import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
+import modelo.Bairro;
+import modelo.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author luizg
  */
-public class CidadeJpaController implements Serializable {
+public class BairroJpaController implements Serializable {
 
-    public CidadeJpaController(EntityManagerFactory emf) {
+    public BairroJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class CidadeJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(CidadeP cidade) {
+    public void create(Bairro bairro) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(cidade);
+            em.persist(bairro);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class CidadeJpaController implements Serializable {
         }
     }
 
-    public void edit(CidadeP cidade) throws NonexistentEntityException, Exception {
+    public void edit(Bairro bairro) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            cidade = em.merge(cidade);
+            bairro = em.merge(bairro);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = cidade.getId();
-                if (findCidade(id) == null) {
-                    throw new NonexistentEntityException("The cidade with id " + id + " no longer exists.");
+                long id = bairro.getId();
+                if (findBairro(id) == null) {
+                    throw new NonexistentEntityException("The bairro with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class CidadeJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            CidadeP cidade;
+            Bairro bairro;
             try {
-                cidade = em.getReference(CidadeP.class, id);
-                cidade.getId();
+                bairro = em.getReference(Bairro.class, id);
+                bairro.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The cidade with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The bairro with id " + id + " no longer exists.", enfe);
             }
-            em.remove(cidade);
+            em.remove(bairro);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class CidadeJpaController implements Serializable {
         }
     }
 
-    public List<CidadeP> findCidadeEntities() {
-        return findCidadeEntities(true, -1, -1);
+    public List<Bairro> findBairroEntities() {
+        return findBairroEntities(true, -1, -1);
     }
 
-    public List<CidadeP> findCidadeEntities(int maxResults, int firstResult) {
-        return findCidadeEntities(false, maxResults, firstResult);
+    public List<Bairro> findBairroEntities(int maxResults, int firstResult) {
+        return findBairroEntities(false, maxResults, firstResult);
     }
 
-    private List<CidadeP> findCidadeEntities(boolean all, int maxResults, int firstResult) {
+    private List<Bairro> findBairroEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(CidadeP.class));
+            cq.select(cq.from(Bairro.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class CidadeJpaController implements Serializable {
         }
     }
 
-    public CidadeP findCidade(long id) {
+    public Bairro findBairro(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(CidadeP.class, id);
+            return em.find(Bairro.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getCidadeCount() {
+    public int getBairroCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<CidadeP> rt = cq.from(CidadeP.class);
+            Root<Bairro> rt = cq.from(Bairro.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

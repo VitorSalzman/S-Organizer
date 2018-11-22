@@ -5,17 +5,36 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
-public class Prestador extends Acesso{
+@Entity
+@Table(name="Prestador")
+public class Prestador extends Acesso implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     
-    private boolean disponibilidade;
-    private Time horarioInicio;
-    private Time horarioFim;
-    private int cargaHoraria;
+    @Column(length = 20,name="cpf")
     private String cpf;
+    @Column(name="horarioInicio")
+    private Time horarioInicio;
+    @Column(name="horarioInicio")
+    private Time horarioFim;
+    @Column(name="horarioFim")
+    private int cargaHoraria;
+    @Column(name="disponibilidade")
+    private boolean disponibilidade;
 
     //ta sem o disponibilidade no construtor
 
@@ -32,6 +51,15 @@ public class Prestador extends Acesso{
     public Prestador() {
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    
     public boolean isDisponibilidade() {
         return disponibilidade;
     }

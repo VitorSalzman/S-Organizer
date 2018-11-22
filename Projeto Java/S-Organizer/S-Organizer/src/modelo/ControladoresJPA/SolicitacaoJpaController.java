@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.ControladoresJPA;
+package modelo.ControladoresJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.BairroP;
-import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
+import modelo.ControladoresJPA.exceptions.NonexistentEntityException;
+import modelo.Solicitacao;
 
 /**
  *
  * @author luizg
  */
-public class BairroJpaController implements Serializable {
+public class SolicitacaoJpaController implements Serializable {
 
-    public BairroJpaController(EntityManagerFactory emf) {
+    public SolicitacaoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class BairroJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(BairroP bairro) {
+    public void create(Solicitacao solicitacao) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(bairro);
+            em.persist(solicitacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public void edit(BairroP bairro) throws NonexistentEntityException, Exception {
+    public void edit(Solicitacao solicitacao) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            bairro = em.merge(bairro);
+            solicitacao = em.merge(solicitacao);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = bairro.getId();
-                if (findBairro(id) == null) {
-                    throw new NonexistentEntityException("The bairro with id " + id + " no longer exists.");
+                long id = solicitacao.getProtocolo();
+                if (findSolicitacao(id) == null) {
+                    throw new NonexistentEntityException("The solicitacao with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class BairroJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            BairroP bairro;
+            Solicitacao solicitacao;
             try {
-                bairro = em.getReference(BairroP.class, id);
-                bairro.getId();
+                solicitacao = em.getReference(Solicitacao.class, id);
+                solicitacao.getProtocolo();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The bairro with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The solicitacao with id " + id + " no longer exists.", enfe);
             }
-            em.remove(bairro);
+            em.remove(solicitacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public List<BairroP> findBairroEntities() {
-        return findBairroEntities(true, -1, -1);
+    public List<Solicitacao> findSolicitacaoEntities() {
+        return findSolicitacaoEntities(true, -1, -1);
     }
 
-    public List<BairroP> findBairroEntities(int maxResults, int firstResult) {
-        return findBairroEntities(false, maxResults, firstResult);
+    public List<Solicitacao> findSolicitacaoEntities(int maxResults, int firstResult) {
+        return findSolicitacaoEntities(false, maxResults, firstResult);
     }
 
-    private List<BairroP> findBairroEntities(boolean all, int maxResults, int firstResult) {
+    private List<Solicitacao> findSolicitacaoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(BairroP.class));
+            cq.select(cq.from(Solicitacao.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public BairroP findBairro(long id) {
+    public Solicitacao findSolicitacao(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(BairroP.class, id);
+            return em.find(Solicitacao.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getBairroCount() {
+    public int getSolicitacaoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<BairroP> rt = cq.from(BairroP.class);
+            Root<Solicitacao> rt = cq.from(Solicitacao.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -5,15 +5,30 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public abstract class Acesso extends Usuario {
-    private String usuario;
+@Entity
+@Table(name="Acesso")
+public abstract class Acesso extends Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    
+    @Column(length = 255,name="login")
+    private String login;
+    @Column(length = 255,name="senha")
     private String senha;
-
- 
+    
     public Acesso(String usuario, String senha, String nome, String telefone) {
         super(nome, telefone);
-        this.usuario = usuario;
+        this.login = usuario;
         try {
             this.setSenha(senha);   
         }catch (Exception e){
@@ -21,14 +36,8 @@ public abstract class Acesso extends Usuario {
         }
     }
     
-    
-    
     public Acesso(){
         
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
     }
 
     public void setSenha(String senha) throws Exception {
@@ -39,14 +48,29 @@ public abstract class Acesso extends Usuario {
        }
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
     public String getSenha() {
         return senha;
     }
-    
-    /* */ 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Override
+    public String toString() {
+        return "Acesso{" + "id=" + id + ", login=" + login + ", senha=" + senha + '}';
+    }
     
 }

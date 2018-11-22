@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia.ControladoresJPA;
+package modelo.ControladoresJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.UsuarioP;
+import modelo.Categoria;
+import modelo.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author luizg
  */
-public class UsuarioJpaController implements Serializable {
+public class CategoriaJpaController implements Serializable {
 
-    public UsuarioJpaController(EntityManagerFactory emf) {
+    public CategoriaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class UsuarioJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UsuarioP usuario) {
+    public void create(Categoria categoria) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(usuario);
+            em.persist(categoria);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public void edit(UsuarioP usuario) throws NonexistentEntityException, Exception {
+    public void edit(Categoria categoria) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            usuario = em.merge(usuario);
+            categoria = em.merge(categoria);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = usuario.getId();
-                if (findUsuario(id) == null) {
-                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
+                long id = categoria.getId();
+                if (findCategoria(id) == null) {
+                    throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class UsuarioJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UsuarioP usuario;
+            Categoria categoria;
             try {
-                usuario = em.getReference(UsuarioP.class, id);
-                usuario.getId();
+                categoria = em.getReference(Categoria.class, id);
+                categoria.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.", enfe);
             }
-            em.remove(usuario);
+            em.remove(categoria);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public List<UsuarioP> findUsuarioEntities() {
-        return findUsuarioEntities(true, -1, -1);
+    public List<Categoria> findCategoriaEntities() {
+        return findCategoriaEntities(true, -1, -1);
     }
 
-    public List<UsuarioP> findUsuarioEntities(int maxResults, int firstResult) {
-        return findUsuarioEntities(false, maxResults, firstResult);
+    public List<Categoria> findCategoriaEntities(int maxResults, int firstResult) {
+        return findCategoriaEntities(false, maxResults, firstResult);
     }
 
-    private List<UsuarioP> findUsuarioEntities(boolean all, int maxResults, int firstResult) {
+    private List<Categoria> findCategoriaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UsuarioP.class));
+            cq.select(cq.from(Categoria.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public UsuarioP findUsuario(long id) {
+    public Categoria findCategoria(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UsuarioP.class, id);
+            return em.find(Categoria.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUsuarioCount() {
+    public int getCategoriaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UsuarioP> rt = cq.from(UsuarioP.class);
+            Root<Categoria> rt = cq.from(Categoria.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

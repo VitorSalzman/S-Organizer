@@ -8,7 +8,7 @@ package modelo.padroesdeprojeto.builder;
 import java.util.ArrayList;
 import modelo.Prestador;
 import modelo.Servico;
-import persistencia.AgendaP;
+
 
 /*
 public class DiretorAgenda {

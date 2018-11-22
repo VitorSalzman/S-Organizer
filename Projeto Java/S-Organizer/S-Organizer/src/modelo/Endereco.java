@@ -5,12 +5,31 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-public class Endereco {
 
-    private String cep;
-    private String complemento;
+@Entity
+@Table(name="Endereco")
+public class Endereco implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     
+    @Column(length = 255,name="complemento")
+    private String complemento;
+    @Column(length = 20,name="cep")
+    private String cep;
+    
+    @OneToOne
     private Logradouro logradouro;
 
     public Endereco(Logradouro logradouro, String cep, String complemento) {
@@ -20,6 +39,14 @@ public class Endereco {
     }
 
     public Endereco() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
 

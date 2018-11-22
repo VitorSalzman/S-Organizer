@@ -5,27 +5,53 @@
  */
 package modelo;
 
-public class Cidade {
-    
-    private String nome;
-    
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Cidade")
+public class Cidade implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(length = 255,name="cidade")
+    private String cidade;    
+
+    @OneToOne
     private Estado estado;
 
-    public Cidade(String nome, Estado estado) {
-        this.nome = nome;
+    public Cidade(String cidade, Estado estado) {
+        this.cidade = cidade;
         this.estado = estado;
     }
 
     public Cidade() {
     }
 
-
-    public String getNome() {
-        return nome;
+    public long getId() {
+        return id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public Estado getEstado() {
@@ -38,7 +64,7 @@ public class Cidade {
 
     @Override
     public String toString() {
-        return "Cidade{" + "nome=" + nome + '}';
+        return "Cidade{" + "cidade=" + cidade + '}';
     }
 
     

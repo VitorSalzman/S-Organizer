@@ -5,13 +5,31 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-public class Logradouro {
+
+@Entity
+@Table(name="Logradouro")
+public class Logradouro implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     
+    @Column(length = 20,name="nome")
     private String nome;
-    
+        
+    @OneToOne
     private Bairro bairro;
-
+    
     public Logradouro(String nome, Bairro bairro) {
         this.nome = nome;
         this.bairro = bairro;
@@ -21,9 +39,15 @@ public class Logradouro {
 
     public Logradouro() {
     }
-    
-    
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }

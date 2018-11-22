@@ -5,12 +5,27 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public abstract class Usuario {
-    private long codigo;
+@Entity
+@Table(name="Usuario")
+public abstract class Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     
+    @Column(length = 50,name="nome")
     private String nome;
+    @Column(length = 20,name="telefone")
     private String telefone;
     
 
@@ -22,13 +37,15 @@ public abstract class Usuario {
     public Usuario() {
     }
 
-    public long getCodigo() {
-        return codigo;
+    public long getId() {
+        return id;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setId(long id) {
+        this.id = id;
     }
+
+    
 
     public String getNome() {
         return nome;
@@ -46,47 +63,12 @@ public abstract class Usuario {
         this.telefone = telefone;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
-        hash = 47 * hash + Objects.hashCode(this.nome);
-        hash = 47 * hash + Objects.hashCode(this.telefone);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (this.codigo != other.codigo) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.telefone, other.telefone)) {
-            return false;
-        }
-        return true;
-    }
-
-
-    
     
     
 
     @Override
     public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", nome=" + nome + ", telefone=" + telefone + '}';
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", telefone=" + telefone + '}';
     }
     
 
