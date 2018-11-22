@@ -10,10 +10,7 @@ import modelo.Prestador;
 import modelo.Servico;
 import persistencia.Agenda;
 
-/**
- *
- * @author Salzman
- 
+/*
 public class DiretorAgenda {
     
     public Agenda builder(Date horaInicioExpediente, Date horaFimExpediente, ArrayList<Servico> servicosDoDia, Prestador prestador) {

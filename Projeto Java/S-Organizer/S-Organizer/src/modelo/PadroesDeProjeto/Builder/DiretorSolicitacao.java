@@ -9,10 +9,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import modelo.Servico;
 import modelo.Solicitacao;
-/**
- *
- * @author Salzman
- */
+
 public class DiretorSolicitacao {
    
     public Solicitacao builder(String disp_cli_ini, String disp_cli_fim, String descricao,

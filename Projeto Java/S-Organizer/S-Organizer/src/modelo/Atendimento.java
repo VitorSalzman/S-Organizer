@@ -8,10 +8,6 @@ package modelo;
 import java.sql.Time;
 import java.util.Date;
 
-/**
- *
- * @author 20161bsi0403
- */
 public class Atendimento {
     private long id;
     private Prestador prestador;
