@@ -54,7 +54,7 @@ public class FabricaGetsPersistencia {
             
             
             objP.setCnpj(((Empresa) obj).getCnpj());
-            objP.setPrestadores((((Empresa) obj).getPrestadores()));
+            objP.setPrestadores(((Empresa) obj).getPrestadores());
             objP.setSolicitacaoes(((Empresa) obj).getSolicitacaoes());
             objP.setAcesso(aceP);
             
@@ -74,12 +74,38 @@ public class FabricaGetsPersistencia {
             
         }
     }
+    /* Transforma uma lista de prestadores em lista de prestadorP
+    Info: Eu não consigo transformar um prestador em prestadorP porque eles são
+    objetos diferentes.
     
-    public List<PrestadorP> tLista(List<Prestador> prestadores) {
+    Se eu quero um transformar um prestador em prestadorP, então eu preciso cons
+    -truir toda a base dela antes disso, sendo que prestador extende Acesso que
+    extende Usuario.
+    
+    COMO FAZER? 
+     - PADRÃO DE CLONAGEM??
+     - SEGUIR COM OS MÉTODOS DE TRANSFORMAÇÃO DA LISTA?
+     - POSSO TROCAR TODOS OS TIPOS DE ESPECIFICOS DE LISTA PARA LISTA DE OBJTETO
+    GENÉRIO?
+     - O QUE ESTÁ ACONTECENDO QUANDO EU COLOCO UM PARENTESES A MAIS E O NETBEANS
+    PARA DE APONTAR ERRO?
+    */
+    public List<PrestadorP> tListaPrestador(List<Prestador> prestadores) {
         List<PrestadorP> lPrestP = new ArrayList();
+        PrestadorP prestP = null;
+        AcessoP aceP = null; 
+        UsuarioP usuP = null;
         
         for (Prestador prest : prestadores) {
-            lPrestP.add((PrestadorP)prest);
+            prestP = new PrestadorP();
+            aceP = new AcessoP();
+            
+            
+            prestP.setAcesso(aceP);
+            
+            prestP.setCargaHoraria(prest.getCargaHoraria());
+            
+            
         }
         
     }
