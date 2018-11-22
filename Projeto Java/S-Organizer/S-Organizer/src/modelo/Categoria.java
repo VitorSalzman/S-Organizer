@@ -13,7 +13,7 @@ import java.sql.Time;
  * dessa forma podemos calcular quantos servicos conseguimos coloca
  * dentro de uma agenda.
  */
-public enum Categoria {//não sei como funciona para adicionar um novo campo.
+public enum Categoria {
     INSTALACAO("instalacao"),REPARO("reparo"),CONSTRUCAO("construcao"),LIMPEZA("limpeza"),ENTREGA("entrega"),BUSCA("busca");
     
     private String descricao;
@@ -43,7 +43,6 @@ public enum Categoria {//não sei como funciona para adicionar um novo campo.
     public void setDuracao(Time duracao) {
         this.duracao = duracao;
     }
-
     
     @Override
     public String toString() {

@@ -18,7 +18,6 @@ public class Servico {
     private Time horarioMarcado;
     private boolean estadoAtendido;
     private Double multa;
-    
     private List<Atendimento> atendimento = new ArrayList();
     private Categoria categoria;
 
@@ -31,7 +30,7 @@ public class Servico {
     }
 
     public void setDescricao(String descricao) {
-            this.descricao = descricao;
+        this.descricao = descricao;
     }
     
     public String getDescricao() {
@@ -43,37 +42,9 @@ public class Servico {
     }
     
     public void setCategoria(String category) throws Exception{
-        
-        //this.categoria =  Categoria.valueOf(category);     Em manutenção
-        if(category.equalsIgnoreCase("limpeza")){
-            this.categoria = Categoria.LIMPEZA;
-        }
-       
-        else if(category.equalsIgnoreCase("instalacao")){
-            this.categoria = Categoria.INSTALACAO;
-        }
-        
-        else if(category.equalsIgnoreCase("REPARO")){
-            this.categoria = Categoria.REPARO;
-        }
-        
-        else if(category.equalsIgnoreCase("construcao")){
-            this.categoria = Categoria.CONSTRUCAO;
-        }
-        
-        else if(category.equalsIgnoreCase("entrega")){
-            this.categoria = Categoria.ENTREGA;
-        }
-        
-        else if(category.equalsIgnoreCase("busca")){
-            this.categoria = Categoria.BUSCA;
-        }
-        
-        
+        this.categoria =  Categoria.valueOf(category);
     }
 
-    
-    
     public void setValor(double valor) {
         this.valor = valor;
     }
@@ -114,21 +85,21 @@ public class Servico {
         this.multa = multa;
     }
     
-
-//operação manual
-    public void setAtendimento(Atendimento atendimento) {
+    public void aplicaMulta(){
+        setMulta(this.valor*0.1);
+    }
+    
+    public void addAtendimento(Atendimento atendimento) {
         this.atendimento.add(atendimento);
     }
     
     public void printAtendimento() {
         for( Atendimento a : atendimento ) {
-            a.toString();
+            System.out.println(a.toString());
         }
     }
     
-    //não manual
-
-    public List<Atendimento> getAtendimento() {
+    public List<Atendimento> getAtendimentos() {
         return atendimento;
     }
 
@@ -138,13 +109,8 @@ public class Servico {
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", descricao=" + descricao + ", valor=" + valor + ", horarioMarcado=" + horarioMarcado + ", estadoAtendido=" + estadoAtendido + ", multa=" + multa + '}';
+        return "Servico{" + "id=" + id + ", descricao=" + descricao + 
+                ", valor=" + valor + ", horarioMarcado=" + horarioMarcado + 
+                ", estadoAtendido=" + estadoAtendido + ", multa=" + multa + '}';
     }
-    
-    
-    
-    
-    
-    
-    
 }

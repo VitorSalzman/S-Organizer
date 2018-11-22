@@ -10,11 +10,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import modelo.Servico;
+import modelo.Atendimento;
 
-/**
- *
- * @author Salzman
- */
 public class BuilderServico {
     private Servico servico;
     private String categoria;
@@ -31,7 +28,6 @@ public class BuilderServico {
             this.horarioMarcado=horarioMarcado;
             this.descricao=descricao;
             this.servico.setEstado(false);   /// false = não feito
-           /// this.servico.setAtendimento(at1endimento);   falta tratar
     }
     
     public void geraCategoria() throws Exception{

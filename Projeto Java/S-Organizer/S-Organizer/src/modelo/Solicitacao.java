@@ -5,10 +5,8 @@
  */
 package modelo;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -16,15 +14,18 @@ public class Solicitacao {
 
     private long protocolo;
     
-    private Calendar disp_cli_ini; // espero que isso converta para Date >:)
+    private Calendar disp_cli_ini; 
     private Calendar disp_cli_fim;
     private String observacao;
     private Calendar dataSolicitacao;
     private Double multaTotal;
-    
     private Endereco endereco;
     private EstadoSolicitacao estado;
     private List<Servico> servicos = new ArrayList();
+
+    public Solicitacao() {
+        this.multaTotal = 0.0;
+    }
    
     public String getObservacao() {
         return observacao;
@@ -49,7 +50,6 @@ public class Solicitacao {
     public void setProtocolo(long protocol) {
         this.protocolo = protocol;
     }
-
 
     public Calendar getDispCliIni() {
         return disp_cli_ini;
@@ -111,29 +111,29 @@ public class Solicitacao {
         this.endereco = endereco;
     }
 
-    
-    
-    
-    
-
-    //operação manual
-    public void setServicos(Servico servico) {
+    public void addServico(Servico servico) {
         this.servicos.add(servico);
     }
-    // não coloquei remoção manual
-
-    //não manual, tive que por esse porque o builder utiliza dessa forma..
+    
+    public void removeServico(Servico servico){
+        this.servicos.remove(servico);
+    }
+    
     public void setServicos(ArrayList<Servico> servicos) {
         this.servicos = servicos;
     }
 
-    
     public void printServicos() {
         for( Servico service : servicos ) {
-            service.toString();
+            System.out.println(service.toString());
         }
     }
-
     
+    public double calculaMultaTotal(){
+        for(Servico s: servicos){
+            multaTotal+= s.getMulta();
+        }
+        return multaTotal;
+    }
     
 }

@@ -14,13 +14,12 @@ import java.util.Date;
  */
 public class Atendimento {
     private long id;
-    
+    private Prestador prestador;
     private Time horarioInicioAtendimento;
     private Time horarioFimAtendimento;
+    private boolean concluido;
     private Date dataAtendimento;
-    
-    private Prestador prestador;
-
+   
     public long getId() {
         return id;
     }
@@ -53,6 +52,14 @@ public class Atendimento {
         this.dataAtendimento = dataAtendimento;
     }
 
+    public boolean isConcluido() {
+        return concluido;
+    }
+
+    public void setConcluido(boolean concluido) {
+        this.concluido = concluido;
+    }
+
     public Prestador getPrestador() {
         return prestador;
     }
@@ -61,10 +68,25 @@ public class Atendimento {
         this.prestador = prestador;
     }
 
-    
     @Override
     public String toString() {
-        return "Atendimento{" + "id=" + id + ", horarioInicioAtendimento=" + horarioInicioAtendimento + ", horarioFimAtendimento=" + horarioFimAtendimento + ", dataAtendimento=" + dataAtendimento + '}';
+        return "Atendimento{" + "id=" + id + ", horarioInicioAtendimento=" + 
+                "Prestador=" + prestador.getNome() +
+                horarioInicioAtendimento + ", horarioFimAtendimento=" + 
+                horarioFimAtendimento + ", dataAtendimento=" + dataAtendimento 
+                + "concluido "+ concluido + '}';
     }
-   
+    
+    public void alteraServico(Servico serv){
+        /*Máx de 3 atendimentos*/
+        if(serv.getAtendimentos().size()<3 && this.concluido ){
+            serv.addAtendimento(this);
+            serv.setEstado(concluido);
+        } else if( serv.getAtendimentos().size()<3 ) {
+            serv.addAtendimento(this);
+            if(serv.getAtendimentos().size()==3){
+                serv.aplicaMulta();
+            }
+        }
+    }
 }
