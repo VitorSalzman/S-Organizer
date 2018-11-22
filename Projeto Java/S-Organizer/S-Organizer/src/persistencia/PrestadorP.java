@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Prestador")
-public class Prestador implements Serializable {
+public class PrestadorP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,6 +39,9 @@ public class Prestador implements Serializable {
     private int cargaHoraria;
     @Column(name="disponibilidade")
     private boolean disponibilidade;
+    
+    @OneToOne
+    private AcessoP acesso;
 
     public long getId() {
         return id;
@@ -87,16 +91,25 @@ public class Prestador implements Serializable {
         this.disponibilidade = disponibilidade;
     }
 
+    public AcessoP getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(AcessoP acesso) {
+        this.acesso = acesso;
+    }
+
     
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 53 * hash + Objects.hashCode(this.cpf);
-        hash = 53 * hash + Objects.hashCode(this.horarioInicio);
-        hash = 53 * hash + Objects.hashCode(this.horarioFim);
-        hash = 53 * hash + this.cargaHoraria;
-        hash = 53 * hash + (this.disponibilidade ? 1 : 0);
+        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.cpf);
+        hash = 59 * hash + Objects.hashCode(this.horarioInicio);
+        hash = 59 * hash + Objects.hashCode(this.horarioFim);
+        hash = 59 * hash + this.cargaHoraria;
+        hash = 59 * hash + (this.disponibilidade ? 1 : 0);
+        hash = 59 * hash + Objects.hashCode(this.acesso);
         return hash;
     }
 
@@ -111,7 +124,7 @@ public class Prestador implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Prestador other = (Prestador) obj;
+        final PrestadorP other = (PrestadorP) obj;
         if (this.id != other.id) {
             return false;
         }
@@ -130,13 +143,17 @@ public class Prestador implements Serializable {
         if (!Objects.equals(this.horarioFim, other.horarioFim)) {
             return false;
         }
+        if (!Objects.equals(this.acesso, other.acesso)) {
+            return false;
+        }
         return true;
     }
 
     
     @Override
     public String toString() {
-        return "Prestador{" + "id=" + id + ", cpf=" + cpf + ", horarioInicio=" + horarioInicio + ", horarioFim=" + horarioFim + ", cargaHoraria=" + cargaHoraria + ", disponibilidade=" + disponibilidade + '}';
+        return "PrestadorP{" + "id=" + id + ", cpf=" + cpf + ", horarioInicio=" + horarioInicio + ", horarioFim=" + horarioFim + ", cargaHoraria=" + cargaHoraria + ", disponibilidade=" + disponibilidade + '}';
     }
+
     
 }

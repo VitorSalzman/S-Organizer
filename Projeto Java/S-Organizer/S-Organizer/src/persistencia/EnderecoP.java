@@ -6,15 +6,12 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,21 +20,21 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="Cliente")
-public class Cliente implements Serializable {
+@Table(name="Endereco")
+public class EnderecoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-     
-    @Column(length = 20,name = "cpf")
-    private String cpf;
-
+    
+    @Column(length = 255,name="complemento")
+    private String complemento;
+    @Column(length = 20,name="cep")
+    private String cep;
+    
     @OneToOne
-    private Usuario usuario;
-    @OneToMany
-    private List<Solicitacao> solicitacao = new ArrayList();
+    private LogradouroP logradouro;
 
     public long getId() {
         return id;
@@ -47,37 +44,37 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getCep() {
+        return cep;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
-    public List<Solicitacao> getSolicitacao() {
-        return solicitacao;
+    public LogradouroP getLogradouro() {
+        return logradouro;
     }
 
-    public void setSolicitacao(List<Solicitacao> solicitacao) {
-        this.solicitacao = solicitacao;
+    public void setLogradouro(LogradouroP logradouro) {
+        this.logradouro = logradouro;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 41 * hash + Objects.hashCode(this.cpf);
-        hash = 41 * hash + Objects.hashCode(this.usuario);
-        hash = 41 * hash + Objects.hashCode(this.solicitacao);
+        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 53 * hash + Objects.hashCode(this.complemento);
+        hash = 53 * hash + Objects.hashCode(this.cep);
+        hash = 53 * hash + Objects.hashCode(this.logradouro);
         return hash;
     }
 
@@ -92,17 +89,17 @@ public class Cliente implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cliente other = (Cliente) obj;
+        final EnderecoP other = (EnderecoP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.cpf, other.cpf)) {
+        if (!Objects.equals(this.complemento, other.complemento)) {
             return false;
         }
-        if (!Objects.equals(this.usuario, other.usuario)) {
+        if (!Objects.equals(this.cep, other.cep)) {
             return false;
         }
-        if (!Objects.equals(this.solicitacao, other.solicitacao)) {
+        if (!Objects.equals(this.logradouro, other.logradouro)) {
             return false;
         }
         return true;
@@ -110,7 +107,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", cpf=" + cpf + '}';
+        return "Endereco{" + "id=" + id + ", complemento=" + complemento + ", cep=" + cep + '}';
     }
 
 }

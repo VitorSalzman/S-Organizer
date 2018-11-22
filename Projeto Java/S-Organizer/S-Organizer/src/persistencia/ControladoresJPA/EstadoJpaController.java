@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.Estado;
+import persistencia.EstadoP;
 
 /**
  *
@@ -31,7 +31,7 @@ public class EstadoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Estado estado) {
+    public void create(EstadoP estado) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public void edit(Estado estado) throws NonexistentEntityException, Exception {
+    public void edit(EstadoP estado) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class EstadoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Estado estado;
+            EstadoP estado;
             try {
-                estado = em.getReference(Estado.class, id);
+                estado = em.getReference(EstadoP.class, id);
                 estado.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The estado with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public List<Estado> findEstadoEntities() {
+    public List<EstadoP> findEstadoEntities() {
         return findEstadoEntities(true, -1, -1);
     }
 
-    public List<Estado> findEstadoEntities(int maxResults, int firstResult) {
+    public List<EstadoP> findEstadoEntities(int maxResults, int firstResult) {
         return findEstadoEntities(false, maxResults, firstResult);
     }
 
-    private List<Estado> findEstadoEntities(boolean all, int maxResults, int firstResult) {
+    private List<EstadoP> findEstadoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Estado.class));
+            cq.select(cq.from(EstadoP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public Estado findEstado(long id) {
+    public EstadoP findEstado(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Estado.class, id);
+            return em.find(EstadoP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class EstadoJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Estado> rt = cq.from(Estado.class);
+            Root<EstadoP> rt = cq.from(EstadoP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

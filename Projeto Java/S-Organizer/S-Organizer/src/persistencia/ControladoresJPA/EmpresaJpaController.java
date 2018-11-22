@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.Empresa;
+import persistencia.EmpresaP;
 
 /**
  *
@@ -31,7 +31,7 @@ public class EmpresaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Empresa empresa) {
+    public void create(EmpresaP empresa) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public void edit(Empresa empresa) throws NonexistentEntityException, Exception {
+    public void edit(EmpresaP empresa) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class EmpresaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Empresa empresa;
+            EmpresaP empresa;
             try {
-                empresa = em.getReference(Empresa.class, id);
+                empresa = em.getReference(EmpresaP.class, id);
                 empresa.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The empresa with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public List<Empresa> findEmpresaEntities() {
+    public List<EmpresaP> findEmpresaEntities() {
         return findEmpresaEntities(true, -1, -1);
     }
 
-    public List<Empresa> findEmpresaEntities(int maxResults, int firstResult) {
+    public List<EmpresaP> findEmpresaEntities(int maxResults, int firstResult) {
         return findEmpresaEntities(false, maxResults, firstResult);
     }
 
-    private List<Empresa> findEmpresaEntities(boolean all, int maxResults, int firstResult) {
+    private List<EmpresaP> findEmpresaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Empresa.class));
+            cq.select(cq.from(EmpresaP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public Empresa findEmpresa(long id) {
+    public EmpresaP findEmpresa(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Empresa.class, id);
+            return em.find(EmpresaP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class EmpresaJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Empresa> rt = cq.from(Empresa.class);
+            Root<EmpresaP> rt = cq.from(EmpresaP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -19,18 +19,24 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="Usuario")
-public class Usuario implements Serializable {
+@Table(name="EstadoSolicitacao")
+public class EstadoSolicitacaoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 50,name="nome")
-    private String nome;
-    @Column(length = 20,name="telefone")
-    private String telefone;
+    @Column(length = 15,name="tipo")
+    private String tipo;
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.tipo);
+        return hash;
+    }
 
     public long getId() {
         return id;
@@ -40,29 +46,12 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 59 * hash + Objects.hashCode(this.nome);
-        hash = 59 * hash + Objects.hashCode(this.telefone);
-        return hash;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override
@@ -76,14 +65,11 @@ public class Usuario implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Usuario other = (Usuario) obj;
+        final EstadoSolicitacaoP other = (EstadoSolicitacaoP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.telefone, other.telefone)) {
+        if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
         return true;
@@ -91,7 +77,8 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nome=" + nome + ", telefone=" + telefone + '}';
+        return "EstadoSol{" + "id=" + id + ", tipo=" + tipo + '}';
     }
+    
 
 }

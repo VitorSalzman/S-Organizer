@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.EstadoSol;
+import persistencia.EstadoSolicitacaoP;
 
 /**
  *
@@ -31,7 +31,7 @@ public class EstadoSolJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(EstadoSol estadoSol) {
+    public void create(EstadoSolicitacaoP estadoSol) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class EstadoSolJpaController implements Serializable {
         }
     }
 
-    public void edit(EstadoSol estadoSol) throws NonexistentEntityException, Exception {
+    public void edit(EstadoSolicitacaoP estadoSol) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class EstadoSolJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            EstadoSol estadoSol;
+            EstadoSolicitacaoP estadoSol;
             try {
-                estadoSol = em.getReference(EstadoSol.class, id);
+                estadoSol = em.getReference(EstadoSolicitacaoP.class, id);
                 estadoSol.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The estadoSol with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class EstadoSolJpaController implements Serializable {
         }
     }
 
-    public List<EstadoSol> findEstadoSolEntities() {
+    public List<EstadoSolicitacaoP> findEstadoSolEntities() {
         return findEstadoSolEntities(true, -1, -1);
     }
 
-    public List<EstadoSol> findEstadoSolEntities(int maxResults, int firstResult) {
+    public List<EstadoSolicitacaoP> findEstadoSolEntities(int maxResults, int firstResult) {
         return findEstadoSolEntities(false, maxResults, firstResult);
     }
 
-    private List<EstadoSol> findEstadoSolEntities(boolean all, int maxResults, int firstResult) {
+    private List<EstadoSolicitacaoP> findEstadoSolEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(EstadoSol.class));
+            cq.select(cq.from(EstadoSolicitacaoP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class EstadoSolJpaController implements Serializable {
         }
     }
 
-    public EstadoSol findEstadoSol(long id) {
+    public EstadoSolicitacaoP findEstadoSol(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(EstadoSol.class, id);
+            return em.find(EstadoSolicitacaoP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class EstadoSolJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<EstadoSol> rt = cq.from(EstadoSol.class);
+            Root<EstadoSolicitacaoP> rt = cq.from(EstadoSolicitacaoP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

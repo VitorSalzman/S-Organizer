@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.Logradouro;
+import persistencia.LogradouroP;
 
 /**
  *
@@ -31,7 +31,7 @@ public class LogradouroJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Logradouro logradouro) {
+    public void create(LogradouroP logradouro) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class LogradouroJpaController implements Serializable {
         }
     }
 
-    public void edit(Logradouro logradouro) throws NonexistentEntityException, Exception {
+    public void edit(LogradouroP logradouro) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class LogradouroJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Logradouro logradouro;
+            LogradouroP logradouro;
             try {
-                logradouro = em.getReference(Logradouro.class, id);
+                logradouro = em.getReference(LogradouroP.class, id);
                 logradouro.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The logradouro with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class LogradouroJpaController implements Serializable {
         }
     }
 
-    public List<Logradouro> findLogradouroEntities() {
+    public List<LogradouroP> findLogradouroEntities() {
         return findLogradouroEntities(true, -1, -1);
     }
 
-    public List<Logradouro> findLogradouroEntities(int maxResults, int firstResult) {
+    public List<LogradouroP> findLogradouroEntities(int maxResults, int firstResult) {
         return findLogradouroEntities(false, maxResults, firstResult);
     }
 
-    private List<Logradouro> findLogradouroEntities(boolean all, int maxResults, int firstResult) {
+    private List<LogradouroP> findLogradouroEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Logradouro.class));
+            cq.select(cq.from(LogradouroP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class LogradouroJpaController implements Serializable {
         }
     }
 
-    public Logradouro findLogradouro(long id) {
+    public LogradouroP findLogradouro(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Logradouro.class, id);
+            return em.find(LogradouroP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class LogradouroJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Logradouro> rt = cq.from(Logradouro.class);
+            Root<LogradouroP> rt = cq.from(LogradouroP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

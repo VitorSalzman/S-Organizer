@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.Prestador;
+import persistencia.PrestadorP;
 
 /**
  *
@@ -31,7 +31,7 @@ public class PrestadorJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Prestador prestador) {
+    public void create(PrestadorP prestador) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public void edit(Prestador prestador) throws NonexistentEntityException, Exception {
+    public void edit(PrestadorP prestador) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class PrestadorJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Prestador prestador;
+            PrestadorP prestador;
             try {
-                prestador = em.getReference(Prestador.class, id);
+                prestador = em.getReference(PrestadorP.class, id);
                 prestador.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The prestador with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public List<Prestador> findPrestadorEntities() {
+    public List<PrestadorP> findPrestadorEntities() {
         return findPrestadorEntities(true, -1, -1);
     }
 
-    public List<Prestador> findPrestadorEntities(int maxResults, int firstResult) {
+    public List<PrestadorP> findPrestadorEntities(int maxResults, int firstResult) {
         return findPrestadorEntities(false, maxResults, firstResult);
     }
 
-    private List<Prestador> findPrestadorEntities(boolean all, int maxResults, int firstResult) {
+    private List<PrestadorP> findPrestadorEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Prestador.class));
+            cq.select(cq.from(PrestadorP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public Prestador findPrestador(long id) {
+    public PrestadorP findPrestador(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Prestador.class, id);
+            return em.find(PrestadorP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class PrestadorJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Prestador> rt = cq.from(Prestador.class);
+            Root<PrestadorP> rt = cq.from(PrestadorP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -26,7 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name ="Agenda")
-public class Agenda implements Serializable {
+public class AgendaP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,11 +41,11 @@ public class Agenda implements Serializable {
     private Date data;
     
     @OneToMany
-    private List<Solicitacao> solicitacaoDoDia = new ArrayList();
+    private List<SolicitacaoP> solicitacaoDoDia = new ArrayList();
     @OneToOne
-    private Prestador prestador;
+    private PrestadorP prestador;
     @OneToOne
-    private Empresa empresa;
+    private EmpresaP empresa;
 
     public long getId() {
         return id;
@@ -79,27 +79,27 @@ public class Agenda implements Serializable {
         this.data = data;
     }
 
-    public List<Solicitacao> getSolicitacaoDoDia() {
+    public List<SolicitacaoP> getSolicitacaoDoDia() {
         return solicitacaoDoDia;
     }
 
-    public void setSolicitacaoDoDia(List<Solicitacao> solicitacaoDoDia) {
+    public void setSolicitacaoDoDia(List<SolicitacaoP> solicitacaoDoDia) {
         this.solicitacaoDoDia = solicitacaoDoDia;
     }
 
-    public Prestador getPrestador() {
+    public PrestadorP getPrestador() {
         return prestador;
     }
 
-    public void setPrestador(Prestador prestador) {
+    public void setPrestador(PrestadorP prestador) {
         this.prestador = prestador;
     }
 
-    public Empresa getEmpresa() {
+    public EmpresaP getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
+    public void setEmpresa(EmpresaP empresa) {
         this.empresa = empresa;
     }
 
@@ -127,7 +127,7 @@ public class Agenda implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Agenda other = (Agenda) obj;
+        final AgendaP other = (AgendaP) obj;
         if (this.id != other.id) {
             return false;
         }

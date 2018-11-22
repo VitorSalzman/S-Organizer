@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Empresa")
-public class Empresa implements Serializable {
+public class EmpresaP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,11 +33,13 @@ public class Empresa implements Serializable {
     
     @Column(length = 20,name = "cnpj")
     private String cnpj;
-
+    
+    @OneToOne
+    private AcessoP acesso;
     @OneToMany
-    private List<Solicitacao> solicitacaoes = new ArrayList(); 
+    private List<SolicitacaoP> solicitacaoes = new ArrayList(); //tipo da lista SOLICITACAO 
     @OneToMany
-    private List<Prestador> prestadores = new ArrayList();
+    private List<PrestadorP> prestadores = new ArrayList(); //tipo da lista PRESTADOR
 
     public long getId() {
         return id;
@@ -54,29 +57,38 @@ public class Empresa implements Serializable {
         this.cnpj = cnpj;
     }
 
-    public List<Solicitacao> getSolicitacaoes() {
+    public AcessoP getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(AcessoP acesso) {
+        this.acesso = acesso;
+    }
+
+    public List<SolicitacaoP> getSolicitacaoes() {
         return solicitacaoes;
     }
 
-    public void setSolicitacaoes(List<Solicitacao> solicitacaoes) {
+    public void setSolicitacaoes(List<SolicitacaoP> solicitacaoes) {
         this.solicitacaoes = solicitacaoes;
     }
 
-    public List<Prestador> getPrestadores() {
+    public List<PrestadorP> getPrestadores() {
         return prestadores;
     }
 
-    public void setPrestadores(List<Prestador> prestadores) {
+    public void setPrestadores(List<PrestadorP> prestadores) {
         this.prestadores = prestadores;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 89 * hash + Objects.hashCode(this.cnpj);
-        hash = 89 * hash + Objects.hashCode(this.solicitacaoes);
-        hash = 89 * hash + Objects.hashCode(this.prestadores);
+        int hash = 5;
+        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 53 * hash + Objects.hashCode(this.cnpj);
+        hash = 53 * hash + Objects.hashCode(this.acesso);
+        hash = 53 * hash + Objects.hashCode(this.solicitacaoes);
+        hash = 53 * hash + Objects.hashCode(this.prestadores);
         return hash;
     }
 
@@ -91,11 +103,14 @@ public class Empresa implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Empresa other = (Empresa) obj;
+        final EmpresaP other = (EmpresaP) obj;
         if (this.id != other.id) {
             return false;
         }
         if (!Objects.equals(this.cnpj, other.cnpj)) {
+            return false;
+        }
+        if (!Objects.equals(this.acesso, other.acesso)) {
             return false;
         }
         if (!Objects.equals(this.solicitacaoes, other.solicitacaoes)) {
@@ -107,9 +122,11 @@ public class Empresa implements Serializable {
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "Empresa{" + "id=" + id + ", cnpj=" + cnpj + '}';
+        return "EmpresaP{" + "id=" + id + ", cnpj=" + cnpj + '}';
     }
 
+    
 }

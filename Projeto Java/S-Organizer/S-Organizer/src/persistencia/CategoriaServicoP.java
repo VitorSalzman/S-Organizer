@@ -6,13 +6,13 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,21 +20,18 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="Acesso")
-public class Acesso implements Serializable {
+@Table(name="CategoriaServico")
+public class CategoriaServicoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 255,name="login")
-    private String login;
-    @Column(length = 255,name="senha")
-    private String senha;
-    
-    @OneToOne
-    private Usuario usuario;
+    @Column(length = 50, name= "Tipo")
+    private String tipo;
+    @Column(name="duracao")
+    private Time duracao;
 
     public long getId() {
         return id;
@@ -44,37 +41,28 @@ public class Acesso implements Serializable {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getSenha() {
-        return senha;
+    public Time getDuracao() {
+        return duracao;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setDuracao(Time duracao) {
+        this.duracao = duracao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 73 * hash + Objects.hashCode(this.login);
-        hash = 73 * hash + Objects.hashCode(this.senha);
-        hash = 73 * hash + Objects.hashCode(this.usuario);
+        int hash = 7;
+        hash = 37 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 37 * hash + Objects.hashCode(this.tipo);
+        hash = 37 * hash + Objects.hashCode(this.duracao);
         return hash;
     }
 
@@ -89,17 +77,14 @@ public class Acesso implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Acesso other = (Acesso) obj;
+        final CategoriaServicoP other = (CategoriaServicoP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.login, other.login)) {
+        if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
-        if (!Objects.equals(this.senha, other.senha)) {
-            return false;
-        }
-        if (!Objects.equals(this.usuario, other.usuario)) {
+        if (!Objects.equals(this.duracao, other.duracao)) {
             return false;
         }
         return true;
@@ -107,9 +92,7 @@ public class Acesso implements Serializable {
 
     @Override
     public String toString() {
-        return "Acesso{" + "id=" + id + ", login=" + login + ", senha=" + senha + ", usuario=" + usuario + '}';
+        return "CategoriaServico{" + "id=" + id + ", tipo=" + tipo + ", duracao=" + duracao + '}';
     }
 
-    
-    
 }

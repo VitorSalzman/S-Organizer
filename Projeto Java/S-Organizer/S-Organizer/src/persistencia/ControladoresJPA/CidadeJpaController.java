@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Cidade;
+import persistencia.CidadeP;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
@@ -31,7 +31,7 @@ public class CidadeJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Cidade cidade) {
+    public void create(CidadeP cidade) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class CidadeJpaController implements Serializable {
         }
     }
 
-    public void edit(Cidade cidade) throws NonexistentEntityException, Exception {
+    public void edit(CidadeP cidade) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class CidadeJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Cidade cidade;
+            CidadeP cidade;
             try {
-                cidade = em.getReference(Cidade.class, id);
+                cidade = em.getReference(CidadeP.class, id);
                 cidade.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The cidade with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class CidadeJpaController implements Serializable {
         }
     }
 
-    public List<Cidade> findCidadeEntities() {
+    public List<CidadeP> findCidadeEntities() {
         return findCidadeEntities(true, -1, -1);
     }
 
-    public List<Cidade> findCidadeEntities(int maxResults, int firstResult) {
+    public List<CidadeP> findCidadeEntities(int maxResults, int firstResult) {
         return findCidadeEntities(false, maxResults, firstResult);
     }
 
-    private List<Cidade> findCidadeEntities(boolean all, int maxResults, int firstResult) {
+    private List<CidadeP> findCidadeEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Cidade.class));
+            cq.select(cq.from(CidadeP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class CidadeJpaController implements Serializable {
         }
     }
 
-    public Cidade findCidade(long id) {
+    public CidadeP findCidade(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Cidade.class, id);
+            return em.find(CidadeP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class CidadeJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Cidade> rt = cq.from(Cidade.class);
+            Root<CidadeP> rt = cq.from(CidadeP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

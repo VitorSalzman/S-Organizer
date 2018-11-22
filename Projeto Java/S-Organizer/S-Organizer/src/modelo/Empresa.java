@@ -64,7 +64,7 @@ public class Empresa extends Acesso{
 
     
     public void printSolicitacao() {
-        for( Solicitacao solicitacao : solicitacaoes ) {
+        for( Object solicitacao : solicitacaoes ) {
             solicitacao.toString();
         }
     }

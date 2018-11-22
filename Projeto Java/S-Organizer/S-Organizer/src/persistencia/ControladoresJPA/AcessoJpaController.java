@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Acesso;
+import persistencia.AcessoP;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
@@ -31,7 +31,7 @@ public class AcessoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Acesso acesso) {
+    public void create(AcessoP acesso) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public void edit(Acesso acesso) throws NonexistentEntityException, Exception {
+    public void edit(AcessoP acesso) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class AcessoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Acesso acesso;
+            AcessoP acesso;
             try {
-                acesso = em.getReference(Acesso.class, id);
+                acesso = em.getReference(AcessoP.class, id);
                 acesso.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The acesso with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public List<Acesso> findAcessoEntities() {
+    public List<AcessoP> findAcessoEntities() {
         return findAcessoEntities(true, -1, -1);
     }
 
-    public List<Acesso> findAcessoEntities(int maxResults, int firstResult) {
+    public List<AcessoP> findAcessoEntities(int maxResults, int firstResult) {
         return findAcessoEntities(false, maxResults, firstResult);
     }
 
-    private List<Acesso> findAcessoEntities(boolean all, int maxResults, int firstResult) {
+    private List<AcessoP> findAcessoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Acesso.class));
+            cq.select(cq.from(AcessoP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public Acesso findAcesso(long id) {
+    public AcessoP findAcesso(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Acesso.class, id);
+            return em.find(AcessoP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class AcessoJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Acesso> rt = cq.from(Acesso.class);
+            Root<AcessoP> rt = cq.from(AcessoP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
