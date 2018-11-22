@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Atendimento")
-public class Atendimento implements Serializable {
+public class AtendimentoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,9 +36,11 @@ public class Atendimento implements Serializable {
     private Time horarioFimAtendimento;
     @Column(name="dataAtendimento")
     private Date dataAtendimento;
+    @Column(name="concluido")
+    private boolean concluido;
     
     @OneToOne
-    private Prestador prestador;
+    private PrestadorP prestador;
 
     public long getId() {
         return id;
@@ -72,23 +74,31 @@ public class Atendimento implements Serializable {
         this.dataAtendimento = dataAtendimento;
     }
 
-    public Prestador getPrestador() {
+    public boolean isConcluido() {
+        return concluido;
+    }
+
+    public void setConcluido(boolean concluido) {
+        this.concluido = concluido;
+    }
+
+    public PrestadorP getPrestador() {
         return prestador;
     }
 
-    public void setPrestador(Prestador prestador) {
+    public void setPrestador(PrestadorP prestador) {
         this.prestador = prestador;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 23 * hash + Objects.hashCode(this.horarioInicioAtendimento);
-        hash = 23 * hash + Objects.hashCode(this.horarioFimAtendimento);
-        hash = 23 * hash + Objects.hashCode(this.dataAtendimento);
-        hash = 23 * hash + Objects.hashCode(this.prestador);
+        hash = 61 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 61 * hash + Objects.hashCode(this.horarioInicioAtendimento);
+        hash = 61 * hash + Objects.hashCode(this.horarioFimAtendimento);
+        hash = 61 * hash + Objects.hashCode(this.dataAtendimento);
+        hash = 61 * hash + (this.concluido ? 1 : 0);
+        hash = 61 * hash + Objects.hashCode(this.prestador);
         return hash;
     }
 
@@ -103,8 +113,11 @@ public class Atendimento implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Atendimento other = (Atendimento) obj;
+        final AtendimentoP other = (AtendimentoP) obj;
         if (this.id != other.id) {
+            return false;
+        }
+        if (this.concluido != other.concluido) {
             return false;
         }
         if (!Objects.equals(this.horarioInicioAtendimento, other.horarioInicioAtendimento)) {
@@ -122,11 +135,9 @@ public class Atendimento implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
-        return "Atendimento{" + "id=" + id + ", horarioInicioAtendimento=" + horarioInicioAtendimento + ", horarioFimAtendimento=" + horarioFimAtendimento + ", dataAtendimento=" + dataAtendimento + '}';
+        return "Atendimento{" + "id=" + id + ", horarioInicioAtendimento=" + horarioInicioAtendimento + ", horarioFimAtendimento=" + horarioFimAtendimento + ", dataAtendimento=" + dataAtendimento + ", concluido=" + concluido + '}';
     }
-
 
 }

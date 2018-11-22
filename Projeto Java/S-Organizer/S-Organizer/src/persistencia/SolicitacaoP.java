@@ -26,7 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Solicitacao")
-public class Solicitacao implements Serializable {
+public class SolicitacaoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id()
@@ -45,11 +45,11 @@ public class Solicitacao implements Serializable {
     private Double multaTotal;
     
     @OneToOne
-    private Endereco endereco;
+    private EnderecoP endereco;
     @OneToOne
-    private EstadoSol estado;
+    private EstadoSolicitacaoP estado;
     @OneToMany
-    private List<Servico> servicos = new ArrayList();
+    private List<ServicoP> servicos = new ArrayList();
 
     public long getId() {
         return id;
@@ -99,27 +99,27 @@ public class Solicitacao implements Serializable {
         this.multaTotal = multaTotal;
     }
 
-    public Endereco getEndereco() {
+    public EnderecoP getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(EnderecoP endereco) {
         this.endereco = endereco;
     }
 
-    public EstadoSol getEstado() {
+    public EstadoSolicitacaoP getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoSol estado) {
+    public void setEstado(EstadoSolicitacaoP estado) {
         this.estado = estado;
     }
 
-    public List<Servico> getServicos() {
+    public List<ServicoP> getServicos() {
         return servicos;
     }
 
-    public void setServicos(List<Servico> servicos) {
+    public void setServicos(List<ServicoP> servicos) {
         this.servicos = servicos;
     }
 
@@ -149,7 +149,7 @@ public class Solicitacao implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Solicitacao other = (Solicitacao) obj;
+        final SolicitacaoP other = (SolicitacaoP) obj;
         if (this.id != other.id) {
             return false;
         }

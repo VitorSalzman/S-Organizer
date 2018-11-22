@@ -25,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Servico")
-public class Servico implements Serializable {
+public class ServicoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,9 +44,9 @@ public class Servico implements Serializable {
     private boolean estadoAtendido;
     
     @OneToOne
-    private CategoriaServico categoriaServico;
+    private CategoriaServicoP categoriaServico;
     @OneToMany
-    private List<Atendimento> atendimento = new ArrayList();
+    private List<AtendimentoP> atendimento = new ArrayList();
 
     public long getId() {
         return id;
@@ -96,19 +96,19 @@ public class Servico implements Serializable {
         this.estadoAtendido = estadoAtendido;
     }
 
-    public CategoriaServico getCategoriaServico() {
+    public CategoriaServicoP getCategoriaServico() {
         return categoriaServico;
     }
 
-    public void setCategoriaServico(CategoriaServico categoriaServico) {
+    public void setCategoriaServico(CategoriaServicoP categoriaServico) {
         this.categoriaServico = categoriaServico;
     }
 
-    public List<Atendimento> getAtendimento() {
+    public List<AtendimentoP> getAtendimento() {
         return atendimento;
     }
 
-    public void setAtendimento(List<Atendimento> atendimento) {
+    public void setAtendimento(List<AtendimentoP> atendimento) {
         this.atendimento = atendimento;
     }
 
@@ -137,7 +137,7 @@ public class Servico implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Servico other = (Servico) obj;
+        final ServicoP other = (ServicoP) obj;
         if (this.id != other.id) {
             return false;
         }

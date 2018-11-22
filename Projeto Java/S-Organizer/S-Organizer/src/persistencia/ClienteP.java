@@ -6,12 +6,15 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,19 +23,21 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="Logradouro")
-public class Logradouro implements Serializable {
+@Table(name="Cliente")
+public class ClienteP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    @Column(length = 20,name="nome")
-    private String nome;
-        
+     
+    @Column(length = 20,name = "cpf")
+    private String cpf;
+
     @OneToOne
-    private Bairro bairro;
+    private UsuarioP usuario;
+    @OneToMany
+    private List<SolicitacaoP> solicitacao = new ArrayList();
 
     public long getId() {
         return id;
@@ -42,29 +47,37 @@ public class Logradouro implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    
-    public Bairro getBairro() {
-        return bairro;
+    public UsuarioP getUsuario() {
+        return usuario;
     }
 
-    public void setBairro(Bairro bairro) {
-        this.bairro = bairro;
+    public void setUsuario(UsuarioP usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<SolicitacaoP> getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(List<SolicitacaoP> solicitacao) {
+        this.solicitacao = solicitacao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 61 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 61 * hash + Objects.hashCode(this.nome);
-        hash = 61 * hash + Objects.hashCode(this.bairro);
+        int hash = 7;
+        hash = 41 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 41 * hash + Objects.hashCode(this.cpf);
+        hash = 41 * hash + Objects.hashCode(this.usuario);
+        hash = 41 * hash + Objects.hashCode(this.solicitacao);
         return hash;
     }
 
@@ -79,14 +92,17 @@ public class Logradouro implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Logradouro other = (Logradouro) obj;
+        final ClienteP other = (ClienteP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.nome, other.nome)) {
+        if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
-        if (!Objects.equals(this.bairro, other.bairro)) {
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        if (!Objects.equals(this.solicitacao, other.solicitacao)) {
             return false;
         }
         return true;
@@ -94,7 +110,7 @@ public class Logradouro implements Serializable {
 
     @Override
     public String toString() {
-        return "Logradouro{" + "id=" + id + ", nome=" + nome + '}';
+        return "Cliente{" + "id=" + id + ", cpf=" + cpf + '}';
     }
 
 }

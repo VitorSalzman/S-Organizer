@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.CategoriaServico;
+import persistencia.CategoriaServicoP;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
@@ -31,7 +31,7 @@ public class CategoriaServicoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(CategoriaServico categoriaServico) {
+    public void create(CategoriaServicoP categoriaServico) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class CategoriaServicoJpaController implements Serializable {
         }
     }
 
-    public void edit(CategoriaServico categoriaServico) throws NonexistentEntityException, Exception {
+    public void edit(CategoriaServicoP categoriaServico) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class CategoriaServicoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            CategoriaServico categoriaServico;
+            CategoriaServicoP categoriaServico;
             try {
-                categoriaServico = em.getReference(CategoriaServico.class, id);
+                categoriaServico = em.getReference(CategoriaServicoP.class, id);
                 categoriaServico.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The categoriaServico with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class CategoriaServicoJpaController implements Serializable {
         }
     }
 
-    public List<CategoriaServico> findCategoriaServicoEntities() {
+    public List<CategoriaServicoP> findCategoriaServicoEntities() {
         return findCategoriaServicoEntities(true, -1, -1);
     }
 
-    public List<CategoriaServico> findCategoriaServicoEntities(int maxResults, int firstResult) {
+    public List<CategoriaServicoP> findCategoriaServicoEntities(int maxResults, int firstResult) {
         return findCategoriaServicoEntities(false, maxResults, firstResult);
     }
 
-    private List<CategoriaServico> findCategoriaServicoEntities(boolean all, int maxResults, int firstResult) {
+    private List<CategoriaServicoP> findCategoriaServicoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(CategoriaServico.class));
+            cq.select(cq.from(CategoriaServicoP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class CategoriaServicoJpaController implements Serializable {
         }
     }
 
-    public CategoriaServico findCategoriaServico(long id) {
+    public CategoriaServicoP findCategoriaServico(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(CategoriaServico.class, id);
+            return em.find(CategoriaServicoP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class CategoriaServicoJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<CategoriaServico> rt = cq.from(CategoriaServico.class);
+            Root<CategoriaServicoP> rt = cq.from(CategoriaServicoP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

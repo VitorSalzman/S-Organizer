@@ -6,7 +6,6 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,18 +19,16 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="CategoriaServico")
-public class CategoriaServico implements Serializable {
+@Table(name="Estado")
+public class EstadoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 50, name= "Tipo")
-    private String tipo;
-    @Column(name="duracao")
-    private Time duracao;
+    @Column(length = 15,name="estado")
+    private String estado;
 
     public long getId() {
         return id;
@@ -41,28 +38,19 @@ public class CategoriaServico implements Serializable {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Time getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Time duracao) {
-        this.duracao = duracao;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.tipo);
-        hash = 37 * hash + Objects.hashCode(this.duracao);
+        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
@@ -77,14 +65,11 @@ public class CategoriaServico implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final CategoriaServico other = (CategoriaServico) obj;
+        final EstadoP other = (EstadoP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        if (!Objects.equals(this.duracao, other.duracao)) {
+        if (!Objects.equals(this.estado, other.estado)) {
             return false;
         }
         return true;
@@ -92,7 +77,7 @@ public class CategoriaServico implements Serializable {
 
     @Override
     public String toString() {
-        return "CategoriaServico{" + "id=" + id + ", tipo=" + tipo + ", duracao=" + duracao + '}';
+        return "Estado{" + "id=" + id + ", estado=" + estado + '}';
     }
 
 }

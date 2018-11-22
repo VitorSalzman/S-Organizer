@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Bairro;
+import persistencia.BairroP;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
@@ -31,7 +31,7 @@ public class BairroJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Bairro bairro) {
+    public void create(BairroP bairro) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public void edit(Bairro bairro) throws NonexistentEntityException, Exception {
+    public void edit(BairroP bairro) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class BairroJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Bairro bairro;
+            BairroP bairro;
             try {
-                bairro = em.getReference(Bairro.class, id);
+                bairro = em.getReference(BairroP.class, id);
                 bairro.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The bairro with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public List<Bairro> findBairroEntities() {
+    public List<BairroP> findBairroEntities() {
         return findBairroEntities(true, -1, -1);
     }
 
-    public List<Bairro> findBairroEntities(int maxResults, int firstResult) {
+    public List<BairroP> findBairroEntities(int maxResults, int firstResult) {
         return findBairroEntities(false, maxResults, firstResult);
     }
 
-    private List<Bairro> findBairroEntities(boolean all, int maxResults, int firstResult) {
+    private List<BairroP> findBairroEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Bairro.class));
+            cq.select(cq.from(BairroP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class BairroJpaController implements Serializable {
         }
     }
 
-    public Bairro findBairro(long id) {
+    public BairroP findBairro(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Bairro.class, id);
+            return em.find(BairroP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class BairroJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Bairro> rt = cq.from(Bairro.class);
+            Root<BairroP> rt = cq.from(BairroP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

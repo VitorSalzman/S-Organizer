@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Prestador")
-public class Prestador implements Serializable {
+public class PrestadorP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -111,7 +111,7 @@ public class Prestador implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Prestador other = (Prestador) obj;
+        final PrestadorP other = (PrestadorP) obj;
         if (this.id != other.id) {
             return false;
         }

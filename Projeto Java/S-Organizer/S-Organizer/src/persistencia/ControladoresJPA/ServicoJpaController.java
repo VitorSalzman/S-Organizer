@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.Servico;
+import persistencia.ServicoP;
 
 /**
  *
@@ -31,7 +31,7 @@ public class ServicoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Servico servico) {
+    public void create(ServicoP servico) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public void edit(Servico servico) throws NonexistentEntityException, Exception {
+    public void edit(ServicoP servico) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class ServicoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Servico servico;
+            ServicoP servico;
             try {
-                servico = em.getReference(Servico.class, id);
+                servico = em.getReference(ServicoP.class, id);
                 servico.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The servico with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public List<Servico> findServicoEntities() {
+    public List<ServicoP> findServicoEntities() {
         return findServicoEntities(true, -1, -1);
     }
 
-    public List<Servico> findServicoEntities(int maxResults, int firstResult) {
+    public List<ServicoP> findServicoEntities(int maxResults, int firstResult) {
         return findServicoEntities(false, maxResults, firstResult);
     }
 
-    private List<Servico> findServicoEntities(boolean all, int maxResults, int firstResult) {
+    private List<ServicoP> findServicoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Servico.class));
+            cq.select(cq.from(ServicoP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public Servico findServico(long id) {
+    public ServicoP findServico(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Servico.class, id);
+            return em.find(ServicoP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class ServicoJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Servico> rt = cq.from(Servico.class);
+            Root<ServicoP> rt = cq.from(ServicoP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Empresa")
-public class Empresa implements Serializable {
+public class EmpresaP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,9 +34,9 @@ public class Empresa implements Serializable {
     private String cnpj;
 
     @OneToMany
-    private List<Solicitacao> solicitacaoes = new ArrayList(); 
+    private List<SolicitacaoP> solicitacaoes = new ArrayList(); //tipo da lista SOLICITACAO 
     @OneToMany
-    private List<Prestador> prestadores = new ArrayList();
+    private List<PrestadorP> prestadores = new ArrayList(); //tipo da lista PRESTADOR
 
     public long getId() {
         return id;
@@ -54,19 +54,19 @@ public class Empresa implements Serializable {
         this.cnpj = cnpj;
     }
 
-    public List<Solicitacao> getSolicitacaoes() {
+    public List<SolicitacaoP> getSolicitacaoes() {
         return solicitacaoes;
     }
 
-    public void setSolicitacaoes(List<Solicitacao> solicitacaoes) {
+    public void setSolicitacaoes(List<SolicitacaoP> solicitacaoes) {
         this.solicitacaoes = solicitacaoes;
     }
 
-    public List<Prestador> getPrestadores() {
+    public List<PrestadorP> getPrestadores() {
         return prestadores;
     }
 
-    public void setPrestadores(List<Prestador> prestadores) {
+    public void setPrestadores(List<PrestadorP> prestadores) {
         this.prestadores = prestadores;
     }
 
@@ -91,7 +91,7 @@ public class Empresa implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Empresa other = (Empresa) obj;
+        final EmpresaP other = (EmpresaP) obj;
         if (this.id != other.id) {
             return false;
         }

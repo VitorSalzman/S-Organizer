@@ -20,19 +20,21 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="Cidade")
-public class Cidade implements Serializable {
+@Table(name="Acesso")
+public class AcessoP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @Column(length = 255,name="cidade")
-    private String cidade;    
-
+    
+    @Column(length = 255,name="login")
+    private String login;
+    @Column(length = 255,name="senha")
+    private String senha;
+    
     @OneToOne
-    private Estado estado;
+    private UsuarioP usuario;
 
     public long getId() {
         return id;
@@ -42,28 +44,37 @@ public class Cidade implements Serializable {
         this.id = id;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getLogin() {
+        return login;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public UsuarioP getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioP usuario) {
+        this.usuario = usuario;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.cidade);
-        hash = 97 * hash + Objects.hashCode(this.estado);
+        int hash = 5;
+        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.login);
+        hash = 73 * hash + Objects.hashCode(this.senha);
+        hash = 73 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -78,14 +89,17 @@ public class Cidade implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
+        final AcessoP other = (AcessoP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.cidade, other.cidade)) {
+        if (!Objects.equals(this.login, other.login)) {
             return false;
         }
-        if (!Objects.equals(this.estado, other.estado)) {
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
         return true;
@@ -93,7 +107,9 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "Cidade{" + "id=" + id + ", cidade=" + cidade + '}';
+        return "Acesso{" + "id=" + id + ", login=" + login + ", senha=" + senha + ", usuario=" + usuario + '}';
     }
 
+    
+    
 }

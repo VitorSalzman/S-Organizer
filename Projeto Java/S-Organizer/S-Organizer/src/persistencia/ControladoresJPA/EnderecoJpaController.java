@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
-import persistencia.Endereco;
+import persistencia.EnderecoP;
 
 /**
  *
@@ -31,7 +31,7 @@ public class EnderecoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Endereco endereco) {
+    public void create(EnderecoP endereco) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class EnderecoJpaController implements Serializable {
         }
     }
 
-    public void edit(Endereco endereco) throws NonexistentEntityException, Exception {
+    public void edit(EnderecoP endereco) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class EnderecoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Endereco endereco;
+            EnderecoP endereco;
             try {
-                endereco = em.getReference(Endereco.class, id);
+                endereco = em.getReference(EnderecoP.class, id);
                 endereco.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The endereco with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class EnderecoJpaController implements Serializable {
         }
     }
 
-    public List<Endereco> findEnderecoEntities() {
+    public List<EnderecoP> findEnderecoEntities() {
         return findEnderecoEntities(true, -1, -1);
     }
 
-    public List<Endereco> findEnderecoEntities(int maxResults, int firstResult) {
+    public List<EnderecoP> findEnderecoEntities(int maxResults, int firstResult) {
         return findEnderecoEntities(false, maxResults, firstResult);
     }
 
-    private List<Endereco> findEnderecoEntities(boolean all, int maxResults, int firstResult) {
+    private List<EnderecoP> findEnderecoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Endereco.class));
+            cq.select(cq.from(EnderecoP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class EnderecoJpaController implements Serializable {
         }
     }
 
-    public Endereco findEndereco(long id) {
+    public EnderecoP findEndereco(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Endereco.class, id);
+            return em.find(EnderecoP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class EnderecoJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Endereco> rt = cq.from(Endereco.class);
+            Root<EnderecoP> rt = cq.from(EnderecoP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

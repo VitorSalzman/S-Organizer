@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,16 +20,19 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="Estado")
-public class Estado implements Serializable {
+@Table(name="Bairro")
+public class BairroP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 15,name="estado")
-    private String estado;
+    @Column(length = 255,name="bairro")
+    private String bairro;
+    
+    @OneToOne
+    private CidadeP cidade;
 
     public long getId() {
         return id;
@@ -38,19 +42,28 @@ public class Estado implements Serializable {
         this.id = id;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public CidadeP getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(CidadeP cidade) {
+        this.cidade = cidade;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.estado);
+        int hash = 5;
+        hash = 79 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.bairro);
+        hash = 79 * hash + Objects.hashCode(this.cidade);
         return hash;
     }
 
@@ -65,11 +78,14 @@ public class Estado implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Estado other = (Estado) obj;
+        final BairroP other = (BairroP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.estado, other.estado)) {
+        if (!Objects.equals(this.bairro, other.bairro)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
             return false;
         }
         return true;
@@ -77,7 +93,9 @@ public class Estado implements Serializable {
 
     @Override
     public String toString() {
-        return "Estado{" + "id=" + id + ", estado=" + estado + '}';
+        return "Bairro{" + "id=" + id + ", bairro=" + bairro + '}';
     }
+
+    
 
 }

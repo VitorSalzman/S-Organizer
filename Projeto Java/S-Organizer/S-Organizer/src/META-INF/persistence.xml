@@ -2,25 +2,25 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="S-Organizer2PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>persistencia.Acesso</class>
-    <class>persistencia.Agenda</class>
-    <class>persistencia.Atendimento</class>
-    <class>persistencia.Bairro</class>
     <class>persistencia.Categoria</class>
-    <class>persistencia.Cidade</class>
-    <class>persistencia.Empresa</class>
-    <class>persistencia.Cliente</class>
-    <class>persistencia.Endereco</class>
-    <class>persistencia.Estado</class>
     <class>persistencia.EstadoSolicitacao</class>
     <class>persistencia.HorarioTrabalho</class>
-    <class>persistencia.Logradouro</class>
-    <class>persistencia.Prestador</class>
-    <class>persistencia.Servico</class>
-    <class>persistencia.Solicitacao</class>
-    <class>persistencia.Usuario</class>
-    <class>persistencia.CategoriaServico</class>
-    <class>persistencia.EstadoSol</class>
+    <class>persistencia.EmpresaP</class>
+    <class>persistencia.AcessoP</class>
+    <class>persistencia.UsuarioP</class>
+    <class>persistencia.AgendaP</class>
+    <class>persistencia.AtendimentoP</class>
+    <class>persistencia.BairroP</class>
+    <class>persistencia.CategoriaServicoP</class>
+    <class>persistencia.CidadeP</class>
+    <class>persistencia.ClienteP</class>
+    <class>persistencia.EnderecoP</class>
+    <class>persistencia.EstadoP</class>
+    <class>persistencia.EstadoSolicitacaoP</class>
+    <class>persistencia.LogradouroP</class>
+    <class>persistencia.PrestadorP</class>
+    <class>persistencia.ServicoP</class>
+    <class>persistencia.SolicitacaoP</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/S-Organizer"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

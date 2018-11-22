@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Agenda;
+import persistencia.AgendaP;
 import persistencia.ControladoresJPA.exceptions.NonexistentEntityException;
 
 /**
@@ -31,7 +31,7 @@ public class AgendaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Agenda agenda) {
+    public void create(AgendaP agenda) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -45,7 +45,7 @@ public class AgendaJpaController implements Serializable {
         }
     }
 
-    public void edit(Agenda agenda) throws NonexistentEntityException, Exception {
+    public void edit(AgendaP agenda) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,9 +73,9 @@ public class AgendaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Agenda agenda;
+            AgendaP agenda;
             try {
-                agenda = em.getReference(Agenda.class, id);
+                agenda = em.getReference(AgendaP.class, id);
                 agenda.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The agenda with id " + id + " no longer exists.", enfe);
@@ -89,19 +89,19 @@ public class AgendaJpaController implements Serializable {
         }
     }
 
-    public List<Agenda> findAgendaEntities() {
+    public List<AgendaP> findAgendaEntities() {
         return findAgendaEntities(true, -1, -1);
     }
 
-    public List<Agenda> findAgendaEntities(int maxResults, int firstResult) {
+    public List<AgendaP> findAgendaEntities(int maxResults, int firstResult) {
         return findAgendaEntities(false, maxResults, firstResult);
     }
 
-    private List<Agenda> findAgendaEntities(boolean all, int maxResults, int firstResult) {
+    private List<AgendaP> findAgendaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Agenda.class));
+            cq.select(cq.from(AgendaP.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,10 +113,10 @@ public class AgendaJpaController implements Serializable {
         }
     }
 
-    public Agenda findAgenda(long id) {
+    public AgendaP findAgenda(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Agenda.class, id);
+            return em.find(AgendaP.class, id);
         } finally {
             em.close();
         }
@@ -126,7 +126,7 @@ public class AgendaJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Agenda> rt = cq.from(Agenda.class);
+            Root<AgendaP> rt = cq.from(AgendaP.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

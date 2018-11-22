@@ -20,21 +20,19 @@ import javax.persistence.Table;
  * @author luizg
  */
 @Entity
-@Table(name="Endereco")
-public class Endereco implements Serializable {
+@Table(name="Logradouro")
+public class LogradouroP implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 255,name="complemento")
-    private String complemento;
-    @Column(length = 20,name="cep")
-    private String cep;
-    
+    @Column(length = 20,name="nome")
+    private String nome;
+        
     @OneToOne
-    private Logradouro logradouro;
+    private BairroP bairro;
 
     public long getId() {
         return id;
@@ -44,37 +42,29 @@ public class Endereco implements Serializable {
         this.id = id;
     }
 
-    public String getComplemento() {
-        return complemento;
+    public String getNome() {
+        return nome;
     }
 
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCep() {
-        return cep;
+    
+    public BairroP getBairro() {
+        return bairro;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public Logradouro getLogradouro() {
-        return logradouro;
-    }
-
-    public void setLogradouro(Logradouro logradouro) {
-        this.logradouro = logradouro;
+    public void setBairro(BairroP bairro) {
+        this.bairro = bairro;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 53 * hash + Objects.hashCode(this.complemento);
-        hash = 53 * hash + Objects.hashCode(this.cep);
-        hash = 53 * hash + Objects.hashCode(this.logradouro);
+        int hash = 5;
+        hash = 61 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 61 * hash + Objects.hashCode(this.nome);
+        hash = 61 * hash + Objects.hashCode(this.bairro);
         return hash;
     }
 
@@ -89,17 +79,14 @@ public class Endereco implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Endereco other = (Endereco) obj;
+        final LogradouroP other = (LogradouroP) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.complemento, other.complemento)) {
+        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.cep, other.cep)) {
-            return false;
-        }
-        if (!Objects.equals(this.logradouro, other.logradouro)) {
+        if (!Objects.equals(this.bairro, other.bairro)) {
             return false;
         }
         return true;
@@ -107,7 +94,7 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", complemento=" + complemento + ", cep=" + cep + '}';
+        return "Logradouro{" + "id=" + id + ", nome=" + nome + '}';
     }
 
 }
