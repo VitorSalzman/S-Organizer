@@ -24,14 +24,14 @@ public class Logradouro implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(length = 20,name="nome")
-    private String nome;
+    @Column(length = 20,name="logradouro")
+    private String logradouro;
         
     @OneToOne
     private Bairro bairro;
     
-    public Logradouro(String nome, Bairro bairro) {
-        this.nome = nome;
+    public Logradouro(String logradouro, Bairro bairro) {
+        this.logradouro = logradouro;
         this.bairro = bairro;
     }
 
@@ -48,12 +48,12 @@ public class Logradouro implements Serializable {
         this.id = id;
     }
     
-    public String getNome() {
-        return nome;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public Bairro getBairro() {

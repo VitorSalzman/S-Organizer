@@ -31,11 +31,12 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
         this.disp_cli_fim=disp_cli_fim;
         this.servicos=servicos;
         solicitacao.setObservacao(observacao);
-        
+
         this.solicit=solicitacao;
     }
     
     public void geraProtocolo(){
+        //sobre o protocolo, acredito que se conseguirmos fazer um GenericGenerator n vamos conseguir gerar ele aq, só quando for persistir..
         this.protocolo=ProtocoloGenerator.INSTANCE.getNextProtocol();
         this.solicit.setProtocolo(protocolo);
     }
