@@ -42,7 +42,7 @@ public class Servico implements Serializable {
     private boolean estadoAtendido;
     
     @OneToOne
-    private Categoria categoria;
+    private String categoria;
     @OneToMany
     private List<Atendimento> atendimento = new ArrayList();
 
@@ -62,11 +62,11 @@ public class Servico implements Serializable {
         return descricao;
     }
     
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 

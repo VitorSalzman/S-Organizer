@@ -11,10 +11,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import modelo.Servico;
 import modelo.Atendimento;
+import modelo.Categoria;
 
 public class BuilderServico {
     private Servico servico;
-    private String categoria; //acredito que essa categoria agora é uma classe, logo esta dando conflito.
+    private Categoria categoria; //acredito que essa categoria agora é uma classe, logo esta dando conflito.
     private String descricao;
     private String valor;
     private String horarioMarcado;   ///Falta tratar o horario como String
@@ -23,7 +24,7 @@ public class BuilderServico {
             String valor, String horarioMarcado, Servico service){
             
             this.servico=service;
-            this.categoria=categoria;
+            this.categoria.setDescricao(categoria);
             this.valor=valor;
             this.horarioMarcado=horarioMarcado;
             this.descricao=descricao;
