@@ -12,11 +12,11 @@ import modelo.Solicitacao;
 
 public class DiretorSolicitacao {
    
-    public Solicitacao builder(String disp_cli_ini, String disp_cli_fim, String descricao,
+    public Solicitacao builder(String disp_cli_ini, String disp_cli_fim,
             String observacao, String dataSolicitacao, ArrayList<Servico> servicos) throws ParseException{
             Solicitacao solicitacao = new Solicitacao();
             
-            BuilderSolicitacao builder = new BuilderSolicitacao(disp_cli_ini, disp_cli_fim, descricao,
+            BuilderSolicitacao builder = new BuilderSolicitacao(disp_cli_ini, disp_cli_fim,
             observacao, dataSolicitacao,  servicos, solicitacao);
         
             builder.geraProtocolo();

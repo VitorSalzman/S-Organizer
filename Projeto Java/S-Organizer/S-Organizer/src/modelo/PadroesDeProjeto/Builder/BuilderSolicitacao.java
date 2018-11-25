@@ -23,7 +23,7 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private ArrayList<Servico> servicos;
     private Solicitacao solicit;
     
-    public BuilderSolicitacao(String disp_cli_ini, String disp_cli_fim, String descricao,
+    public BuilderSolicitacao(String disp_cli_ini, String disp_cli_fim,
             String observacao, String dataSolicitacao, ArrayList<Servico> servicos, Solicitacao solicitacao){
         
         this.dataSolicitacao=dataSolicitacao;

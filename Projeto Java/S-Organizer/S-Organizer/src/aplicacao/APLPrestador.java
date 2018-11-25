@@ -9,6 +9,6 @@ package aplicacao;
  *
  * @author vitorsalzman
  */
-public class Prestador { ///Aqui ficará as funções de Prestador(por exemplo, atender serviço
+public class APLPrestador { ///Aqui ficará as funções de APLPrestador(por exemplo, atender serviço
     
 }
