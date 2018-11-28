@@ -54,7 +54,7 @@ public class ServicoJPA implements GenericDAO {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = obj.getId();
+                long id = 0;//obj.getId();
                 if (find(id) == null) {
                     throw new NonexistentEntityException("The servico with id " + id + " no longer exists.");
                 }

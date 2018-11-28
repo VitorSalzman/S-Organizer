@@ -224,8 +224,8 @@ public class SolicitacaoTest {
         System.out.println("getDisp_cli_ini");
         Solicitacao instance = new Solicitacao();
         Calendar expResult = null;
-        Calendar result = instance.getDisp_cli_ini();
-        assertEquals(expResult, result);
+        //Calendar result = instance.getDisp_cli_ini();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -238,7 +238,7 @@ public class SolicitacaoTest {
         System.out.println("setDisp_cli_ini");
         Calendar disp_cli_ini = null;
         Solicitacao instance = new Solicitacao();
-        instance.setDisp_cli_ini(disp_cli_ini);
+        //instance.setDisp_cli_ini(disp_cli_ini);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -251,8 +251,8 @@ public class SolicitacaoTest {
         System.out.println("getDisp_cli_fim");
         Solicitacao instance = new Solicitacao();
         Calendar expResult = null;
-        Calendar result = instance.getDisp_cli_fim();
-        assertEquals(expResult, result);
+        //Calendar result = instance.getDisp_cli_fim();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -265,7 +265,7 @@ public class SolicitacaoTest {
         System.out.println("setDisp_cli_fim");
         Calendar disp_cli_fim = null;
         Solicitacao instance = new Solicitacao();
-        instance.setDisp_cli_fim(disp_cli_fim);
+        //instance.setDisp_cli_fim(disp_cli_fim);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

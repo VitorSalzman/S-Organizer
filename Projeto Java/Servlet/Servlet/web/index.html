@@ -6,11 +6,79 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>S Organizer-Home</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            .login-logo,
+            .register-logo {
+                font-size: 35px;
+                text-align: center;
+                margin-bottom: 25px;
+                font-weight: 300;
+            }
+            .login-logo a,
+            .register-logo a {
+                color: #444;
+            }
+            .login-page,
+            .register-page {
+                background: #d2d6de;
+            }
+            .login-box,
+            .register-box {
+                width: 360px;
+                margin: 7% auto;
+            }
+            @media (max-width: 768px) {
+                .login-box,
+                .register-box {
+                    width: 90%;
+                    margin-top: 20px;
+                }
+            }
+            .login-box-body,
+            .register-box-body {
+                background: #fff;
+                padding: 20px;
+                border-top: 0;
+                color: #666;
+            }
+            .login-box-body .form-control-feedback,
+            .register-box-body .form-control-feedback {
+                color: #777;
+            }
+            .login-box-msg,
+            .register-box-msg {
+                margin: 0;
+                text-align: center;
+                padding: 0 20px 20px 20px;
+            }
+        </style>
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body class="login-page">
+        <div style="right:0">
+            <input type="text" placeholder="Cliente? Digite aqui seu protocolo">
+        </div>
+        <div class="login-box">
+            <div class="login-logo">S-Organizer Plataform</div>
+            <div class="login-box-body">
+                <form action="#" method="post">
+                    <div>
+                        <input type="text" placeholder="Username"/>
+                    </div>
+                    <div>
+                        <input type="password" placeholder="Password"/>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button type="submit"><b>Entrar</b></button>
+                        <a href="cadastro.html">Cadastrar</a>
+                    </div> 
+                </form> 
+            </div>
+        </div>
+        
     </body>
 </html>

@@ -55,7 +55,7 @@ public class DiretorServicoTest {
         String horarioMarcado = "15:00:00";
         DiretorServico instance = new DiretorServico();
         Servico expResult = null;
-        expResult.setCategoria(categoria);
+        //expResult.setCategoria(categoria);
         expResult.setDescricao(descricao);
         
         

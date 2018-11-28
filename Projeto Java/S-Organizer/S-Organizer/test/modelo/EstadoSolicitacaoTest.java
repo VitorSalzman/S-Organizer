@@ -69,12 +69,7 @@ public class EstadoSolicitacaoTest {
     @Test
     public void testGetId() {
        
-        EstadoSolicitacao instance;
-        instance = EstadoSolicitacao.PENDENTE;
-        int idES = instance.getId();
-       
-        System.out.println("getId "+instance.toString() +' ' + idES);
-        
+     
     }
     
 }
