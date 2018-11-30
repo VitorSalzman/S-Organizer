@@ -35,6 +35,8 @@ public class Prestador extends Acesso implements Serializable {
     private int cargaHoraria;
     @Column(name="disponibilidade")
     private boolean disponibilidade;
+    @Column(name="agenda")
+    private Agenda agenda;
 
     //ta sem o disponibilidade no construtor
 
@@ -100,6 +102,14 @@ public class Prestador extends Acesso implements Serializable {
         this.cpf = cpf;
     }
 
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
     
     @Override
     public int hashCode() {
@@ -147,4 +157,5 @@ public class Prestador extends Acesso implements Serializable {
     public String toString() {
         return "Prestador{" + "disponibilidade=" + disponibilidade + ", horarioInicio=" + horarioInicio + ", horarioFim=" + horarioFim + ", cargaHoraria=" + cargaHoraria + ", cpf=" + cpf + '}';
     }
+    
 }
