@@ -62,7 +62,7 @@ link: https://docs.google.com/presentation/d/1lnD9DCZKzHUGAEqAh9hu0j_6JQ5pVI_bIU
 
 ### 5	MODELO CONCEITUAL<br>
 #### 5.1 NOTACAO ENTIDADE RELACIONAMENTO
-![Alt text](https://github.com/discipbd2/topicos-trabalho/blob/master/sample_MC.png?raw=true "Modelo Conceitual")
+![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/Conceitual.png "Modelo Conceitual")
     
      5.2 NOTACAO UML (Caso esteja fazendo a disciplina de Projeto)
 ## Data de Entrega: (23/08/2018) 
