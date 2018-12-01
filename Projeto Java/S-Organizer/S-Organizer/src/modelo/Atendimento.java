@@ -28,10 +28,10 @@ public class Atendimento implements Serializable {
 
     @Column(name="horarioInicio")
     @Temporal(javax.persistence.TemporalType.TIME)
-    private Time horarioInicioAtendimento;
+    private Date horarioInicioAtendimento;
     @Column(name="horarioFim")
     @Temporal(javax.persistence.TemporalType.TIME)
-    private Time horarioFimAtendimento;
+    private Date horarioFimAtendimento;
     @Column(name="dataAtendimento")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataAtendimento;
@@ -53,7 +53,7 @@ public class Atendimento implements Serializable {
         this.id = id;
     }
 
-    public Time getHorarioInicioAtendimento() {
+    public Date getHorarioInicioAtendimento() {
         return horarioInicioAtendimento;
     }
 
@@ -61,7 +61,7 @@ public class Atendimento implements Serializable {
         this.horarioInicioAtendimento = horarioInicioAtendimento;
     }
 
-    public Time getHorarioFimAtendimento() {
+    public Date getHorarioFimAtendimento() {
         return horarioFimAtendimento;
     }
 
@@ -96,7 +96,7 @@ public class Atendimento implements Serializable {
     @Override
     public String toString() {
         return "Atendimento{" + "id=" + id + ", horarioInicioAtendimento=" + 
-                "Prestador=" + prestador.getNome() +
+                "Prestador=" + prestador.getNome()+
                 horarioInicioAtendimento + ", horarioFimAtendimento=" + 
                 horarioFimAtendimento + ", dataAtendimento=" + dataAtendimento 
                 + "concluido "+ concluido + '}';

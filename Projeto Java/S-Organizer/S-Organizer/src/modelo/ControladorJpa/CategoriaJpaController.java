@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.ControladoresJPA;
+package modelo.ControladorJpa;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.ControladoresJPA.exceptions.NonexistentEntityException;
-import modelo.Prestador;
+import modelo.Categoria;
+import modelo.ControladorJpa.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author luizg
  */
-public class PrestadorJpaController implements Serializable {
+public class CategoriaJpaController implements Serializable {
 
-    public PrestadorJpaController(EntityManagerFactory emf) {
+    public CategoriaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class PrestadorJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Prestador prestador) {
+    public void create(Categoria categoria) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(prestador);
+            em.persist(categoria);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public void edit(Prestador prestador) throws NonexistentEntityException, Exception {
+    public void edit(Categoria categoria) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            prestador = em.merge(prestador);
+            categoria = em.merge(categoria);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = prestador.getId();
-                if (findPrestador(id) == null) {
-                    throw new NonexistentEntityException("The prestador with id " + id + " no longer exists.");
+                long id = categoria.getId();
+                if (findCategoria(id) == null) {
+                    throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class PrestadorJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Prestador prestador;
+            Categoria categoria;
             try {
-                prestador = em.getReference(Prestador.class, id);
-                prestador.getId();
+                categoria = em.getReference(Categoria.class, id);
+                categoria.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The prestador with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.", enfe);
             }
-            em.remove(prestador);
+            em.remove(categoria);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public List<Prestador> findPrestadorEntities() {
-        return findPrestadorEntities(true, -1, -1);
+    public List<Categoria> findCategoriaEntities() {
+        return findCategoriaEntities(true, -1, -1);
     }
 
-    public List<Prestador> findPrestadorEntities(int maxResults, int firstResult) {
-        return findPrestadorEntities(false, maxResults, firstResult);
+    public List<Categoria> findCategoriaEntities(int maxResults, int firstResult) {
+        return findCategoriaEntities(false, maxResults, firstResult);
     }
 
-    private List<Prestador> findPrestadorEntities(boolean all, int maxResults, int firstResult) {
+    private List<Categoria> findCategoriaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Prestador.class));
+            cq.select(cq.from(Categoria.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class PrestadorJpaController implements Serializable {
         }
     }
 
-    public Prestador findPrestador(long id) {
+    public Categoria findCategoria(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Prestador.class, id);
+            return em.find(Categoria.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getPrestadorCount() {
+    public int getCategoriaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Prestador> rt = cq.from(Prestador.class);
+            Root<Categoria> rt = cq.from(Categoria.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

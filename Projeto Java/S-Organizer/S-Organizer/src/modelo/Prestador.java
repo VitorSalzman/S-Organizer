@@ -6,41 +6,51 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 
 @Entity
-@Table(name="Prestador")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public class Prestador extends Acesso implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id_Prestador")
     private long id;
     
     @Column(length = 20,name="cpf")
     private String cpf;
     @Column(name="horarioInicio")
-    private Time horarioInicio;
-    @Column(name="horarioInicio")
-    private Time horarioFim;
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date horarioInicio;
     @Column(name="horarioFim")
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date horarioFim;
+    @Column(name="cargaHoraria")
     private int cargaHoraria;
     @Column(name="disponibilidade")
     private boolean disponibilidade;
-    @Column(name="agenda")
+    
+    @OneToOne
     private Agenda agenda;
 
     //ta sem o disponibilidade no construtor
 
-    public Prestador(Time horarioInicio, Time horarioFim, int cargaHoraria, String cpf, String usuario, String senha, String nome, String telefone) {
+    public Prestador(Date horarioInicio, Date horarioFim, int cargaHoraria, String cpf, String usuario, String senha, String nome, String telefone) {
         super(usuario, senha, nome, telefone);
         this.disponibilidade = true; // sempre true quando cria
         this.horarioInicio = horarioInicio;
@@ -70,19 +80,19 @@ public class Prestador extends Acesso implements Serializable {
         this.disponibilidade = disponibilidade;
     }
 
-    public Time getHorarioInicio() {
+    public Date getHorarioInicio() {
         return horarioInicio;
     }
 
-    public void setHorarioInicio(Time horarioInicio) {
+    public void setHorarioInicio(Date horarioInicio) {
         this.horarioInicio = horarioInicio;
     }
 
-    public Time getHorarioFim() {
+    public Date getHorarioFim() {
         return horarioFim;
     }
 
-    public void setHorarioFim(Time horarioFim) {
+    public void setHorarioFim(Date horarioFim) {
         this.horarioFim = horarioFim;
     }
 

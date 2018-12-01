@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.ControladoresJPA;
+package modelo.ControladorJpa;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.Acesso;
-import modelo.ControladoresJPA.exceptions.NonexistentEntityException;
+import modelo.Cidade;
+import modelo.ControladorJpa.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author luizg
  */
-public class AcessoJpaController implements Serializable {
+public class CidadeJpaController implements Serializable {
 
-    public AcessoJpaController(EntityManagerFactory emf) {
+    public CidadeJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class AcessoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Acesso acesso) {
+    public void create(Cidade cidade) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(acesso);
+            em.persist(cidade);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public void edit(Acesso acesso) throws NonexistentEntityException, Exception {
+    public void edit(Cidade cidade) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            acesso = em.merge(acesso);
+            cidade = em.merge(cidade);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = acesso.getId();
-                if (findAcesso(id) == null) {
-                    throw new NonexistentEntityException("The acesso with id " + id + " no longer exists.");
+                long id = cidade.getId();
+                if (findCidade(id) == null) {
+                    throw new NonexistentEntityException("The cidade with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class AcessoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Acesso acesso;
+            Cidade cidade;
             try {
-                acesso = em.getReference(Acesso.class, id);
-                acesso.getId();
+                cidade = em.getReference(Cidade.class, id);
+                cidade.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The acesso with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The cidade with id " + id + " no longer exists.", enfe);
             }
-            em.remove(acesso);
+            em.remove(cidade);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public List<Acesso> findAcessoEntities() {
-        return findAcessoEntities(true, -1, -1);
+    public List<Cidade> findCidadeEntities() {
+        return findCidadeEntities(true, -1, -1);
     }
 
-    public List<Acesso> findAcessoEntities(int maxResults, int firstResult) {
-        return findAcessoEntities(false, maxResults, firstResult);
+    public List<Cidade> findCidadeEntities(int maxResults, int firstResult) {
+        return findCidadeEntities(false, maxResults, firstResult);
     }
 
-    private List<Acesso> findAcessoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Cidade> findCidadeEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Acesso.class));
+            cq.select(cq.from(Cidade.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class AcessoJpaController implements Serializable {
         }
     }
 
-    public Acesso findAcesso(long id) {
+    public Cidade findCidade(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Acesso.class, id);
+            return em.find(Cidade.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getAcessoCount() {
+    public int getCidadeCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Acesso> rt = cq.from(Acesso.class);
+            Root<Cidade> rt = cq.from(Cidade.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

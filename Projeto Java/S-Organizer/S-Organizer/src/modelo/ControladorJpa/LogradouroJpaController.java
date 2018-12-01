@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.ControladoresJPA;
+package modelo.ControladorJpa;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import modelo.ControladoresJPA.exceptions.NonexistentEntityException;
-import modelo.Servico;
+import modelo.ControladorJpa.exceptions.NonexistentEntityException;
+import modelo.Logradouro;
 
 /**
  *
  * @author luizg
  */
-public class ServicoJpaController implements Serializable {
+public class LogradouroJpaController implements Serializable {
 
-    public ServicoJpaController(EntityManagerFactory emf) {
+    public LogradouroJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class ServicoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Servico servico) {
+    public void create(Logradouro logradouro) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(servico);
+            em.persist(logradouro);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public void edit(Servico servico) throws NonexistentEntityException, Exception {
+    public void edit(Logradouro logradouro) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            servico = em.merge(servico);
+            logradouro = em.merge(logradouro);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                long id = servico.getId();
-                if (findServico(id) == null) {
-                    throw new NonexistentEntityException("The servico with id " + id + " no longer exists.");
+                long id = logradouro.getId();
+                if (findLogradouro(id) == null) {
+                    throw new NonexistentEntityException("The logradouro with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class ServicoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Servico servico;
+            Logradouro logradouro;
             try {
-                servico = em.getReference(Servico.class, id);
-                servico.getId();
+                logradouro = em.getReference(Logradouro.class, id);
+                logradouro.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The servico with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The logradouro with id " + id + " no longer exists.", enfe);
             }
-            em.remove(servico);
+            em.remove(logradouro);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public List<Servico> findServicoEntities() {
-        return findServicoEntities(true, -1, -1);
+    public List<Logradouro> findLogradouroEntities() {
+        return findLogradouroEntities(true, -1, -1);
     }
 
-    public List<Servico> findServicoEntities(int maxResults, int firstResult) {
-        return findServicoEntities(false, maxResults, firstResult);
+    public List<Logradouro> findLogradouroEntities(int maxResults, int firstResult) {
+        return findLogradouroEntities(false, maxResults, firstResult);
     }
 
-    private List<Servico> findServicoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Logradouro> findLogradouroEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Servico.class));
+            cq.select(cq.from(Logradouro.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class ServicoJpaController implements Serializable {
         }
     }
 
-    public Servico findServico(long id) {
+    public Logradouro findLogradouro(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Servico.class, id);
+            return em.find(Logradouro.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getServicoCount() {
+    public int getLogradouroCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Servico> rt = cq.from(Servico.class);
+            Root<Logradouro> rt = cq.from(Logradouro.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

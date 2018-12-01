@@ -6,11 +6,11 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,10 +47,10 @@ public class Agenda implements Serializable {
     private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");// espero que esses campos não sejam persistidos <<
     @Column(name = "horaInicio")
     @Temporal(javax.persistence.TemporalType.TIME)
-    private Time horaInicioExpediente;
+    private Date horaInicioExpediente;
     @Column(name = "horaFim")
     @Temporal(javax.persistence.TemporalType.TIME)
-    private Time horaFimExpediente;
+    private Date horaFimExpediente;
     @Column(name = "data")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
@@ -58,9 +58,9 @@ public class Agenda implements Serializable {
     @OneToMany
     private List<Solicitacao> solicitacaoDoDia = new ArrayList();
     @OneToOne
-    private Prestador prestador;
-    @OneToOne
     private Empresa empresa;
+    @OneToOne
+    private Prestador prestador;
         
     
     public Agenda(Prestador prestador) {
@@ -106,19 +106,19 @@ public class Agenda implements Serializable {
         this.data = data;
     }
 
-    public Time getHoraInicioExpediente() {
+    public Date getHoraInicioExpediente() {
         return horaInicioExpediente;
     }
 
-    public void setHoraInicioExpediente(Time horaInicioExpediente) {
+    public void setHoraInicioExpediente(Date horaInicioExpediente) {
         this.horaInicioExpediente = horaInicioExpediente;
     }
 
-    public Time getHoraFimExpediente() {
+    public Date getHoraFimExpediente() {
         return horaFimExpediente;
     }
 
-    public void setHoraFimExpediente(Time horaFimExpediente) {
+    public void setHoraFimExpediente(Date horaFimExpediente) {
         this.horaFimExpediente = horaFimExpediente;
     }
 
@@ -180,6 +180,68 @@ public class Agenda implements Serializable {
     /*public int calculaInicioExpediente() {
     
     }*/
+
+    public void add(Agenda agenda) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 13 * hash + Objects.hashCode(this.sdfData);
+        hash = 13 * hash + Objects.hashCode(this.sdfHora);
+        hash = 13 * hash + Objects.hashCode(this.horaInicioExpediente);
+        hash = 13 * hash + Objects.hashCode(this.horaFimExpediente);
+        hash = 13 * hash + Objects.hashCode(this.data);
+        hash = 13 * hash + Objects.hashCode(this.solicitacaoDoDia);
+        hash = 13 * hash + Objects.hashCode(this.prestador);
+        hash = 13 * hash + Objects.hashCode(this.empresa);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Agenda other = (Agenda) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.sdfData, other.sdfData)) {
+            return false;
+        }
+        if (!Objects.equals(this.sdfHora, other.sdfHora)) {
+            return false;
+        }
+        if (!Objects.equals(this.horaInicioExpediente, other.horaInicioExpediente)) {
+            return false;
+        }
+        if (!Objects.equals(this.horaFimExpediente, other.horaFimExpediente)) {
+            return false;
+        }
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        if (!Objects.equals(this.solicitacaoDoDia, other.solicitacaoDoDia)) {
+            return false;
+        }
+        if (!Objects.equals(this.prestador, other.prestador)) {
+            return false;
+        }
+        if (!Objects.equals(this.empresa, other.empresa)) {
+            return false;
+        }
+        return true;
+    }
+    
 }
 
 //

@@ -11,14 +11,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Acesso")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public abstract class Acesso extends Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id_Acesso")
     private long id;
     
     @Column(length = 255,name="login")
@@ -70,7 +75,9 @@ public abstract class Acesso extends Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Acesso{" + "id=" + id + ", login=" + login + ", senha=" + senha + '}';
+        return super.toString()+ "Acesso{" + "id=" + id + ", login=" + login + ", senha=" + senha + '}';
     }
+
+    
     
 }

@@ -6,7 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -33,7 +33,7 @@ public class Servico implements Serializable {
     private String descricao;
     @Column(name="horarioMarcado")
     @Temporal(javax.persistence.TemporalType.TIME)
-    private Time horarioMarcado;
+    private Date horarioMarcado;
     @Column(name="valor")
     private double valor;
     @Column(name="multa")
@@ -82,11 +82,11 @@ public class Servico implements Serializable {
         return valor;
     }
 
-    public Time getHorarioMarcado() {
+    public Date getHorarioMarcado() {
         return horarioMarcado;
     }
 
-    public void setHorarioMarcado(Time horarioMarcado) {
+    public void setHorarioMarcado(Date horarioMarcado) {
         this.horarioMarcado = horarioMarcado;
     }
 

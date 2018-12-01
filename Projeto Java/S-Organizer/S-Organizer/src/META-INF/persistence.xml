@@ -2,25 +2,21 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="S-Organizer2PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>persistencia.Categoria</class>
-    <class>persistencia.EstadoSolicitacao</class>
-    <class>persistencia.HorarioTrabalho</class>
-    <class>persistencia.EmpresaP</class>
-    <class>persistencia.AcessoP</class>
-    <class>persistencia.UsuarioP</class>
-    <class>persistencia.AgendaP</class>
-    <class>persistencia.AtendimentoP</class>
-    <class>persistencia.BairroP</class>
-    <class>persistencia.CategoriaServicoP</class>
-    <class>persistencia.CidadeP</class>
-    <class>persistencia.ClienteP</class>
-    <class>persistencia.EnderecoP</class>
-    <class>persistencia.EstadoP</class>
-    <class>persistencia.EstadoSolicitacaoP</class>
-    <class>persistencia.LogradouroP</class>
-    <class>persistencia.PrestadorP</class>
-    <class>persistencia.ServicoP</class>
-    <class>persistencia.SolicitacaoP</class>
+    <class>modelo.Acesso</class>
+    <class>modelo.Agenda</class>
+    <class>modelo.Atendimento</class>
+    <class>modelo.Bairro</class>
+    <class>modelo.Categoria</class>
+    <class>modelo.Cidade</class>
+    <class>modelo.Cliente</class>
+    <class>modelo.Empresa</class>
+    <class>modelo.Endereco</class>
+    <class>modelo.Estado</class>
+    <class>modelo.Logradouro</class>
+    <class>modelo.Prestador</class>
+    <class>modelo.Servico</class>
+    <class>modelo.Solicitacao</class>
+    <class>modelo.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/S-Organizer"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

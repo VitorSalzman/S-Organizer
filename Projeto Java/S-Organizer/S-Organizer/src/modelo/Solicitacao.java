@@ -45,10 +45,11 @@ public class Solicitacao implements Serializable {
     @Column(name="multaTotal")
     private Double multaTotal;
     
+    
+    private EstadoSolicitacao estado;
+    
     @OneToOne
     private Endereco endereco;
-    @OneToOne
-    private EstadoSolicitacao estado;
     @OneToMany
     private List<Servico> servicos = new ArrayList();
 
@@ -150,5 +151,6 @@ public class Solicitacao implements Serializable {
         }
         return multaTotal;
     }
+    
     
 }

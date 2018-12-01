@@ -1,4 +1,4 @@
-package modelo.ControladoresJPA.exceptions;
+package modelo.ControladorJpa.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;
