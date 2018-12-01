@@ -1,35 +1,55 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Cadastrar-se em S-Organizer</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Cadastrar-se em S-Organizer</title>
+        
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="materialize-v0.98.1/css/materialize.min.css"  media="screen"/>
     </head>
     <body>
-        <div>
-            <form action="index.html" method="post">
-                <p style="color: #c0c0c0">Informações Empresariais</p>
-                <hr>
-                <label>Nome</label>
-                <input type="text" name="nomeEmpresa"/>
-                <label>CNPJ</label>
-                <input type="text" name="cnpj"/>
-                <label>Telefone</label>
-                <input type="text" name="telEmpresa">
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo" style="font-family: Pacifico; font-size: 2em; font-weight: 700;">S-Organizer
+              </a>
+            </div>
+          </nav>
+          <div class="container">
+            <div class="col s12 m8 offset-m1 x17 offset-x11">
+              <h4 style="color: #c0c0c0">Informações Empresariais</h4>
+              <hr>
+              <form class="col s12" action="RecebeDadosEmpresa" method="post">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="nome" placeholder="Nome da Empresa" type="text" name="nomeEmpresa"/>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="cnpj" placeholder="CNPJ" type="text" name="cnpjEmpresa"/>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="telefoneEmpresa" placeholder="Telefone" type="text" name="telEmpresa"/>
+                    </div>
+                </div><!--/row-->
 
-                <p style="color: #c0c0c0">Login</p>
+                <h4 style="color: #c0c0c0">Informações de Login</h4>
                 <hr>
-                <label>Usuário</label>
-                <input type="text" name="userEmp">
-                <label>Senha</label>
-                <input type="password" name="senhaEmp">
-                <button style="text-align: center" type="submit">Cadastrar</button>
+                <div class="input-field col s6">
+                    <input id="user" placeholder="Usuário" type="text" name="userEmp"/>
+                </div>
+                <div class="input-field col s6">
+                    <input id="password" placeholder="Senha" type="password" name="passwordEmp"/>
+                </div>
+                 
+                <a style="background-color:#9F9F9F" class="waves-effect waves-light btn" href="index.html">Cancelar</a>
+                <button class="btn waves-effect waves-light" type="submit">Cadastrar</button>
             </form>
-        </div>
+            </div>
+          </div>
+                
     </body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="materialize-v0.98.1/js/materialize.min.js"></script>
 </html>
