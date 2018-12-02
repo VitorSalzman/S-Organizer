@@ -4,8 +4,6 @@ CREATE TABLE agenda
     data date,
     horafim time without time zone,
     horainicio time without time zone,
-    sdfdata bytea,
-    sdfhora bytea,
     empresa_idusuario bigint,
     prestador_idusuario bigint,
 	
@@ -121,6 +119,18 @@ CREATE TABLE empresa_prestador
         REFERENCES prestador (idusuario) MATCH SIMPLE
 )
 
+CREATE TABLE empresa_solicitacao
+(
+    empresa_id_usuario bigint NOT NULL,
+    solicitacaoes_protocolo bigint NOT NULL,
+	
+    CONSTRAINT empresa_solicitacao_pkey PRIMARY KEY (empresa_id_usuario, solicitacaoes_protocolo),
+    CONSTRAINT fk_empresa_solicitacao_empresa_id_usuario FOREIGN KEY (empresa_id_usuario)
+        REFERENCES empresa (id_usuario) MATCH SIMPLE,
+    CONSTRAINT fk_empresa_solicitacao_solicitacaoes_protocolo FOREIGN KEY (solicitacaoes_protocolo)
+        REFERENCES solicitacao (protocolo) MATCH SIMPLE,
+)
+
 CREATE TABLE endereco
 (
     id bigint NOT NULL,
@@ -164,11 +174,21 @@ CREATE TABLE prestador
     nome character varying(50),
     senha character varying(255),
     telefone character varying(20),
-    agenda_id bigint,
 	
     CONSTRAINT prestador_pkey PRIMARY KEY (idusuario),
-    CONSTRAINT fk_prestador_agenda_id FOREIGN KEY (agenda_id)
-        REFERENCES agenda (id) MATCH SIMPLE
+    
+)
+
+
+CREATE TABLE prestador_agenda
+(
+    prestador_id_usuario bigint NOT NULL,
+    agenda_id bigint NOT NULL,
+    CONSTRAINT prestador_agenda_pkey PRIMARY KEY (prestador_id_usuario, agenda_id),
+    CONSTRAINT fk_prestador_agenda_agenda_id FOREIGN KEY (agenda_id)
+        REFERENCES agenda (id) MATCH SIMPLE,
+    CONSTRAINT fk_prestador_agenda_prestador_id_usuario FOREIGN KEY (prestador_id_usuario)
+        REFERENCES prestador (id_usuario) MATCH SIMPLE,
 )
 
 CREATE TABLE servico
