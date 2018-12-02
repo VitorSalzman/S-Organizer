@@ -15,12 +15,11 @@
 		    </div>
 		    <div class="nav-content">
 		      <ul class="tabs tabs-transparent">
-		      	<li class="tab"><a class="active" href="#home">Início</a>
+		      	<li class="tab"><a class="active" href="#home">Início</a></li>
 		        <li class="tab"><a href="#profile">Perfil</a></li>
 		        <li class="tab"><a href="#prestEmpresa">Prestadores</a></li>
-		        <li class="tab"><a href="#cadPrestadores">Cadastrar Prestadores</a></li>
 		        <li class="tab"><a href="#solics">Solicitações</a></li>
-		        <li class="tab"><a href="#test5">Serviços</a></li>
+		        <li class="tab"><a href="#servicos">Serviços</a></li>
 		      </ul>
 		    </div>
 		  </nav>
@@ -29,17 +28,40 @@
 			  <div id="home"> <div class="collection">
 			  	<a href="cadSolic.html" class="collection-item">Registrar Solicitação</a>
 			  	<a href="buildAgenda.html" class="collection-item">Montar Agenda</a>
-			  	<a href="cadServico.html" class="collection-item">Cadastrar Serviços</a>
+			  	<a href="#cadServico" class="collection-item">Cadastrar Serviços</a>
+			  	<a href="cadPrestadores.html" class="collection-item">Cadastrar Prestadores </a>
 			  </div></div>
 			  <div id="profile" class="col s12">#ExibeInformaçõesEmpresa</div>
 			  <div id="prestEmpresa" class="col s12">#CardsPrestadores</div>
-			  <div id="cadPrestadores" class="col s12">#FormCadastrarPrest</div>
 			  <div id="solics" class="col s12">#CardsSolicitações</div>
 			  <div id="servicos">#CardsServiços</div>
 			  </div>
 		  </div>
-		        
+		  
+		  <div id="cadServico" class="modal">
+		  	<div class="modal-content">
+		  		<h3>Cadastrar Nova Categoria</h3>
+		  		<form action="CadastraServico" method="post">
+		  		<div class="row">
+		  		<div class="input-field col s4">
+                    <input id="descCategory" placeholder="Nome da nova Categoria" type="text" name="descCategory" />
+                </div>
+                <div class="input-field col s4">
+                     <input id="duracaoCategory" placeholder="Duração estimada da categoria" type="text" name="duracaoCategory" />
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="CadastraServico" class="modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+                </div>
+            </div>
+		  </div>
+		   
 	</body>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="materialize-v0.98.1/js/materialize.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    	    $('.modal').modal();
+    	  });
+    </script>
 </html>
