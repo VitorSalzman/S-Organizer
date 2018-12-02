@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import modelo.PadroesDeProjeto.singleton.ProtocoloGenerator;
+import modelo.padroesdeprojeto.singleton.ProtocoloGenerator;
 import modelo.Servico;
 import modelo.Solicitacao;
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.PadroesDeProjeto.fabrica; //WHY
+package modelo.padroesdeprojeto.fabrica; //WHY
 
 import java.sql.Time;
 import java.util.Map;

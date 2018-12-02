@@ -1,4 +1,4 @@
-package modelo.PadroesDeProjeto.singleton;
+package modelo.padroesdeprojeto.singleton;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
