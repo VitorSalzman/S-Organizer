@@ -6,7 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,8 +42,8 @@ public class Agenda implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    private SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");
-    private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");// espero que esses campos não sejam persistidos <<
+//    private SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");
+//    private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");// espero que esses campos não sejam persistidos <<
     @Column(name = "horaInicio")
     @Temporal(javax.persistence.TemporalType.TIME)
     private Date horaInicioExpediente;
@@ -81,22 +80,6 @@ public class Agenda implements Serializable {
     }
     
     
-
-    public SimpleDateFormat getSdfData() {
-        return sdfData;
-    }
-
-    public void setSdfData(SimpleDateFormat sdfData) {
-        this.sdfData = sdfData;
-    }
-
-    public SimpleDateFormat getSdfHora() {
-        return sdfHora;
-    }
-
-    public void setSdfHora(SimpleDateFormat sdfHora) {
-        this.sdfHora = sdfHora;
-    }
 
     public Date getData() {
         return data;
@@ -189,8 +172,6 @@ public class Agenda implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 13 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 13 * hash + Objects.hashCode(this.sdfData);
-        hash = 13 * hash + Objects.hashCode(this.sdfHora);
         hash = 13 * hash + Objects.hashCode(this.horaInicioExpediente);
         hash = 13 * hash + Objects.hashCode(this.horaFimExpediente);
         hash = 13 * hash + Objects.hashCode(this.data);
@@ -213,12 +194,6 @@ public class Agenda implements Serializable {
         }
         final Agenda other = (Agenda) obj;
         if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.sdfData, other.sdfData)) {
-            return false;
-        }
-        if (!Objects.equals(this.sdfHora, other.sdfHora)) {
             return false;
         }
         if (!Objects.equals(this.horaInicioExpediente, other.horaInicioExpediente)) {
