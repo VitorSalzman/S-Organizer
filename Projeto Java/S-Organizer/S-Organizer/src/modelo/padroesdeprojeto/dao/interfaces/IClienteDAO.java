@@ -9,7 +9,11 @@ import modelo.Cliente;
 import modelo.Solicitacao;
 
 /**
- *
+ * Interface dos métodos mais específicos fora do CRUD
+ * Seguindo o padrão DAO.
+ * 
+ * Novos métodos de DAO para classe <nome>DAO devem ser
+ * escritos aqui primeiro.
  * @author helle
  */
 public interface IClienteDAO extends IGenericDAO<Cliente> {

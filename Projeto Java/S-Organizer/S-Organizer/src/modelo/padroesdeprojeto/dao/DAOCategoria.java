@@ -13,7 +13,8 @@ import javax.persistence.criteria.Root;
 import modelo.Categoria;
 
 /**
- *
+ * DAO<nomedaclasse> herda os métodos implementados 
+ * e implementa os métodos particulares a ele
  * @author helle
  */
 public class DAOCategoria extends AGenericDAOImpl<Categoria> implements ICategoriaDAO{

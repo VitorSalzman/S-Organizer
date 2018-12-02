@@ -14,7 +14,8 @@ import modelo.Cliente;
 import modelo.Solicitacao;
 
 /**
- *
+ * DAO<nomedaclasse> herda os métodos implementados 
+ * e implementa os métodos particulares a ele
  * @author helle
  */
 public class DAOCliente extends AGenericDAOImpl<Cliente> implements IClienteDAO{

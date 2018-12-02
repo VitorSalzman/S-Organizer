@@ -10,7 +10,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
+ * Essa classe "terceiriza" a conexão com o banco de dados,
+ * assim o código é reaproveitado.
+ * 
+ * A ferramenta de persistência JPA utiliza um FabricManager
+ * e EntityManagerFactory para criar/estabelecer a conexão
+ * com o banco.
  * @author helle
  */
 public class FabricManager {
@@ -27,12 +32,9 @@ public class FabricManager {
     }
     
     public void closeFabricManager() {
-        
         if(emf.isOpen()) {
-        
             try{
-                emf.close();
-                
+                emf.close();   
             } catch (Exception e) {
                 e.printStackTrace();
             }    

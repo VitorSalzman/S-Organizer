@@ -13,7 +13,8 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 /**
- *
+ * Classe abstrata de implementacao da interface IGenericDAO
+ * Seguindo o padrão DAO
  * @author helle
  */
 public abstract class AGenericDAOImpl<T> implements IGenericDAO<T> {

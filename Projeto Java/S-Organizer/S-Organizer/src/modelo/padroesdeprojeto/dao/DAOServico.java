@@ -14,7 +14,8 @@ import javax.persistence.criteria.Root;
 import modelo.Servico;
 
 /**
- *
+ * DAO<nomedaclasse> herda os métodos implementados 
+ * e implementa os métodos particulares a ele
  * @author helle
  */
 public class DAOServico extends AGenericDAOImpl<Servico> implements IServicoDAO {

@@ -8,7 +8,8 @@ package modelo.padroesdeprojeto.dao.interfaces;
 import java.util.List;
 
 /**
- *
+ * DAO Generico AKA pai de todos os DAO
+ * Seguindo o padrão DAO.
  * @author helle
  */
 public interface IGenericDAO<T> {

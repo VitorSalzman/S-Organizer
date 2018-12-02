@@ -17,11 +17,14 @@ import modelo.padroesdeprojeto.dao.DAOSolicitacao;
  * @author vitorsalzman
  */
 public class APLCliente {
+    /**
+     * Busca a Solicitacao referente ao protocolo passado como parametro
+     * @param protocolo
+     * @return
+     */
     public Solicitacao consultaSolicitacao(long protocolo){
         DAOSolicitacao daoSolicitacao = new DAOSolicitacao();
         
-        return daoSolicitacao.obterPorId(protocolo);
-        
-        //Aqui é uma busca no bd por uma solicitacao com um protocolo igual ao passado por parametro; 
+        return daoSolicitacao.obterPorId(protocolo); 
     }
 }

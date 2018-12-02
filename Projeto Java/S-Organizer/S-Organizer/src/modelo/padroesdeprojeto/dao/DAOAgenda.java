@@ -13,7 +13,8 @@ import javax.persistence.criteria.Root;
 import modelo.Agenda;
 
 /**
- *
+ * DAO<nomedaclasse> herda os métodos implementados 
+ * e implementa os métodos particulares a ele
  * @author helle
  */
 public class DAOAgenda extends AGenericDAOImpl<Agenda> implements IAgendaDAO{
