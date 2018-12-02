@@ -55,9 +55,9 @@ Cliente não possui cadastro no sistema, mas pode consultar o serviço contratad
 ### 4	RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
 neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
 
-link: https://docs.google.com/presentation/d/1lnD9DCZKzHUGAEqAh9hu0j_6JQ5pVI_bIUdgK8rFdh8/edit?usp=sharing<br>
+link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681vIs<br>
 
-![Alt text](https://github.com/discipbd2/topicos-trabalho/blob/master/balsamiq.png?raw=true "Title")
+![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_Modelos/Prototipo_telas.png "Protótipo de Telas")
 
 
 ### 5	MODELO CONCEITUAL<br>
@@ -113,7 +113,8 @@ link: https://docs.google.com/presentation/d/1lnD9DCZKzHUGAEqAh9hu0j_6JQ5pVI_bIU
 #### 8.2 INCLUSÃO DO SCRIPT PARA CRIAÇÃO DE TABELAS E INSERÇÃO DOS DADOS (ARQUIVO ÚNICO COM):
         a) inclusão das instruções para criação das tabelas e estruturas de amazenamento do BD
         b) inclusão das instruções de inserção dos dados nas referidas tabelas
-            Dados randomicos criados através do Pentaho(Link para download https://www.hitachivantara.com/en-us/products/big-data-integration-analytics/pentaho-trial-download.html);
+            Dados randomicos criados através do Pentaho(Link para download:
+            <a href=https://www.hitachivantara.com/en-us/products/big-data-integration-analytics/pentaho-trial-download.html"> </a>);
             
         c) inclusão das instruções para execução de outros procedimentos necessários
             Somente instruções descritas acima foram utilizadas.
