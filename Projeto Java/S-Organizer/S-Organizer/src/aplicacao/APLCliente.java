@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import modelo.ControladorJpa.SolicitacaoJpaController;
 
 import modelo.Solicitacao;
+import modelo.padroesdeprojeto.dao.DAOSolicitacao;
 
 /**
  *
@@ -18,14 +19,9 @@ import modelo.Solicitacao;
  */
 public class APLCliente {
     public Solicitacao consultaSolicitacao(long protocolo){
-        //public Solicitacao consultaSolicitacao(double protocolo){   ///Na verdade é esse
+        DAOSolicitacao daoSolicitacao = new DAOSolicitacao();
         
-        EntityManagerFactory objFactory = Persistence.createEntityManagerFactory("S-Organizer2PU");
-        EntityManager manager = objFactory.createEntityManager();
-        
-        SolicitacaoJpaController solicitacaoJpaController = new SolicitacaoJpaController(objFactory);
-        
-        return solicitacaoJpaController.findSolicitacao(protocolo);
+        return daoSolicitacao.obterPorId(protocolo);
         
         //Aqui é uma busca no bd por uma solicitacao com um protocolo igual ao passado por parametro; 
     }

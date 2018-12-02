@@ -9,12 +9,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import modelo.PadroesDeProjeto.fabrica.FabricaUsuarios;
+import modelo.padroesdeprojeto.fabrica.FabricaUsuarios;
 import modelo.Prestador;
 import modelo.Servico;
 import modelo.Solicitacao;
 import modelo.padroesdeprojeto.builder.DiretorServico;
 import modelo.padroesdeprojeto.builder.DiretorSolicitacao;
+import modelo.padroesdeprojeto.dao.DAOPrestador;
+import modelo.padroesdeprojeto.dao.DAOSolicitacao;
 
 /**
  *
@@ -42,8 +44,9 @@ public class APLEmpresa { ///Aqui ficará as funções de APLEmpresa(por exemplo
         
         solicit = director.builder(disp_cli_ini, disp_cli_fim, observacao, dataSolicitacao, listServices);
         
-        // falta persistir no bd
-        
+        // falta persistir no bd ///ISSO?
+        DAOSolicitacao daoSolicitacao = new DAOSolicitacao();
+        daoSolicitacao.inserir(solicit);
     }
     
     public Prestador criaPrestador(String user, String horIni, String ch, String cpf, String usuario, 
@@ -61,6 +64,9 @@ public class APLEmpresa { ///Aqui ficará as funções de APLEmpresa(por exemplo
         Prestador p = new Prestador();
         
         p=(Prestador) faber.retornaUsuario(user);
+        
+        DAOPrestador daoPrestador = new DAOPrestador();
+        daoPrestador.inserir(p);
         
         return p;
     }
