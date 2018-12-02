@@ -97,22 +97,30 @@ link: https://docs.google.com/presentation/d/1lnD9DCZKzHUGAEqAh9hu0j_6JQ5pVI_bIU
     CPF: campo que armazena o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
 
 ### 6	MODELO LÓGICO<br>
+![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/Logico.png "Modelo Lógico")
 ### 7	MODELO FÍSICO<br>
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
 #### 8.1 DETALHAMENTO DAS INFORMAÇÕES
         Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
         Referenciar todas as fontes referentes a:
         a) obtenção dos dados
+            Os dados foram obtidos através da geração de dados no Pentaho e alterado através da plataforma Java;
         b) obtenção de códigos reutilizados
+            Foi utilizado a API JPA Controller;
         c) fontes de estudo para desenvolvimento do projeto
+            Utilizamos slides vistos em sala de aula, além de vídeos sobre o JPA.
         
 #### 8.2 INCLUSÃO DO SCRIPT PARA CRIAÇÃO DE TABELAS E INSERÇÃO DOS DADOS (ARQUIVO ÚNICO COM):
         a) inclusão das instruções para criação das tabelas e estruturas de amazenamento do BD
         b) inclusão das instruções de inserção dos dados nas referidas tabelas
+            Dados randomicos criados através do Pentaho(Link para download https://www.hitachivantara.com/en-us/products/big-data-integration-analytics/pentaho-trial-download.html);
+            
         c) inclusão das instruções para execução de outros procedimentos necessários
+            Somente instruções descritas acima foram utilizadas.
 
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
 #### 9.1	GERACAO DE DADOS (MÍNIMO DE 10 REGISTROS PARA CADA TABELA NO BANCO DE DADOS)<br>
+
 
 ## Data de Entrega: (06/09/2018)
 
