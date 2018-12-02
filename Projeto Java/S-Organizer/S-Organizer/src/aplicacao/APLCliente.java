@@ -8,7 +8,6 @@ package aplicacao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import modelo.ControladorJpa.SolicitacaoJpaController;
 
 import modelo.Solicitacao;
 import modelo.padroesdeprojeto.dao.DAOSolicitacao;
