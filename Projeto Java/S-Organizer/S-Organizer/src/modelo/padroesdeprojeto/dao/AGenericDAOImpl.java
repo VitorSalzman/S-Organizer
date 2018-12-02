@@ -5,9 +5,11 @@
  */
 package modelo.padroesdeprojeto.dao;
 
+import modelo.padroesdeprojeto.dao.interfaces.IGenericDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 /**
@@ -103,24 +105,17 @@ public abstract class AGenericDAOImpl<T> implements IGenericDAO<T> {
         
         EntityManager em = fm.getFabricManager();
         
-        List<T> listObj = new ArrayList<>();
-        
         try {
-            /* monta o resultado de retorno */
-            listObj = em.createQuery("from " + classe.getName()).setFirstResult(offset).setMaxResults(limit).getResultList();
-                    
-        } catch (Exception e) {
-            e.printStackTrace();
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(classe));
+            Query q = em.createQuery(cq);
+            q.setMaxResults(limit);
+            q.setFirstResult(offset);
+
+            return q.getResultList();
+        } finally {
+            em.close();
         }
-
-        finally {
-            if (em != null) {
-                em.close();
-            }
-        }    
-        
-        return listObj;
-
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package modelo.padroesdeprojeto.dao;
 
+import modelo.padroesdeprojeto.dao.interfaces.ISolicitacaoDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;

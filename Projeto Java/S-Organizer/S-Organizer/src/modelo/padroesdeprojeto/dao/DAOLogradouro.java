@@ -5,6 +5,7 @@
  */
 package modelo.padroesdeprojeto.dao;
 
+import modelo.padroesdeprojeto.dao.interfaces.ILogradouroDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,11 +16,11 @@ import modelo.Logradouro;
  *
  * @author helle
  */
-public class LogradouroDAO extends AGenericDAOImpl<Logradouro> implements ILogradouroDAO {
+public class DAOLogradouro extends AGenericDAOImpl<Logradouro> implements ILogradouroDAO {
 
     private FabricManager fm = new FabricManager();
     
-    public LogradouroDAO(Class<Logradouro> classe) {
+    public DAOLogradouro(Class<Logradouro> classe) {
         super(classe);
     }
 

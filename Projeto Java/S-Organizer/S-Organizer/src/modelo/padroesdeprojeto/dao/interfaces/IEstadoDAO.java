@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.padroesdeprojeto.dao;
+package modelo.padroesdeprojeto.dao.interfaces;
 
-import modelo.Solicitacao;
+import modelo.Estado;
 
 /**
  *
  * @author helle
  */
-public interface ISolicitacaoDAO extends IGenericDAO<Solicitacao> {
+public interface IEstadoDAO extends IGenericDAO<Estado> {
     
     public int getClassCount();
     

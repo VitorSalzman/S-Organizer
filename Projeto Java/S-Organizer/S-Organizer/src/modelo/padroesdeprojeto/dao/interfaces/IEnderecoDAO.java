@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.padroesdeprojeto.dao;
+package modelo.padroesdeprojeto.dao.interfaces;
 
-import modelo.Logradouro;
+import modelo.Endereco;
 
 /**
  *
  * @author helle
  */
-public interface ILogradouroDAO extends IGenericDAO<Logradouro> {
+public interface IEnderecoDAO extends IGenericDAO<Endereco> {
     
     public int getClassCount();
 }
