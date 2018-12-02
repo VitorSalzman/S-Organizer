@@ -44,12 +44,7 @@ public class AgendaJpaController implements Serializable {
             }
             em.persist(agenda);
             if (prestador != null) {
-                Agenda oldAgendaOfPrestador = prestador.getAgenda();
-                if (oldAgendaOfPrestador != null) {
-                    oldAgendaOfPrestador.setPrestador(null);
-                    oldAgendaOfPrestador = em.merge(oldAgendaOfPrestador);
-                }
-                prestador.setAgenda(agenda);
+                prestador.getAgenda().add(agenda);
                 prestador = em.merge(prestador);
             }
             em.getTransaction().commit();
@@ -74,16 +69,11 @@ public class AgendaJpaController implements Serializable {
             }
             agenda = em.merge(agenda);
             if (prestadorOld != null && !prestadorOld.equals(prestadorNew)) {
-                prestadorOld.setAgenda(null);
+                prestadorOld.getAgenda().remove(agenda);
                 prestadorOld = em.merge(prestadorOld);
             }
             if (prestadorNew != null && !prestadorNew.equals(prestadorOld)) {
-                Agenda oldAgendaOfPrestador = prestadorNew.getAgenda();
-                if (oldAgendaOfPrestador != null) {
-                    oldAgendaOfPrestador.setPrestador(null);
-                    oldAgendaOfPrestador = em.merge(oldAgendaOfPrestador);
-                }
-                prestadorNew.setAgenda(agenda);
+                prestadorNew.getAgenda().add(agenda);
                 prestadorNew = em.merge(prestadorNew);
             }
             em.getTransaction().commit();
@@ -117,7 +107,7 @@ public class AgendaJpaController implements Serializable {
             }
             Prestador prestador = agenda.getPrestador();
             if (prestador != null) {
-                prestador.setAgenda(null);
+                prestador.getAgenda().remove(agenda);
                 prestador = em.merge(prestador);
             }
             em.remove(agenda);

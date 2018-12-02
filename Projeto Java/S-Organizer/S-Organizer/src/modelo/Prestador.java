@@ -6,7 +6,9 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -45,8 +48,9 @@ public class Prestador extends Acesso implements Serializable {
     @Column(name="disponibilidade")
     private boolean disponibilidade;
     
-    @OneToOne
-    private Agenda agenda;
+    
+    @OneToMany
+    private List<Agenda> agenda = new ArrayList();
 
     //ta sem o disponibilidade no construtor
 
@@ -112,14 +116,15 @@ public class Prestador extends Acesso implements Serializable {
         this.cpf = cpf;
     }
 
-    public Agenda getAgenda() {
+    public List<Agenda> getAgenda() {
         return agenda;
     }
 
-    public void setAgenda(Agenda agenda) {
+    public void setAgenda(List<Agenda> agenda) {
         this.agenda = agenda;
     }
 
+    
     
     @Override
     public int hashCode() {

@@ -6,14 +6,15 @@
 package modelo.ControladorJpa;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import modelo.Agenda;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import modelo.ControladorJpa.exceptions.NonexistentEntityException;
 import modelo.Prestador;
 
@@ -33,24 +34,28 @@ public class PrestadorJpaController implements Serializable {
     }
 
     public void create(Prestador prestador) {
+        if (prestador.getAgenda() == null) {
+            prestador.setAgenda(new ArrayList<Agenda>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Agenda agenda = prestador.getAgenda();
-            if (agenda != null) {
-                agenda = em.getReference(agenda.getClass(), agenda.getId());
-                prestador.setAgenda(agenda);
+            List<Agenda> attachedAgenda = new ArrayList<Agenda>();
+            for (Agenda agendaAgendaToAttach : prestador.getAgenda()) {
+                agendaAgendaToAttach = em.getReference(agendaAgendaToAttach.getClass(), agendaAgendaToAttach.getId());
+                attachedAgenda.add(agendaAgendaToAttach);
             }
+            prestador.setAgenda(attachedAgenda);
             em.persist(prestador);
-            if (agenda != null) {
-                Prestador oldPrestadorOfAgenda = agenda.getPrestador();
-                if (oldPrestadorOfAgenda != null) {
-                    oldPrestadorOfAgenda.setAgenda(null);
-                    oldPrestadorOfAgenda = em.merge(oldPrestadorOfAgenda);
+            for (Agenda agendaAgenda : prestador.getAgenda()) {
+                Prestador oldPrestadorOfAgendaAgenda = agendaAgenda.getPrestador();
+                agendaAgenda.setPrestador(prestador);
+                agendaAgenda = em.merge(agendaAgenda);
+                if (oldPrestadorOfAgendaAgenda != null) {
+                    oldPrestadorOfAgendaAgenda.getAgenda().remove(agendaAgenda);
+                    oldPrestadorOfAgendaAgenda = em.merge(oldPrestadorOfAgendaAgenda);
                 }
-                agenda.setPrestador(prestador);
-                agenda = em.merge(agenda);
             }
             em.getTransaction().commit();
         } finally {
@@ -66,25 +71,32 @@ public class PrestadorJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Prestador persistentPrestador = em.find(Prestador.class, prestador.getId());
-            Agenda agendaOld = persistentPrestador.getAgenda();
-            Agenda agendaNew = prestador.getAgenda();
-            if (agendaNew != null) {
-                agendaNew = em.getReference(agendaNew.getClass(), agendaNew.getId());
-                prestador.setAgenda(agendaNew);
+            List<Agenda> agendaOld = persistentPrestador.getAgenda();
+            List<Agenda> agendaNew = prestador.getAgenda();
+            List<Agenda> attachedAgendaNew = new ArrayList<Agenda>();
+            for (Agenda agendaNewAgendaToAttach : agendaNew) {
+                agendaNewAgendaToAttach = em.getReference(agendaNewAgendaToAttach.getClass(), agendaNewAgendaToAttach.getId());
+                attachedAgendaNew.add(agendaNewAgendaToAttach);
             }
+            agendaNew = attachedAgendaNew;
+            prestador.setAgenda(agendaNew);
             prestador = em.merge(prestador);
-            if (agendaOld != null && !agendaOld.equals(agendaNew)) {
-                agendaOld.setPrestador(null);
-                agendaOld = em.merge(agendaOld);
-            }
-            if (agendaNew != null && !agendaNew.equals(agendaOld)) {
-                Prestador oldPrestadorOfAgenda = agendaNew.getPrestador();
-                if (oldPrestadorOfAgenda != null) {
-                    oldPrestadorOfAgenda.setAgenda(null);
-                    oldPrestadorOfAgenda = em.merge(oldPrestadorOfAgenda);
+            for (Agenda agendaOldAgenda : agendaOld) {
+                if (!agendaNew.contains(agendaOldAgenda)) {
+                    agendaOldAgenda.setPrestador(null);
+                    agendaOldAgenda = em.merge(agendaOldAgenda);
                 }
-                agendaNew.setPrestador(prestador);
-                agendaNew = em.merge(agendaNew);
+            }
+            for (Agenda agendaNewAgenda : agendaNew) {
+                if (!agendaOld.contains(agendaNewAgenda)) {
+                    Prestador oldPrestadorOfAgendaNewAgenda = agendaNewAgenda.getPrestador();
+                    agendaNewAgenda.setPrestador(prestador);
+                    agendaNewAgenda = em.merge(agendaNewAgenda);
+                    if (oldPrestadorOfAgendaNewAgenda != null && !oldPrestadorOfAgendaNewAgenda.equals(prestador)) {
+                        oldPrestadorOfAgendaNewAgenda.getAgenda().remove(agendaNewAgenda);
+                        oldPrestadorOfAgendaNewAgenda = em.merge(oldPrestadorOfAgendaNewAgenda);
+                    }
+                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -115,10 +127,10 @@ public class PrestadorJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The prestador with id " + id + " no longer exists.", enfe);
             }
-            Agenda agenda = prestador.getAgenda();
-            if (agenda != null) {
-                agenda.setPrestador(null);
-                agenda = em.merge(agenda);
+            List<Agenda> agenda = prestador.getAgenda();
+            for (Agenda agendaAgenda : agenda) {
+                agendaAgenda.setPrestador(null);
+                agendaAgenda = em.merge(agendaAgenda);
             }
             em.remove(prestador);
             em.getTransaction().commit();
