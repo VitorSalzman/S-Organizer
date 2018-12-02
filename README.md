@@ -72,10 +72,23 @@ link: https://docs.google.com/presentation/d/1lnD9DCZKzHUGAEqAh9hu0j_6JQ5pVI_bIU
     [atributo]: [descrição da decisão]
     
     
-    a) Tabela Acesso: Em nosso projeto optamos por uma tabela auxiliar para definir quais tipos de usuário teriam acesso a particularidades do sistema, pois a tabela "Usuário" não foi o suficiente. 
-   
-    b) Campo CPF em "Prestador" e "Cliente": Na estrutura de usuários de nosso sistema, nota-se que há CLIENTE, PRESTADOR, EMPRESA, cada um destes com suas particularidades. CLIENTE e PRESTADOR possuem CPF, porém, EMPRESA não. Para resolver a situação e não impactar na normalização, tivemos 2 opções: Criar uma tabela PESSOA com o campo CPF ou Criar o campo CPF em CLIENTE e PRESTADOR e, ao inserir o campo em PRESTADOR, haverá uma busca em  CLIENTE pelo campo(Caso o dado já exista, os dados deste serão aproveitados no novo registro, evitando inconsistencia de dados). Optamos pela segunda escolha, pois se enquadra melhor ao nosso sistema.
+    a) Mapeamento Herança - Para o nosso projeto, optamos pelo modelo de mapeamento de herança como
+    uma tabela para cada classe filha.
 
+   
+    b) Campo CPF em "Prestador" e "Cliente": Na estrutura de usuários de nosso sistema, 
+    nota-se que há CLIENTE, PRESTADOR, EMPRESA, cada um destes com suas particularidades. 
+    CLIENTE e PRESTADOR possuem CPF, porém, EMPRESA não. Para resolver a situação e não impactar
+    na normalização, tivemos 2 opções: Criar uma tabela PESSOA com o campo CPF ou Criar o campo
+    CPF em CLIENTE e PRESTADOR e, ao inserir o campo em PRESTADOR, haverá uma busca em  CLIENTE 
+    pelo campo(Caso o dado já exista, os dados deste serão aproveitados no novo registro, 
+    evitando inconsistencia de dados). Optamos pela segunda escolha, pois se enquadra melhor
+    ao nosso sistema.
+
+    c) Ligações 1/N - Em nosso projeto, optamos por criar entidades de relacionamento entre 
+    tabelas, para assim garantir a normalização.
+    
+    
 #### 5.4 DESCRIÇÃO DOS DADOS 
     [objeto]: [descrição do objeto]
     
