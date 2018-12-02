@@ -8,7 +8,8 @@ package aplicacao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import modelo.ControladoresJPA.SolicitacaoJpaController;
+import modelo.ControladorJpa.SolicitacaoJpaController;
+
 import modelo.Solicitacao;
 
 /**
