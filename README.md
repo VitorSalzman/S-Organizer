@@ -99,7 +99,7 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
 ### 6	MODELO LÓGICO<br>
 ![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/Logico.png "Modelo Lógico")
 ### 7	MODELO FÍSICO<br>
-        <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/Modelo%20F%C3%ADsico.sql">Modelo Físico</a>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/Modelo%20F%C3%ADsico.sql">Modelo Físico</a>
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
 #### 8.1 DETALHAMENTO DAS INFORMAÇÕES
         Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
@@ -113,8 +113,9 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
         
 #### 8.2 INCLUSÃO DO SCRIPT PARA CRIAÇÃO DE TABELAS E INSERÇÃO DOS DADOS (ARQUIVO ÚNICO COM):
         a) inclusão das instruções para criação das tabelas e estruturas de amazenamento do BD
-        b) inclusão das instruções de inserção dos dados nas referidas tabelas
-            Dados randomicos criados através do Pentaho( <a href=https://www.hitachivantara.com/en-us/products/big-data-integration-analytics/pentaho-trial-download.html"> Link para download</a>);
+        b) inclusão das instruções de inserção dos dados nas referidas tabelas.
+            Dados randomicos criados através do Pentaho.
+   <a href=https://www.hitachivantara.com/en-us/products/big-data-integration-analytics/pentaho-trial-download.html"> Link para download</a>;
             
         c) inclusão das instruções para execução de outros procedimentos necessários
             Somente instruções descritas acima foram utilizadas.
