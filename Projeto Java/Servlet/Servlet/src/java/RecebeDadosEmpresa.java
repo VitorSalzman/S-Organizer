@@ -1,10 +1,14 @@
 
+import com.sun.corba.se.impl.ior.NewObjectKeyTemplateBase;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Empresa;
+import modelo.padroesdeprojeto.dao.DAOAcesso;
+import modelo.padroesdeprojeto.dao.DAOEmpresa;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,27 +25,23 @@ public class RecebeDadosEmpresa extends HttpServlet{
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RecebeDados</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servidor Recebeu:<br></h1>"); 
-            out.println("<h1>Modelo do carro: " + request.getParameter("model") + "</h1>");
-            out.println("<h1>Placa: " + request.getParameter("placa") + "</h1>");
-            out.println("<h1>Renavam: " + request.getParameter("renavam") + "</h1>");
-            out.println("<h1>Ano: " + request.getParameter("ano") + "</h1>");
-            out.println("<h1>Kilometragem: " + request.getParameter("kms") + "</h1>");
-            out.println("<h1>Acessorios: " + request.getParameter("acessorios") + "</h1>");
-            out.println("<h1>Valor: " + request.getParameter("valor") + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+        out.close();
+        
+        Empresa emp = new Empresa();
+        //DAOEmpresa demp = new DAOEmpresa();
+        
+        emp.setCnpj(request.getParameter("cnpjEmpresa"));
+        emp.setTelefone(request.getParameter("telEmpresa"));
+        emp.setLogin(request.getParameter("userEmp"));
+        emp.setNome(request.getParameter("nomeEmpresa"));
+        try{
+            emp.setSenha(request.getParameter("passwordEmp"));
+        } catch(Exception e) {
+            out.println(e.getMessage());
         }
+        //demp.inserir(emp);
+        
+        response.sendRedirect("index.html");
     }
 
     @Override
@@ -50,7 +50,7 @@ public class RecebeDadosEmpresa extends HttpServlet{
         processRequest(request, response);
     }
 
- 
+// 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

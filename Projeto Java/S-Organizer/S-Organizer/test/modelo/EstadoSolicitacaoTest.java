@@ -5,6 +5,9 @@
  */
 package modelo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.padroesdeprojeto.dao.DAOEmpresa;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,11 +46,7 @@ public class EstadoSolicitacaoTest {
     @Test
     public void testValues() {
         
-        EstadoSolicitacao[] expResult = null;
-        EstadoSolicitacao[] result = EstadoSolicitacao.values();
-        for(int i =0; i<result.length; i++){
-            System.out.println("values " + result[i]);
-        }
+        
        
     }
 
@@ -57,10 +56,20 @@ public class EstadoSolicitacaoTest {
     @Test
     public void testValueOf() {
         
-        String name = "PENDENTE";
-        EstadoSolicitacao expResult = null;
-        EstadoSolicitacao result = EstadoSolicitacao.valueOf(name);
-        System.out.println("valueOf " + result);
+        Empresa emp = new Empresa();
+        DAOEmpresa demp = new DAOEmpresa();
+        
+
+        emp.setCnpj("12345600");
+        emp.setLogin("meuteste");
+        emp.setNome("Maaarc");
+        try {
+            emp.setSenha("123");
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        emp.setTelefone("9999999999");
+        demp.inserir(emp);
     }
 
     /**
