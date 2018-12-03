@@ -62,7 +62,7 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
 
 ### 5	MODELO CONCEITUAL<br>
 #### 5.1 NOTACAO ENTIDADE RELACIONAMENTO
-![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/Conceitual.png "Modelo Conceitual")
+![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/"diagrama conceitual".png "Modelo Conceitual")
     
      5.2 NOTACAO UML (Caso esteja fazendo a disciplina de Projeto)
 ## Data de Entrega: (23/08/2018) 
@@ -214,7 +214,7 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
     
     
 ### 6	MODELO LÓGICO<br>
-![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/Logico.png "Modelo Lógico")
+![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/"diagrama logico".png "Modelo Lógico")
 ### 7	MODELO FÍSICO<br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/Modelo%20F%C3%ADsico.sql">Modelo Físico</a>
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
