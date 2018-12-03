@@ -23,7 +23,7 @@
               <hr>
               <form class="col s12" action="RecebeDadosCadSolic" method="post">
                 <div class="row">
-                    <div class="input-field col s4">
+                    <div class="input-field col s4" >
                         <input id="nomeCliente" placeholder="Nome" type="text" name="nomeCliente"/>
                     </div>
                     <div class="input-field col s5">
@@ -164,6 +164,16 @@
                         </div>\
                         <a id="addServico" class="btn-floating btn-large waves-effect waves-light red tooltipped" data-tooltip="Adicionar Serviço" data-\position="right"><i class="material-icons">add</i></a>';
                 $('#dinamicCadServic').append(div);
+            });
+
+            $("#selectServicos").on('change', function(e){
+              if($(this).val() == "Other"){
+                $('#newCategory1').show();
+                alert("aaaaa");
+              }else{
+                $('#newCategory1').hide();
+              }
+              return false;
             });
         });
     </script>

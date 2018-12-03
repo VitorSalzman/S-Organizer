@@ -21,13 +21,16 @@
             <div class="col s12 m8 offset-m1 x17 offset-x11">
                 <div class="input-field col s12">
                 	<!-- Preencher By json maybe-->
-                    <select>
+                	<form action="ControlePrestador" method="get">
+                    <select name="prestador">
                       <option value="" disabled selected>Selecione o Prestador</option>
                       <option value="1">Prestador 1</option>
                       <option value="2">Prestador 2</option>
                       <option value="3">Prestador 3</option>
                     </select>
                     <label>Agenda do Prestador:</label>
+                    <button type="submit">Escolher</button>
+                </form>
                 </div>
                 <h4 class="light text-lighten-3"><b>Agenda</b></h4>
 			  	<div class="row">
