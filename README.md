@@ -90,12 +90,129 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
     
     
 #### 5.4 DESCRIÇÃO DOS DADOS 
-    [objeto]: [descrição do objeto]
+    <b>Tabela AGENDA</b>: Tabela que armazena as informações referentes às atividades do prestador para um dia específico: <br> 
+    <li>ID: Campo que armazena o código identificador da agenda; </li>        
+    <li>DATA: Campo que armazena a data da agenda do prestador; </li>          
+    <li>HORAFIM: Campo que armazena o horário limite de dados da agenda;  </li>        
+    <li>HORAINICIO: Campo que armazena o horário inicial de dados da agenda; </li>           
+    <li>EMPRESA_ID_USUARIO: Campo que armazena o código identificador da empresa referente ao prestador cadastrado na agenda; </li>
+    <li>PRESTADOR_ID_USUARIO: Campo que armazena o código identificador do prestador cadastrado na agenda. </li>                 
+    <br>
+    <b>Tabela AGENDA_SOLICITACAO</b>: Tabela que armazena as ligações entre agenda e suas solicitações:<br>
+    <li>AGENDA_ID: Campo que armazena o código identificador da agenda;</li>
+    <li>solicitacaododia_protocolo: Campo que armazena o código identificador da solicitação vinculada à agenda. <\li>
+    <br>
+    <b>Tabela ATENDIMENTO</b>: Tabela que armazena os registros dos atendimentos realizados e não realizados: <br>
+    <li>ID: Campo que armazena o código identificador do atendimento; </li>
+    <li>CONCLUIDO: Campo booleano que armazena o registro do atendimento referente à completude do atendimento; </li>
+    <li>DATAATENDIMENTO: Campo que armazena a data do atendimento; </li>
+    <li>HORARIOFIM: Campo que armazena o horário final do atendimento; </li>
+    <li>HORARIOINICIO: Campo que armazena o horário inicial do atendimento; </li>
+    <li>PRESTADOR_ID_USUARIO: Campo que armazena o código identificador do prestador vinculado ao atendimento. </li>
+    <br>
+    <b>Tabela BAIRRO</b>: Tabela que armazena os bairros cadastrados no sistema: <br>
+    <li>ID: Campo que armazena o código identificador do bairro; </li>
+    <li>BAIRRO: Campo que armazena o nome do bairro cadastrado no sistema; </li>
+    <li>CIDADE_ID: Campo que armazena o código identificador da cidade vinculada ao bairro em questão. </li>
+    <br>
+    <b>Tabela CATEGORIASERVICO</b>: Tabela que armazena as categorias dos servicos cadastrados: <br>
+    <li>ID: Campo que armazena o código identificador da categoria do serviço; </li>
+    <li>TIPO: Campo que armazena a descrição da categoria em si; </li>
+    <li>DURACAO: Campo que armazena o tempo estimado de um serviço com essa categoria. </li>
+    <br>
+    <b>Tabela CIDADE</b>: Tabela que armazena as cidades cadastradas no sistema: <br>
+    <li>ID: Campo que armazena o código identificador da cidade; </li>
+    <li>CIDADE: Campo que armazena o nome da cidade; </li>
+    <li>ESTADO_ID: Campo que armazena o código identificador do estado ao qual pertence a cidade. </li>
+    <br>
+    <b>Tabela CLIENTE</b>: Tabela que armazena os clientes que utilizam o sistema: <br>
+    <li>ID_USUARIO: Campo que armazena o código identificador do cliente; </li>
+    <li>CPF: Campo que armazena o cadastro de pessoa física do cliente; </li>
+    <li>NOME: Campo que armazena o nome do cliente; </li>
+    <li>TELEFONE: Campo que armazena o telefone de contato do cliente; </li>
+    <br>
+    <b>Tabela CLIENTE_SOLICITACAO</b>: Tabela que armazena as ligações entre clientes e suas respectivas solicitações: <br>
+    <li>CLIENTE_ID_USUARIO: Campo que armazena o código identificador do cliente; </li>
+    <li>SOLICITACAO_PROTOCOLO: Campo que armazena o protocolo da solicitação vinculada ao cliente. </li>
+    <br>
+    <b>Tabela EMPRESA</b>: Tabela que armazena as clientes que utilizam o sistema: <br>
+    <li>ID_USUARIO: Campo que armazena o código identificador da empresa; </li>
+    <li>CNPJ: Campo que armazena o cadastro de pessoa jurídica da empresa; </li>
+    <li>LOGIN: Campo que armazena o login de acesso da empresa no sistema; </li>
+    <li>NOME: Campo que armazena o nome da empresa; </li>
+    <li>SENHA: Campo que armazena a senha de acesso da empresa ao sistema; </li>
+    <li>TELEFONE: Campo que armazena o telefone de contato da empresa. </li>
+    <br>
+    <b>Tabela EMPRESA_PRESTADOR</b>: Tabela que armazena as ligações entre empresas e seus prestadores: <br>
+    <li>EMPRESA_ID_USUARIO: Campo que armazena o código identificador da empresa; </li>
+    <li>PRESTADORES_ID_USUARIO: Campo que armazena o código identificador do prestador vinculado à empresa. </li>
+    <br>
+    <b>Tabela EMPRESA_SOLICITACAO</b>: Tabela que armazena as ligações entre empresas e solicitações criadas pelas mesmas: <br>
+    <li>EMPRESA_ID_USUARIO: Campo que armazena o código identificador da empresa; </li>
+    <li>SOLICITACOES_PROTOCOLO: Campo que armazena o protocolo da solicitação criado pela empresa. </li>
+    <br>
+    <b>Tabela ENDERECO</b>: Tabela que armazena os endereços cadastrados no sistema: <br>
+    <li>ID: Campo que armazena o código identificador do endereço; </li>
+    <li>CEP: Campo que armazena o código de endereçamento postal do endereço; </li>
+    <li>COMPLEMENTO: Campo que armazena informações adicionais do endereço; </li>
+    <li>LOGRADOURO_ID: Campo que armazena o código identificador do logradouro referente ao endereço; </li>
+    <br>
+    <b>Tabela ESTADO</b>: Tabela que armazena os estados cadastrados no sistema: <br>
+    <li>ID: Campo que armazena o código identificador do estado; </li>
+    <li>ESTADO: Campo que armazena o nome do estado. </li>
+    <br>
+    <b>Tabela LOGRADOURO</b>: Tabela que armazena os logradouros cadastrados no sistema: <br>
+    <li>ID: Campo que armazena o código identificador do logradouro; </li>
+    <li>LOGRADOURO: Campo que armazena a descrição do logradouro; </li>
+    <li>BAIRRO_ID: Campo que armazena o código identificador do bairro vinculado ao logradouro. </li>
+    <br>
+    <b>Tabela PRESTADOR</b>: Tabela que armazena os prestadores cadastrados no sistema: <br>
+    <li>ID_USUARIO: Campo que armazena o código identificador do prestador; </li>
+    <li>CARGAHORARIA: Campo que armazena a carga horária de serviço do prestador; </li>
+    <li>CPF: Campo que armazena o código de pessoa física do prestador; </li>
+    <li>DISPONIBILIDADE: Campo booleano que informa a disponibilidade do prestador; </li>
+    <li>HORARIOFIM: Campo que armazena o horário limite da carga horária do prestador; </li>
+    <li>HORARIOINICIO: Campo que armazena o horário inicial da carga horária do prestador; </li>
+    <li>LOGIN: Campo que armazena o login de acesso do prestador ao sistema; </li>
+    <li>NOME: Campo que armazena o nome do prestador; </li>
+    <li>SENHA: Campo que armazena a senha de acesso do prestador ao sistema; </li>
+    <li>TELEFONE: Campo que armazena o telefone de contato dp prestador. </li>
+    <br>
+    <b>Tabela PRESTADOR_AGENDA</b>: Tabela que armazena as ligações entre prestadores e suas respectivas agendas: <br>
+    <li>PRESTADOR_ID_USUARIO: Campo que armazena o código identificador do prestador; </li>
+    <li>AGENDA_ID: Campo que armazena o código identificador da empresa vinculada ao prestador. </li>
+    <br>
+    <b>Tabela SERVICO</b>: Tabela que armazena os serviços registrados no sistema: <br>
+    <li>ID: Campo que armazena o código identificador do serviço; </li>
+    <li>DESCRICAO: Campo que registra a descrição detalhada do serviço cadastrado; </li>
+    <li>ESTADOATENDIDO: Campo booleano que registra informação referente ao estado do serviço(atendido ou não); </li>
+    <li>HORARIOMARCADO: Campo que armazena o horário marcado do serviço cadastrado; </li>
+    <li>MULTA: Campo que armazena a multa gerada(se existe) do serviço; </li>
+    <li>VALOR: Campo que armazena o custo total do serviço; </li>
+    <li>CATEGORIA_ID: Campo que armazena o código identificador da categoria do serviço; </li>
+    <br>
+    <b>Tabela SERVICO_ATENDIMENTO</b>: Tabela que armazena as ligações entre serviços e seus respectivos atendimentos: <br>
+    <li>SERVICO_ID: Campo que armazena o código identificador do serviço; </li>
+    <li>ATENDIMENTO_ID: Campo que armazena o código identificador do atendimento vinculado ao serviço. </li>
+    <br>
+    <b>Tabela SOLICITACAO</b>: Tabela que armazena as solicitações registradas no sistema: <br>
+    <li>PROTOCOLO: Campo que armazena o protocolo da solicitação; </li>
+    <li>DATASOLICITACAO: Campo que registra a data da solicitação; </li>
+    <li>DISPCLIFIM: Campo que armazena o horário limite da disponibilidade do cliente para receber o atendimento referente 
+        à solicitação; </li>
+    <li>DISPCLIINI: Campo que armazena o horário inicial da disponibilidade do cliente para receber o atendimento referente 
+        à solicitação; </li>    
+    <li>ESTADO: Campo que armazena o código identificador do estado da solicitação; </li>
+    <li>MULTATOTAL: Campo que armazena a multa total gerada pela soma de todos os serviços vinculados à solicitação; </li>
+    <li>OBSERVACAO: Campo que armazena observações referentes à solicitação; </li>
+    <li>ENDERECO_ID: Campo que armazena o código identificador do endereço ao qual será realizado o atendimento da solicitação; </li>
+    <br>
+    <b>Tabela SOLICITACAO_SERVICO</b>: Tabela que armazena as ligações entre solicitações e seus respectivos serviços: <br>
+    <li>SOLICITACAO_PROTOCOLO: Campo que armazena o protocolo da solicitação; </li>
+    <li>SERVICO_ID: Campo que armazena o código identificador do serviço vinculado à solicitação. </li>
+    <br>
     
-    EXEMPLO:
-    CLIENTE: Tabela que armazena as informações relativas ao cliente<br>
-    CPF: campo que armazena o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
-
+    
 ### 6	MODELO LÓGICO<br>
 ![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_Modelos/Logico.png "Modelo Lógico")
 ### 7	MODELO FÍSICO<br>
