@@ -30,18 +30,21 @@ public class Solicitacao implements Serializable {
     @Column(name = "protocolo")
     private long protocolo; //Protocolo, precisamos customizar o GenerationType, isso seria um singleton, correto?
     
-    
     @Column(name="dispCliIni")
     @Temporal(javax.persistence.TemporalType.TIME)// ir apenas o TIME
     private Calendar dispCliIni;
+    
     @Column(name="dispCliFim")
     @Temporal(javax.persistence.TemporalType.TIME)
     private Calendar dispCliFim;
+    
     @Column(length = 255,name="observacao")
     private String observacao;
+    
     @Column(name="dataSolicitacao")
     @Temporal(javax.persistence.TemporalType.DATE)// ir apenas o DATE
     private Calendar dataSolicitacao;
+    
     @Column(name="multaTotal")
     private Double multaTotal;
     
