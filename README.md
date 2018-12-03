@@ -133,7 +133,7 @@ OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da 
 
 #### 9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS <br> 
 SELECT * FROM AGENDA LIMIT 10 
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_select_all_agenda.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_select_all_agenda.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
