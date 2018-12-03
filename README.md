@@ -113,9 +113,10 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
         
 #### 8.2 INCLUSÃO DO SCRIPT PARA CRIAÇÃO DE TABELAS E INSERÇÃO DOS DADOS (ARQUIVO ÚNICO COM):
         a) inclusão das instruções para criação das tabelas e estruturas de amazenamento do BD
+<a href=https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/Modelo%20F%C3%ADsico.sql">Link para Modelo Físico</a>        
         b) inclusão das instruções de inserção dos dados nas referidas tabelas.
             Dados randomicos criados através do Pentaho.
-   <a href=https://www.hitachivantara.com/en-us/products/big-data-integration-analytics/pentaho-trial-download.html"> Link para download</a>;
+<a href=https://www.hitachivantara.com/en-us/products/big-data-integration-analytics/pentaho-trial-download.html">Link para download</a>
             
         c) inclusão das instruções para execução de outros procedimentos necessários
             Somente instruções descritas acima foram utilizadas.
