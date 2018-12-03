@@ -101,6 +101,7 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
 ### 7	MODELO FÍSICO<br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/Modelo%20F%C3%ADsico.sql">Modelo Físico</a>
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/INSERTS.sql">Script de Inserts SQL</a>
 #### 8.1 DETALHAMENTO DAS INFORMAÇÕES
         Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
         Referenciar todas as fontes referentes a:
@@ -131,7 +132,104 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
 OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.<br>
 
 #### 9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS <br> 
-    
+SELECT * FROM AGENDA LIMIT 10 
+
+<br>
+<br>
+
+SELECT * FROM AGENDA_SOLICITACAO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM ATENDIMENTO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM BAIRRO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM CATEGORIASERVICO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM CIDADE LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM CLIENTE LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM CLIENTE_SOLICITACAO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM EMPRESA LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM EMPRESA_PRESTADOR LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM EMPRESA_SOLICITACAO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM ENDERECO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM ESTADO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM LOGRADOURO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM PRESTADOR LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM PRESTADOR_AGENDA LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM SERVICO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM SERVICO_ATENDIMENTO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM SOLICITACAO LIMIT 10
+
+<br>
+<br>
+
+SELECT * FROM SOLICITACAO_SERVICO LIMIT 10
+
+<br>
 <br>
 
 #### 9.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS DA VIEW <br>
