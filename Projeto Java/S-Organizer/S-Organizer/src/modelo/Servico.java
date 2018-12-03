@@ -70,10 +70,6 @@ public class Servico implements Serializable {
         this.categoria = categoria;
     }
 
-//    public void setCategoria(String category) throws Exception{ //então, n é mais enum..
-//        this.categoria =  Categoria.valueOf(category);
-//    }
-
     public void setValor(double valor) {
         this.valor = valor;
     }
@@ -138,8 +134,13 @@ public class Servico implements Serializable {
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", descricao=" + descricao + 
-                ", valor=" + valor + ", horarioMarcado=" + horarioMarcado + 
-                ", estadoAtendido=" + estadoAtendido + ", multa=" + multa + '}';
+        String servico = "Servico{" + "id=" + id + ", descricao=" + descricao + 
+                ", valor=" + valor + ", horarioMarcado=" + horarioMarcado;
+                if(estadoAtendido){
+                    servico+= ", estadoAtendido= ATENDIDO";
+                }else{
+                   servico+= ", estadoAtendido= NÃO ATENDIDO,"+" multa=" + multa + '}';
+                }
+        return servico;
     }
 }

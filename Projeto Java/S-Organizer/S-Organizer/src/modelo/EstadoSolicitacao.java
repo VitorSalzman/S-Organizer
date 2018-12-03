@@ -17,4 +17,5 @@ public enum EstadoSolicitacao { //não vai ser persistida logo não coloquei nen
     EstadoSolicitacao(long id) {
         this.id = id;
     }
+    
 }
