@@ -89,10 +89,7 @@ CREATE TABLE cliente_solicitacao
     solicitacao_protocolo bigint NOT NULL,
 	
     CONSTRAINT cliente_solicitacao_pkey PRIMARY KEY (cliente_id_usuario, solicitacao_protocolo),
-    CONSTRAINT fk_cliente_solicitacao_cliente_id_usuario FOREIGN KEY (cliente_id_usuario)
-        REFERENCES cliente (id_usuario) MATCH SIMPLE,
-    CONSTRAINT fk_cliente_solicitacao_solicitacao_protocolo FOREIGN KEY (solicitacao_protocolo)
-        REFERENCES solicitacao (protocolo) MATCH SIMPLE    
+      
 );
 
 CREATE TABLE empresa
@@ -113,10 +110,7 @@ CREATE TABLE empresa_prestador
     prestadores_id_usuario bigint NOT NULL,
 	
     CONSTRAINT empresa_prestador_pkey PRIMARY KEY (empresa_id_usuario, prestadores_id_usuario),
-    CONSTRAINT fk_empresa_prestador_empresa_id_usuario FOREIGN KEY (empresa_id_usuario)
-        REFERENCES empresa (id_usuario) MATCH SIMPLE,
-    CONSTRAINT fk_empresa_prestador_prestadores_id_usuario FOREIGN KEY (prestadores_id_usuario)
-        REFERENCES prestador (id_usuario) MATCH SIMPLE
+    
 );
 
 CREATE TABLE empresa_solicitacao
@@ -125,10 +119,7 @@ CREATE TABLE empresa_solicitacao
     solicitacaoes_protocolo bigint NOT NULL,
 	
     CONSTRAINT empresa_solicitacao_pkey PRIMARY KEY (empresa_id_usuario, solicitacaoes_protocolo),
-    CONSTRAINT fk_empresa_solicitacao_empresa_id_usuario FOREIGN KEY (empresa_id_usuario)
-        REFERENCES empresa (id_usuario) MATCH SIMPLE,
-    CONSTRAINT fk_empresa_solicitacao_solicitacaoes_protocolo FOREIGN KEY (solicitacaoes_protocolo)
-        REFERENCES solicitacao (protocolo) MATCH SIMPLE,
+   
 );
 
 CREATE TABLE endereco
@@ -185,10 +176,7 @@ CREATE TABLE prestador_agenda
     prestador_id_usuario bigint NOT NULL,
     agenda_id bigint NOT NULL,
     CONSTRAINT prestador_agenda_pkey PRIMARY KEY (prestador_id_usuario, agenda_id),
-    CONSTRAINT fk_prestador_agenda_agenda_id FOREIGN KEY (agenda_id)
-        REFERENCES agenda (id) MATCH SIMPLE,
-    CONSTRAINT fk_prestador_agenda_prestador_id_usuario FOREIGN KEY (prestador_id_usuario)
-        REFERENCES prestador (id_usuario) MATCH SIMPLE
+    
 );
 
 CREATE TABLE servico
