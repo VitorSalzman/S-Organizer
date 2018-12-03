@@ -138,97 +138,97 @@ SELECT * FROM AGENDA LIMIT 10
 <br>
 
 SELECT * FROM AGENDA_SOLICITACAO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_agenda_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_agenda_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM ATENDIMENTO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_atendimento.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_atendimento.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM BAIRRO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_bairro.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_bairro.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM CATEGORIASERVICO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_categoriaservico.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_categoriaservico.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM CIDADE LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cidade.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cidade.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM CLIENTE LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM CLIENTE_SOLICITACAO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM EMPRESA LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM EMPRESA_PRESTADOR LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_prestador.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_prestador.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM EMPRESA_SOLICITACAO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM ENDERECO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_endereco.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_endereco.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM ESTADO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_estado.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_estado.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM LOGRADOURO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_logradouro.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_logradouro.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM PRESTADOR LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM PRESTADOR_AGENDA LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador_agenda.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador_agenda.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM SERVICO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM SERVICO_ATENDIMENTO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico_atendimento.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico_atendimento.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM SOLICITACAO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
 SELECT * FROM SOLICITACAO_SERVICO LIMIT 10
-
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao_servico.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao_servico.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
