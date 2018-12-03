@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<title>Home - Prestador</title>
-		<link rel="stylesheet" type="text/css" href="materialize-v0.98.1/css/materialize.min.css"  media="screen"/>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
-		<style type="text/css">
-			.inactiveLink {
-			   pointer-events: none;
-			   cursor: default;
-			}
-		</style>
-	</head>
-	<body>
-		<nav class="nav-extended">
-		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo" style="font-family: Pacifico; font-size: 2em; font-weight: 700;">S-Organizer
-		      </a>
-		      
-		    </div>
-		    <div class="nav-content">
-		      <ul class="tabs tabs-transparent">
-		      	<li class="tab"><a class="active" href="#home">Minha Agenda</a>
-		        <li class="tab"><a href="#profile">Perfil</a></li>
-		      </ul>
-		    </div>
-		  </nav>
-		  <div class="container">
-		  	<div class="col s12 m8 offset-m1 x17 offset-x11">
-			  <div id="home"> 
-			  	<h4 class="light text-lighten-3"><b>Agenda</b></h4>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Montar Agenda</title>
+        
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="materialize-v0.98.1/css/materialize.min.css"  media="screen"/>
+    </head>
+    <body>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+              <a href="empresaIndex.html" class="brand-logo" style="font-family: Pacifico; font-size: 2em; font-weight: 700; margin-left: 3px;">S-Organizer
+              </a>
+            </div>
+          </nav>
+          <div class="container">
+            <div class="col s12 m8 offset-m1 x17 offset-x11">
+                <div class="input-field col s12">
+                	<!-- Preencher By json maybe-->
+                    <select>
+                      <option value="" disabled selected>Selecione o Prestador</option>
+                      <option value="1">Prestador 1</option>
+                      <option value="2">Prestador 2</option>
+                      <option value="3">Prestador 3</option>
+                    </select>
+                    <label>Agenda do Prestador:</label>
+                </div>
+                <h4 class="light text-lighten-3"><b>Agenda</b></h4>
 			  	<div class="row">
 			  	    <p class="col m3">
 			  	    <label>Empresa</label>
@@ -101,22 +100,23 @@
 				  	          	</li>
 				  	           </ul>
 				  	      
-				  	     </div> <!--row-->
-			  	    	
-			  	    				  	      
-			  </div><!-- tab home-->
-			  <div id="profile" class="col s12">#ExibeInformaçõesPrestador</div>
-			  
-			  </div>
-		  </div>
-		        
-	</body>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+				</div> <!--row-->
+
+                <a style="background-color:#9F9F9F" class="waves-effect waves-light btn" href="empresaIndex.html">Cancelar</a>
+                <button class="btn waves-effect waves-light" type="submit">Salvar</button>
+            </div><!-- offset-->
+          </div><!-- container-->
+                
+    </body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="materialize-v0.98.1/js/materialize.min.js"></script>
     <script type="text/javascript">
-    	$(document).ready(function(){
-    		
-    		$('.tooltipped').tooltip();
-  	});
+        
+        $(document).ready(function(){
+            $('select').material_select();
+            $('.tooltipped').tooltip();
+
+           
+        });
     </script>
 </html>
