@@ -383,7 +383,52 @@ c) O relatório é importante para o reagendamento de solicitações para as pr�
         b) Código do objeto (função/trigger/asserção)
         c) exemplo de dados para aplicação
         d) resultados em forma de tabela/imagem
+<li><b> Pesquisar solicitações por cidades </b></li>   <br>     
+a) Objetivo: 
+<b> Função que retorne os protocolos de solicitações para serem atendidas em uma determinada cidade </b><br>
+b) Código do objeto (função/trigger/asserção) <br>
+
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/pesquisa_solicitacao_cidade_script.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/pesquisa_solicitacao_cidade_script.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+c) exemplo de dados para aplicação<br>
+
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/pesquisa_solicitacao_cidade_select.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/pesquisa_solicitacao_cidade_select.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+d) resultados em forma de tabela/imagem <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_result.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_result.png" alt="Alt text" title="..." style="max-width:100%;"></a> 
+
 <br>
+
+<li><b> Serviços não atendidos </b></li>  <br>      
+a) Objetivo:
+<b> Função que retorna o número de serviços não atendidos em uma solicitação específica </b> <br>
+b) Código do objeto (função/trigger/asserção) <br>
+
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_script.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_script.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+c) exemplo de dados para aplicação<br>
+
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_select.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_select.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+d) resultados em forma de tabela/imagem <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_result.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/servicos_nao_atendidos_result.png" alt="Alt text" title="..." style="max-width:100%;"></a> 
+
+<li><b> Restrição para horário de agendas </b></li>  <br>      
+a) Objetivo:
+<b> Asserção que não permite que seja inserido uma agenda com a carga horária incompatível ao prestador </b> <br>
+b) Código do objeto (função/trigger/asserção) <br>
+
+OBS: Asserções não são compatíveis ao postgres, logo, foi utilizado TRIGGER <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/checkHorarioServicoTrigger.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/checkHorarioServicoTrigger.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/checkHorarioServico.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/checkHorarioServico.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+c) exemplo de dados para aplicação<br>
+
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/checkHorarioServico_insert.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Functions/checkHorarioServico_insert.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+d) resultados em forma de tabela/imagem <br>
+Resultado mesclado ao item anterior.
+
 
 ## Data de Entrega: (27/09/2018)
 
@@ -396,25 +441,61 @@ c) O relatório é importante para o reagendamento de solicitações para as pr�
         d) Plano com frequencia de análises visando otimização de performance
 <br>
 
+    a) 
+	Criados roles  para gerenciar a autorização de acesso na base de dados esses são:
+	  -EMPRESA: Acesso total ao banco de produção e autorização para realizar todas as operações
+	  -PRESTADOR: Acesso apenas ao Banco Local, podendo somente gerenciar as próprias agendas
+	  -CLIENTE: Acesso restrito a consultas com o protocolo que possuir
+
+    b) 
+	O fluxo principal do sistema define o fluxo de armazenamento. Logo, há uma estimativa de maior espaço
+    reservado para agendas e, consequentemente, para solicitações e serviços.
+	
+    c) 
+	Usuários EMPRESA devem manter a manutenção do sistema de forma a garantir que as agendas criadas e transferidas
+    aos prestadores sejam atendidas corretamente.
+	
+    d)
+	Prestadores devem manter a qualidade do serviço e, assim, clientes avaliarão constantemente o sistema. Com
+    base nas avaliações dos clientes, usuários EMPRESA mapeiam pontos que podem ser melhorados, adaptados ou até
+    mesmo modificados, inserindo novos indices por exemplo.
+
 #### 9.6	GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)<br>
-        a) principal tabela do sistema deve ter no mínimo 1,5 milhão de registros
-        b) tabelas diretamente relacionadas a tabela principal 100 mil registros
-        c) tabelas auxiliares de relacao multivalorada mínimo de 10 registros
-        d) registrar o tempo de inserção em cada uma das tabelas do banco de dados
-        e) especificar a quantidade de registros inseridos em cada tabela
-        Para melhor compreensão verifiquem o exemplo na base de testes:<br>
-        https://github.com/discipbd2/base-de-testes-locadora
+        a) principal tabela do sistema deve ter no mínimo 1,5 milhão de registros <br> 
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.6a.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.6a.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+        b) tabelas diretamente relacionadas a tabela principal 100 mil registros <br> 
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.6b.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.6b.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>      
+        c) tabelas auxiliares de relacao multivalorada mínimo de 10 registros <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/INSERTS.sql">Script de Inserts SQL</a>  <br>       
+        d) especificar a quantidade de registros inseridos em cada tabela
+<li>AGENDA - 1000000</li><br>
+<li>AGENDA_SOLICITACAO - 1000000</li><br>
+<li>ATENDIMENTO - 10000</li><br>       
+<li>BAIRRO - 10000</li><br>
+<li>CATEGORIASERVICO - 50</li><br>
+<li>CIDADE - 10000</li><br>
+<li>CLIENTE - 100000</li><br>
+<li>CLIENTE_SOLICITACAO - 100000</li><br>
+<li>EMPRESA - 100000</li><br>
+<li>EMPRESA_PRESTADOR - 100000</li><br>
+<li>EMPRESA_SOLICITACAO - 100000</li><br>
+<li>ENDERECO - 100000</li><br>
+<li>ESTADO - 20</li><br>
+<li>LOGRADOURO - 1000</li><br>
+<li>PRESTADOR - 100000</li><br>
+<li>PRESTADOR_AGENDA - 100000</li><br>
+<li>SERVICO - 1500000</li><br>
+<li>SERVICO_ATENDIMENTO - 100000</li><br>
+<li>SOLICITACAO - 1000000</li><br>
+<li>SOLICITACAO_SERVICO- 1000000</li><br>
+
+
         
 ## Data de Entrega: (31/10/2018)
 
 #### 9.7	Backup do Banco de Dados<br>
-        Detalhamento do backup.
-        a) Tempo
-        b) Tamanho
-        c) Teste de restauração (backup)
-        d) Tempo para restauração
-        e) Teste de restauração (script sql)
-        f) Tempo para restauração (script sql)
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Backup.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Backup.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
 <br>
 
 
