@@ -73,6 +73,13 @@ public class Endereco implements Serializable {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-
+    @Override
+    public String toString() {
+        return "Endereco{" + "complemento=" + complemento + ", cep=" + cep 
+                + ", logradouro=" + logradouro.getLogradouro()
+                + "Bairo" + logradouro.getBairro().getBairro()
+                + "Cidade" + logradouro.getBairro().getCidade().getCidade()
+                + "Estado" + logradouro.getBairro().getCidade().getEstado() +'}';
+    }
     
 }
