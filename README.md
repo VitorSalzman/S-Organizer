@@ -55,7 +55,7 @@ Cliente não possui cadastro no sistema, mas pode consultar o serviço contratad
 ### 4	RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
 neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
 
-link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681vIs<br>
+link: https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_SELECTS/Protótipo%20de%20Telas.pdf<br>
 
 ![Alt text](https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_Modelos/Prototipo_telas.png "Protótipo de Telas")
 
