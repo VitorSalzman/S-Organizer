@@ -249,102 +249,102 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
 OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.<br>
 
 #### 9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS <br> 
-SELECT * FROM AGENDA LIMIT 10 
+SELECT * FROM AGENDA LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_select_all_agenda.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_select_all_agenda.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM AGENDA_SOLICITACAO LIMIT 10
+SELECT * FROM AGENDA_SOLICITACAO LIMIT 10<br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_agenda_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_agenda_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM ATENDIMENTO LIMIT 10
+SELECT * FROM ATENDIMENTO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_atendimento.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_atendimento.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM BAIRRO LIMIT 10
+SELECT * FROM BAIRRO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_bairro.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_bairro.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM CATEGORIASERVICO LIMIT 10
+SELECT * FROM CATEGORIASERVICO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_categoriaservico.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_categoriaservico.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM CIDADE LIMIT 10
+SELECT * FROM CIDADE LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cidade.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cidade.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM CLIENTE LIMIT 10
+SELECT * FROM CLIENTE LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM CLIENTE_SOLICITACAO LIMIT 10
+SELECT * FROM CLIENTE_SOLICITACAO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_cliente_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM EMPRESA LIMIT 10
+SELECT * FROM EMPRESA LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM EMPRESA_PRESTADOR LIMIT 10
+SELECT * FROM EMPRESA_PRESTADOR LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_prestador.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_prestador.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM EMPRESA_SOLICITACAO LIMIT 10
+SELECT * FROM EMPRESA_SOLICITACAO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_empresa_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM ENDERECO LIMIT 10
+SELECT * FROM ENDERECO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_endereco.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_endereco.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM ESTADO LIMIT 10
+SELECT * FROM ESTADO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_estado.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_estado.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM LOGRADOURO LIMIT 10
+SELECT * FROM LOGRADOURO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_logradouro.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_logradouro.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM PRESTADOR LIMIT 10
+SELECT * FROM PRESTADOR LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM PRESTADOR_AGENDA LIMIT 10
+SELECT * FROM PRESTADOR_AGENDA LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador_agenda.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_prestador_agenda.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM SERVICO LIMIT 10
+SELECT * FROM SERVICO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM SERVICO_ATENDIMENTO LIMIT 10
+SELECT * FROM SERVICO_ATENDIMENTO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico_atendimento.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_servico_atendimento.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM SOLICITACAO LIMIT 10
+SELECT * FROM SOLICITACAO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
 
-SELECT * FROM SOLICITACAO_SERVICO LIMIT 10
+SELECT * FROM SOLICITACAO_SERVICO LIMIT 10 <br>
 <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao_servico.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/9.2_solicitacao_servico.png" alt="Alt text" title="..." style="max-width:100%;"></a>
 <br>
 <br>
@@ -358,6 +358,24 @@ SELECT * FROM SOLICITACAO_SERVICO LIMIT 10
         views do sistema (relatórios, informações disponíveis para os usuários, etc) devem estar 
         presentes aqui. 
 <br>
+<li><b> Prestadores disponíveis - </b> 
+a) View utilizada para consultar no banco os prestadores disponíveis em tempo real;
+b) Usuários EMPRESA possuem permissão para utilizá-la;
+c) O relatório é importante para definição e designação de novos serviços para prestadores. <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Views/prestadores_disponiveis_result.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Views/prestadores_disponiveis_result.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
+<li><b> Solicitações com Multa - </b>
+a) View utilizada para consultar no banco a quantidade de solicitações que geraram multa;
+b) Usuários EMPRESA possuem permissão para utilizá-la;
+c) O relatório é importante para mapear e identificar possíveis causas para geração de multas.  <br> 
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Views/solicitacoes_com_multa_result.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Views/solicitacoes_com_multa_result.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>    
+
+<li><b> Solicitações Pendentes - </b>
+a) View utilizada para consultar no banco a quantidade de solicitações pendentes existentes no momento;
+b) Usuários EMPRESA possuem permissão para utilizá-la;
+c) O relatório é importante para o reagendamento de solicitações para as próximas agendas de prestadores.<br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Views/solicitacoes_pendentes_result.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Views/solicitacoes_pendentes_result.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+
 
 #### 9.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS<br>
         Detalhamento sobre funcionalidade de cada código.
