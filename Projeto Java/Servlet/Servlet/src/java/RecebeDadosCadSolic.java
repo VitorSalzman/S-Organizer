@@ -5,6 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Servico;
+import modelo.Solicitacao;
+import modelo.padroesdeprojeto.builder.DiretorEndereco;
 import modelo.padroesdeprojeto.builder.DiretorServico;
 import modelo.padroesdeprojeto.builder.DiretorSolicitacao;
 
@@ -23,32 +26,18 @@ public class RecebeDadosCadSolic extends HttpServlet{
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            
-            DiretorSolicitacao dirSolic = new DiretorSolicitacao();
-            DiretorServico dirServico = new DiretorServico();
-            
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RecebeDados</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servidor Recebeu:<br></h1>"); 
-            out.println("<h1>Modelo do carro: " + request.getParameterMap().get("descricao") + "</h1>");
-            out.println("<h1>Placa: " + request.getParameter("placa") + "</h1>");
-            out.println("<h1>Renavam: " + request.getParameter("renavam") + "</h1>");
-            out.println("<h1>Ano: " + request.getParameter("ano") + "</h1>");
-            out.println("<h1>Kilometragem: " + request.getParameter("kms") + "</h1>");
-            out.println("<h1>Acessorios: " + request.getParameter("acessorios") + "</h1>");
-            out.println("<h1>Valor: " + request.getParameter("valor") + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+        /* request.getParameterMap().get("descricao") */
+        DiretorSolicitacao dirSolic = new DiretorSolicitacao();
+        DiretorServico dirServico = new DiretorServico(); 
+        DiretorEndereco dirEnd = new DiretorEndereco();
+        Solicitacao sol1;
+        Servico serv1;
+        
+        
+        
+        
+        out.close();
+        
     }
 
     @Override

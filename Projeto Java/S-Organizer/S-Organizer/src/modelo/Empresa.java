@@ -28,7 +28,7 @@ public class Empresa extends Acesso implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_Empresa")
+    @Column(name="id_usuario")
     private long id;
     
     @Column(length = 20,name = "cnpj")
