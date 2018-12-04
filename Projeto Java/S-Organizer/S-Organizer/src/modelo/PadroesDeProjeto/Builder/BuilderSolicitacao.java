@@ -14,9 +14,9 @@ import modelo.Servico;
 import modelo.Solicitacao;
 
 
-public class BuilderSolicitacao { ///EM MANUTENÇÃO
+public class BuilderSolicitacao { 
     private long protocolo;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //Isso tem que estar no builder msm?
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private String dataSolicitacao;
     private String disp_cli_ini;
     private String disp_cli_fim;

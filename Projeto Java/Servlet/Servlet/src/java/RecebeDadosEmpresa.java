@@ -28,7 +28,7 @@ public class RecebeDadosEmpresa extends HttpServlet{
         out.close();
         
         Empresa emp = new Empresa();
-        //DAOEmpresa demp = new DAOEmpresa();
+        DAOEmpresa demp = new DAOEmpresa();
         
         emp.setCnpj(request.getParameter("cnpjEmpresa"));
         emp.setTelefone(request.getParameter("telEmpresa"));
@@ -39,7 +39,7 @@ public class RecebeDadosEmpresa extends HttpServlet{
         } catch(Exception e) {
             out.println(e.getMessage());
         }
-        //demp.inserir(emp);
+        demp.inserir(emp);
         
         response.sendRedirect("index.html");
     }

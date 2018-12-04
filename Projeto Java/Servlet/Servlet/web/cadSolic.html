@@ -21,12 +21,15 @@
             <div class="col s12 m8 offset-m1 x17 offset-x11">
               <h4 style="color: #26a69a">Dados do Cliente</h4>
               <hr>
-              <form class="col s12" action="RecebeDadosCadSolic" method="post">
+              <form class="col s12" action="RecebeDadosCadSolic" method="POST">
                 <div class="row">
+                    <div class="input-field col s2" >
+                        <input id="idEmpresa" placeholder="IdEmpresa" type="text" name="idEmpresa"/>
+                    </div>
                     <div class="input-field col s4" >
                         <input id="nomeCliente" placeholder="Nome" type="text" name="nomeCliente"/>
                     </div>
-                    <div class="input-field col s5">
+                    <div class="input-field col s3">
                         <input id="cpfCliente" placeholder="CPF" type="text" name="cpfCliente"/>
                     </div>
                     <div class="input-field col s3">
@@ -77,7 +80,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s5">
-                        <textarea class="materialize-textarea" id="observacoes" placeholder="Observações (Opcional)"></textarea>
+                        <input name="observacoes" placeholder="Observações (Opcional)"/>
                     </div>
                     <div class="input-field col s4">
                          <select disabled>
@@ -106,6 +109,10 @@
                         <div class="input-field col s4">
                          <select id="selectServicos">
                           <option value="" disabled selected>Selecione a Categoria</option>
+                          <option value="Pintor">Pintura Residencial</option>
+                          <option value="Dedetização">Dedetização</option>
+                          <option value="Entrega">Entrega</option>
+                          <option value="Limpeza Pequena">Limpeza Pequena</option>
                           <option value="Other">Outro</option>
                          </select>
                         </div>

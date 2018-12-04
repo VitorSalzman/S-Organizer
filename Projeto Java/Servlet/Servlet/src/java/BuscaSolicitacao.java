@@ -46,7 +46,7 @@ public class BuscaSolicitacao extends HttpServlet {
             out.println("<body>");
             out.println("<nav class='nav-extended'>");
             out.println("<div class='nav-wrapper'>");
-            out.println("<a href='#' class='brand-logo' style='font-family:"
+            out.println("<a href='index.html' class='brand-logo' style='font-family:"
                     + " Pacifico;font-size: 2em;font-weight: 700;'>S-Organizer");
             out.println("</a>");
             out.println("</div>");
