@@ -240,6 +240,9 @@ link: https://drive.google.com/open?id=1YiBFnkmDrE9pQYeFxZ4xkmHXPP7uN1ptkk2Ud681
             Somente instruções descritas acima foram utilizadas.
 
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/BD_S-Organizer.sql">Link para todo o banco de dados</a> <br>
+https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/BD_S-Organizer.sql
+
 #### 9.1	GERACAO DE DADOS (MÍNIMO DE 10 REGISTROS PARA CADA TABELA NO BANCO DE DADOS)<br>
 
 
@@ -495,7 +498,7 @@ Resultado mesclado ao item anterior.
 ## Data de Entrega: (31/10/2018)
 
 #### 9.7	Backup do Banco de Dados<br>
-<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Backup.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Backup.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_SELECTS/backup.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_SELECTS/backup.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
 <br>
 
 
