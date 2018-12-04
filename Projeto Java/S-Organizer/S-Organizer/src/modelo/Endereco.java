@@ -5,48 +5,81 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
-public class Endereco {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="Endereco")
+public class Endereco implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    
+    @Column(length = 255,name="complemento")
+    private String complemento;
+    @Column(length = 20,name="cep")
+    private String cep;
+    
+    @OneToOne
     private Logradouro logradouro;
-    private Bairro bairro;
-    private Estado estado;
-    private int cep;
+
+    public Endereco(Logradouro logradouro, String cep, String complemento) {
+        this.logradouro = logradouro;
+        this.cep = cep;
+        this.complemento = complemento;
+    }
+
+    public Endereco() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
 
     public Logradouro getLogradouro() {
         return logradouro;
-    }
-
-    public Bairro getBairro() {
-        return bairro;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public int getCep() {
-        return cep;
     }
 
     public void setLogradouro(Logradouro logradouro) {
         this.logradouro = logradouro;
     }
 
-    public void setBairro(Bairro bairro) {
-        this.bairro = bairro; 
+    public String getCep() {
+        return cep;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
-    
-    
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+    @Override
+    public String toString() {
+        return "Endereco{" + "complemento=" + complemento + ", cep=" + cep 
+                + ", logradouro=" + logradouro.getLogradouro()
+                + "Bairo" + logradouro.getBairro().getBairro()
+                + "Cidade" + logradouro.getBairro().getCidade().getCidade()
+                + "Estado" + logradouro.getBairro().getCidade().getEstado() +'}';
+    }
     
 }

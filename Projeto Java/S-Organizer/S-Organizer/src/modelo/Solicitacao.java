@@ -5,89 +5,103 @@
  */
 package modelo;
 
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
-/**
- *
- * @author 20161bsi0403
- */
-public class Solicitacao {
+
+@Entity
+@Table(name="Solicitacao")
+public class Solicitacao implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id()
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "protocolo")
+    private long protocolo; //Protocolo, precisamos customizar o GenerationType, isso seria um singleton, correto?
     
-    private Calendar disp_cli_ini;
-    private Calendar disp_cli_fim;
-    private String descricao;
+    @Column(name="dispCliIni")
+    @Temporal(javax.persistence.TemporalType.TIME)// ir apenas o TIME
+    private Calendar dispCliIni;
+    
+    @Column(name="dispCliFim")
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Calendar dispCliFim;
+    
+    @Column(length = 255,name="observacao")
     private String observacao;
+    
+    @Column(name="dataSolicitacao")
+    @Temporal(javax.persistence.TemporalType.DATE)// ir apenas o DATE
     private Calendar dataSolicitacao;
-    private long protocolo;
+    
+    @Column(name="multaTotal")
+    private Double multaTotal;
+    
+    
     private EstadoSolicitacao estado;
-    private ArrayList<Servico> servicos;
     
-    
+    @OneToOne
+    private Endereco endereco;
+    @OneToMany
+    private List<Servico> servicos = new ArrayList();
 
- 
-
-    public String getDescricao() {
-        return descricao;
+    public Solicitacao() {
+        this.multaTotal = 0.0;
     }
-
+   
     public String getObservacao() {
         return observacao;
     }
-
-
-
+    
     public EstadoSolicitacao getEstado() {
         return estado;
     }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
+    
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
-
-
     
     public void setEstado(EstadoSolicitacao estado) {
         this.estado = estado;
+    }
+  
+    public List<Servico> getServicos() {
+        return servicos;
     }
 
     public long getProtocolo() {
         return protocolo;
     }
 
-    public void setProtocolo(long protocol) {
-        this.protocolo = protocol;
+    public void setProtocolo(long protocolo) {
+        this.protocolo = protocolo;
     }
-
-    public ArrayList<Servico> getServicos() {
-        return servicos;
-    }
-
-    public void setServicos(ArrayList<Servico> servicos) {
-        this.servicos = servicos;
-    }
-
 
     public Calendar getDispCliIni() {
-        return disp_cli_ini;
+        return dispCliIni;
     }
 
-    public void setDispCliIni(Calendar disp_cli_ini) {
-        this.disp_cli_ini = disp_cli_ini;
+    public void setDispCliIni(Calendar dispCliIni) {
+        this.dispCliIni = dispCliIni;
     }
 
     public Calendar getDispCliFim() {
-        return disp_cli_fim;
+        return dispCliFim;
     }
 
-    public void setDispCliFim(Calendar disp_cli_fim) {
-        this.disp_cli_fim = disp_cli_fim;
+    public void setDispCliFim(Calendar dispCliFim) {
+        this.dispCliFim = dispCliFim;
     }
 
     public Calendar getDataSolicitacao() {
@@ -97,7 +111,49 @@ public class Solicitacao {
     public void setDataSolicitacao(Calendar dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
-     
+
+
+
+    public Double getMultaTotal() {
+        return multaTotal;
+    }
+
+    public void setMultaTotal(Double multaTotal) {
+        this.multaTotal = multaTotal;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public void addServico(Servico servico) {
+        this.servicos.add(servico);
+    }
+    
+    public void removeServico(Servico servico){
+        this.servicos.remove(servico);
+    }
+    
+    public void setServicos(ArrayList<Servico> servicos) {
+        this.servicos = servicos;
+    }
+
+    public void printServicos() {
+        for( Servico service : servicos ) {
+            System.out.println(service.toString());
+        }
+    }
+    
+    public double calculaMultaTotal(){
+        for(Servico s: servicos){
+            multaTotal+= s.getMulta();
+        }
+        return multaTotal;
+    }
     
     
 }

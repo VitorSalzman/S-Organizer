@@ -5,29 +5,39 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161BSI0403
- */
-public class Logradouro {
-    private String nome;
-    private String abreviatura;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="Logradouro")
+public class Logradouro implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    public String getNome() {
-        return nome;
+    
+    @Column(length = 20,name="logradouro")
+    private String logradouro;
+        
+    @OneToOne
+    private Bairro bairro;
+    
+    public Logradouro(String logradouro, Bairro bairro) {
+        this.logradouro = logradouro;
+        this.bairro = bairro;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
-    public String getAbreviatura() {
-        return abreviatura;
-    }
 
-    public void setAbreviatura(String abreviatura) {
-        this.abreviatura = abreviatura;
+    public Logradouro() {
     }
 
     public long getId() {
@@ -37,6 +47,24 @@ public class Logradouro {
     public void setId(long id) {
         this.id = id;
     }
+    
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public Bairro getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(Bairro bairro) {
+        this.bairro = bairro;
+    }
+
+    
     
     
     

@@ -1,3 +1,5 @@
+package modelo.padroesdeprojeto.builder;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,10 +17,7 @@ import modelo.Agenda;
 import modelo.Prestador;
 import modelo.Servico;
 
-/**
- *
- * @author Salzman
- 
+
 public class BuilderAgenda {
     private String data;
     private String horaInicioExpediente;

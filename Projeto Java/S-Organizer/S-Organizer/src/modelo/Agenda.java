@@ -5,10 +5,20 @@
  */
 package modelo;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 
 /**
@@ -23,16 +33,35 @@ import java.util.Date;
  * 02 Se os SERVICOS da AGENDA não representarem 8 horas exatas,
  *    o tempo restante o PRESTADOR ficará (DISPONÍVEL OU EXPEDIENTE ENCERRADO)??
  */
-public class Agenda {
-    private SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");
-    private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");
-    private Date data;
-    private Date horaInicioExpediente;
-    private Date horaFimExpediente;
-    private ArrayList<Servico> servicosDoDia;
-    private Prestador prestador;
-    private long id;
+@Entity
+@Table(name ="Agenda")
+public class Agenda implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    
+//    private SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");
+//    private SimpleDateFormat sdfHora = new SimpleDateFormat("hh:mm:ss");// espero que esses campos não sejam persistidos <<
+    @Column(name = "horaInicio")
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date horaInicioExpediente;
+    @Column(name = "horaFim")
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date horaFimExpediente;
+    @Column(name = "data")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date data;
+    
+    @OneToMany
+    private List<Solicitacao> solicitacaoDoDia = new ArrayList();
+    @OneToOne
+    private Empresa empresa;
+    @OneToOne
+    private Prestador prestador;
+        
+    
     public Agenda(Prestador prestador) {
         this.prestador = prestador;
         this.data = new Date();
@@ -45,26 +74,12 @@ public class Agenda {
         
     }
     
-    public Agenda() {
+    public Agenda() { //espero que ele não reclame desse construtor, pq ele precisa sempre de um construtor vazio
         this.data = new Date();
         data.setDate(data.getDate()+1);
     }
-
-    public SimpleDateFormat getSdfData() {
-        return sdfData;
-    }
-
-    public void setSdfData(SimpleDateFormat sdfData) {
-        this.sdfData = sdfData;
-    }
-
-    public SimpleDateFormat getSdfHora() {
-        return sdfHora;
-    }
-
-    public void setSdfHora(SimpleDateFormat sdfHora) {
-        this.sdfHora = sdfHora;
-    }
+    
+    
 
     public Date getData() {
         return data;
@@ -105,19 +120,37 @@ public class Agenda {
     public void setId(long id) {
         this.id = id;
     }
-    
-    /* Funcoes manual */
-    public ArrayList<Servico> getServicosDoDia() {
-        return servicosDoDia;
+
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setServicosDoDia(Servico service) {
-        servicosDoDia.add(service);
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public List<Solicitacao> getSolicitacaoDoDia() {
+        return solicitacaoDoDia;
+    }
+
+    public void setSolicitacaoDoDia(List<Solicitacao> solicitacaoDoDia) {
+        this.solicitacaoDoDia = solicitacaoDoDia;
+    }
+
+    
+    
+    /* Funcoes manual */ 
+    public List<Solicitacao> getServicosDoDia() {
+        return solicitacaoDoDia;
+    }
+
+    public void setServicosDoDia(Solicitacao service) {
+        solicitacaoDoDia.add(service);
     }
     
     public void printServicosDoDia() {
-        for( Servico service : servicosDoDia ) {
-            System.out.println("Categoria: " + service.getCategoria() + "\n" + "Horario: " + service.getHorarioMarcado());
+        for( Solicitacao Solicitacao : solicitacaoDoDia ) { // acho melhor usar o toString aq
+            Solicitacao.toString();
         }
     }
     
@@ -130,9 +163,62 @@ public class Agenda {
     /*public int calculaInicioExpediente() {
     
     }*/
+
+    public void add(Agenda agenda) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 13 * hash + Objects.hashCode(this.horaInicioExpediente);
+        hash = 13 * hash + Objects.hashCode(this.horaFimExpediente);
+        hash = 13 * hash + Objects.hashCode(this.data);
+        hash = 13 * hash + Objects.hashCode(this.solicitacaoDoDia);
+        hash = 13 * hash + Objects.hashCode(this.prestador);
+        hash = 13 * hash + Objects.hashCode(this.empresa);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Agenda other = (Agenda) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.horaInicioExpediente, other.horaInicioExpediente)) {
+            return false;
+        }
+        if (!Objects.equals(this.horaFimExpediente, other.horaFimExpediente)) {
+            return false;
+        }
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        if (!Objects.equals(this.solicitacaoDoDia, other.solicitacaoDoDia)) {
+            return false;
+        }
+        if (!Objects.equals(this.prestador, other.prestador)) {
+            return false;
+        }
+        if (!Objects.equals(this.empresa, other.empresa)) {
+            return false;
+        }
+        return true;
+    }
+    
 }
 
-    /*
-    pendente:
-    fazer builder de agenda
-    */
+//
+//    fazer builder de agenda
+    

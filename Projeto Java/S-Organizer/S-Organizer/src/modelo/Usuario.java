@@ -5,33 +5,76 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
-public abstract class Usuario {
-    private String nome;
-    private long telefone;
-    private int codigo;
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-   /* 
-    public Usuario(String nome, long telefone) {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+public abstract class Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_Usuario")
+    private long id;
+    
+    @Column(length = 50,name="nome")
+    private String nome;
+    @Column(length = 20,name="telefone")
+    private String telefone;
+    
+
+    public Usuario(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }
-    */
+
+    public Usuario() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    
+
+    public String getNome() {
+        return nome;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setTelefone(long telefone) {
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
     
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", telefone=" + telefone + '}';
     }
     
-    
-    
+
 }

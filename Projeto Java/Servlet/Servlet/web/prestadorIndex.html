@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Home - Prestador</title>
+		<link rel="stylesheet" type="text/css" href="materialize-v0.98.1/css/materialize.min.css"  media="screen"/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
+		<style type="text/css">
+			.inactiveLink {
+			   pointer-events: none;
+			   cursor: default;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="nav-extended">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo" style="font-family: Pacifico; font-size: 2em; font-weight: 700;">S-Organizer
+		      </a>
+		      
+		    </div>
+		    <div class="nav-content">
+		      <ul class="tabs tabs-transparent">
+		      	<li class="tab"><a class="active" href="#home">Minha Agenda</a>
+		        <li class="tab"><a href="#profile">Perfil</a></li>
+		      </ul>
+		    </div>
+		  </nav>
+		  <div class="container">
+		  	<div class="col s12 m8 offset-m1 x17 offset-x11">
+			  <div id="home"> 
+			  	<h4 class="light text-lighten-3"><b>Agenda</b></h4>
+			  	<div class="row">
+			  	    <p class="col m3">
+			  	    <label>Empresa</label>
+			  	    #NomeEmpresa</p>
+			  	    <p class="col m3"><label>Hora Início</label>#HoraIni</p>
+			  	    
+			  	    <p class="col m3"><label>Hora Fim</label>#Hora Fim</p>
+			  	    
+			  	    <p class="col m3"><label>Data</label>#Data Agenda</p>
+			  	</div> <!--row-->
+			  		      	
+			  	      	
+			  	      	<div class="row">
+				  	        <!-- Serviços da Solicitação -->
+				  	          <ul class="collection with-header">
+				  	          	<!-- num da solic-->
+				  	          	<li class="collection-header">Solicitação 1</li>
+				  	          	<!-- Ícone de Atendido ou não -->
+				  	          	<li id="servic1" class="collection-item avatar"><i class="material-icons circle green">beenhere</i>
+				  	          		<!-- Mais informações do serviço-->
+				  	          		<div class="col s10">
+				  	          			<a href="#modalServ1" class="collection-item">Serviço 1</a>
+				  	          		</div>
+				  	          		<!--Atender Serviço-->
+				  	          		<div class="col s2">
+				  	          		<a href="#!" class="secondary-content tooltipped inactiveLink" style="color:#c0c0c0;"data-tooltip="Atender este Serviço" data-position="top"><i class="material-icons">video_library</i></a>
+				  	          	</div>
+				  	          	</li>
+				  	          	<li class="collection-item avatar"><i class="material-icons circle">assignment_late</i>
+				  	          		<!-- Mais informações do serviço-->
+				  	          		<div class="col s10">
+				  	          			<a href="#modalServ2" class="collection-item">Serviço 2</a>
+				  	          		</div>
+				  	          		<!-- Atender erviço-->
+				  	          		<div class="col s2">
+					  	          		<a href="#!" class="secondary-content tooltipped " data-tooltip="Atender este Serviço" data-position="top"><i class="material-icons">video_library</i></a>
+					  	          	</div>
+				  	          	</li>
+				  	           </ul>
+				  	      
+				  	     </div> <!--row-->
+			  	    
+			  	      	<div class="row">
+				  	        <!-- Serviços da Solicitação -->
+				  	          <ul class="collection with-header">
+				  	          	<!-- num da solic-->
+				  	          	<li class="collection-header">Solicitação 2</li>
+				  	          	<!-- Ícone de Atendido ou não -->
+				  	          	<li id="servic1" class="collection-item avatar"><i class="material-icons circle green">beenhere</i>
+				  	          		<!-- Mais informações do serviço-->
+				  	          		<div class="col s10">
+				  	          			<a href="#modalServ1" class="collection-item">Serviço 1</a>
+				  	          		</div>
+				  	          		<!--Atender Serviço-->
+				  	          		<div class="col s2">
+				  	          		<a href="#!" class="secondary-content tooltipped inactiveLink" style="color:#c0c0c0;"data-tooltip="Atender este Serviço" data-position="top"><i class="material-icons">video_library</i></a>
+				  	          	</div>
+				  	          	</li>
+				  	          	<li class="collection-item avatar"><i class="material-icons circle">assignment_late</i>
+				  	          		<!-- Mais informações do serviço-->
+				  	          		<div class="col s10">
+				  	          			<a href="#modalServ2" class="collection-item">Serviço 2</a>
+				  	          		</div>
+				  	          		<!-- Atender erviço-->
+				  	          		<div class="col s2">
+					  	          		<a href="#!" class="secondary-content tooltipped " data-tooltip="Atender este Serviço" data-position="top"><i class="material-icons">video_library</i></a>
+					  	          	</div>
+				  	          	</li>
+				  	           </ul>
+				  	      
+				  	     </div> <!--row-->
+			  	    	
+			  	    				  	      
+			  </div><!-- tab home-->
+			  <div id="profile" class="col s12">#ExibeInformaçõesPrestador</div>
+			  
+			  </div>
+		  </div>
+		        
+	</body>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="materialize-v0.98.1/js/materialize.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		$('.tooltipped').tooltip();
+  	});
+    </script>
+</html>

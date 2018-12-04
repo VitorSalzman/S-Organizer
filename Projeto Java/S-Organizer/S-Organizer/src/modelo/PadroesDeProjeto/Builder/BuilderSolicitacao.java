@@ -9,14 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import modelo.ProtocoloGenerator;
+import modelo.padroesdeprojeto.singleton.ProtocoloGenerator;
 import modelo.Servico;
 import modelo.Solicitacao;
 
-/**
- *
- * @author Salzman
- */
+
 public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private long protocolo;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //Isso tem que estar no builder msm?
@@ -25,21 +22,21 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
     private String disp_cli_fim;
     private ArrayList<Servico> servicos;
     private Solicitacao solicit;
-    public BuilderSolicitacao(String disp_cli_ini, String disp_cli_fim, String descricao,
+    
+    public BuilderSolicitacao(String disp_cli_ini, String disp_cli_fim,
             String observacao, String dataSolicitacao, ArrayList<Servico> servicos, Solicitacao solicitacao){
         
         this.dataSolicitacao=dataSolicitacao;
         this.disp_cli_ini=disp_cli_ini;
         this.disp_cli_fim=disp_cli_fim;
         this.servicos=servicos;
-        
-        solicitacao.setDescricao(descricao);
         solicitacao.setObservacao(observacao);
-        
+
         this.solicit=solicitacao;
     }
     
     public void geraProtocolo(){
+        //sobre o protocolo, acredito que se conseguirmos fazer um GenericGenerator n vamos conseguir gerar ele aq, só quando for persistir..
         this.protocolo=ProtocoloGenerator.INSTANCE.getNextProtocol();
         this.solicit.setProtocolo(protocolo);
     }
@@ -62,6 +59,8 @@ public class BuilderSolicitacao { ///EM MANUTENÇÃO
     public void adicionaServicos(){
         
         this.solicit.setServicos(this.servicos);      ///Falta tratar a adição de somente um serviço
+        //deveria ser .add não simplesmente setar a list inteira
+        //mas eu criei a opção de adicionar não manualmente (como esta sendo usada agr)
     }
     
     

@@ -5,12 +5,8 @@
  */
 package modelo;
 
-/**
- *
- * @author 20161bsi0403
- */
-public enum EstadoSolicitacao {
-    PENDENTE(1) ,AGENDADO(2), ACAMINHO(3), EMEXECUCAO(4), CONCLUIDO(5);
+public enum EstadoSolicitacao { //não vai ser persistida logo não coloquei nenhuma @Annotation, nem serializei
+    PENDENTE(1) ,AGENDADO(2), ACAMINHO(3), EMEXECUCAO(4), CONCLUIDO(5), CANCELADO(6);
     private long id;
     
     
@@ -21,7 +17,5 @@ public enum EstadoSolicitacao {
     EstadoSolicitacao(long id) {
         this.id = id;
     }
-    
-    
     
 }

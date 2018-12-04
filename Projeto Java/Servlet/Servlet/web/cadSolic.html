@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Registrar Solicitação</title>
+        
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="materialize-v0.98.1/css/materialize.min.css"  media="screen"/>
+    </head>
+    <body>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+              <a href="empresaIndex.html" class="brand-logo" style="font-family: Pacifico; font-size: 2em; font-weight: 700; margin-left: 3px;">S-Organizer
+              </a>
+            </div>
+          </nav>
+          <div class="container">
+            <div class="col s12 m8 offset-m1 x17 offset-x11">
+              <h4 style="color: #26a69a">Dados do Cliente</h4>
+              <hr>
+              <form class="col s12" action="RecebeDadosCadSolic" method="post">
+                <div class="row">
+                    <div class="input-field col s4" >
+                        <input id="nomeCliente" placeholder="Nome" type="text" name="nomeCliente"/>
+                    </div>
+                    <div class="input-field col s5">
+                        <input id="cpfCliente" placeholder="CPF" type="text" name="cpfCliente"/>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="telClient" placeholder="Telefone" type="text" name="telClient"/>
+                    </div>
+                    
+                </div><!--/row-->
+                <h4 style="color: #26a69a">Endereço</h4>
+                <hr>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="cep" placeholder="CEP" type="text" name="cep"/>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="estadoEndereco" placeholder="Estado" type="text" name="estadoEndereco"/>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="bairro" placeholder="Bairro" type="text" name="bairro"/>
+                    </div>
+                </div><!--/row-->
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="cidade" placeholder="Cidade" type="text" name="cidade"/>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="logradouro" placeholder="Logradouro" type="text" name="logradouro"/>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="complemento" placeholder="Complemento" type="text" name="complemento"/>
+                    </div>
+                </div><!--/row-->
+
+                <h4 style="color: #26a69a">Informações da Solicitação</h4>
+                <hr>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input id="protocol" placeholder="Protocolo" type="text" name="protocol" readonly /> <!-- Protocolo será gerado depois-->
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="dispIniClient" placeholder="Início da Disponibilidade" type="text" name="dispIniClient"/>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="dispFimClient" placeholder="Fim da Disponibilidade" type="text" name="dispFimClient"/>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="dataSolic" placeholder="Data" type="text" name="dataSolic"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s5">
+                        <textarea class="materialize-textarea" id="observacoes" placeholder="Observações (Opcional)"></textarea>
+                    </div>
+                    <div class="input-field col s4">
+                         <select disabled>
+                          <option value="1">Pendente</option>
+                          <option value="2">Agendado</option>
+                          <option value="3">A Caminho</option>
+                          <option value="4">Em Execução</option>
+                          <option value="5">Concluído</option>
+                          <option value="6">Cancelada</option>
+                        </select>
+                        <label>Estado Solicitação</label>
+                    </div>
+
+                    <div class="input-field col s3">
+                        <input id="multa" placeholder="Multa" type="text" name="multa" readonly />
+                    </div>
+                </div>
+                <div id="dinamicCadServic">
+                    <div id="serv1" class="row">
+                        <div class="input-field col s4">
+                         <input id="descServico" placeholder="Descrição do Serviço" type="text" name="descricaoServ" />
+                        </div>
+                        <div class="input-field col s4">
+                         <input id="valorServic" placeholder="Valor (apenas números)" type="text" name="valorServic" />
+                        </div>
+                        <div class="input-field col s4">
+                         <select id="selectServicos">
+                          <option value="" disabled selected>Selecione a Categoria</option>
+                          <option value="Other">Outro</option>
+                         </select>
+                        </div>
+                        <div id="newCategory1" class="row">
+                            <div class="input-field col s4">
+                             <input id="descCategory" placeholder="Nome da nova Categoria" type="text" name="descCategory" />
+                            </div>
+                            <div class="input-field col s4">
+                             <input id="duracaoCategory" placeholder="Duração estimada da categoria" type="text" name="duracaoCategory" />
+                            </div>
+                        </div>
+                        <a id="addServico" class="btn-floating btn-large waves-effect waves-light red tooltipped" data-tooltip="Adicionar Serviço" data-position="right"><i class="material-icons">add</i></a>
+                    </div> <!--serviço-->
+                    
+                </div>
+                 
+                <a style="background-color:#9F9F9F" class="waves-effect waves-light btn" href="empresaIndex.html">Cancelar</a>
+                <button class="btn waves-effect waves-light" type="submit">Cadastrar</button>
+            </form>
+            </div>
+          </div>
+                
+    </body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="materialize-v0.98.1/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $('#newCategory1').hide();
+        var contServic = 1;
+        $(document).ready(function(){
+            $('select').material_select();
+            $('.tooltipped').tooltip();
+
+            $('#addServico').click(function(){
+                var id = "serv"+contServic++;
+                var div = document.createElement( "div" );
+                div.setAttribute('id', id);
+                div.innerHTML = '<div class="input-field col s4">\
+                         <input id="descServico" placeholder="Descrição do Serviço" type="text" name="descricaoServ" />\
+                        </div>\
+                        <div class="input-field col s4">\
+                         <input id="valorServic" placeholder="Valor (apenas números)" type="text" name="valorServic" />\
+                        </div>\
+                        <div class="input-field col s4">\
+                         <select id="selectServicos">\
+                          <option value="" disabled selected>Selecione a Categoria</option>\
+                          <option value="Other">Outro</option>\
+                         </select>\
+                        </div>\
+                        <div id="newCategory1" class="row">\
+                            <div class="input-field col s4">\
+                             <input id="descCategory" placeholder="Nome da nova Categoria" type="text" name="descCategory" />\
+                            </div>\
+                            <div class="input-field col s4">\
+                             <input id="duracaoCategory" placeholder="Duração estimada da categoria" type="text" name="duracaoCategory" />\
+                            </div>\
+                        </div>\
+                        <a id="addServico" class="btn-floating btn-large waves-effect waves-light red tooltipped" data-tooltip="Adicionar Serviço" data-\position="right"><i class="material-icons">add</i></a>';
+                $('#dinamicCadServic').append(div);
+            });
+
+            $("#selectServicos").on('change', function(e){
+              if($(this).val() == "Other"){
+                $('#newCategory1').show();
+                alert("aaaaa");
+              }else{
+                $('#newCategory1').hide();
+              }
+              return false;
+            });
+        });
+    </script>
+</html>
