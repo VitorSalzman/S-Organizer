@@ -495,7 +495,7 @@ Resultado mesclado ao item anterior.
 ## Data de Entrega: (31/10/2018)
 
 #### 9.7	Backup do Banco de Dados<br>
-<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Backup.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Backup.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
+<a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Imagens_SELECTS/backup.png"><img src="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Imagens_SELECTS/Backup.png" alt="Alt text" title="..." style="max-width:100%;"></a> <br>
 <br>
 
 
