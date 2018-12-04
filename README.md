@@ -500,13 +500,9 @@ Resultado mesclado ao item anterior.
 
 
 #### 9.8	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE<br>
-    a) Lista de índices, tipos de índices com explicação de porque foram implementados nas consultas 
-    b) Performance esperada VS Resultados obtidos
-    c) Tabela de resultados comparando velocidades antes e depois da aplicação dos índices (constando velocidade esperada com planejamento, sem indice e com índice Vs velocidade de execucao real com índice e sem índice).
-    d) Escolher as consultas mais complexas para serem analisadas (consultas com menos de 2 joins não serão aceitas)
-    e) As imagens do Explain devem ser inclusas no trabalho, bem como explicações sobre os resultados obtidos.
-    f) Inclusão de tabela mostrando as 10 execuções, excluindo-se o maior e menor tempos para cada consulta e 
-    obtendo-se a media dos outros valores como resultado médio final.
+   <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/JN%20S-Organizer.ipynb">Arquivo Jupyter </a><br> 
+   <a href="https://drive.google.com/open?id=1YosR-g_3lhEv2mMetepRt6_9jMioRTpbpE2RO8Ynuxk">Apresentação com Prints - Indices </a><br> 
+ 
 <br>
 
 ## Data de Entrega: (22/11/2018)
