@@ -1,4 +1,5 @@
 
+import aplicacao.APLCliente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,10 +28,10 @@ public class BuscaSolicitacao extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        DAOSolicitacao dsolic = new DAOSolicitacao();
-        Solicitacao soli = dsolic.obterPorId(Long.parseLong(request.getParameter("pesquisaProtocolo")));
+        APLCliente aplc = new APLCliente();
+        Solicitacao soli = aplc.consultaSolicitacao(Long.parseLong(request.getParameter("pesquisaProtocolo")));
         
-        if(dsolic != null){    
+        if(soli != null){    
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
