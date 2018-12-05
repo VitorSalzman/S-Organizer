@@ -503,7 +503,7 @@ Resultado mesclado ao item anterior.
 
 
 #### 9.8	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE<br>
-   <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/master/Arquivos%20SQL/Relatorios%20S-Organizer.ipynb">Arquivo Jupyter </a><br> 
+   <a href="https://github.com/VitorSalzman/Topicos-Trabalho-BD2/blob/Development/Arquivos%20SQL/JN%20S-Organizer.ipynb">Arquivo Jupyter </a><br> 
    <a href="https://drive.google.com/open?id=1YosR-g_3lhEv2mMetepRt6_9jMioRTpbpE2RO8Ynuxk">Apresentação com Prints - Indices </a><br> 
  
 <br>
