@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.padroesdeprojeto.fabrica; //WHY
+package modelo.padroesdeprojeto.fabrica;
 
 import java.sql.Time;
 import java.util.Map;
@@ -12,13 +12,8 @@ import modelo.Empresa;
 import modelo.Prestador;
 import modelo.Usuario;
 
-/**
- *
- * @author 20161bsi0403
- */
 public class FabricaUsuarios {
     
-    //Interface map (dicionário do python) 
     Map parametros = null;
     
     public FabricaUsuarios (Map par){
@@ -61,13 +56,10 @@ public class FabricaUsuarios {
             );
             
             Empresa emp = (Empresa) usuario;
-
         }
         else{
             throw new Exception("Usuario desconhecido");
-           
         }
-        
         return usuario;
     }
  

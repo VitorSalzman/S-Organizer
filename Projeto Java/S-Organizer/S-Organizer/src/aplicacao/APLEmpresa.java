@@ -18,11 +18,7 @@ import modelo.padroesdeprojeto.builder.DiretorSolicitacao;
 import modelo.padroesdeprojeto.dao.DAOPrestador;
 import modelo.padroesdeprojeto.dao.DAOSolicitacao;
 
-/**
- * ANOTACAO: Fazer os métodos que retornam String também
- * @author vitorsalzman
- */
-public class APLEmpresa { ///Aqui ficará as funções de APLEmpresa(por exemplo, criar solicitação
+public class APLEmpresa {
     public ArrayList<Servico> criaListaServico(){
         ArrayList<Servico>  listServices = new ArrayList();
         
