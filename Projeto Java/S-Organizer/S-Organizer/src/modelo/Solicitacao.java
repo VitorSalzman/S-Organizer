@@ -18,11 +18,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import modelo.padroesdeprojeto.observer.Observavel;
 
 
 @Entity
 @Table(name="Solicitacao")
-public class Solicitacao implements Serializable {
+public class Solicitacao extends Observavel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id()
@@ -64,18 +65,11 @@ public class Solicitacao implements Serializable {
         return observacao;
     }
     
-    public EstadoSolicitacao getEstado() {
-        return estado;
-    }
-    
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+        
     }
-    
-    public void setEstado(EstadoSolicitacao estado) {
-        this.estado = estado;
-    }
-  
+   
     public List<Servico> getServicos() {
         return servicos;
     }
@@ -111,8 +105,6 @@ public class Solicitacao implements Serializable {
     public void setDataSolicitacao(Calendar dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
-
-
 
     public Double getMultaTotal() {
         return multaTotal;
@@ -156,4 +148,13 @@ public class Solicitacao implements Serializable {
     }
     
     
+    /* METODOS UTILIZADOS NO PADRAO DE PROJETO OBSERVER */
+    public void setEstado(EstadoSolicitacao estado) {
+        this.estado = estado;
+        notificarObservadores();
+    }
+    
+    public EstadoSolicitacao getEstado() {
+        return estado;
+    }
 }
