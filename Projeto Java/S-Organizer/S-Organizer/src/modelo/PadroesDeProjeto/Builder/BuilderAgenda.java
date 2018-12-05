@@ -5,7 +5,7 @@ package modelo.padroesdeprojeto.builder;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*package modelo.padroesdeprojeto.builder;
+
 
 import java.sql.Time;
 import java.text.DateFormat;
@@ -13,22 +13,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import modelo.Agenda;
 import modelo.Prestador;
 import modelo.Servico;
+import modelo.Solicitacao;
 
 
 public class BuilderAgenda {
     private String data;
     private String horaInicioExpediente;
     private String horaFimExpediente;
-    private ArrayList<Servico> servicosDoDia;
+    private Solicitacao servicosDoDia;
     private String prestador;
     private Agenda agenda;
 
     //pensando em tirar os parametros Date e só instanciar eles dentro do construtor
-    public BuilderAgenda(String horaInicioExpediente, String horaFimExpediente, ArrayList<Servico> servicosDoDia, String prestador,  Agenda agenda) {
-        
+    public BuilderAgenda(String horaInicioExpediente, String horaFimExpediente, Solicitacao servicosDoDia, 
+            String prestador,  Agenda agenda) {
         this.horaInicioExpediente = horaInicioExpediente;
         this.horaFimExpediente = horaFimExpediente;
         this.servicosDoDia = servicosDoDia; //(??) fica assim msm? por ser array
@@ -49,10 +51,8 @@ public class BuilderAgenda {
     }
     
     public void geraData() throws ParseException{
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-        Calendar cal = Calendar.getInstance();
-	cal.setTime(sdf.parse(this.data));
+        SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy" ); 
+        Date data = formato.parse( "23/11/2015" );
         this.agenda.setData(data);
     }
     
@@ -61,4 +61,3 @@ public class BuilderAgenda {
     }
     //ainda definindo operacoes da agenda para escrever os metodos
 }
-*/

@@ -30,7 +30,8 @@ public class BuilderEndereco {
     
     private Endereco end;
 
-    public BuilderEndereco(String estado, String cidade, String bairro, String logradouro, String complemento, String cep,Endereco end) {
+    public BuilderEndereco(String estado, String cidade, String bairro, 
+            String logradouro, String complemento, String cep,Endereco end) {
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;

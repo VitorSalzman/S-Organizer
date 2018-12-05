@@ -15,10 +15,10 @@ import modelo.Categoria;
 
 public class BuilderServico {
     private Servico servico;
-    private Categoria categoria; //acredito que essa categoria agora é uma classe, logo esta dando conflito.
+    private Categoria categoria; 
     private String descricao;
     private String valor;
-    private String horarioMarcado;   ///Falta tratar o horario como String
+    private String horarioMarcado;   
     
     public BuilderServico(String categoria, String descricao,
             String valor, String horarioMarcado, Servico service){
