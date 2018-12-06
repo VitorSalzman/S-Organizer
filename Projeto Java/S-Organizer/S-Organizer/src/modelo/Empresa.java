@@ -63,8 +63,6 @@ public class Empresa extends Acesso implements Serializable {
         this.cnpj = cnpj;
     }
 
-
-    //operação manual
     public void setSolicitacao(Solicitacao solicitacao) {
         this.solicitacaoes.add(solicitacao);
     }
@@ -72,11 +70,7 @@ public class Empresa extends Acesso implements Serializable {
     public void setPrestador(Prestador prestador) {
         this.prestadores.add(prestador);
     }
-    //não coloquei remoção manual
 
-    //não manual, tive que por esse porque o builder utiliza dessa forma..
-
-    
     public List<Solicitacao> getSolicitacaoes() {
         return solicitacaoes;
     }

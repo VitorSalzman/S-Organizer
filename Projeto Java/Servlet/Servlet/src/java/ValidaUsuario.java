@@ -1,10 +1,17 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Empresa;
+import modelo.Prestador;
+import modelo.padroesdeprojeto.dao.DAOEmpresa;
+import modelo.padroesdeprojeto.dao.DAOPrestador;
+import modelo.padroesdeprojeto.dao.DAOUsuario;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -32,21 +39,31 @@ public class ValidaUsuario extends HttpServlet{
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.close();
+       
+        DAOEmpresa demp = new DAOEmpresa();
+        DAOPrestador dprest = new DAOPrestador();
         
-        request.getParameter("user");
-        request.getParameter("senha");
-            
-        //Faz pesquisa no DAO pra ver se o acesso existe
+        String login = request.getParameter("user");
+        String senha =request.getParameter("senha");
+        List t= demp.listarTodos(0, 0);
+        List t1 = dprest.listarTodos(0,0);
         
-        //Faz algum tipo de verificação pra saber se é prestador ou empresa
-        boolean prestador = true;
-        boolean empresa = true;
-        if(prestador){
-            response.sendRedirect("prestadorIndex.html");
-        } else if (empresa){
-            response.sendRedirect("empresaIndex.html");
+        for(int i = 0; i < t.size();i++ ){
+            Empresa e = (Empresa)t.get(i);
+            if( login.equals(e.getLogin()) && senha.equals(e.getSenha())){
+                response.sendRedirect("empresaIndex.html");
+                break;
+            }
         }
+        for(int j = 0; j < t.size();j++ ){
+            Prestador p = (Prestador)t.get(j);
+            if( login.equals(p.getLogin()) && senha.equals(p.getSenha())){
+                response.sendRedirect("prestadorIndex.html");
+                break;
+            }
+        }
+        
+        out.close();
     }
 
     @Override
