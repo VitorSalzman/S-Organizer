@@ -40,7 +40,7 @@ public class APLEmpresa {
         
         solicit = director.builder(disp_cli_ini, disp_cli_fim, observacao, dataSolicitacao, listServices);
         
-        // falta persistir no bd ///ISSO?
+        
         DAOSolicitacao daoSolicitacao = new DAOSolicitacao();
         daoSolicitacao.inserir(solicit);
     }

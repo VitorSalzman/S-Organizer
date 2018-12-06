@@ -28,7 +28,7 @@ public class Solicitacao implements Serializable {
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "protocolo")
-    private long protocolo; //Protocolo, precisamos customizar o GenerationType, isso seria um singleton, correto?
+    private long protocolo;
     
     @Column(name="dispCliIni")
     @Temporal(javax.persistence.TemporalType.TIME)// ir apenas o TIME

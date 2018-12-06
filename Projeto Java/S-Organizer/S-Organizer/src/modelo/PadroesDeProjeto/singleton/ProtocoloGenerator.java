@@ -12,6 +12,7 @@ public enum ProtocoloGenerator {
     private long count = System.currentTimeMillis();
     
     public synchronized long getNextProtocol(){
+        
         return count++;
     }
 }
