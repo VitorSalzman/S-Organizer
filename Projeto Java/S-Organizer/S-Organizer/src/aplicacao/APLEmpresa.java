@@ -9,10 +9,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import modelo.Endereco;
 import modelo.padroesdeprojeto.fabrica.FabricaUsuarios;
 import modelo.Prestador;
 import modelo.Servico;
 import modelo.Solicitacao;
+import modelo.padroesdeprojeto.builder.DiretorEndereco;
 import modelo.padroesdeprojeto.builder.DiretorServico;
 import modelo.padroesdeprojeto.builder.DiretorSolicitacao;
 import modelo.padroesdeprojeto.dao.DAOPrestador;
@@ -33,12 +35,20 @@ public class APLEmpresa {
         listServices.add(service);
     }
     
+    public Endereco geraEndereco(String estado, String cidade, String bairro, String logradouro,
+            String complemento, String cep){
+        Endereco end = new Endereco();
+        DiretorEndereco director = new DiretorEndereco();
+        end = director.builder(estado, cidade, bairro, logradouro, complemento, cep);
+        
+        return end;
+    }
     public void criaSolicitacao(String disp_cli_ini, String disp_cli_fim,
-            String observacao, String dataSolicitacao, ArrayList<Servico> listServices) throws ParseException{
+            String observacao, String dataSolicitacao, ArrayList<Servico> listServices, Endereco end) throws ParseException{
         DiretorSolicitacao director = new DiretorSolicitacao();
         Solicitacao solicit = new Solicitacao();
         
-        solicit = director.builder(disp_cli_ini, disp_cli_fim, observacao, dataSolicitacao, listServices);
+        solicit = director.builder(disp_cli_ini, disp_cli_fim, observacao, dataSolicitacao, listServices, end);
         
         
         DAOSolicitacao daoSolicitacao = new DAOSolicitacao();
