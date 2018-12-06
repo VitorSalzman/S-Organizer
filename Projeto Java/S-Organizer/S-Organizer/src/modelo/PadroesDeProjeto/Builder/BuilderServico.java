@@ -52,8 +52,5 @@ public class BuilderServico {
         this.servico.setHorarioMarcado(h);
     }
     
-    ///verificar
-    
-    
        
-    }
+ }

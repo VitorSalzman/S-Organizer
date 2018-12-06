@@ -34,7 +34,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RecebeDadosCadSolic</servlet-name>
-        <url-pattern>/registrarSolicitacao</url-pattern>
+        <url-pattern>/RecebeDadosCadSolic</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
