@@ -24,7 +24,11 @@ public class DAOLogradouro extends AGenericDAOImpl<Logradouro> implements ILogra
     public DAOLogradouro(Class<Logradouro> classe) {
         super(classe);
     }
-
+    
+    public DAOLogradouro(){
+        super(Logradouro.class);
+    }
+    
     @Override
     public int getClassCount() {
         
